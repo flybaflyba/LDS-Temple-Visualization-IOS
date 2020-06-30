@@ -52,7 +52,9 @@ struct SpiralView: View {
     var body: some View {
         HStack {
             ForEach(imageSpiralviewModel.temples) { temple in
-                TempleView(temple: temple)
+                TempleView(temple: temple).onTapGesture {
+                    self.imageSpiralviewModel.choose(temple: temple)
+                }
             }
         }.padding()
     }
