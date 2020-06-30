@@ -8,15 +8,19 @@
 
 import SwiftUI
 
-//use screen Height to set how much space each view should take on the screen
+// use screen Height to set how much space each view should take on the screen
 let screenWidth = UIScreen.main.bounds.size.width
 let screenHeight = UIScreen.main.bounds.size.height
 
 struct ContentView: View {
+    
+    
     var body: some View {
         VStack {
             TitleView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
-            SpiralView().frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
+            
+            SpiralView(imageSpiralviewModel: ImageSpiral()).frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
+            
             YearDisplayView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             SliderView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
             SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
@@ -25,18 +29,32 @@ struct ContentView: View {
     }
 }
 
-
-
-
+// the folowing are different views on the initial screen
 struct TitleView: View {
     var body: some View {
         Text("LDS Temples")
     }
 }
 
-struct SpiralView: View {
+struct TempleView: View {
+    var temple: Spiral<String>.Temple
     var body: some View {
-        Text("Spiral")
+        ZStack{
+            RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+            Text(temple.content)
+        }
+        
+    }
+}
+
+struct SpiralView: View {
+    var imageSpiralviewModel: ImageSpiral
+    var body: some View {
+        HStack {
+            ForEach(imageSpiralviewModel.temples) { temple in
+                TempleView(temple: temple)
+            }
+        }.padding()
     }
 }
 
@@ -57,6 +75,8 @@ struct SliderLabelView: View {
         Text("Slider lablel")
     }
 }
+
+
 
 
 
