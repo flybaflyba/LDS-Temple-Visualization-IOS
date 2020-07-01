@@ -27,6 +27,7 @@ struct Spiral<TempleContent> {
             temples.append(Temple(content: content, id: index))
             
         }
+        
     }
     
     // we make each temple unique, so that we can loop through them with ForEach 

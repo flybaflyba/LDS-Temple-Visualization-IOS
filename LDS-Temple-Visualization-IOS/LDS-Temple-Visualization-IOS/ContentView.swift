@@ -8,9 +8,17 @@
 
 import SwiftUI
 
+
 // use screen Height to set how much space each view should take on the screen
 let screenWidth = UIScreen.main.bounds.size.width
 let screenHeight = UIScreen.main.bounds.size.height
+let centerX = screenWidth / 2
+let centerY = screenHeight  * 0.7 / 2
+
+var spiral: Path = Path()
+
+
+
 
 struct ContentView: View {
     
@@ -20,7 +28,7 @@ struct ContentView: View {
             
             TitleView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             
-            SpiralView(imageSpiralviewModel: ImageSpiral()).frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
+            SpiralView(imageSpiralViewModel: ImageSpiral()).frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
             
             YearDisplayView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             SliderView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
@@ -50,23 +58,87 @@ struct Temple {
     }
 }
 
+
+func getCoordinates() -> Array<Array<CGFloat>>{
+    var t: CGFloat = 17.5
+    var buildingCoordinates: Array<Array<CGFloat>> = Array<Array<CGFloat>>()
+    var x: CGFloat
+    var y: CGFloat
+    let initialR: CGFloat = screenWidth / 10
+    
+    
+    spiral.move(to: CGPoint(x:centerX,y:centerY))
+    
+    //spiral.addLine(to: CGPoint(x:100,y:100))
+    
+    // spiral function：
+    // x = p * cosA, y = p * sinA, where p = N * e^(B * cotC)
+    // When C = PI/2, graph is a circle, when C = 0, graph is a straight line
+    
+    
+    while t > -18
+    {
+        
+        x = centerX + initialR * exp(t * CGFloat(1) / tan(CGFloat(47)) * CGFloat.pi / CGFloat(100)) * cos(t)
+        y = centerY + initialR * exp(t * CGFloat(1) / tan(CGFloat(47)) * CGFloat.pi / CGFloat(100)) * sin(t)
+        
+    
+        var oneSpiralCoordinate: Array<CGFloat> = Array<CGFloat>()
+        oneSpiralCoordinate.append(x)
+        oneSpiralCoordinate.append(y)
+        buildingCoordinates.append(oneSpiralCoordinate)
+        
+        //print("oneSpiralCoordinate is \(oneSpiralCoordinate)")
+        
+        oneSpiralCoordinate.removeAll()
+        
+        t -= 0.02
+        
+        spiral.addLine(to: CGPoint(x:x,y:y))
+        
+        print("X is \(x)")
+        print("Y is \(y)")
+        
+    }
+    
+    print("centerX is \(centerX)")
+    print("centerY is \(centerY)")
+    print("screenWidth is \(screenWidth)")
+    print("screenHeight is \(screenHeight)")
+    
+    //print("buildingCoordinates is \(buildingCoordinates)")
+    print("buildingCoordinates length is \(buildingCoordinates.count)")
+    
+    return buildingCoordinates.reversed()
+    
+}
+
 struct SpiralView: View {
-    var imageSpiralviewModel: ImageSpiral
+    var imageSpiralViewModel: ImageSpiral
+    
+    
+   
+    var coordinates: Array<Array<CGFloat>> = getCoordinates()
+    
     var body: some View {
         
         ZStack {
-            ForEach(imageSpiralviewModel.temples) { temple in
+            ForEach(imageSpiralViewModel.temples) { temple in
                 //Text(temple.content)
                 Image(temple.content).resizable()
                     .frame(width: 100.0, height: 100.0).position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
 
                     .onTapGesture {
-                    self.imageSpiralviewModel.choose(temple: temple)
+                    self.imageSpiralViewModel.choose(temple: temple)
                         
                 }
+                spiral.stroke()
             }
-        }.padding()
+            
+        }
     }
+    
+    
 }
 
 struct YearDisplayView: View {
@@ -86,7 +158,6 @@ struct SliderLabelView: View {
         Text("Slider lablel")
     }
 }
-
 
 
 
