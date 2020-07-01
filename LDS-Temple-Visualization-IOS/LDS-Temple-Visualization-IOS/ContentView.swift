@@ -53,16 +53,16 @@ struct Temple {
 struct SpiralView: View {
     var imageSpiralviewModel: ImageSpiral
     var body: some View {
-        HStack {
+        
+        ZStack {
             ForEach(imageSpiralviewModel.temples) { temple in
-                
                 //Text(temple.content)
-                
                 Image(temple.content).resizable()
-                    .frame(width: 100.0, height: 100.0)
-                    
+                    .frame(width: 100.0, height: 100.0).position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
+
                     .onTapGesture {
                     self.imageSpiralviewModel.choose(temple: temple)
+                        
                 }
             }
         }.padding()
