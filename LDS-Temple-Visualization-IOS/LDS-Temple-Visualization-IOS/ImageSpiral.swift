@@ -31,7 +31,7 @@ class ImageSpiral {
     
     // static means we can call this function on class, fot instace, we use this to initialze the model
     static func createSpiral() -> Spiral<String> {
-        let allTemples: Array<String> = ["laie", "provo", "saltlake", "shanghai", "future"]
+        let allTemples: Array<String> = ["aaa", "aab", "aac", "aad", "aae"]
         return Spiral<String>(numberOfTemples: allTemples.count) { index in
         return allTemples[index]
         

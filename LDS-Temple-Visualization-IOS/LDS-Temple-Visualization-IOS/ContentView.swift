@@ -17,6 +17,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            
             TitleView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             
             SpiralView(imageSpiralviewModel: ImageSpiral()).frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
@@ -24,6 +25,8 @@ struct ContentView: View {
             YearDisplayView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             SliderView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
             SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            
+            
         }
         
     }
@@ -36,7 +39,7 @@ struct TitleView: View {
     }
 }
 
-struct TempleView: View {
+struct Temple {
     var temple: Spiral<String>.Temple
     var body: some View {
         ZStack{
@@ -52,7 +55,13 @@ struct SpiralView: View {
     var body: some View {
         HStack {
             ForEach(imageSpiralviewModel.temples) { temple in
-                TempleView(temple: temple).onTapGesture {
+                
+                //Text(temple.content)
+                
+                Image(temple.content).resizable()
+                    .frame(width: 100.0, height: 100.0)
+                    
+                    .onTapGesture {
                     self.imageSpiralviewModel.choose(temple: temple)
                 }
             }
