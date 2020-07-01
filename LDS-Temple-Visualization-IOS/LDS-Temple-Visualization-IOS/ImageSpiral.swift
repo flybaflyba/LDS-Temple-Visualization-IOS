@@ -49,4 +49,8 @@ class ImageSpiral {
     func choose(temple: Spiral<String>.Temple) {
         spiralModel.choose(temple: temple)
     }
+    
+    func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>> {
+        spiralModel.getCoordinates(centerX: centerX,centerY: centerY)
+    }
 }

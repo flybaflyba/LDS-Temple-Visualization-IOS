@@ -15,7 +15,9 @@ let screenHeight = UIScreen.main.bounds.size.height
 let centerX = screenWidth / 2
 let centerY = screenHeight  * 0.7 / 2
 
-var spiral: Path = Path()
+var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+
+let coordinates: Array<Array<CGFloat>> = imageSpiralViewModel.getCoordinates(centerX: centerX, centerY: centerY)
 
 
 
@@ -26,13 +28,17 @@ struct ContentView: View {
     var body: some View {
         VStack {
             
+            
             TitleView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
-            
-            SpiralView(imageSpiralViewModel: ImageSpiral()).frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
-            
+            Spacer(minLength: 0)
+            SpiralView().frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
+            Spacer(minLength: 0)
             YearDisplayView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            Spacer(minLength: 0)
             SliderView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
+            Spacer(minLength: 0)
             SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            
             
             
         }
@@ -58,67 +64,23 @@ struct Temple {
     }
 }
 
-
-func getCoordinates() -> Array<Array<CGFloat>>{
-    var t: CGFloat = 17.5
-    var buildingCoordinates: Array<Array<CGFloat>> = Array<Array<CGFloat>>()
-    var x: CGFloat
-    var y: CGFloat
-    let initialR: CGFloat = screenWidth / 10
+// this is a test function, it returns a spiral, so that we can see how it looks
+func SpiralDrawing() -> Path {
+    var spiraldrawing: Path = Path()
+    spiraldrawing.move(to: CGPoint(x:centerX,y:centerY))
     
-    
-    spiral.move(to: CGPoint(x:centerX,y:centerY))
-    
-    //spiral.addLine(to: CGPoint(x:100,y:100))
-    
-    // spiral function：
-    // x = p * cosA, y = p * sinA, where p = N * e^(B * cotC)
-    // When C = PI/2, graph is a circle, when C = 0, graph is a straight line
-    
-    
-    while t > -18
+    for coordinate in coordinates
     {
-        
-        x = centerX + initialR * exp(t * CGFloat(1) / tan(CGFloat(47)) * CGFloat.pi / CGFloat(100)) * cos(t)
-        y = centerY + initialR * exp(t * CGFloat(1) / tan(CGFloat(47)) * CGFloat.pi / CGFloat(100)) * sin(t)
-        
-    
-        var oneSpiralCoordinate: Array<CGFloat> = Array<CGFloat>()
-        oneSpiralCoordinate.append(x)
-        oneSpiralCoordinate.append(y)
-        buildingCoordinates.append(oneSpiralCoordinate)
-        
-        //print("oneSpiralCoordinate is \(oneSpiralCoordinate)")
-        
-        oneSpiralCoordinate.removeAll()
-        
-        t -= 0.02
-        
-        spiral.addLine(to: CGPoint(x:x,y:y))
-        
-        print("X is \(x)")
-        print("Y is \(y)")
+        spiraldrawing.addLine(to: CGPoint(x:coordinate[0],y:coordinate[1]))
         
     }
     
-    print("centerX is \(centerX)")
-    print("centerY is \(centerY)")
-    print("screenWidth is \(screenWidth)")
-    print("screenHeight is \(screenHeight)")
-    
-    //print("buildingCoordinates is \(buildingCoordinates)")
-    print("buildingCoordinates length is \(buildingCoordinates.count)")
-    
-    return buildingCoordinates.reversed()
+    return spiraldrawing
     
 }
 
+
 struct SpiralView: View {
-    var imageSpiralViewModel: ImageSpiral
-    
-    
-   
-    var coordinates: Array<Array<CGFloat>> = getCoordinates()
     
     var body: some View {
         
@@ -126,13 +88,17 @@ struct SpiralView: View {
             ForEach(imageSpiralViewModel.temples) { temple in
                 //Text(temple.content)
                 Image(temple.content).resizable()
-                    .frame(width: 100.0, height: 100.0).position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
+                    .frame(width: 100.0, height: 100.0)
+                    .position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
+                    //.position(x: self.coordinates[(temple.id)][0], y: self.coordinates[(temple.id)][1])
 
                     .onTapGesture {
-                    self.imageSpiralViewModel.choose(temple: temple)
+                    imageSpiralViewModel.choose(temple: temple)
                         
                 }
-                spiral.stroke()
+                
+                // this line shows us how the spiral looks like on screen 
+                SpiralDrawing().stroke()
             }
             
         }
