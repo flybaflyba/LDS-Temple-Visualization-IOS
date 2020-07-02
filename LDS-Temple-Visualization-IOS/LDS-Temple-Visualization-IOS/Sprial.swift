@@ -27,6 +27,8 @@ struct Spiral<TempleContent> {
             let content = templeContentFactory(index)
             temples.append(Temple(content: content, id: index))
             
+            //print(temples)
+            
         }
         
     }
@@ -98,4 +100,31 @@ struct Spiral<TempleContent> {
             //.reversed()
         
     }
+    
+    
+    func getOnScreenTemples(theta: CGFloat) -> Array<Temple> {
+        var onScreenTemples = Array<Temple>()
+        
+//        java code
+//        for (Bitmap t : temples)
+//        float ts = theta - 30 * temples.indexOf(t);
+//        if (ts > 0 && ts < spiralCoordinates.size() - 150)
+    
+        var templePosition: CGFloat
+        
+        for templeIndex in 0..<temples.count {
+            
+            templePosition = theta - 30 * CGFloat(templeIndex)
+            
+            if templePosition > 0 && templePosition < CGFloat(temples.count - 150) {
+                onScreenTemples.append(temples[templeIndex])
+                
+            }
+        }
+                
+        
+        return onScreenTemples
+    }
+     
+    
 }
