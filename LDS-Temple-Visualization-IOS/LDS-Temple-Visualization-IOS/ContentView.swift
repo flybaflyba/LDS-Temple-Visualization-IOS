@@ -27,8 +27,6 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            
-            
             TitleView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             Spacer(minLength: 0)
             SpiralView().frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
@@ -65,7 +63,7 @@ struct Temple {
 }
 
 // this is a test function, it returns a spiral, so that we can see how it looks
-func SpiralDrawing() -> Path {
+func spiralDrawing() -> Path {
     var spiraldrawing: Path = Path()
     spiraldrawing.move(to: CGPoint(x:centerX,y:centerY))
     
@@ -89,16 +87,16 @@ struct SpiralView: View {
                 //Text(temple.content)
                 Image(temple.content).resizable()
                     .frame(width: 100.0, height: 100.0)
-                    .position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
-                    //.position(x: self.coordinates[(temple.id)][0], y: self.coordinates[(temple.id)][1])
+                    //.position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
+                    .position(x: coordinates[(temple.id * 400)][0], y: coordinates[(temple.id * 400)][1])
 
                     .onTapGesture {
                     imageSpiralViewModel.choose(temple: temple)
                         
                 }
                 
-                // this line shows us how the spiral looks like on screen 
-                SpiralDrawing().stroke()
+                // this line shows us how the spiral looks like on screen
+                spiralDrawing().stroke()
             }
             
         }

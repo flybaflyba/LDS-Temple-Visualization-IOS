@@ -31,9 +31,9 @@ class ImageSpiral {
     
     // static means we can call this function on class, fot instace, we use this to initialze the model
     static func createSpiral() -> Spiral<String> {
-        let allTemples: Array<String> = ["aaa", "aab", "aac", "aad", "aae"]
-        return Spiral<String>(numberOfTemples: allTemples.count) { index in
-        return allTemples[index]
+        let templeNames: Array<String> = readTempleNamesFromFile()
+        return Spiral<String>(numberOfTemples: templeNames.count) { index in
+        return templeNames[index]
         
         }
     }
@@ -52,5 +52,18 @@ class ImageSpiral {
     
     func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>> {
         spiralModel.getCoordinates(centerX: centerX,centerY: centerY)
+    }
+    
+    static func readTempleNamesFromFile() -> Array<String> {
+        var templeNames: Array<String> = Array<String>()
+
+    
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        return templeNames
     }
 }
