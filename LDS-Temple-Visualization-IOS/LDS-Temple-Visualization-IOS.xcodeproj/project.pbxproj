@@ -17,7 +17,7 @@
 		1E7A174B24AAAFC500519D64 /* LDS_Temple_Visualization_IOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7A174A24AAAFC500519D64 /* LDS_Temple_Visualization_IOSUITests.swift */; };
 		1EBF98DC24AAC678005CC70D /* Sprial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF98DB24AAC678005CC70D /* Sprial.swift */; };
 		1EBF98DE24AAC883005CC70D /* ImageSpiral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */; };
-		1EFE4A5924AD6B3C00FAD239 /* templeNames.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1EFE4A5824AD6B3C00FAD239 /* templeNames.txt */; };
+		1EFE4A6124AD747700FAD239 /* templeNames in Resources */ = {isa = PBXBuildFile; fileRef = 1EFE4A6024AD747700FAD239 /* templeNames */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		1E7A174C24AAAFC500519D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EBF98DB24AAC678005CC70D /* Sprial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprial.swift; sourceTree = "<group>"; };
 		1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSpiral.swift; sourceTree = "<group>"; };
-		1EFE4A5824AD6B3C00FAD239 /* templeNames.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = templeNames.txt; path = ../../../templeNames.txt; sourceTree = "<group>"; };
+		1EFE4A6024AD747700FAD239 /* templeNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeNames; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +110,7 @@
 				1E7A172C24AAAFC300519D64 /* ContentView.swift */,
 				1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */,
 				1EBF98DB24AAC678005CC70D /* Sprial.swift */,
-				1EFE4A5824AD6B3C00FAD239 /* templeNames.txt */,
+				1EFE4A6024AD747700FAD239 /* templeNames */,
 				1E7A172E24AAAFC500519D64 /* Assets.xcassets */,
 				1E7A173324AAAFC500519D64 /* LaunchScreen.storyboard */,
 				1E7A173624AAAFC500519D64 /* Info.plist */,
@@ -249,9 +249,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EFE4A5924AD6B3C00FAD239 /* templeNames.txt in Resources */,
 				1E7A173524AAAFC500519D64 /* LaunchScreen.storyboard in Resources */,
 				1E7A173224AAAFC500519D64 /* Preview Assets.xcassets in Resources */,
+				1EFE4A6124AD747700FAD239 /* templeNames in Resources */,
 				1E7A172F24AAAFC500519D64 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

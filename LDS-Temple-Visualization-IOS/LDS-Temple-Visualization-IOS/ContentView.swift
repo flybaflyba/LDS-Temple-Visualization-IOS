@@ -96,7 +96,7 @@ struct SpiralView: View {
                 Image(temple.content).resizable()
                     .frame(width: 20.0, height: 20.0)
                     //.position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
-                    .position(x: coordinates[(temple.id)*8][0], y: coordinates[(temple.id)*8][1])
+                    .position(x: coordinates[(temple.id)*7][0], y: coordinates[(temple.id)*7][1])
 
                     .onTapGesture {
                     imageSpiralViewModel.choose(temple: temple)
