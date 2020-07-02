@@ -44,6 +44,8 @@ struct Spiral<TempleContent> {
         var y: CGFloat
         let initialR: CGFloat = screenWidth / 10
         
+        var oneSpiralCoordinate: Array<CGFloat> = Array<CGFloat>()
+        
         while t < 17.5
         {
             // spiral function：
@@ -53,7 +55,6 @@ struct Spiral<TempleContent> {
             x = centerX + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * cos(t)
             y = centerY + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * sin(t)
         
-            var oneSpiralCoordinate: Array<CGFloat> = Array<CGFloat>()
             oneSpiralCoordinate.append(x)
             oneSpiralCoordinate.append(y)
             buildingCoordinates.append(oneSpiralCoordinate)
@@ -69,14 +70,29 @@ struct Spiral<TempleContent> {
             
         }
         
+        let topCoordinateInSpiralX = buildingCoordinates[(buildingCoordinates.count-1)][0];
+        let topCoordinateInSpiralY = buildingCoordinates[(buildingCoordinates.count-1)][1];
+
+        var q = topCoordinateInSpiralX
+        while q < screenWidth*1.25 {
+
+            oneSpiralCoordinate.append(q)
+            oneSpiralCoordinate.append(topCoordinateInSpiralY)
+            buildingCoordinates.append(oneSpiralCoordinate)
+            
+            oneSpiralCoordinate.removeAll()
+            
+             q += 10
+        }
+
+        
         //print("centerX is \(centerX)")
         //print("centerY is \(centerY)")
         //print("screenWidth is \(screenWidth)")
         //print("screenHeight is \(screenHeight)")
         
         //print("buildingCoordinates is \(buildingCoordinates)")
-        //print("buildingCoordinates length is \(buildingCoordinates.count)")
-        //print("buildingCoordinates 1000 is \(buildingCoordinates[1000])")
+        print("buildingCoordinates length is \(buildingCoordinates.count)")
         
         return buildingCoordinates
             //.reversed()

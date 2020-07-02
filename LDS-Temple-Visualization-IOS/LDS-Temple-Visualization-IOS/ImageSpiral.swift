@@ -79,7 +79,7 @@ class ImageSpiral {
         
         
         
-        print(allTempleNames)
+        //print(allTempleNames)
         
         return allTempleNames
     }
