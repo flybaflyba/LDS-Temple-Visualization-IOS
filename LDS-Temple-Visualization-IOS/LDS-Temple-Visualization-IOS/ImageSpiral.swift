@@ -57,7 +57,7 @@ class ImageSpiral {
     static func readTempleNamesFromFile() -> Array<String> {
         
         //var templeNames: Array<String> = Array<String>()
-        let allTempleNames: Array<String> = linesFromResourceForced(fileName: "templeNames")
+        var allTempleNames: Array<String> = linesFromResourceForced(fileName: "templeNames")
         
 //        templeNames.append("kirtland_temple")
 //        templeNames.append("old_nauvoo_temple")
@@ -80,6 +80,10 @@ class ImageSpiral {
         
         
         //print(allTempleNames)
+        
+        allTempleNames.removeLast()
+    
+        print("allTempleNames length is \(allTempleNames.count)")
         
         return allTempleNames
     }
