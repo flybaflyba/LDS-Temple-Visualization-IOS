@@ -74,13 +74,11 @@ func spiralDrawing() -> Path {
     }
     
     
-    let names = imageSpiralViewModel.linesFromResourceForced(fileName: "templeNames")
-    
-    for name in names {
-        print(name)
-    }
-    
-    
+//    let names = ImageSpiral.linesFromResourceForced(fileName: "templeNames")
+//
+//    for name in names {
+//        print(name)
+//    }
     
     return spiraldrawing
     
@@ -92,17 +90,20 @@ struct SpiralView: View {
     var body: some View {
         
         ZStack {
+            
             ForEach(imageSpiralViewModel.temples) { temple in
                 //Text(temple.content)
                 Image(temple.content).resizable()
-                    .frame(width: 100.0, height: 100.0)
+                    .frame(width: 20.0, height: 20.0)
                     //.position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
-                    .position(x: coordinates[(temple.id * 400)][0], y: coordinates[(temple.id * 400)][1])
+                    .position(x: coordinates[(temple.id)*8][0], y: coordinates[(temple.id)*8][1])
 
                     .onTapGesture {
                     imageSpiralViewModel.choose(temple: temple)
                         
                 }
+                
+            
                 
                 // this line shows us how the spiral looks like on screen
                 spiralDrawing().stroke()

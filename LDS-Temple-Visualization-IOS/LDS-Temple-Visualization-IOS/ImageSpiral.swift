@@ -55,21 +55,272 @@ class ImageSpiral {
     }
     
     static func readTempleNamesFromFile() -> Array<String> {
+        
         var templeNames: Array<String> = Array<String>()
-
+        //var templeNames: Array<String> = linesFromResourceForced(fileName: "templeNames")
+        
         templeNames.append("kirtland_temple")
         templeNames.append("old_nauvoo_temple")
         templeNames.append("st_george_temple")
         templeNames.append("logan_temple")
-        templeNames.append("manti_temple") 
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        templeNames.append("kirtland_temple")
+        templeNames.append("old_nauvoo_temple")
+        templeNames.append("st_george_temple")
+        templeNames.append("logan_temple")
+        templeNames.append("manti_temple")
+        
+        
+        
         return templeNames
     }
     
-    func linesFromResourceForced(fileName: String) -> Array<Substring> {
+    static func linesFromResourceForced(fileName: String) -> Array<String> {
 
         let path = Bundle.main.path(forResource: fileName, ofType: "txt")!
         let content = try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
-        return content.split(separator: "\n")
+        return content.components(separatedBy: "\n")
     }
     
     
