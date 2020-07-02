@@ -73,6 +73,15 @@ func spiralDrawing() -> Path {
         
     }
     
+    
+    let names = imageSpiralViewModel.linesFromResourceForced(fileName: "templeNames")
+    
+    for name in names {
+        print(name)
+    }
+    
+    
+    
     return spiraldrawing
     
 }
