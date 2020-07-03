@@ -22,6 +22,7 @@ class ImageSpiral {
     
     // we can also close the door and use a function to access the model
     private var spiralModel: Spiral<String> = ImageSpiral.createSpiral()
+    
         
         // we will initialize with a function, createSpiral()
         //Spiral<String>(numberOfTemples: 2, templeContentFactory: createTempleContent)
@@ -37,8 +38,7 @@ class ImageSpiral {
         
         }
     }
-        
-    
+
     // MARK: - Access to the Model
     var temples: Array<Spiral<String>.Temple> {
         return spiralModel.temples
@@ -52,6 +52,10 @@ class ImageSpiral {
     
     func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>> {
         spiralModel.getCoordinates(centerX: centerX,centerY: centerY)
+    }
+    
+    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Spiral<String>.Temple> {
+        spiralModel.getOnScreenTemples(theta: theta, coordinatesLength: coordinatesLength)
     }
     
     static func readTempleNamesFromFile() -> Array<String> {
@@ -94,6 +98,9 @@ class ImageSpiral {
         let content = try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
         return content.components(separatedBy: "\n")
     }
+    
+
+    
     
     
     

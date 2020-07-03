@@ -15,6 +15,8 @@ import SwiftUI
 struct Spiral<TempleContent> {
     var temples: Array<Temple>
     
+    //var onScreenTemples: Array<Temple>
+    
     func choose(temple: Temple) {
         print("temple chosen: \(temple)")
     }
@@ -28,8 +30,9 @@ struct Spiral<TempleContent> {
             temples.append(Temple(content: content, id: index))
             
             //print(temples)
-            
+
         }
+        
         
     }
     
@@ -101,30 +104,35 @@ struct Spiral<TempleContent> {
         
     }
     
-    
-    func getOnScreenTemples(theta: CGFloat) -> Array<Temple> {
-        var onScreenTemples = Array<Temple>()
+    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Temple> {
+        var collectingOnScreenTemples = Array<Temple>()
         
-//        java code
-//        for (Bitmap t : temples)
-//        float ts = theta - 30 * temples.indexOf(t);
-//        if (ts > 0 && ts < spiralCoordinates.size() - 150)
-    
+//      java code
+//      for (Bitmap t : temples)
+//      float ts = theta - 30 * temples.indexOf(t);
+//      if (ts > 0 && ts < spiralCoordinates.size() - 150)
+        
         var templePosition: CGFloat
-        
+            
         for templeIndex in 0..<temples.count {
+            
+            print(templeIndex)
             
             templePosition = theta - 30 * CGFloat(templeIndex)
             
-            if templePosition > 0 && templePosition < CGFloat(temples.count - 150) {
-                onScreenTemples.append(temples[templeIndex])
+            print(templePosition)
                 
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+                collectingOnScreenTemples.append(temples[templeIndex])
+                    
             }
         }
-                
-        
-        return onScreenTemples
+            
+        print("collectingOnScreenTemples length is \(collectingOnScreenTemples.count)")
+        return collectingOnScreenTemples
     }
+    
+
      
     
 }

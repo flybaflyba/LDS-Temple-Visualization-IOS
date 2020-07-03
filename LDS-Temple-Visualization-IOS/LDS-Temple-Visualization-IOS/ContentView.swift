@@ -19,8 +19,7 @@ var imageSpiralViewModel: ImageSpiral = ImageSpiral()
 
 let coordinates: Array<Array<CGFloat>> = imageSpiralViewModel.getCoordinates(centerX: centerX, centerY: centerY)
 
-
-
+var onScreenTemples: Array<Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 2000, coordinatesLength: CGFloat(coordinates.count))
 
 struct ContentView: View {
     
@@ -91,7 +90,8 @@ struct SpiralView: View {
         
         ZStack {
             
-            ForEach(imageSpiralViewModel.temples) { temple in
+            //ForEach(imageSpiralViewModel.temples) { temple in
+            ForEach(onScreenTemples) { temple in
                 //Text(temple.content)
                 Image(temple.content).resizable()
                     .frame(width: 20.0, height: 20.0)
