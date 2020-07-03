@@ -104,33 +104,71 @@ struct Spiral<TempleContent> {
         
     }
     
-    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Temple> {
-        var collectingOnScreenTemples = Array<Temple>()
+    /*
+    //func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Temple> {
+    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Dictionary<CGFloat,Temple> {
         
-//      java code
+        //var collectingOnScreenTemples = Array<Temple>()
+
+        var positionAndTemples  = Dictionary<CGFloat,Temple>()
+        
+//      logic
 //      for (Bitmap t : temples)
-//      float ts = theta - 30 * temples.indexOf(t);
+//      float ts = theta - 30 * temples.indexOf(t)
 //      if (ts > 0 && ts < spiralCoordinates.size() - 150)
         
         var templePosition: CGFloat
             
         for templeIndex in 0..<temples.count {
             
-            print(templeIndex)
+            //print(templeIndex)
             
             templePosition = theta - 30 * CGFloat(templeIndex)
             
-            print(templePosition)
+            //print(templePosition)
                 
             if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
-                collectingOnScreenTemples.append(temples[templeIndex])
+                
+                //collectingOnScreenTemples.append(temples[templeIndex])
+                
+                positionAndTemples[templePosition] = temples[templeIndex]
                     
             }
         }
             
-        print("collectingOnScreenTemples length is \(collectingOnScreenTemples.count)")
+        //print("collectingOnScreenTemples length is \(collectingOnScreenTemples.count)")
+        //print("positionAndTemples length is \(positionAndTemples.count)")
+        
+        //return collectingOnScreenTemples
+        return positionAndTemples
+    }
+ */
+    
+       
+    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Temple> {
+        var collectingOnScreenTemples = Array<Temple>()
+        var templePosition: CGFloat
+        for templeIndex in 0..<temples.count {
+            templePosition = theta - 30 * CGFloat(templeIndex)
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+                collectingOnScreenTemples.append(temples[templeIndex])
+            }
+        }
         return collectingOnScreenTemples
     }
+    
+    func getOnScreenTemplesPositions(theta: CGFloat, coordinatesLength: CGFloat) -> Array<CGFloat> {
+        var collectingOnScreenTemplesPositions = Array<CGFloat>()
+        var templePosition: CGFloat
+        for templeIndex in 0..<temples.count {
+            templePosition = theta - 30 * CGFloat(templeIndex)
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+                collectingOnScreenTemplesPositions.append(templePosition)
+            }
+        }
+        return collectingOnScreenTemplesPositions
+    }
+        
     
 
      

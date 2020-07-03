@@ -54,8 +54,15 @@ class ImageSpiral {
         spiralModel.getCoordinates(centerX: centerX,centerY: centerY)
     }
     
+//    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Dictionary<CGFloat,Spiral<String>.Temple> {
+//        spiralModel.getOnScreenTemples(theta: theta, coordinatesLength: coordinatesLength)
+//    }
+    
     func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Spiral<String>.Temple> {
         spiralModel.getOnScreenTemples(theta: theta, coordinatesLength: coordinatesLength)
+    }
+    func getOnScreenTemplesPositions(theta: CGFloat, coordinatesLength: CGFloat) -> Array<CGFloat> {
+        spiralModel.getOnScreenTemplesPositions(theta: theta, coordinatesLength: coordinatesLength)
     }
     
     static func readTempleNamesFromFile() -> Array<String> {

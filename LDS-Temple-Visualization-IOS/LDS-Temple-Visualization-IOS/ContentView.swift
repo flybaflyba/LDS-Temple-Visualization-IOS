@@ -19,7 +19,14 @@ var imageSpiralViewModel: ImageSpiral = ImageSpiral()
 
 let coordinates: Array<Array<CGFloat>> = imageSpiralViewModel.getCoordinates(centerX: centerX, centerY: centerY)
 
-var onScreenTemples: Array<Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 2000, coordinatesLength: CGFloat(coordinates.count))
+var onScreenTemples:Array<Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 2000, coordinatesLength: CGFloat(coordinates.count))
+
+var onScreenTemplesPositions:Array<CGFloat> = imageSpiralViewModel.getOnScreenTemplesPositions(theta: 2000, coordinatesLength: CGFloat(coordinates.count))
+
+//var onScreenTemples: Dictionary<CGFloat, Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 2000, coordinatesLength: CGFloat(coordinates.count))
+//var onScreenTemplesTemples = Array<Spiral<String>.Temple>(onScreenTemples.values)
+//var onScreenTemplesPositions = Array<CGFloat>.init(onScreenTemples.keys)
+
 
 struct ContentView: View {
     
@@ -79,34 +86,34 @@ func spiralDrawing() -> Path {
 //        print(name)
 //    }
     
+    
     return spiraldrawing
     
 }
 
 
 struct SpiralView: View {
-    
+
     var body: some View {
         
         ZStack {
             
             //ForEach(imageSpiralViewModel.temples) { temple in
-            ForEach(onScreenTemples) { temple in
+            ForEach(0 ..< onScreenTemples.count) { templeIndex in
                 //Text(temple.content)
-                Image(temple.content).resizable()
+                Image(onScreenTemples[templeIndex].content).resizable()
                     .frame(width: 20.0, height: 20.0)
                     //.position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
-                    .position(x: coordinates[(temple.id)*7][0], y: coordinates[(temple.id)*7][1])
+                    .position(x: coordinates[Int(onScreenTemplesPositions[templeIndex])][0], y: coordinates[Int(onScreenTemplesPositions[templeIndex])][1])
 
                     .onTapGesture {
-                    imageSpiralViewModel.choose(temple: temple)
+                    imageSpiralViewModel.choose(temple: onScreenTemples[templeIndex])
                         
                 }
                 
-            
-                
                 // this line shows us how the spiral looks like on screen
                 spiralDrawing().stroke()
+                
             }
             
         }
