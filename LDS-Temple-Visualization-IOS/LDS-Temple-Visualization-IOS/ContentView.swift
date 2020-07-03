@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+var theta: CGFloat = 0
 
 // use screen Height to set how much space each view should take on the screen
 let screenWidth = UIScreen.main.bounds.size.width
@@ -17,19 +18,20 @@ let centerY = screenHeight  * 0.7 / 2
 
 var imageSpiralViewModel: ImageSpiral = ImageSpiral()
 
-let coordinates: Array<Array<CGFloat>> = imageSpiralViewModel.getCoordinates(centerX: centerX, centerY: centerY)
+let coordinates: Array<Array<CGFloat>> = imageSpiralViewModel.getCoordinates(centerX: centerX, centerY: centerY).reversed()
 
-var onScreenTemples:Array<Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 2000, coordinatesLength: CGFloat(coordinates.count))
+//var onScreenTemples:Array<Spiral<String>.Temple> = Array<Spiral<String>.Temple>()
+//var onScreenTemplesPositions:Array<CGFloat> = Array<CGFloat>()
 
-var onScreenTemplesPositions:Array<CGFloat> = imageSpiralViewModel.getOnScreenTemplesPositions(theta: 2000, coordinatesLength: CGFloat(coordinates.count))
+var onScreenTemples:Array<Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
+var onScreenTemplesPositions:Array<CGFloat> = imageSpiralViewModel.getOnScreenTemplesPositions(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
 
-//var onScreenTemples: Dictionary<CGFloat, Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 2000, coordinatesLength: CGFloat(coordinates.count))
+//var onScreenTemples: Dictionary<CGFloat, Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 2000, coordinatesLength: CGFloat(coordinates.count))..000
 //var onScreenTemplesTemples = Array<Spiral<String>.Temple>(onScreenTemples.values)
 //var onScreenTemplesPositions = Array<CGFloat>.init(onScreenTemples.keys)
 
 
 struct ContentView: View {
-    
     
     var body: some View {
         VStack {
@@ -39,7 +41,11 @@ struct ContentView: View {
             Spacer(minLength: 0)
             YearDisplayView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             Spacer(minLength: 0)
+            
             SliderView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
+            
+        
+            
             Spacer(minLength: 0)
             SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             
@@ -128,10 +134,31 @@ struct YearDisplayView: View {
     }
 }
 
+
 struct SliderView: View {
+    
+    @State var sliderProgress: CGFloat = 0
     var body: some View {
-        Text("Slider")
+        VStack {
+            Slider(value: $sliderProgress, in: 0...7000).onTapGesture {
+                self.passingSliderProgress()
+            }
+            Text("Slider progress is \(sliderProgress)")
+
+        }
+       
     }
+    
+    func passingSliderProgress() {
+        theta = sliderProgress
+        print(theta)
+        
+//        onScreenTemples = imageSpiralViewModel.getOnScreenTemples(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
+//
+//        onScreenTemplesPositions = imageSpiralViewModel.getOnScreenTemplesPositions(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
+//
+    }
+    
 }
 
 struct SliderLabelView: View {

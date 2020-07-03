@@ -154,6 +154,7 @@ struct Spiral<TempleContent> {
                 collectingOnScreenTemples.append(temples[templeIndex])
             }
         }
+        print("collectingOnScreenTemples length is \(collectingOnScreenTemples.count)")
         return collectingOnScreenTemples
     }
     
