@@ -133,26 +133,27 @@ struct YearDisplayView: View {
 
 struct SliderView: View {
     
+    var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+    
     @State var sliderProgress: CGFloat = 0
     var body: some View {
+  
         VStack {
-            Slider(value: $sliderProgress, in: 0...7000).onTapGesture {
-                self.passingSliderProgress()
-            }
+            Slider(value: Binding(
+                get: {
+                    self.sliderProgress
+            },
+                set: {(newValue) in
+                    self.sliderProgress = newValue
+                        }),
+                            in: 0...7000)
+            
             Text("Slider progress is \(sliderProgress)")
 
-        }
+                    }
        
     }
     
-    func passingSliderProgress() {
-        print(sliderProgress)
-        
-//        onScreenTemples = imageSpiralViewModel.getOnScreenTemples(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
-//
-//        onScreenTemplesPositions = imageSpiralViewModel.getOnScreenTemplesPositions(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
-//
-    }
     
 }
 
