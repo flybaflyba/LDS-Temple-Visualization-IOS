@@ -71,6 +71,16 @@ class ImageSpiral {
         ImageSpiral.theta = newTheta
         print("new theta is \(ImageSpiral.theta)")
     }
+    
+    // this function updateds on screen temples
+    func updateOnScreenTemples(newTheta: CGFloat) {
+        var onScreenTemplesPositionsNew: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: newTheta, coordinatesLength: CGFloat(coordinates.count))
+        
+        var onScreenTemplesNew: Array<String> = ImageSpiral.getOnScreenTemples(theta: newTheta, coordinatesLength: CGFloat(coordinates.count))
+        
+        spiralModel.updateOnScreenTemples(onScreenTemplesPositionsNew: onScreenTemplesPositionsNew, onScreenTemplesNew: onScreenTemplesNew)
+
+    }
 
     // calculation the whole spiral coordinates 
     static func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
@@ -147,11 +157,7 @@ class ImageSpiral {
             collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
             }
         }
-        print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
-        while collectingOnScreenTemples.count < 55 {
-            collectingOnScreenTemples.append("")
-        }
-        print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
+        print("collectingOnScreenTemples length is \(collectingOnScreenTemples.count)")
      
         return collectingOnScreenTemples
     }
@@ -168,13 +174,8 @@ class ImageSpiral {
             }
         }
          
-        print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
-    
-        while collectingOnScreenTemplesPositions.count < 55 {
-            collectingOnScreenTemplesPositions.append(0)
-        }
         
-        print("collectingOnScreenTemplesPositions length after adde extra is \(collectingOnScreenTemplesPositions.count)")
+        print("collectingOnScreenTemplesPositions length  is \(collectingOnScreenTemplesPositions.count)")
         return collectingOnScreenTemplesPositions
      }
     

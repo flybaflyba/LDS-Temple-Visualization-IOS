@@ -40,7 +40,26 @@ struct Spiral<TempleContent> {
          
          //print("on screen temples when app starts length \(onScreenTemples.count)")
          //print("on screen positions when app starts length \(onScreenTemplesPositions.count)")
-     }
+    }
+    
+    // this function updateds on screen temples 
+    mutating func updateOnScreenTemples(onScreenTemplesPositionsNew: Array<CGFloat>, onScreenTemplesNew: Array<String>) {
+        onScreenTemplesPositions = onScreenTemplesPositionsNew.reversed()
+        
+        onScreenTemples.removeAll()
+        
+        for index in 0..<onScreenTemplesNew.count{
+            let content = onScreenTemplesNew[index]
+            onScreenTemples.append(Temple(content: content as! TempleContent, id: index))
+        }
+        
+        print("NEW on screen temples length \(onScreenTemples.count)")
+        print("NEW on screen positions length \(onScreenTemplesPositions.count)")
+        
+        //print("NEW on screen temples \(onScreenTemples)")
+        //print("NEW on screen positions \(onScreenTemplesPositions)")
+        
+    }
     
     // we make each temple unique, so that we can loop through them with ForEach 
     struct Temple: Identifiable {

@@ -102,7 +102,7 @@ struct SpiralView: View {
                 Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content).resizable()
                     .frame(width: 20.0, height: 20.0)
                     // we postion each temple, acoording to their location in postions array,
-                    // we find the cooresponding value through index 
+                    // we find the cooresponding value through index
                     .position(x: self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0], y: self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])
 
 //                    .onTapGesture {
@@ -137,7 +137,7 @@ struct SliderView: View {
     
     var imageSpiralViewModel: ImageSpiral = ImageSpiral()
     
-    @State var sliderProgress: CGFloat = 0
+    @State var sliderProgress: CGFloat = 4000
     
     var body: some View {
   
@@ -150,6 +150,7 @@ struct SliderView: View {
                 set: {(newValue) in
                     self.sliderProgress = newValue
                     self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
+                    self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
                         }),
                             in: 0...7000)
             
