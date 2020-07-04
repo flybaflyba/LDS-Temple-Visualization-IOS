@@ -108,7 +108,7 @@ class ImageSpiral: ObservableObject {
         
             // this is how we calculate sizes of each temple
             // by finding the distance betten two spiral lines while the angle difference is 2 * pi
-            // got to multiply a constant to find the right size for that screen 
+            // got to multiply a constant to find the right size for that screen
             t2 = t - 2 * CGFloat.pi
             x2 = centerX + initialR * exp(t2 * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * cos(t)
             y2 = centerY + initialR * exp(t2 * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * sin(t)

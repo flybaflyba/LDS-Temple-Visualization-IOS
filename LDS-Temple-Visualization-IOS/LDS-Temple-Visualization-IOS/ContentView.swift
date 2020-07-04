@@ -14,7 +14,7 @@ import SwiftUI
 let screenWidth = UIScreen.main.bounds.size.width
 let screenHeight = UIScreen.main.bounds.size.height
 let centerX = screenWidth / 2
-let centerY = screenHeight  * 0.7 / 2
+let centerY = screenHeight  * 0.75 / 2
 
 
 
@@ -24,22 +24,16 @@ struct ContentView: View {
         VStack {
             TitleView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             Spacer(minLength: 0)
-            SpiralView().frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
-            Spacer(minLength: 0)
-            //YearDisplayView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
-            Spacer(minLength: 0)
-            
-            //SliderView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
-            
+            SpiralView()
             Spacer(minLength: 0)
             SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             
-            
-            
         }
+ 
         
     }
 }
+
 
 // the folowing are different views on the initial screen
 struct TitleView: View {
@@ -115,7 +109,7 @@ struct SpiralView: View {
     var body: some View {
         
         VStack {
-        
+        Spacer(minLength: 0)
         ZStack {
             //ForEach(imageSpiralViewModel.temples) { temple in
             // looping through all on screen temples,
@@ -130,19 +124,19 @@ struct SpiralView: View {
 //                    .onTapGesture {
 //                        self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])
 //                        print(templeIndex)
-//                        print(Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex]))
-//                        print(self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0])
-//                        print(self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])
-//
-//
+
 //                }
                 
                 // this line shows us how the spiral looks like on screen
                 //spiralDrawing().stroke()
             }
-        }
+        }.frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
         
-        Text("Year display")
+        Spacer(minLength: 0)
+            
+        Text("Year display").frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            
+        Spacer(minLength: 0)
         
         VStack {
             // we use Binding, so that when ever slider progress changes, we can do something
@@ -157,9 +151,9 @@ struct SpiralView: View {
                         }),
                             in: 0...7000, step: 1)
             
-            Text("Slider progress is \(sliderProgress)")
+            //Text("Slider progress is \(sliderProgress)")
             
-        }
+            }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
         }
         
     }
@@ -191,7 +185,12 @@ struct SliderView: View {
 
 struct SliderLabelView: View {
     var body: some View {
-        Text("Slider lablel")
+        HStack {
+            Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
+             Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
+            Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
+        }
+        
     }
 }
 
@@ -207,5 +206,6 @@ struct SliderLabelView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        
     }
 }
