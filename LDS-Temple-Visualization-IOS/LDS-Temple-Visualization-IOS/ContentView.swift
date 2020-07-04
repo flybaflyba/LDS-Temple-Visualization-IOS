@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-var theta: CGFloat = 0
+
 
 // use screen Height to set how much space each view should take on the screen
 let screenWidth = UIScreen.main.bounds.size.width
@@ -16,19 +16,6 @@ let screenHeight = UIScreen.main.bounds.size.height
 let centerX = screenWidth / 2
 let centerY = screenHeight  * 0.7 / 2
 
-var imageSpiralViewModel: ImageSpiral = ImageSpiral()
-
-let coordinates: Array<Array<CGFloat>> = imageSpiralViewModel.getCoordinates(centerX: centerX, centerY: centerY).reversed()
-
-//var onScreenTemples:Array<Spiral<String>.Temple> = Array<Spiral<String>.Temple>()
-//var onScreenTemplesPositions:Array<CGFloat> = Array<CGFloat>()
-
-var onScreenTemples:Array<Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
-var onScreenTemplesPositions:Array<CGFloat> = imageSpiralViewModel.getOnScreenTemplesPositions(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
-
-//var onScreenTemples: Dictionary<CGFloat, Spiral<String>.Temple> = imageSpiralViewModel.getOnScreenTemples(theta: 2000, coordinatesLength: CGFloat(coordinates.count))..000
-//var onScreenTemplesTemples = Array<Spiral<String>.Temple>(onScreenTemples.values)
-//var onScreenTemplesPositions = Array<CGFloat>.init(onScreenTemples.keys)
 
 
 struct ContentView: View {
@@ -75,50 +62,59 @@ struct Temple {
 }
 
 // this is a test function, it returns a spiral, so that we can see how it looks
-func spiralDrawing() -> Path {
-    var spiraldrawing: Path = Path()
-    spiraldrawing.move(to: CGPoint(x:centerX,y:centerY))
-    
-    for coordinate in coordinates
-    {
-        spiraldrawing.addLine(to: CGPoint(x:coordinate[0],y:coordinate[1]))
-        
-    }
-    
-    
-//    let names = ImageSpiral.linesFromResourceForced(fileName: "templeNames")
+
+//func spiralDrawing() -> Path {
+//    var spiraldrawing: Path = Path()
+//    spiraldrawing.move(to: CGPoint(x:centerX,y:centerY))
 //
-//    for name in names {
-//        print(name)
+//    for coordinate in coordinates
+//    {
+//        spiraldrawing.addLine(to: CGPoint(x:coordinate[0],y:coordinate[1]))
+//
 //    }
-    
-    
-    return spiraldrawing
-    
-}
+//
+//
+////    let names = ImageSpiral.linesFromResourceForced(fileName: "templeNames")
+////
+////    for name in names {
+////        print(name)
+////    }
+//
+//
+//    return spiraldrawing
+//
+//}
 
 
 struct SpiralView: View {
 
+    var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+    
     var body: some View {
         
         ZStack {
             
             //ForEach(imageSpiralViewModel.temples) { temple in
-            ForEach(0 ..< onScreenTemples.count) { templeIndex in
-                //Text(temple.content)
-                Image(onScreenTemples[templeIndex].content).resizable()
-                    .frame(width: 20.0, height: 20.0)
+            ForEach(0 ..< imageSpiralViewModel.onScreenTemples.count) { templeIndex in
+               //Text(temple.content)
+            
+               Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content).resizable()
+                   .frame(width: 20.0, height: 20.0)
                     //.position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
-                    .position(x: coordinates[Int(onScreenTemplesPositions[templeIndex])][0], y: coordinates[Int(onScreenTemplesPositions[templeIndex])][1])
+                    .position(x: self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0], y: self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])
 
-                    .onTapGesture {
-                    imageSpiralViewModel.choose(temple: onScreenTemples[templeIndex])
-                        
-                }
+//                    .onTapGesture {
+//                        self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])
+//                        print(templeIndex)
+//                        print(Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex]))
+//                        print(self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0])
+//                        print(self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])
+//
+//
+//                }
                 
                 // this line shows us how the spiral looks like on screen
-                spiralDrawing().stroke()
+                //spiralDrawing().stroke()
                 
             }
             
@@ -150,8 +146,7 @@ struct SliderView: View {
     }
     
     func passingSliderProgress() {
-        theta = sliderProgress
-        print(theta)
+        print(sliderProgress)
         
 //        onScreenTemples = imageSpiralViewModel.getOnScreenTemples(theta: 7000, coordinatesLength: CGFloat(coordinates.count))
 //

@@ -16,6 +16,11 @@ func createTempleContent(index: Int) -> String {
 
 class ImageSpiral {
     
+    static var theta: CGFloat = 4000
+
+    static let templeNames: Array<String> = readTempleNamesFromFile()
+    
+    
     // we want to keep this model private, so that only this ViewModel can access to this model. (door closed)
     // we put set here, so that only this ViewModel can modify this model, but others can see it. (glass door)
     // private(set) var spiralModel: Spiral<String>
@@ -32,16 +37,32 @@ class ImageSpiral {
     
     // static means we can call this function on class, fot instace, we use this to initialze the model
     static func createSpiral() -> Spiral<String> {
-        let templeNames: Array<String> = readTempleNamesFromFile()
-        return Spiral<String>(numberOfTemples: templeNames.count) { index in
-        return templeNames[index]
+        
+        var coordinates: Array<Array<CGFloat>> = getCoordinates(centerX: centerX, centerY: centerY)
+        
+        var onScreenTemples: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinates.count))
+        
+        var onScreenTemplesPositions: Array<CGFloat> = getOnScreenTemplesPositions(theta: theta, coordinatesLength: CGFloat(coordinates.count))
+        
+        return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesP: coordinates, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
+        return onScreenTemples[index]
         
         }
     }
 
     // MARK: - Access to the Model
-    var temples: Array<Spiral<String>.Temple> {
-        return spiralModel.temples
+ 
+    
+    var onScreenTemples: Array<Spiral<String>.Temple> {
+        return spiralModel.onScreenTemples
+    }
+    
+    var onScreenTemplesPositions: Array<CGFloat> {
+        return spiralModel.onScreenTemplesPositions
+    }
+    
+    var coordinates: Array<Array<CGFloat>> {
+        return spiralModel.coordinates
     }
     
     // MARK: - Intent(s)
@@ -50,20 +71,105 @@ class ImageSpiral {
         spiralModel.choose(temple: temple)
     }
     
-    func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>> {
-        spiralModel.getCoordinates(centerX: centerX,centerY: centerY)
+
+    static func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
+        var t: CGFloat = -18
+        var buildingCoordinates: Array<Array<CGFloat>> = Array<Array<CGFloat>>()
+        var x: CGFloat
+        var y: CGFloat
+        let initialR: CGFloat = screenWidth / 10
+        
+        var oneSpiralCoordinate: Array<CGFloat> = Array<CGFloat>()
+        
+        while t < 17.5
+        {
+            // spiral function：
+            // x = p * cosA, y = p * sinA, where p = N * e^(B * cotC)
+            // When C = PI/2, graph is a circle, when C = 0, graph is a straight line
+
+            x = centerX + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * cos(t)
+            y = centerY + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * sin(t)
+        
+            oneSpiralCoordinate.append(x)
+            oneSpiralCoordinate.append(y)
+            buildingCoordinates.append(oneSpiralCoordinate)
+            
+            //print("oneSpiralCoordinate is \(oneSpiralCoordinate)")
+            
+            oneSpiralCoordinate.removeAll()
+            
+            t += 0.02
+            
+            //print("X is \(x)")
+            //print("Y is \(y)")
+            
+        }
+        
+        let topCoordinateInSpiralX = buildingCoordinates[(buildingCoordinates.count-1)][0];
+        let topCoordinateInSpiralY = buildingCoordinates[(buildingCoordinates.count-1)][1];
+
+        var q = topCoordinateInSpiralX
+        while q < screenWidth*1.25 {
+
+            oneSpiralCoordinate.append(q)
+            oneSpiralCoordinate.append(topCoordinateInSpiralY)
+            buildingCoordinates.append(oneSpiralCoordinate)
+            
+            oneSpiralCoordinate.removeAll()
+            
+             q += 10
+        }
+
+        
+        //print("centerX is \(centerX)")
+        //print("centerY is \(centerY)")
+        //print("screenWidth is \(screenWidth)")
+        //print("screenHeight is \(screenHeight)")
+        
+        //print("buildingCoordinates is \(buildingCoordinates)")
+        print("buildingCoordinates length is \(buildingCoordinates.count)")
+        
+        return buildingCoordinates
+            //.reversed()
+        
     }
     
-//    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Dictionary<CGFloat,Spiral<String>.Temple> {
-//        spiralModel.getOnScreenTemples(theta: theta, coordinatesLength: coordinatesLength)
-//    }
-    
-    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Spiral<String>.Temple> {
-        spiralModel.getOnScreenTemples(theta: theta, coordinatesLength: coordinatesLength)
-    }
-    func getOnScreenTemplesPositions(theta: CGFloat, coordinatesLength: CGFloat) -> Array<CGFloat> {
-        spiralModel.getOnScreenTemplesPositions(theta: theta, coordinatesLength: coordinatesLength)
-    }
+
+    static func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<String> {
+         var collectingOnScreenTemples = Array<String>()
+         var templePosition: CGFloat
+     for templeIndex in 0..<ImageSpiral.templeNames.count {
+         templePosition = theta - 30 * CGFloat(templeIndex)
+         if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+         collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
+         }
+     }
+     print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
+     while collectingOnScreenTemples.count < 55 {
+         collectingOnScreenTemples.append("")
+     }
+     print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
+     
+         return collectingOnScreenTemples
+     }
+     
+     static func getOnScreenTemplesPositions(theta: CGFloat, coordinatesLength: CGFloat) -> Array<CGFloat> {
+         var collectingOnScreenTemplesPositions = Array<CGFloat>()
+         var templePosition: CGFloat
+         for templeIndex in 0..<ImageSpiral.templeNames.count {
+             templePosition = theta - 30 * CGFloat(templeIndex)
+             if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+                 collectingOnScreenTemplesPositions.append(templePosition)
+             }
+         }
+         
+         print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
+         while collectingOnScreenTemplesPositions.count < 55 {
+             collectingOnScreenTemplesPositions.append(0)
+         }
+          print("collectingOnScreenTemplesPositions length after adde extra is \(collectingOnScreenTemplesPositions.count)")
+         return collectingOnScreenTemplesPositions
+     }
     
     static func readTempleNamesFromFile() -> Array<String> {
         

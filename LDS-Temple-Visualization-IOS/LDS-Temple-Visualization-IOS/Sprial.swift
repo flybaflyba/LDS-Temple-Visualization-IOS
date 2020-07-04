@@ -13,28 +13,33 @@ import SwiftUI
 
 //TempleContent is a don;t care type, here we will use image for it 
 struct Spiral<TempleContent> {
-    var temples: Array<Temple>
     
-    //var onScreenTemples: Array<Temple>
+    //var temples: Array<Temple>
+       
+    var coordinates: Array<Array<CGFloat>>
+    var onScreenTemples: Array<Temple>
+    var onScreenTemplesPositions: Array<CGFloat>
     
     func choose(temple: Temple) {
         print("temple chosen: \(temple)")
     }
     
-    // this second parameter of init is a function that takes in an Int and returns TempleContent
-    // we will let view model to decide what the content is 
-    init(numberOfTemples: Int, templeContentFactory: (Int) -> TempleContent) {
-        temples = Array<Temple>()
-        for index in 0..<numberOfTemples {
-            let content = templeContentFactory(index)
-            temples.append(Temple(content: content, id: index))
-            
-            //print(temples)
+     // the last parameter of init is a function that takes in an Int and returns TempleContent
+     // we will let view model to decide what the content is
+     init(numberOfTemples: Int, coordinatesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>, templeContentFactory: (Int) -> TempleContent) {
+         onScreenTemples = Array<Temple>()
+         for index in 0..<numberOfTemples {
+             let content = templeContentFactory(index)
+             onScreenTemples.append(Temple(content: content, id: index))
 
-        }
-        
-        
-    }
+             //print(temples)
+         }
+         onScreenTemplesPositions = onScreenTemplesPositionsP
+         coordinates = coordinatesP.reversed()
+         
+         print("on screen temples length \(onScreenTemples.count)")
+         print("on screen positions length \(onScreenTemplesPositions.count)")
+     }
     
     // we make each temple unique, so that we can loop through them with ForEach 
     struct Temple: Identifiable {
@@ -144,34 +149,6 @@ struct Spiral<TempleContent> {
     }
  */
     
-       
-    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Temple> {
-        var collectingOnScreenTemples = Array<Temple>()
-        var templePosition: CGFloat
-        for templeIndex in 0..<temples.count {
-            templePosition = theta - 30 * CGFloat(templeIndex)
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
-                collectingOnScreenTemples.append(temples[templeIndex])
-            }
-        }
-        print("collectingOnScreenTemples length is \(collectingOnScreenTemples.count)")
-        return collectingOnScreenTemples
-    }
-    
-    func getOnScreenTemplesPositions(theta: CGFloat, coordinatesLength: CGFloat) -> Array<CGFloat> {
-        var collectingOnScreenTemplesPositions = Array<CGFloat>()
-        var templePosition: CGFloat
-        for templeIndex in 0..<temples.count {
-            templePosition = theta - 30 * CGFloat(templeIndex)
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
-                collectingOnScreenTemplesPositions.append(templePosition)
-            }
-        }
-        return collectingOnScreenTemplesPositions
-    }
-        
-    
-
      
     
 }
