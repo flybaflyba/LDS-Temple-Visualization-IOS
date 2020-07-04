@@ -93,6 +93,25 @@ struct SpiralView: View {
     
     @State var sliderProgress: CGFloat = 4000
     
+    // we use the following three functions to get coordinates and sizes,
+    // instead of getting them straightly in for each code,
+    // to avoid a bug called "can not type check in reasonable amount of time in for each
+    
+    func getSize(templeIndex: Int) -> CGFloat {
+        imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][2]
+    }
+    
+    // we postion each temple, acoording to their location in postions array,
+    // we find the cooresponding value through index
+    func getCoordinateX(templeIndex: Int) -> CGFloat {
+        imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0]
+    }
+    
+    func getCoordinateY(templeIndex: Int) -> CGFloat {
+        imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1]
+    }
+    
+    
     var body: some View {
         
         VStack {
@@ -105,10 +124,8 @@ struct SpiralView: View {
                 // temple content is a string which is name of image
                 Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content)
                     .resizable()
-                    .frame(width: self.imageSpiralViewModel.coordinatesAndSizes[Int(1.0)][1], height: self.imageSpiralViewModel.coordinatesAndSizes[Int(1.0)][1], alignment: Alignment.center)
-                    // we postion each temple, acoording to their location in postions array,
-                    // we find the cooresponding value through index
-                    .position(x: self.imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0], y: self.imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])
+                    .frame(width: self.getSize(templeIndex: templeIndex), height: self.getSize(templeIndex: templeIndex), alignment: Alignment.center)
+                    .position(x: self.getCoordinateX(templeIndex: templeIndex), y: self.getCoordinateY(templeIndex: templeIndex))
 
 //                    .onTapGesture {
 //                        self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])
