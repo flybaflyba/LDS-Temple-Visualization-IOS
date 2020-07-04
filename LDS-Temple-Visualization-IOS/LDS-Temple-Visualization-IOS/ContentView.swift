@@ -26,12 +26,10 @@ struct ContentView: View {
             Spacer(minLength: 0)
             SpiralView().frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
             Spacer(minLength: 0)
-            YearDisplayView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            //YearDisplayView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             Spacer(minLength: 0)
             
-            SliderView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
-            
-        
+            //SliderView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
             
             Spacer(minLength: 0)
             SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
@@ -88,9 +86,16 @@ struct Temple {
 
 struct SpiralView: View {
 
-    var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+    // we make this observed object,
+    // along with its published spiral model in its class,
+    // this view will update when changes happen to the model 
+    @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+    
+    @State var sliderProgress: CGFloat = 4000
     
     var body: some View {
+        
+        VStack {
         
         ZStack {
             
@@ -117,30 +122,11 @@ struct SpiralView: View {
                 
                 // this line shows us how the spiral looks like on screen
                 //spiralDrawing().stroke()
-                
             }
-            
         }
-    }
-    
-    
-}
-
-struct YearDisplayView: View {
-    var body: some View {
+        
         Text("Year display")
-    }
-}
-
-
-struct SliderView: View {
-    
-    var imageSpiralViewModel: ImageSpiral = ImageSpiral()
-    
-    @State var sliderProgress: CGFloat = 4000
-    
-    var body: some View {
-  
+        
         VStack {
             // we use Binding, so that when ever slider progress changes, we can do something
             Slider(value: Binding(
@@ -155,12 +141,36 @@ struct SliderView: View {
                             in: 0...7000)
             
             Text("Slider progress is \(sliderProgress)")
+            
+        }
+        }
+        
+    }
+    
+    
+}
 
-                    }
-       
+/*
+ 
+// we move the following to view into spiral view,
+// so that they can share the same ObservedObject
+ 
+struct YearDisplayView: View {
+    var body: some View {
+        
+    }
+}
+
+struct SliderView: View {
+    
+    @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+    
+    var body: some View {
+  
     }
     
 }
+*/
 
 struct SliderLabelView: View {
     var body: some View {
