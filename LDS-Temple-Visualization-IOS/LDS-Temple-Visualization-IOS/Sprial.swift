@@ -26,6 +26,7 @@ struct Spiral<TempleContent> {
     
      // the last parameter of init is a function that takes in an Int and returns TempleContent
      // we will let view model to decide what the content is
+     // view model also decide which temples are on screen and their locations
      init(numberOfTemples: Int, coordinatesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>, templeContentFactory: (Int) -> TempleContent) {
          onScreenTemples = Array<Temple>()
          for index in 0..<numberOfTemples {
@@ -37,8 +38,8 @@ struct Spiral<TempleContent> {
          onScreenTemplesPositions = onScreenTemplesPositionsP
          coordinates = coordinatesP.reversed()
          
-         print("on screen temples length \(onScreenTemples.count)")
-         print("on screen positions length \(onScreenTemplesPositions.count)")
+         //print("on screen temples when app starts length \(onScreenTemples.count)")
+         //print("on screen positions when app starts length \(onScreenTemplesPositions.count)")
      }
     
     // we make each temple unique, so that we can loop through them with ForEach 
@@ -46,109 +47,4 @@ struct Spiral<TempleContent> {
         var content: TempleContent
         var id: Int
     }
-    
-    func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
-        var t: CGFloat = -18
-        var buildingCoordinates: Array<Array<CGFloat>> = Array<Array<CGFloat>>()
-        var x: CGFloat
-        var y: CGFloat
-        let initialR: CGFloat = screenWidth / 10
-        
-        var oneSpiralCoordinate: Array<CGFloat> = Array<CGFloat>()
-        
-        while t < 17.5
-        {
-            // spiral function：
-            // x = p * cosA, y = p * sinA, where p = N * e^(B * cotC)
-            // When C = PI/2, graph is a circle, when C = 0, graph is a straight line
-
-            x = centerX + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * cos(t)
-            y = centerY + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * sin(t)
-        
-            oneSpiralCoordinate.append(x)
-            oneSpiralCoordinate.append(y)
-            buildingCoordinates.append(oneSpiralCoordinate)
-            
-            //print("oneSpiralCoordinate is \(oneSpiralCoordinate)")
-            
-            oneSpiralCoordinate.removeAll()
-            
-            t += 0.02
-            
-            //print("X is \(x)")
-            //print("Y is \(y)")
-            
-        }
-        
-        let topCoordinateInSpiralX = buildingCoordinates[(buildingCoordinates.count-1)][0];
-        let topCoordinateInSpiralY = buildingCoordinates[(buildingCoordinates.count-1)][1];
-
-        var q = topCoordinateInSpiralX
-        while q < screenWidth*1.25 {
-
-            oneSpiralCoordinate.append(q)
-            oneSpiralCoordinate.append(topCoordinateInSpiralY)
-            buildingCoordinates.append(oneSpiralCoordinate)
-            
-            oneSpiralCoordinate.removeAll()
-            
-             q += 10
-        }
-
-        
-        //print("centerX is \(centerX)")
-        //print("centerY is \(centerY)")
-        //print("screenWidth is \(screenWidth)")
-        //print("screenHeight is \(screenHeight)")
-        
-        //print("buildingCoordinates is \(buildingCoordinates)")
-        print("buildingCoordinates length is \(buildingCoordinates.count)")
-        
-        return buildingCoordinates
-            //.reversed()
-        
-    }
-    
-    /*
-    //func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Temple> {
-    func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Dictionary<CGFloat,Temple> {
-        
-        //var collectingOnScreenTemples = Array<Temple>()
-
-        var positionAndTemples  = Dictionary<CGFloat,Temple>()
-        
-//      logic
-//      for (Bitmap t : temples)
-//      float ts = theta - 30 * temples.indexOf(t)
-//      if (ts > 0 && ts < spiralCoordinates.size() - 150)
-        
-        var templePosition: CGFloat
-            
-        for templeIndex in 0..<temples.count {
-            
-            //print(templeIndex)
-            
-            templePosition = theta - 30 * CGFloat(templeIndex)
-            
-            //print(templePosition)
-                
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
-                
-                //collectingOnScreenTemples.append(temples[templeIndex])
-                
-                positionAndTemples[templePosition] = temples[templeIndex]
-                    
-            }
-        }
-            
-        //print("collectingOnScreenTemples length is \(collectingOnScreenTemples.count)")
-        //print("positionAndTemples length is \(positionAndTemples.count)")
-        
-        //return collectingOnScreenTemples
-        return positionAndTemples
-    }
- */
-    
-     
-    
 }

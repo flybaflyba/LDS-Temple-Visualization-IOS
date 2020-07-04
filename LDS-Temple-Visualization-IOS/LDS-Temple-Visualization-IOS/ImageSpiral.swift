@@ -10,16 +10,13 @@ import SwiftUI
 
 // this is a ViewModel file
 
-func createTempleContent(index: Int) -> String {
-    return "Hi"
-}
-
 class ImageSpiral {
     
+    // theta is modified acoording to slider progress
+    // then it is used to modify spiral model attributes
     static var theta: CGFloat = 4000
 
     static let templeNames: Array<String> = readTempleNamesFromFile()
-    
     
     // we want to keep this model private, so that only this ViewModel can access to this model. (door closed)
     // we put set here, so that only this ViewModel can modify this model, but others can see it. (glass door)
@@ -28,22 +25,21 @@ class ImageSpiral {
     // we can also close the door and use a function to access the model
     private var spiralModel: Spiral<String> = ImageSpiral.createSpiral()
     
-        
-        // we will initialize with a function, createSpiral()
-        //Spiral<String>(numberOfTemples: 2, templeContentFactory: createTempleContent)
-    
-        // you can also do this after =, to initiaze the model, then no need for the extra function
-        //Spiral<String>(numberOfTemples: 2) { _ in "Hi"}
-    
+    // we will initialize with a function, createSpiral()
     // static means we can call this function on class, fot instace, we use this to initialze the model
     static func createSpiral() -> Spiral<String> {
         
+        // this is all coordinates
         var coordinates: Array<Array<CGFloat>> = getCoordinates(centerX: centerX, centerY: centerY)
         
+        // this is what temples are on screen
         var onScreenTemples: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinates.count))
         
+        // this is what location should on screen temples reside
+        // each element here is the index of each temple's location in all coordinates
         var onScreenTemplesPositions: Array<CGFloat> = getOnScreenTemplesPositions(theta: theta, coordinatesLength: CGFloat(coordinates.count))
         
+        //finally we passing the needed parameters to create out spiral model
         return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesP: coordinates, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
         return onScreenTemples[index]
         
@@ -76,6 +72,7 @@ class ImageSpiral {
         print("new theta is \(ImageSpiral.theta)")
     }
 
+    // calculation the whole spiral coordinates 
     static func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
         var t: CGFloat = -18
         var buildingCoordinates: Array<Array<CGFloat>> = Array<Array<CGFloat>>()
@@ -124,7 +121,6 @@ class ImageSpiral {
              q += 10
         }
 
-        
         //print("centerX is \(centerX)")
         //print("centerY is \(centerY)")
         //print("screenWidth is \(screenWidth)")
@@ -139,40 +135,47 @@ class ImageSpiral {
     }
     
 
+    
     static func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<String> {
-         var collectingOnScreenTemples = Array<String>()
-         var templePosition: CGFloat
-     for templeIndex in 0..<ImageSpiral.templeNames.count {
-         templePosition = theta - 30 * CGFloat(templeIndex)
-         if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
-         collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
-         }
-     }
-     print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
-     while collectingOnScreenTemples.count < 55 {
-         collectingOnScreenTemples.append("")
-     }
-     print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
+        var collectingOnScreenTemples = Array<String>()
+        var templePosition: CGFloat
+        
+        // here is the key logic to determin what temples should be on screen
+        for templeIndex in 0..<ImageSpiral.templeNames.count {
+            templePosition = theta - 30 * CGFloat(templeIndex)
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+            collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
+            }
+        }
+        print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
+        while collectingOnScreenTemples.count < 55 {
+            collectingOnScreenTemples.append("")
+        }
+        print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
      
-         return collectingOnScreenTemples
-     }
+        return collectingOnScreenTemples
+    }
      
-     static func getOnScreenTemplesPositions(theta: CGFloat, coordinatesLength: CGFloat) -> Array<CGFloat> {
-         var collectingOnScreenTemplesPositions = Array<CGFloat>()
-         var templePosition: CGFloat
-         for templeIndex in 0..<ImageSpiral.templeNames.count {
-             templePosition = theta - 30 * CGFloat(templeIndex)
-             if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
-                 collectingOnScreenTemplesPositions.append(templePosition)
-             }
-         }
+
+    // this function is very much like the last one
+    static func getOnScreenTemplesPositions(theta: CGFloat, coordinatesLength: CGFloat) -> Array<CGFloat> {
+        var collectingOnScreenTemplesPositions = Array<CGFloat>()
+        var templePosition: CGFloat
+        for templeIndex in 0..<ImageSpiral.templeNames.count {
+            templePosition = theta - 30 * CGFloat(templeIndex)
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+                collectingOnScreenTemplesPositions.append(templePosition)
+            }
+        }
          
-         print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
-         while collectingOnScreenTemplesPositions.count < 55 {
-             collectingOnScreenTemplesPositions.append(0)
-         }
-          print("collectingOnScreenTemplesPositions length after adde extra is \(collectingOnScreenTemplesPositions.count)")
-         return collectingOnScreenTemplesPositions
+        print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
+    
+        while collectingOnScreenTemplesPositions.count < 55 {
+            collectingOnScreenTemplesPositions.append(0)
+        }
+        
+        print("collectingOnScreenTemplesPositions length after adde extra is \(collectingOnScreenTemplesPositions.count)")
+        return collectingOnScreenTemplesPositions
      }
     
     static func readTempleNamesFromFile() -> Array<String> {

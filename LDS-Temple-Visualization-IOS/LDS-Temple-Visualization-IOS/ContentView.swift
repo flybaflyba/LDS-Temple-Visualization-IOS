@@ -95,12 +95,14 @@ struct SpiralView: View {
         ZStack {
             
             //ForEach(imageSpiralViewModel.temples) { temple in
+            // looping through all on screen temples,
+            // we use index instead of the objects, so that we can use index later in these code
             ForEach(0 ..< imageSpiralViewModel.onScreenTemples.count) { templeIndex in
-               //Text(temple.content)
-            
-               Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content).resizable()
-                   .frame(width: 20.0, height: 20.0)
-                    //.position(x: CGFloat(temple.id)*100, y: CGFloat(temple.id)*100)
+                // temple content is a string which is name of image
+                Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content).resizable()
+                    .frame(width: 20.0, height: 20.0)
+                    // we postion each temple, acoording to their location in postions array,
+                    // we find the cooresponding value through index 
                     .position(x: self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0], y: self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])
 
 //                    .onTapGesture {
@@ -136,9 +138,11 @@ struct SliderView: View {
     var imageSpiralViewModel: ImageSpiral = ImageSpiral()
     
     @State var sliderProgress: CGFloat = 0
+    
     var body: some View {
   
         VStack {
+            // we use Binding, so that when ever slider progress changes, we can do something
             Slider(value: Binding(
                 get: {
                     self.sliderProgress
