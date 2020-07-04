@@ -98,7 +98,6 @@ struct SpiralView: View {
         VStack {
         
         ZStack {
-            
             //ForEach(imageSpiralViewModel.temples) { temple in
             // looping through all on screen temples,
             // we use index instead of the objects, so that we can use index later in these code

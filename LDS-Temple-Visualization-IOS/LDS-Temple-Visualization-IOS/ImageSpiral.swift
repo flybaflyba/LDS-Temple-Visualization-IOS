@@ -115,7 +115,8 @@ class ImageSpiral: ObservableObject {
             oneSpiralCoordinateAndSize.append(size)
             buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
             
-            //print("oneSpiralCoordinate is \(oneSpiralCoordinate)")
+            
+            //print("oneSpiralCoordinateAndSize length is \(oneSpiralCoordinateAndSize.count)")
             
             oneSpiralCoordinateAndSize.removeAll()
             
@@ -128,13 +129,18 @@ class ImageSpiral: ObservableObject {
         
         let topCoordinateInSpiralX = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][0];
         let topCoordinateInSpiralY = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][1];
+        let topSizeInSpiral = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][2];
 
+        
         var q = topCoordinateInSpiralX
         while q < screenWidth*1.25 {
 
             oneSpiralCoordinateAndSize.append(q)
             oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
+            oneSpiralCoordinateAndSize.append(topSizeInSpiral)
             buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
+            
+            //print("oneSpiralCoordinateAndSize length is \(oneSpiralCoordinateAndSize.count)")
             
             oneSpiralCoordinateAndSize.removeAll()
             
@@ -163,14 +169,14 @@ class ImageSpiral: ObservableObject {
         // here is the key logic to determin what temples should be on screen
         for templeIndex in 0..<ImageSpiral.templeNames.count {
             templePosition = theta - 30 * CGFloat(templeIndex)
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 800) {
             collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
             }
         }
         print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
         
         // we keep the array the same length, so that ForEach in spiral view will like it
-        while collectingOnScreenTemples.count < 55 {
+        while collectingOnScreenTemples.count < 34 {
             collectingOnScreenTemples.append("")
         }
         print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
@@ -185,14 +191,14 @@ class ImageSpiral: ObservableObject {
         var templePosition: CGFloat
         for templeIndex in 0..<ImageSpiral.templeNames.count {
             templePosition = theta - 30 * CGFloat(templeIndex)
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 150) {
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 800) {
                 collectingOnScreenTemplesPositions.append(templePosition)
             }
         }
          
         print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
     
-        while collectingOnScreenTemplesPositions.count < 55 {
+        while collectingOnScreenTemplesPositions.count < 34 {
             collectingOnScreenTemplesPositions.append(0)
         }
         
