@@ -71,6 +71,10 @@ class ImageSpiral {
         spiralModel.choose(temple: temple)
     }
     
+    func getNewTheta(newTheta: CGFloat) {
+        ImageSpiral.theta = newTheta
+        print("new theta is \(ImageSpiral.theta)")
+    }
 
     static func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
         var t: CGFloat = -18

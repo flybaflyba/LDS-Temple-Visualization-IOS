@@ -145,6 +145,7 @@ struct SliderView: View {
             },
                 set: {(newValue) in
                     self.sliderProgress = newValue
+                    self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
                         }),
                             in: 0...7000)
             
@@ -153,7 +154,6 @@ struct SliderView: View {
                     }
        
     }
-    
     
 }
 
