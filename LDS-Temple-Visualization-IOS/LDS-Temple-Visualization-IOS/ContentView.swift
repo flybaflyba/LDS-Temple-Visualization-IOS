@@ -106,10 +106,10 @@ struct SpiralView: View {
                 // temple content is a string which is name of image
                 Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content)
                     .resizable()
-                    .frame(width: 20.0, height: 20.0)
+                    .frame(width: self.imageSpiralViewModel.coordinatesAndSizes[Int(1.0)][1], height: self.imageSpiralViewModel.coordinatesAndSizes[Int(1.0)][1], alignment: Alignment.center)
                     // we postion each temple, acoording to their location in postions array,
                     // we find the cooresponding value through index
-                    .position(x: self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0], y: self.imageSpiralViewModel.coordinates[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])
+                    .position(x: self.imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0], y: self.imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])
 
 //                    .onTapGesture {
 //                        self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])

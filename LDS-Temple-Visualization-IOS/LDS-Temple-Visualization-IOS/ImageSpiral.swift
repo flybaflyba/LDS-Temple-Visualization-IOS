@@ -30,17 +30,17 @@ class ImageSpiral: ObservableObject {
     static func createSpiral() -> Spiral<String> {
         
         // this is all coordinates
-        var coordinates: Array<Array<CGFloat>> = getCoordinates(centerX: centerX, centerY: centerY)
+        var coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY)
         
         // this is what temples are on screen
-        var onScreenTemples: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinates.count))
+        var onScreenTemples: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         // this is what location should on screen temples reside
         // each element here is the index of each temple's location in all coordinates
-        var onScreenTemplesPositions: Array<CGFloat> = getOnScreenTemplesPositions(theta: theta, coordinatesLength: CGFloat(coordinates.count))
+        var onScreenTemplesPositions: Array<CGFloat> = getOnScreenTemplesPositions(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         //finally we passing the needed parameters to create out spiral model
-        return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesP: coordinates, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
+        return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
         return onScreenTemples[index]
         
         }
@@ -57,8 +57,8 @@ class ImageSpiral: ObservableObject {
         return spiralModel.onScreenTemplesPositions
     }
     
-    var coordinates: Array<Array<CGFloat>> {
-        return spiralModel.coordinates
+    var coordinatesAndSizes: Array<Array<CGFloat>> {
+        return spiralModel.coordinatesAndSizes
     }
     
     // MARK: - Intent(s)
@@ -74,23 +74,27 @@ class ImageSpiral: ObservableObject {
     
     // this function updateds on screen temples
     func updateOnScreenTemples(newTheta: CGFloat) {
-        var onScreenTemplesPositionsNew: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: newTheta, coordinatesLength: CGFloat(coordinates.count))
+        var onScreenTemplesPositionsNew: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: newTheta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
-        var onScreenTemplesNew: Array<String> = ImageSpiral.getOnScreenTemples(theta: newTheta, coordinatesLength: CGFloat(coordinates.count))
+        var onScreenTemplesNew: Array<String> = ImageSpiral.getOnScreenTemples(theta: newTheta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         spiralModel.updateOnScreenTemples(onScreenTemplesPositionsNew: onScreenTemplesPositionsNew, onScreenTemplesNew: onScreenTemplesNew)
 
     }
 
     // calculation the whole spiral coordinates 
-    static func getCoordinates(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
+    static func getCoordinatesAndSizes(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
         var t: CGFloat = -18
-        var buildingCoordinates: Array<Array<CGFloat>> = Array<Array<CGFloat>>()
+        var buildingCoordinatesAndSize: Array<Array<CGFloat>> = Array<Array<CGFloat>>()
         var x: CGFloat
         var y: CGFloat
         let initialR: CGFloat = screenWidth / 10
+        var size: CGFloat
+        var t2: CGFloat
+        var x2: CGFloat
+        var y2: CGFloat
         
-        var oneSpiralCoordinate: Array<CGFloat> = Array<CGFloat>()
+        var oneSpiralCoordinateAndSize: Array<CGFloat> = Array<CGFloat>()
         
         while t < 17.5
         {
@@ -100,14 +104,20 @@ class ImageSpiral: ObservableObject {
 
             x = centerX + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * cos(t)
             y = centerY + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * sin(t)
-        
-            oneSpiralCoordinate.append(x)
-            oneSpiralCoordinate.append(y)
-            buildingCoordinates.append(oneSpiralCoordinate)
+            
+            t2 = t - 2 * CGFloat.pi
+            x2 = centerX + initialR * exp(t2 * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * cos(t)
+            y2 = centerY + initialR * exp(t2 * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * sin(t)
+            size = sqrt(pow((x2 - x), 2) + pow((y2 - y), 2))
+            
+            oneSpiralCoordinateAndSize.append(x)
+            oneSpiralCoordinateAndSize.append(y)
+            oneSpiralCoordinateAndSize.append(size)
+            buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
             
             //print("oneSpiralCoordinate is \(oneSpiralCoordinate)")
             
-            oneSpiralCoordinate.removeAll()
+            oneSpiralCoordinateAndSize.removeAll()
             
             t += 0.02
             
@@ -116,17 +126,17 @@ class ImageSpiral: ObservableObject {
             
         }
         
-        let topCoordinateInSpiralX = buildingCoordinates[(buildingCoordinates.count-1)][0];
-        let topCoordinateInSpiralY = buildingCoordinates[(buildingCoordinates.count-1)][1];
+        let topCoordinateInSpiralX = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][0];
+        let topCoordinateInSpiralY = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][1];
 
         var q = topCoordinateInSpiralX
         while q < screenWidth*1.25 {
 
-            oneSpiralCoordinate.append(q)
-            oneSpiralCoordinate.append(topCoordinateInSpiralY)
-            buildingCoordinates.append(oneSpiralCoordinate)
+            oneSpiralCoordinateAndSize.append(q)
+            oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
+            buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
             
-            oneSpiralCoordinate.removeAll()
+            oneSpiralCoordinateAndSize.removeAll()
             
              q += 10
         }
@@ -137,9 +147,9 @@ class ImageSpiral: ObservableObject {
         //print("screenHeight is \(screenHeight)")
         
         //print("buildingCoordinates is \(buildingCoordinates)")
-        print("buildingCoordinates length is \(buildingCoordinates.count)")
+        print("buildingCoordinatesAndSize length is \(buildingCoordinatesAndSize.count)")
         
-        return buildingCoordinates
+        return buildingCoordinatesAndSize
             //.reversed()
         
     }

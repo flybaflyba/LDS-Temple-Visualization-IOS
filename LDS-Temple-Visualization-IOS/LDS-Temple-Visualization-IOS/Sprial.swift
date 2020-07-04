@@ -16,7 +16,7 @@ struct Spiral<TempleContent> {
     
     //var temples: Array<Temple>
        
-    var coordinates: Array<Array<CGFloat>>
+    var coordinatesAndSizes: Array<Array<CGFloat>>
     var onScreenTemples: Array<Temple>
     var onScreenTemplesPositions: Array<CGFloat>
     
@@ -27,7 +27,7 @@ struct Spiral<TempleContent> {
      // the last parameter of init is a function that takes in an Int and returns TempleContent
      // we will let view model to decide what the content is
      // view model also decide which temples are on screen and their locations
-     init(numberOfTemples: Int, coordinatesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>, templeContentFactory: (Int) -> TempleContent) {
+     init(numberOfTemples: Int, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>, templeContentFactory: (Int) -> TempleContent) {
          onScreenTemples = Array<Temple>()
          for index in 0..<numberOfTemples {
              let content = templeContentFactory(index)
@@ -36,7 +36,7 @@ struct Spiral<TempleContent> {
              //print(temples)
          }
          onScreenTemplesPositions = onScreenTemplesPositionsP
-         coordinates = coordinatesP.reversed()
+         coordinatesAndSizes = coordinatesAndSizesP.reversed()
          
          //print("on screen temples when app starts length \(onScreenTemples.count)")
          //print("on screen positions when app starts length \(onScreenTemplesPositions.count)")
