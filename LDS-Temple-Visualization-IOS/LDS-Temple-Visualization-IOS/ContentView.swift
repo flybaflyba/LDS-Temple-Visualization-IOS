@@ -104,7 +104,8 @@ struct SpiralView: View {
             // we use index instead of the objects, so that we can use index later in these code
             ForEach(0 ..< imageSpiralViewModel.onScreenTemples.count) { templeIndex in
                 // temple content is a string which is name of image
-                Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content).resizable()
+                Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content)
+                    .resizable()
                     .frame(width: 20.0, height: 20.0)
                     // we postion each temple, acoording to their location in postions array,
                     // we find the cooresponding value through index
@@ -138,7 +139,7 @@ struct SpiralView: View {
                     self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
                     self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
                         }),
-                            in: 0...7000)
+                            in: 0...7000, step: 1)
             
             Text("Slider progress is \(sliderProgress)")
             
