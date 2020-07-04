@@ -180,7 +180,7 @@ class ImageSpiral: ObservableObject {
         print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
         
         // we keep the array the same length, so that ForEach in spiral view will like it
-        while collectingOnScreenTemples.count < 60 {
+        while collectingOnScreenTemples.count < 61 {
             collectingOnScreenTemples.append("")
         }
         print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
@@ -202,7 +202,7 @@ class ImageSpiral: ObservableObject {
          
         print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
     
-        while collectingOnScreenTemplesPositions.count < 60 {
+        while collectingOnScreenTemplesPositions.count < 61 {
             collectingOnScreenTemplesPositions.append(0)
         }
         
