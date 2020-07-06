@@ -14,7 +14,7 @@ class ImageSpiral: ObservableObject {
     
     // theta is modified acoording to slider progress
     // then it is used to modify spiral model attributes
-    static var theta: CGFloat = 4000
+    static var theta: CGFloat = 1
 
     static let templeNames: Array<String> = readTempleNamesFromFile()
     
@@ -124,7 +124,7 @@ class ImageSpiral: ObservableObject {
             
             oneSpiralCoordinateAndSize.removeAll()
             
-            t += 0.02
+            t += 0.6
             
             //print("X is \(x)")
             //print("Y is \(y)")
@@ -136,21 +136,27 @@ class ImageSpiral: ObservableObject {
         let topSizeInSpiral = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][2];
 
         
-        var q = topCoordinateInSpiralX
+//        var q = topCoordinateInSpiralX
+//
+//        while q < screenWidth {
+//
+//            oneSpiralCoordinateAndSize.append(q)
+//            oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
+//            oneSpiralCoordinateAndSize.append(topSizeInSpiral)
+//            buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
+//
+//            //print("oneSpiralCoordinateAndSize length is \(oneSpiralCoordinateAndSize.count)")
+//
+//            oneSpiralCoordinateAndSize.removeAll()
+//
+//             q += 10
+//        }
         
-        while q < screenWidth {
-
-            oneSpiralCoordinateAndSize.append(q)
-            oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
-            oneSpiralCoordinateAndSize.append(topSizeInSpiral)
-            buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
-            
-            //print("oneSpiralCoordinateAndSize length is \(oneSpiralCoordinateAndSize.count)")
-            
-            oneSpiralCoordinateAndSize.removeAll()
-            
-             q += 10
-        }
+        oneSpiralCoordinateAndSize.append(screenWidth)
+        oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
+        oneSpiralCoordinateAndSize.append(topSizeInSpiral)
+        buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
+        oneSpiralCoordinateAndSize.removeAll()
 
         //print("centerX is \(centerX)")
         //print("centerY is \(centerY)")
@@ -174,8 +180,8 @@ class ImageSpiral: ObservableObject {
         
         // here is the key logic to determin what temples should be on screen
         for templeIndex in 0..<ImageSpiral.templeNames.count {
-            templePosition = theta - 30 * CGFloat(templeIndex)
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength) {
+            templePosition = theta - CGFloat(templeIndex)
+            if templePosition >= 0 && templePosition < CGFloat(coordinatesLength) {
             collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
             }
         }
@@ -198,8 +204,8 @@ class ImageSpiral: ObservableObject {
         var collectingOnScreenTemplesPositions = Array<CGFloat>()
         var templePosition: CGFloat
         for templeIndex in 0..<ImageSpiral.templeNames.count {
-            templePosition = theta - 30 * CGFloat(templeIndex)
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength) {
+            templePosition = theta - CGFloat(templeIndex)
+            if templePosition >= 0 && templePosition < CGFloat(coordinatesLength) {
                 collectingOnScreenTemplesPositions.append(templePosition)
             }
         }

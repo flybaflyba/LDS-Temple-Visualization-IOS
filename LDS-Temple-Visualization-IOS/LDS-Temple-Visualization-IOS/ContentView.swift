@@ -85,7 +85,7 @@ struct SpiralView: View {
     // this view will update when changes happen to the model 
     @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
     
-    @State var sliderProgress: CGFloat = 4000
+    @State var sliderProgress: CGFloat = 1
     
     // we use the following three functions to get coordinates and sizes,
     // instead of getting them straightly in for each code,
@@ -172,7 +172,7 @@ struct SpiralView: View {
                     self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
                     
                         }),
-                            in: 0...7000, step: 1)
+                            in: 0...300, step: 1)
             
             //Text("Slider progress is \(sliderProgress)")
             
