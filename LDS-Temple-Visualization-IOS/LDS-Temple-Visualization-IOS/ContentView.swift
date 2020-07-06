@@ -98,11 +98,23 @@ struct SpiralView: View {
     // we postion each temple, acoording to their location in postions array,
     // we find the cooresponding value through index
     func getCoordinateX(templeIndex: Int) -> CGFloat {
-        imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0]
+        
+//        print("templeIndex is \(templeIndex)")
+//        print("temple name is \(self.imageSpiralViewModel.onScreenTemples[templeIndex].content)")
+//        print("position pointer is \(Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex]))")
+//        print("positions is \(self.imageSpiralViewModel.onScreenTemplesPositions)")
+//        print("x is \(imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0])")
+        
+        return imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][0]
+        
+        
     }
     
     func getCoordinateY(templeIndex: Int) -> CGFloat {
-        imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1]
+        
+//        print("y is \(imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1])")
+        
+        return imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1]
     }
     
     var body: some View {
@@ -120,11 +132,12 @@ struct SpiralView: View {
                     .frame(width: self.getSize(templeIndex: templeIndex), height: self.getSize(templeIndex: templeIndex), alignment: Alignment.center)
                     .position(x: self.getCoordinateX(templeIndex: templeIndex), y: self.getCoordinateY(templeIndex: templeIndex))
 
-//                    .onTapGesture {
-//                        self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])
-//                        print(templeIndex)
+                    .onTapGesture {
+                        self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])
+                        print(templeIndex)
+                        print("temple postion \(imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])])")
 
-//                }
+                }
                 
                 // this line shows us how the spiral looks like on screen
                 //spiralDrawing().stroke()
@@ -144,9 +157,20 @@ struct SpiralView: View {
                     self.sliderProgress
             },
                 set: {(newValue) in
+//                    while newValue != self.sliderProgress {
+//                        if newValue > self.sliderProgress {
+//                            self.sliderProgress += 1
+//                        } else {
+//                            self.sliderProgress -= 1
+//                        }
+//                        self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
+//                        self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
+//                    }
+                    
                     self.sliderProgress = newValue
                     self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
                     self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
+                    
                         }),
                             in: 0...7000, step: 1)
             

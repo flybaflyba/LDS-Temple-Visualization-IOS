@@ -44,7 +44,7 @@ struct Spiral<TempleContent> {
     
     // this function updateds on screen temples 
     mutating func updateOnScreenTemples(onScreenTemplesPositionsNew: Array<CGFloat>, onScreenTemplesNew: Array<String>) {
-        onScreenTemplesPositions = onScreenTemplesPositionsNew.reversed()
+        onScreenTemplesPositions = onScreenTemplesPositionsNew
         
         onScreenTemples.removeAll()
         

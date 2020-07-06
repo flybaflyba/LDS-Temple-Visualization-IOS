@@ -137,7 +137,8 @@ class ImageSpiral: ObservableObject {
 
         
         var q = topCoordinateInSpiralX
-        while q < screenWidth*1.25 {
+        
+        while q < screenWidth {
 
             oneSpiralCoordinateAndSize.append(q)
             oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
@@ -158,6 +159,7 @@ class ImageSpiral: ObservableObject {
         
         //print("buildingCoordinates is \(buildingCoordinates)")
         print("buildingCoordinatesAndSize length is \(buildingCoordinatesAndSize.count)")
+        //print("buildingCoordinatesAndSize is \(buildingCoordinatesAndSize)")
         
         return buildingCoordinatesAndSize
             //.reversed()
@@ -173,7 +175,7 @@ class ImageSpiral: ObservableObject {
         // here is the key logic to determin what temples should be on screen
         for templeIndex in 0..<ImageSpiral.templeNames.count {
             templePosition = theta - 30 * CGFloat(templeIndex)
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 15) {
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength) {
             collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
             }
         }
@@ -184,6 +186,8 @@ class ImageSpiral: ObservableObject {
             collectingOnScreenTemples.append("")
         }
         print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
+        
+        //print("collectingOnScreenTemples after add extra is \(collectingOnScreenTemples)")
      
         return collectingOnScreenTemples
     }
@@ -195,7 +199,7 @@ class ImageSpiral: ObservableObject {
         var templePosition: CGFloat
         for templeIndex in 0..<ImageSpiral.templeNames.count {
             templePosition = theta - 30 * CGFloat(templeIndex)
-            if templePosition > 0 && templePosition < CGFloat(coordinatesLength - 15) {
+            if templePosition > 0 && templePosition < CGFloat(coordinatesLength) {
                 collectingOnScreenTemplesPositions.append(templePosition)
             }
         }
@@ -207,6 +211,12 @@ class ImageSpiral: ObservableObject {
         }
         
         print("collectingOnScreenTemplesPositions length after adde extra is \(collectingOnScreenTemplesPositions.count)")
+        
+//        print("collectingOnScreenTemplesPositions after adde extra is \(collectingOnScreenTemplesPositions)")
+//
+//        let collectingOnScreenTemplesPositionsReversed: Array<CGFloat> = collectingOnScreenTemplesPositions.reversed()
+//        print("collectingOnScreenTemplesPositions after adde extra REVERSED is \(collectingOnScreenTemplesPositionsReversed)")
+        
         return collectingOnScreenTemplesPositions
      }
     
