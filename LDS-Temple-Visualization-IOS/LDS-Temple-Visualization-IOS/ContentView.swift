@@ -105,7 +105,6 @@ struct SpiralView: View {
         imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1]
     }
     
-    
     var body: some View {
         
         VStack {
