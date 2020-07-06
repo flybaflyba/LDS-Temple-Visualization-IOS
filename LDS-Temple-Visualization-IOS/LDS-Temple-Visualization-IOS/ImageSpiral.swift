@@ -82,9 +82,11 @@ class ImageSpiral: ObservableObject {
 
     }
 
-    // calculation the whole spiral coordinates 
+    // calculation the whole spiral coordinates
+    // we include all temples on screen, even though some of them are very small in the center
+    // because if we don't animation will suspend after the numbers of temples on screen reach max
     static func getCoordinatesAndSizes(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
-        var t: CGFloat = -18
+        var t: CGFloat = -120
         var buildingCoordinatesAndSize: Array<Array<CGFloat>> = Array<Array<CGFloat>>()
         var x: CGFloat
         var y: CGFloat
@@ -152,7 +154,7 @@ class ImageSpiral: ObservableObject {
 //             q += 10
 //        }
         
-        oneSpiralCoordinateAndSize.append(screenWidth)
+        oneSpiralCoordinateAndSize.append(screenWidth*1.25)
         oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
         oneSpiralCoordinateAndSize.append(topSizeInSpiral)
         buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
@@ -188,7 +190,7 @@ class ImageSpiral: ObservableObject {
         print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
         
         // we keep the array the same length, so that ForEach in spiral view will like it
-        while collectingOnScreenTemples.count < 61 {
+        while collectingOnScreenTemples.count < 231 {
             collectingOnScreenTemples.append("")
         }
         print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
@@ -212,7 +214,7 @@ class ImageSpiral: ObservableObject {
          
         print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
     
-        while collectingOnScreenTemplesPositions.count < 61 {
+        while collectingOnScreenTemplesPositions.count < 231 {
             collectingOnScreenTemplesPositions.append(0)
         }
         
