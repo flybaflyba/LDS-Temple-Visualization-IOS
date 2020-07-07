@@ -93,8 +93,9 @@ struct SpiralView: View {
     // this view will update when changes happen to the model 
     @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
     
-    @State var sliderProgress: CGFloat = 1
+    @State var sliderProgress: CGFloat = 100
     
+    /*
     // we use the following three functions to get coordinates and sizes,
     // instead of getting them straightly in for each code,
     // to avoid a bug called "can not type check in reasonable amount of time in for each
@@ -125,9 +126,14 @@ struct SpiralView: View {
         return imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])][1]
     }
     
+    */
+    
+    /*
     func drawTemple(templeIndex: Int) -> some View {
         var body: some View {
             // temple content is a string which is name of image
+            
+            
             Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content)
                 .resizable()
                 .frame(width: self.getSize(templeIndex: templeIndex), height: self.getSize(templeIndex: templeIndex), alignment: Alignment.center)
@@ -137,6 +143,33 @@ struct SpiralView: View {
                 .onTapGesture {
                     self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])
                     print(templeIndex)
+                    
+                    
+                    //print("temple postion \(imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])])")
+
+            }
+        }
+        
+        return body
+    }
+ */
+    
+    func drawTemple(templeIndex: Int) -> some View {
+        var body: some View {
+            // temple content is a string which is name of image
+            
+            
+            Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content)
+                .resizable()
+                .frame(width: self.imageSpiralViewModel.onScreenTemples[templeIndex].size, height: self.imageSpiralViewModel.onScreenTemples[templeIndex].size, alignment: Alignment.center)
+                .position(x: self.imageSpiralViewModel.onScreenTemples[templeIndex].x, y: self.imageSpiralViewModel.onScreenTemples[templeIndex].y)
+                .animation(Animation.linear(duration: 0.5))
+
+                .onTapGesture {
+                    self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])
+                    print(templeIndex)
+                    
+                    
                     //print("temple postion \(imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])])")
 
             }

@@ -14,7 +14,7 @@ class ImageSpiral: ObservableObject {
     
     // theta is modified acoording to slider progress
     // then it is used to modify spiral model attributes
-    static var theta: CGFloat = 1
+    static var theta: CGFloat = 100
 
     static let templeNames: Array<String> = readTempleNamesFromFile()
     
@@ -33,17 +33,18 @@ class ImageSpiral: ObservableObject {
         var coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY)
         
         // this is what temples are on screen
-        var onScreenTemples: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        var onScreenTemplesString: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         // this is what location should on screen temples reside
         // each element here is the index of each temple's location in all coordinates
         var onScreenTemplesPositions: Array<CGFloat> = getOnScreenTemplesPositions(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         //finally we passing the needed parameters to create out spiral model
-        return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
-        return onScreenTemples[index]
+//        return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
+//        return onScreenTemples[index]
+            
+        return Spiral<String>(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions)
         
-        }
     }
 
     // MARK: - Access to the Model
@@ -53,6 +54,7 @@ class ImageSpiral: ObservableObject {
         return spiralModel.onScreenTemples
     }
     
+    /*
     var onScreenTemplesPositions: Array<CGFloat> {
         return spiralModel.onScreenTemplesPositions
     }
@@ -60,6 +62,7 @@ class ImageSpiral: ObservableObject {
     var coordinatesAndSizes: Array<Array<CGFloat>> {
         return spiralModel.coordinatesAndSizes
     }
+     */
     
     // MARK: - Intent(s)
     // this is where user intents come in
@@ -74,12 +77,17 @@ class ImageSpiral: ObservableObject {
     
     // this function updateds on screen temples
     func updateOnScreenTemples(newTheta: CGFloat) {
-        var onScreenTemplesPositionsNew: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: newTheta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
-        var onScreenTemplesNew: Array<String> = ImageSpiral.getOnScreenTemples(theta: newTheta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
-        
-        spiralModel.updateOnScreenTemples(onScreenTemplesPositionsNew: onScreenTemplesPositionsNew, onScreenTemplesNew: onScreenTemplesNew)
+//        var onScreenTemplesPositionsNew: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: newTheta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+//        var onScreenTemplesNew: Array<String> = ImageSpiral.getOnScreenTemples(theta: newTheta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+//        spiralModel.updateOnScreenTemples(onScreenTemplesPositionsNew: onScreenTemplesPositionsNew, onScreenTemplesNew: onScreenTemplesNew)
 
+        var coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: centerX, centerY: centerY)
+        var onScreenTemplesString: Array<String> = ImageSpiral.getOnScreenTemples(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        var onScreenTemplesPositions: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        
+        spiralModel.updateOnScreenTemples(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions)
+        
     }
 
     // calculation the whole spiral coordinates
@@ -170,7 +178,7 @@ class ImageSpiral: ObservableObject {
         //print("buildingCoordinatesAndSize is \(buildingCoordinatesAndSize)")
         
         return buildingCoordinatesAndSize
-            //.reversed()
+            .reversed()
         
     }
     
@@ -191,7 +199,7 @@ class ImageSpiral: ObservableObject {
         
         // we keep the array the same length, so that ForEach in spiral view will like it
         while collectingOnScreenTemples.count < 231 {
-            collectingOnScreenTemples.append("")
+            collectingOnScreenTemples.append("clear_image")
         }
         print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
         
