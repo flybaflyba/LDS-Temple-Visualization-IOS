@@ -20,6 +20,7 @@ struct Spiral<TempleContent> {
     
     var onScreenTemples: Array<Temple>
     
+    var mode: String = "default" 
    // var onScreenTemplesPositions: Array<CGFloat>
     
     func choose(temple: Temple) {

@@ -20,7 +20,7 @@ class ImageSpiral: ObservableObject {
     
     static let templeNames: Array<String> = readTempleNamesFromFile()
     
-    static var coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY)
+    //static var coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: "default")
     
     // we want to keep this model private, so that only this ViewModel can access to this model. (door closed)
     // we put set here, so that only this ViewModel can modify this model, but others can see it. (glass door)
@@ -34,14 +34,14 @@ class ImageSpiral: ObservableObject {
     static func createSpiral() -> Spiral<Image> {
         
         // this is all coordinates
-        var coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY)
+        let coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: "default")
         
         // this is what temples are on screen
-        var onScreenTemplesString: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        let onScreenTemplesString: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         // this is what location should on screen temples reside
         // each element here is the index of each temple's location in all coordinates
-        var onScreenTemplesPositions: Array<CGFloat> = getOnScreenTemplesPositions(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        let onScreenTemplesPositions: Array<CGFloat> = getOnScreenTemplesPositions(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         //finally we passing the needed parameters to create out spiral model
 //        return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
@@ -78,6 +78,37 @@ class ImageSpiral: ObservableObject {
         ImageSpiral.theta = newTheta
         print("new theta is \(ImageSpiral.theta)")
     }
+    /*
+    // when updating, we will modify all coordinates acoording to user's selection of moving mode.
+    static func spinningMode(mode: String) {
+        var x: CGFloat
+        var y: CGFloat
+        var angle: CGFloat
+        var xNew: CGFloat
+        var yNew: CGFloat
+        
+        
+        for index in 0..<ImageSpiral.coordinatesAndSizes.count {
+            
+            //print(ImageSpiral.coordinatesAndSizes[index])
+        
+            
+            x = ImageSpiral.coordinatesAndSizes[index][0]
+            y = ImageSpiral.coordinatesAndSizes[index][1]
+            angle = theta / 10000;
+            xNew = (x - centerX) * cos(angle) - (y - centerY) * sin(angle) + centerX;
+            yNew = (y - centerY) * cos(angle) + (x - centerX) * sin(angle) + centerY;
+            
+            ImageSpiral.coordinatesAndSizes[index][0] = xNew
+            ImageSpiral.coordinatesAndSizes[index][1] = yNew
+            
+        }
+        
+        
+        
+    }
+    
+    */
     
     // this function updateds on screen temples
     func updateOnScreenTemples(newTheta: CGFloat) {
@@ -86,18 +117,21 @@ class ImageSpiral: ObservableObject {
 //        var onScreenTemplesNew: Array<String> = ImageSpiral.getOnScreenTemples(theta: newTheta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
 //        spiralModel.updateOnScreenTemples(onScreenTemplesPositionsNew: onScreenTemplesPositionsNew, onScreenTemplesNew: onScreenTemplesNew)
 
-        //var coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: centerX, centerY: centerY)
-        var onScreenTemplesString: Array<String> = ImageSpiral.getOnScreenTemples(theta: ImageSpiral.theta, coordinatesLength: CGFloat(ImageSpiral.coordinatesAndSizes.count))
-        var onScreenTemplesPositions: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: ImageSpiral.theta, coordinatesLength: CGFloat(ImageSpiral.coordinatesAndSizes.count))
+        //ImageSpiral.spinningMode(mode: "spin")
         
-        spiralModel.updateOnScreenTemples(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: ImageSpiral.coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions)
+        let coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: "spin")
+        
+        let onScreenTemplesString: Array<String> = ImageSpiral.getOnScreenTemples(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        let onScreenTemplesPositions: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        
+        spiralModel.updateOnScreenTemples(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions)
         
     }
 
     // calculation the whole spiral coordinates
     // we include all temples on screen, even though some of them are very small in the center
     // because if we don't animation will suspend after the numbers of temples on screen reach max
-    static func getCoordinatesAndSizes(centerX: CGFloat, centerY: CGFloat) -> Array<Array<CGFloat>>{
+    static func getCoordinatesAndSizes(centerX: CGFloat, centerY: CGFloat, mode: String) -> Array<Array<CGFloat>>{
         
         
         // when animation, less coordinates, but more temples
@@ -115,7 +149,13 @@ class ImageSpiral: ObservableObject {
         var x2: CGFloat
         var y2: CGFloat
         
+        var xNew: CGFloat
+        var yNew: CGFloat
+        var angle: CGFloat
+        
         var oneSpiralCoordinateAndSize: Array<CGFloat> = Array<CGFloat>()
+        
+        print(mode)
         
         while t < 17.5
         {
@@ -126,7 +166,26 @@ class ImageSpiral: ObservableObject {
             x = centerX + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * cos(t)
             y = centerY + initialR * exp(t * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * sin(t)
             
-        
+            
+            
+            if mode == "spin" {
+                angle = theta / 100
+                xNew = (x - centerX) * cos(angle) - (y - centerY) * sin(angle) + centerX;
+                yNew = (y - centerY) * cos(angle) + (x - centerX) * sin(angle) + centerY;
+            } else if mode == "zoom" {
+                angle = theta / 45
+                xNew = (x - centerX) * cos(angle) - (y - centerY) * sin(angle) + centerX;
+                yNew = (y - centerY) * cos(angle) + (x - centerX) * sin(angle) + centerY;
+            } else if mode == "3D" {
+                angle = theta / 500
+                xNew = (x - centerX) * cos(angle) - (y - centerY) * sin(angle) + centerX;
+                yNew = (y - centerY) * cos(angle) + (xNew - centerX) * sin(angle) + centerY;
+            } else  {
+                xNew = x
+                yNew = y
+                
+            }
+            
             // this is how we calculate sizes of each temple
             // by finding the distance betten two spiral lines while the angle difference is 2 * pi
             // got to multiply a constant to find the right size for that screen
@@ -135,8 +194,8 @@ class ImageSpiral: ObservableObject {
             y2 = centerY + initialR * exp(t2 * CGFloat(1) / tan(CGFloat(47) * CGFloat.pi / CGFloat(100))) * sin(t)
             size = sqrt(pow((x2 - x), 2) + pow((y2 - y), 2)) * 1.3
             
-            oneSpiralCoordinateAndSize.append(x)
-            oneSpiralCoordinateAndSize.append(y)
+            oneSpiralCoordinateAndSize.append(xNew)
+            oneSpiralCoordinateAndSize.append(yNew)
             oneSpiralCoordinateAndSize.append(size)
             buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
             
@@ -188,21 +247,46 @@ class ImageSpiral: ObservableObject {
         
         // when no animation, more coordinates
     
-        var q = topCoordinateInSpiralX
         
-        while q < screenWidth {
         
-            oneSpiralCoordinateAndSize.append(q)
-            oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
-            oneSpiralCoordinateAndSize.append(topSizeInSpiral)
-            buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
-    
-            //print("oneSpiralCoordinateAndSize length is \(oneSpiralCoordinateAndSize.count)")
+        if mode == "spin" {
+            let secondTopCoordinateInSpiralX: CGFloat = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-2)][0];
+            let secondTopCoordinateInSpiralY: CGFloat = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-2)][1];
+            let xDirection: CGFloat = topCoordinateInSpiralX - secondTopCoordinateInSpiralX;
+            let yDirection: CGFloat = topCoordinateInSpiralY - secondTopCoordinateInSpiralY;
+            
+            for i in 1..<10 {
+                
+                let step: CGFloat = CGFloat(i) * 10;
+                
+                oneSpiralCoordinateAndSize.append(xDirection / abs(xDirection) * step + secondTopCoordinateInSpiralX);
+                oneSpiralCoordinateAndSize.append(yDirection / abs(yDirection) * step + secondTopCoordinateInSpiralY);
+                oneSpiralCoordinateAndSize.append(topSizeInSpiral)
+                buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
+                oneSpiralCoordinateAndSize.removeAll()
+            }
+            
+            
+        } else  {
+            var q = topCoordinateInSpiralX
+            
+            while q < screenWidth {
+            
+                oneSpiralCoordinateAndSize.append(q)
+                oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
+                oneSpiralCoordinateAndSize.append(topSizeInSpiral)
+                buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
+        
+                //print("oneSpiralCoordinateAndSize length is \(oneSpiralCoordinateAndSize.count)")
 
-            oneSpiralCoordinateAndSize.removeAll()
-    
-                q += 5
+                oneSpiralCoordinateAndSize.removeAll()
+        
+                    q += 5
+            }
+            
         }
+        
+        
 
         //print("centerX is \(centerX)")
         //print("centerY is \(centerY)")
