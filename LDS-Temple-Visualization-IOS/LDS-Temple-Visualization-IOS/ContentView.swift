@@ -154,7 +154,6 @@ struct SpiralView: View {
     }
  */
     
-    
     func drawTemple(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
             // temple content is a string which is name of image
@@ -165,7 +164,6 @@ struct SpiralView: View {
                 .position(x: temple.x, y: temple.y)
                 //.animation(Animation.linear(duration: 0.5))
                 
-            
         }
         
         return body
