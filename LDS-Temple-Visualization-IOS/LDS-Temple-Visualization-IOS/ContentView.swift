@@ -154,10 +154,10 @@ struct SpiralView: View {
     }
  */
     
+    /*
     func drawTemple(templeIndex: Int) -> some View {
         var body: some View {
             // temple content is a string which is name of image
-            
             
             Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content)
                 .resizable()
@@ -177,6 +177,7 @@ struct SpiralView: View {
         
         return body
     }
+    */
     
     var body: some View {
         
@@ -186,12 +187,21 @@ struct SpiralView: View {
             //ForEach(imageSpiralViewModel.temples) { temple in
             // looping through all on screen temples,
             // we use index instead of the objects, so that we can use index later in these code
-            ForEach(0 ..< imageSpiralViewModel.onScreenTemples.count) { templeIndex in
-                drawTemple(templeIndex: templeIndex)
+//            ForEach(0 ..< imageSpiralViewModel.onScreenTemples.count) { templeIndex in
+//                drawTemple(templeIndex: templeIndex)
+//
+//                // this line shows us how the spiral looks like on screen
+//                //spiralDrawing().stroke()
+//            }
+            ForEach(imageSpiralViewModel.onScreenTemples) {temple in
+                temple.content
+                    .resizable()
+                    .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
+                    .position(x: temple.x, y: temple.y)
+                    .animation(Animation.linear(duration: 0.5))
                 
-                // this line shows us how the spiral looks like on screen
-                //spiralDrawing().stroke()
             }
+            
         }.frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
         
         Spacer(minLength: 0)

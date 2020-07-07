@@ -44,12 +44,12 @@ struct Spiral<TempleContent> {
             }
             
             for index in 0..<onScreenTemplesString.count {
-                let content = onScreenTemplesString[index]
+                let content = Image(onScreenTemplesString[index])
                 let id = index
                 let x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
                 let y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
                 let size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
-                onScreenTemples.append(Temple(content: content as! TempleContent, id: id, x: x, y: y, size: size))
+                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size))
 
                 
             }
@@ -80,7 +80,7 @@ struct Spiral<TempleContent> {
         print("updating ==========================================")
         
         for index in 0..<onScreenTemplesString.count {
-            let content = onScreenTemplesString[index]
+            let content = Image(onScreenTemplesString[index])
             let id = index
             let x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
             let y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]

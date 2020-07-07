@@ -23,11 +23,11 @@ class ImageSpiral: ObservableObject {
     // private(set) var spiralModel: Spiral<String>
     
     // we can also close the door and use a function to access the model
-    @Published private var spiralModel: Spiral<String> = ImageSpiral.createSpiral()
+    @Published private var spiralModel: Spiral<Image> = ImageSpiral.createSpiral()
     
     // we will initialize with a function, createSpiral()
     // static means we can call this function on class, fot instace, we use this to initialze the model
-    static func createSpiral() -> Spiral<String> {
+    static func createSpiral() -> Spiral<Image> {
         
         // this is all coordinates
         var coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY)
@@ -43,14 +43,14 @@ class ImageSpiral: ObservableObject {
 //        return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
 //        return onScreenTemples[index]
             
-        return Spiral<String>(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions)
+        return Spiral<Image>(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions)
         
     }
 
     // MARK: - Access to the Model
  
     
-    var onScreenTemples: Array<Spiral<String>.Temple> {
+    var onScreenTemples: Array<Spiral<Image>.Temple> {
         return spiralModel.onScreenTemples
     }
     
@@ -66,7 +66,7 @@ class ImageSpiral: ObservableObject {
     
     // MARK: - Intent(s)
     // this is where user intents come in
-    func choose(temple: Spiral<String>.Temple) {
+    func choose(temple: Spiral<Image>.Temple) {
         spiralModel.choose(temple: temple)
     }
     
