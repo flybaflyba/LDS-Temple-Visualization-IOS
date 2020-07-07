@@ -43,6 +43,7 @@ struct ContentView: View {
 }
 
 
+/*
 // the folowing are different views on the initial screen
 struct TitleView: View {
     var body: some View {
@@ -62,7 +63,7 @@ struct Temple {
         
     }
 }
-
+*/
 // this is a test function, it returns a spiral, so that we can see how it looks
 
 //func spiralDrawing() -> Path {
@@ -96,6 +97,9 @@ struct SpiralView: View {
     @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
     
     @State var sliderProgress: CGFloat = 3000
+    
+    var modes = ["default", "spin", "3D"]
+    @State private var modeIndex = 0
     
     /*
     // we use the following three functions to get coordinates and sizes,
@@ -199,9 +203,19 @@ struct SpiralView: View {
         Spacer(minLength: 0)
             
         // this is year display ==================================
-        Text("Year display").frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+        Text("Year display")
+            .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             
-            Spacer(minLength: 0)
+//        Picker(selection: $selectedModeIndex, label: Text("")) {
+//                        ForEach(0 ..< modes.count) {
+//                           Text(self.modes[$0])
+//                        }
+//            }
+//        .frame(width: screenWidth / 2, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
+//        Text("You picked: \(modes[selectedModeIndex])")
+//
+            
+        Spacer(minLength: 0)
         // this is slider ==================================
         VStack {
             // we use Binding, so that when ever slider progress changes, we can do something
@@ -236,16 +250,39 @@ struct SpiralView: View {
             }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
             
             
-        Spacer(minLength: 0)
+//            Button(action: {
+//                // your action here
+//            }) {
+//                Text("Button title")
+//            }.frame(width: screenWidth / 4 * 2, height: screenHeight * 0.1, alignment: Alignment.center)
+            
+        //Spacer(minLength: 0)
         // this is slider lable ==================================
         HStack {
-            Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
-            Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
-            Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
+            Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.03, alignment: Alignment.top)
+            
+            Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.03, alignment: Alignment.center)
+            
+            
+            Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.03, alignment: Alignment.top)
         }
-        .frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
+        //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
+            
+            Button(action: {
+                if self.modeIndex == 2 {
+                    self.modeIndex = 0
+                } else {
+                    self.modeIndex += 1
+                }
+                imageSpiralViewModel.changeMode(newMode: modes[modeIndex])
+            }) {
+                Text("Spiral Mode: \(self.modes[self.modeIndex])")
+            }
+            .frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.top).background(Color.green)
+            
             
         }
+        
         
     }
     
@@ -274,6 +311,8 @@ struct SliderView: View {
 }
 */
 
+/*
+
 struct SliderLabelView: View {
     var body: some View {
         HStack {
@@ -286,7 +325,7 @@ struct SliderLabelView: View {
 }
 
 
-
+*/
 
 
 
