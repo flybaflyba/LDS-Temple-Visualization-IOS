@@ -93,7 +93,7 @@ struct SpiralView: View {
     // this view will update when changes happen to the model 
     @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
     
-    @State var sliderProgress: CGFloat = 100
+    @State var sliderProgress: CGFloat = 3000
     
     /*
     // we use the following three functions to get coordinates and sizes,
@@ -154,30 +154,23 @@ struct SpiralView: View {
     }
  */
     
-    /*
-    func drawTemple(templeIndex: Int) -> some View {
+    
+    func drawTemple(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
             // temple content is a string which is name of image
             
-            Image(self.imageSpiralViewModel.onScreenTemples[templeIndex].content)
+            temple.content
                 .resizable()
-                .frame(width: self.imageSpiralViewModel.onScreenTemples[templeIndex].size, height: self.imageSpiralViewModel.onScreenTemples[templeIndex].size, alignment: Alignment.center)
-                .position(x: self.imageSpiralViewModel.onScreenTemples[templeIndex].x, y: self.imageSpiralViewModel.onScreenTemples[templeIndex].y)
-                .animation(Animation.linear(duration: 0.5))
-
-                .onTapGesture {
-                    self.imageSpiralViewModel.choose(temple: self.imageSpiralViewModel.onScreenTemples[templeIndex])
-                    print(templeIndex)
-                    
-                    
-                    //print("temple postion \(imageSpiralViewModel.coordinatesAndSizes[Int(self.imageSpiralViewModel.onScreenTemplesPositions[templeIndex])])")
-
-            }
+                .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
+                .position(x: temple.x, y: temple.y)
+                //.animation(Animation.linear(duration: 0.5))
+                
+            
         }
         
         return body
     }
-    */
+    
     
     var body: some View {
         
@@ -187,20 +180,13 @@ struct SpiralView: View {
             //ForEach(imageSpiralViewModel.temples) { temple in
             // looping through all on screen temples,
             // we use index instead of the objects, so that we can use index later in these code
-//            ForEach(0 ..< imageSpiralViewModel.onScreenTemples.count) { templeIndex in
-//                drawTemple(templeIndex: templeIndex)
-//
-//                // this line shows us how the spiral looks like on screen
-//                //spiralDrawing().stroke()
-//            }
             ForEach(imageSpiralViewModel.onScreenTemples) {temple in
-                temple.content
-                    .resizable()
-                    .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
-                    .position(x: temple.x, y: temple.y)
-                    .animation(Animation.linear(duration: 0.5))
-                
+                drawTemple(temple: temple)
+
+                // this line shows us how the spiral looks like on screen
+                //spiralDrawing().stroke()
             }
+            
             
         }.frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
         
@@ -232,7 +218,11 @@ struct SpiralView: View {
                     print("sliderProgress is \(self.sliderProgress)")
                     
                 }),
-                   in: 0...226, step: 1)
+                   
+                   // when animation, less coordinates
+                   //in: 0...226, step: 1)
+                   // when no animation, more coordinates
+                   in: 11...7000, step: 1)
             
             //Text("Slider progress is \(sliderProgress)")
             
