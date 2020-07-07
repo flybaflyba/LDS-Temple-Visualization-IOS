@@ -74,6 +74,10 @@ class ImageSpiral: ObservableObject {
         spiralModel.choose(temple: temple)
     }
     
+    func changeMode(newMode: String) {
+        spiralModel.changeMode(newMode: newMode)
+    }
+    
     func getNewTheta(newTheta: CGFloat) {
         ImageSpiral.theta = newTheta
         print("new theta is \(ImageSpiral.theta)")
@@ -119,7 +123,7 @@ class ImageSpiral: ObservableObject {
 
         //ImageSpiral.spinningMode(mode: "spin")
         
-        let coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: "spin")
+        let coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: spiralModel.mode)
         
         let onScreenTemplesString: Array<String> = ImageSpiral.getOnScreenTemples(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         let onScreenTemplesPositions: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))

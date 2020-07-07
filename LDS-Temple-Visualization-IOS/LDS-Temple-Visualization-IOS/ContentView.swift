@@ -14,8 +14,9 @@ import SwiftUI
 let screenWidth = UIScreen.main.bounds.size.width
 let screenHeight = UIScreen.main.bounds.size.height
 let centerX = screenWidth / 2
-let centerY = screenHeight  * 0.75 / 2
-let statusbarHeight = UIApplication.shared.statusBarFrame.height
+let centerY = screenHeight  * 0.8 / 2
+
+//let statusbarHeight = UIApplication.shared.statusBarFrame.height
 
 
 
@@ -23,16 +24,17 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Rectangle()
-                .frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
-            Spacer(minLength: 0)
-            SpiralView().frame(width: screenWidth, height: screenHeight * 0.85, alignment: Alignment.center).background(Color.blue)
-            Spacer(minLength: 0)
-            SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            //Rectangle()
+                //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
+            //Spacer(minLength: 0)
+            SpiralView().frame(width: screenWidth, height: screenHeight, alignment: Alignment.center).background(Color.red)
+            //Spacer(minLength: 0)
             
-            TitleView()
-                .frame(width: screenWidth/3*2, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue.opacity(0.5))
-                .position(x: screenWidth/2, y: -screenHeight*0.95)
+            //SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            
+            //TitleView()
+                //.frame(width: screenWidth/3*2, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue.opacity(0.5))
+                //.position(x: screenWidth/2, y: -screenHeight*0.95)
             
         }
  
@@ -163,6 +165,11 @@ struct SpiralView: View {
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
                 //.animation(Animation.linear(duration: 0.5))
+                .onTapGesture {
+                    print(temple)
+                }
+            
+            
                 
         }
         
@@ -173,7 +180,8 @@ struct SpiralView: View {
     var body: some View {
         
         VStack {
-        Spacer(minLength: 0)
+        
+        // this is the actual spiral view ==================================
         ZStack {
             //ForEach(imageSpiralViewModel.temples) { temple in
             // looping through all on screen temples,
@@ -186,14 +194,15 @@ struct SpiralView: View {
             }
             
             
-        }.frame(width: screenWidth, height: screenHeight * 0.7, alignment: Alignment.center).background(Color.green)
+        }.frame(width: screenWidth, height: screenHeight * 0.75, alignment: Alignment.center).background(Color.green)
         
         Spacer(minLength: 0)
             
+        // this is year display ==================================
         Text("Year display").frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
             
-        Spacer(minLength: 0)
-        
+            Spacer(minLength: 0)
+        // this is slider ==================================
         VStack {
             // we use Binding, so that when ever slider progress changes, we can do something
             Slider(value: Binding(
@@ -225,6 +234,16 @@ struct SpiralView: View {
             //Text("Slider progress is \(sliderProgress)")
             
             }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
+            
+            
+        Spacer(minLength: 0)
+        // this is slider lable ==================================
+        HStack {
+            Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
+            Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
+            Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
+        }
+        .frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             
         }
         
@@ -259,7 +278,7 @@ struct SliderLabelView: View {
     var body: some View {
         HStack {
             Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
-             Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
+            Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
             Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05 / 2, alignment: Alignment.center)
         }
         

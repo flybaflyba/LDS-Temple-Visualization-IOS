@@ -27,6 +27,10 @@ struct Spiral<TempleContent> {
         print("temple chosen: \(temple)")
     }
     
+    mutating func changeMode(newMode: String) {
+        mode = newMode
+    }
+    
      // the last parameter of init is a function that takes in an Int and returns TempleContent
      // we will let view model to decide what the content is
      // view model also decide which temples are on screen and their locations
