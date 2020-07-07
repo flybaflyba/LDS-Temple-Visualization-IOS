@@ -15,6 +15,7 @@ let screenWidth = UIScreen.main.bounds.size.width
 let screenHeight = UIScreen.main.bounds.size.height
 let centerX = screenWidth / 2
 let centerY = screenHeight  * 0.75 / 2
+let statusbarHeight = UIApplication.shared.statusBarFrame.height
 
 
 
@@ -22,11 +23,16 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            TitleView().frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
+            Rectangle()
+                .frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             Spacer(minLength: 0)
-            SpiralView()
+            SpiralView().frame(width: screenWidth, height: screenHeight * 0.85, alignment: Alignment.center).background(Color.blue)
             Spacer(minLength: 0)
             SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            
+            TitleView()
+                .frame(width: screenWidth/3*2, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue.opacity(0.5))
+                .position(x: screenWidth/2, y: -screenHeight*0.95)
             
         }
  
@@ -39,6 +45,8 @@ struct ContentView: View {
 struct TitleView: View {
     var body: some View {
         Text("LDS Temples")
+            .font(.system(size: 30, weight: .light, design: .serif))
+            //.position(x: screenWidth/2, y: statusbarHeight*2)
     }
 }
 
@@ -172,8 +180,6 @@ struct SpiralView: View {
 //                        } else {
 //                            self.sliderProgress -= 1
 //                        }
-//                        self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
-//                        self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
 //                    }
 
                     self.sliderProgress = newValue
@@ -188,6 +194,7 @@ struct SpiralView: View {
             //Text("Slider progress is \(sliderProgress)")
             
             }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
+            
         }
         
     }
