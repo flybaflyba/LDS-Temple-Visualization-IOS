@@ -34,14 +34,14 @@ struct Spiral<TempleContent> {
         init(onScreenTemplesString: Array<String>, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>) {
             
         onScreenTemples = Array<Temple>()
-        
-            print(onScreenTemplesString.count)
-            print(coordinatesAndSizesP.count)
-            print(onScreenTemplesPositionsP.count)
+
+//            print(onScreenTemplesString.count)
+//            print(coordinatesAndSizesP.count)
+//            print(onScreenTemplesPositionsP.count)
             
-            for i in coordinatesAndSizesP {
-                print(i)
-            }
+//            for i in coordinatesAndSizesP {
+//                print(i)
+//            }
             
             for index in 0..<onScreenTemplesString.count {
                 let content = Image(onScreenTemplesString[index])
@@ -70,7 +70,7 @@ struct Spiral<TempleContent> {
         
         //onScreenTemplesPositions = onScreenTemplesPositionsNew
         
-        onScreenTemples.removeAll()
+        //onScreenTemples.removeAll()
         
 //        for index in 0..<onScreenTemplesNew.count{
 //            let content = onScreenTemplesNew[index]
@@ -79,13 +79,14 @@ struct Spiral<TempleContent> {
         
         print("updating ==========================================")
         
-        for index in 0..<onScreenTemplesString.count {
-            let content = Image(onScreenTemplesString[index])
-            let id = index
-            let x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
-            let y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
-            let size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
-            onScreenTemples.append(Temple(content: content as! TempleContent, id: id, x: x, y: y, size: size))
+        for index in 0..<onScreenTemples.count {
+            onScreenTemples[index].content = Image(onScreenTemplesString[index]) as! TempleContent
+            onScreenTemples[index].id = index
+            onScreenTemples[index].x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
+            onScreenTemples[index].y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
+            onScreenTemples[index].size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
+            
+            //onScreenTemples.append(Temple(content: content as! TempleContent, id: id, x: x, y: y, size: size))
         }
             
         

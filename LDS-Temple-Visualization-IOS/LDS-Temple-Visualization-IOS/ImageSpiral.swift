@@ -16,6 +16,8 @@ class ImageSpiral: ObservableObject {
     // then it is used to modify spiral model attributes
     static var theta: CGFloat = 100
 
+    static var buildingCoordinatesAndSizeLength: Int = 0
+    
     static let templeNames: Array<String> = readTempleNamesFromFile()
     
     // we want to keep this model private, so that only this ViewModel can access to this model. (door closed)
@@ -177,6 +179,8 @@ class ImageSpiral: ObservableObject {
         print("buildingCoordinatesAndSize length is \(buildingCoordinatesAndSize.count)")
         //print("buildingCoordinatesAndSize is \(buildingCoordinatesAndSize)")
         
+        buildingCoordinatesAndSizeLength = buildingCoordinatesAndSize.count
+        
         return buildingCoordinatesAndSize
             .reversed()
         
@@ -197,8 +201,9 @@ class ImageSpiral: ObservableObject {
         }
         print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
         
+        print("buildingCoordinatesAndSizeLength is \(buildingCoordinatesAndSizeLength)")
         // we keep the array the same length, so that ForEach in spiral view will like it
-        while collectingOnScreenTemples.count < 231 {
+        while collectingOnScreenTemples.count < buildingCoordinatesAndSizeLength {
             collectingOnScreenTemples.append("clear_image")
         }
         print("collectingOnScreenTemples length after add extra is \(collectingOnScreenTemples.count)")
@@ -222,7 +227,8 @@ class ImageSpiral: ObservableObject {
          
         print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
     
-        while collectingOnScreenTemplesPositions.count < 231 {
+        print("buildingCoordinatesAndSizeLength is \(buildingCoordinatesAndSizeLength)")
+        while collectingOnScreenTemplesPositions.count < buildingCoordinatesAndSizeLength {
             collectingOnScreenTemplesPositions.append(0)
         }
         
