@@ -51,9 +51,24 @@ struct Spiral<TempleContent> {
             for index in 0..<onScreenTemplesString.count {
                 let content = Image(onScreenTemplesString[index])
                 let id = index
-                let x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
-                let y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
-                let size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
+                
+                let x: CGFloat
+                let y: CGFloat
+                let size: CGFloat
+                
+//                // this is with when we temples that is outside of coordinates and sizes list,
+//                // their x y and size can noto be found, we willgive the value here
+//                if Int(onScreenTemplesPositionsP[index]) > coordinatesAndSizesP.count - 1 {
+//                    x = centerX
+//                    y = centerY
+//                    size = 10
+//                } else {
+                    x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
+                    y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
+                    size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
+//                }
+                
+                
                 onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size))
 
                 
@@ -87,9 +102,18 @@ struct Spiral<TempleContent> {
         for index in 0..<onScreenTemples.count {
             onScreenTemples[index].content = Image(onScreenTemplesString[index]) as! TempleContent
             onScreenTemples[index].id = index
-            onScreenTemples[index].x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
-            onScreenTemples[index].y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
-            onScreenTemples[index].size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
+            
+//            if Int(onScreenTemplesPositionsP[index]) > coordinatesAndSizesP.count - 1 {
+//                onScreenTemples[index].x = centerX
+//                onScreenTemples[index].y = centerY
+//                onScreenTemples[index].size = 10
+//            } else {
+                onScreenTemples[index].x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
+                onScreenTemples[index].y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
+                onScreenTemples[index].size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
+//            }
+            
+            
             
             //onScreenTemples.append(Temple(content: content as! TempleContent, id: id, x: x, y: y, size: size))
         }

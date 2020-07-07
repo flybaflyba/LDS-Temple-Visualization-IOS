@@ -173,8 +173,6 @@ struct SpiralView: View {
                     print(temple)
                 }
             
-            
-                
         }
         
         return body
@@ -262,7 +260,6 @@ struct SpiralView: View {
             Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.03, alignment: Alignment.top)
             
             Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.03, alignment: Alignment.center)
-            
             
             Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.03, alignment: Alignment.top)
         }
