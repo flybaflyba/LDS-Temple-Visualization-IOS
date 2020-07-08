@@ -172,7 +172,9 @@ struct SpiralView: View {
                 .position(x: temple.x, y: temple.y)
                 .animation(withAnimation ? Animation.linear(duration: 0.5) : Animation.linear(duration: 0.001))
                 .onTapGesture {
-                    print(temple)
+                    //print(temple)
+                    imageSpiralViewModel.choose(temple: temple)
+                    print(temple.year)
                 }
             
         }

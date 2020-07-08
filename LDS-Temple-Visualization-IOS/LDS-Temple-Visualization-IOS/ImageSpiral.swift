@@ -19,6 +19,7 @@ class ImageSpiral: ObservableObject {
     //static var buildingCoordinatesAndSizeLength: Int = 0
     
     static let templeNames: Array<String> = readTempleNamesFromFile()
+    static let templeNamesAndYears: Array<Array<String>> = readTempleNameYearFromFile()
     
     //static var coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: "default")
     
@@ -37,7 +38,7 @@ class ImageSpiral: ObservableObject {
         let coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: "default")
         
         // this is what temples are on screen
-        let onScreenTemplesString: Array<String> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        let onScreenTemplesString: Array<Array<String>> = getOnScreenTemples(theta: theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         // this is what location should on screen temples reside
         // each element here is the index of each temple's location in all coordinates
@@ -125,7 +126,7 @@ class ImageSpiral: ObservableObject {
         
         let coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: spiralModel.mode)
         
-        let onScreenTemplesString: Array<String> = ImageSpiral.getOnScreenTemples(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
+        let onScreenTemplesString: Array<Array<String>> = ImageSpiral.getOnScreenTemples(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         let onScreenTemplesPositions: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         
         spiralModel.updateOnScreenTemples(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions)
@@ -323,7 +324,7 @@ class ImageSpiral: ObservableObject {
         } else  {
             var q = topCoordinateInSpiralX
             
-            while q < screenWidth {
+            while q < screenWidth * 1.25 {
             
                 oneSpiralCoordinateAndSize.append(q)
                 oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
@@ -338,6 +339,7 @@ class ImageSpiral: ObservableObject {
             }
             
         }
+        
         
         
 
@@ -359,20 +361,26 @@ class ImageSpiral: ObservableObject {
     
 
     
-    static func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<String> {
+    static func getOnScreenTemples(theta: CGFloat, coordinatesLength: CGFloat) -> Array<Array<String>> {
         var collectingOnScreenTemples = Array<String>()
         var templePosition: CGFloat
+        
+        var collectingOnScreenTemplesNames = Array<String>()
+        var collectingOnScreenTemplesYears = Array<String>()
+        
+        //print(ImageSpiral.templeNamesAndYears[1])
         
         // here is the key logic to determin what temples should be on screen
         for templeIndex in 0..<ImageSpiral.templeNames.count {
             
-            
-            
             templePosition = theta - 30*CGFloat(templeIndex)
-            
             
             if templePosition >= 0 && templePosition < CGFloat(coordinatesLength) {
                 collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
+                collectingOnScreenTemplesNames.append(ImageSpiral.templeNamesAndYears[0][templeIndex])
+                collectingOnScreenTemplesYears.append(ImageSpiral.templeNamesAndYears[1][templeIndex])
+                //print("name here -------\(ImageSpiral.templeNamesAndYears[0][templeIndex])")
+                //print("year here +++\(ImageSpiral.templeNamesAndYears[1][templeIndex])")
             }
             
             // this is kind of extra, we can just delete the < in last if,
@@ -381,12 +389,16 @@ class ImageSpiral: ObservableObject {
             // because if we do animation we need this
             if templePosition < 0 || templePosition >= CGFloat(coordinatesLength) {
                 collectingOnScreenTemples.append("clear_image")
+                collectingOnScreenTemplesNames.append("No Temple")
+                collectingOnScreenTemplesYears.append("No Year")
             }
             
-            print(templePosition)
+            //print(templePosition)
             
         }
         print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
+        print("collectingOnScreenTemplesNames length after should be \(collectingOnScreenTemplesNames.count)")
+        print("collectingOnScreenTemplesYears length after should be \(collectingOnScreenTemplesYears.count)")
         
 //        //print("buildingCoordinatesAndSizeLength is \(buildingCoordinatesAndSizeLength)")
 //        // we keep the array the same length, so that ForEach in spiral view will like it
@@ -397,7 +409,14 @@ class ImageSpiral: ObservableObject {
 //
 //        //print("collectingOnScreenTemples after add extra is \(collectingOnScreenTemples)")
      
-        return collectingOnScreenTemples
+        var collectingOnScreenTemplesNamesAndYears: Array<Array<String>> = Array<Array<String>>()
+        collectingOnScreenTemplesNamesAndYears.append(collectingOnScreenTemples)
+        collectingOnScreenTemplesNamesAndYears.append(collectingOnScreenTemplesNames)
+        collectingOnScreenTemplesNamesAndYears.append(collectingOnScreenTemplesYears)
+        
+        //print(collectingOnScreenTemplesNamesAndYears)
+        
+        return collectingOnScreenTemplesNamesAndYears
     }
      
 
@@ -437,7 +456,7 @@ class ImageSpiral: ObservableObject {
     static func readTempleNamesFromFile() -> Array<String> {
         
         //var templeNames: Array<String> = Array<String>()
-        var allTempleNames: Array<String> = linesFromResourceForced(fileName: "templeNames")
+        var allTempleNames: Array<String> = linesFromResourceForced(fileName: "templeFilesNames")
         
 //        templeNames.append("kirtland_temple")
 //        templeNames.append("old_nauvoo_temple")
@@ -456,8 +475,6 @@ class ImageSpiral: ObservableObject {
 //        templeNames.append("st_george_temple")
 //        templeNames.append("logan_temple")
 //        templeNames.append("manti_temple")
-        
-        
         
         //print(allTempleNames)
         
@@ -473,6 +490,31 @@ class ImageSpiral: ObservableObject {
         let path = Bundle.main.path(forResource: fileName, ofType: "")!
         let content = try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
         return content.components(separatedBy: "\n")
+    }
+    
+    static func readTempleNameYearFromFile() -> Array<Array<String>> {
+        var allTempleNamesYears: Array<String> = linesFromResourceForced(fileName: "templeNamesYears")
+        allTempleNamesYears.removeLast()
+        allTempleNamesYears.removeLast()
+        // we do remove lastt twice, becasue there is shanghai temple in the file,
+        // but we are not showing it becasue the church website does not have it yet
+        
+        var allTempleNames: Array<String> = Array<String>()
+        var allTempleYears: Array<String> = Array<String>()
+        
+        for i in 0..<allTempleNamesYears.count / 2 {
+            allTempleNames.append(allTempleNamesYears[2 * i])
+            allTempleYears.append(allTempleNamesYears[2 * i + 1])
+        }
+        
+        print("allTempleYear length is \(allTempleYears.count)")
+        print("allTempleNames length is \(allTempleNames.count)")
+        
+        var allTempleNamesYearsCombine: Array<Array<String>> = Array<Array<String>>()
+        allTempleNamesYearsCombine.append(allTempleNames)
+        allTempleNamesYearsCombine.append(allTempleYears)
+        
+        return allTempleNamesYearsCombine
     }
     
 

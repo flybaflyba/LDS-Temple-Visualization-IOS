@@ -21,10 +21,16 @@ struct Spiral<TempleContent> {
     var onScreenTemples: Array<Temple>
     
     var mode: String = "default" 
-   // var onScreenTemplesPositions: Array<CGFloat>
+    // var onScreenTemplesPositions: Array<CGFloat>
+    
+    //var startYear: String
+    //var endYear: String
     
     func choose(temple: Temple) {
-        print("temple chosen: \(temple)")
+        //print("temple chosen: \(temple)")
+        print("you clicked on \(temple.name)")
+        //print("it's year is \(temple.year)")
+        
     }
     
     mutating func changeMode(newMode: String) {
@@ -36,7 +42,7 @@ struct Spiral<TempleContent> {
      // view model also decide which temples are on screen and their locations
 //     init(numberOfTemples: Int, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>, templeContentFactory: (Int) -> TempleContent) {
 //         onScreenTemples = Array<Temple>()
-        init(onScreenTemplesString: Array<String>, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>) {
+        init(onScreenTemplesString: Array<Array<String>>, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>) {
             
         onScreenTemples = Array<Temple>()
 
@@ -48,13 +54,16 @@ struct Spiral<TempleContent> {
 //                print(i)
 //            }
             
-            for index in 0..<onScreenTemplesString.count {
-                let content = Image(onScreenTemplesString[index])
+            for index in 0..<onScreenTemplesString[1].count {
+                let content = Image(onScreenTemplesString[0][index])
                 let id = index
                 
                 let x: CGFloat
                 let y: CGFloat
                 let size: CGFloat
+                
+                let name: String = onScreenTemplesString[1][index]
+                let year: String = onScreenTemplesString[2][index]
                 
 //                // this is with when we temples that is outside of coordinates and sizes list,
 //                // their x y and size can noto be found, we willgive the value here
@@ -66,10 +75,11 @@ struct Spiral<TempleContent> {
                     x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
                     y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
                     size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
+                
 //                }
                 
                 
-                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size))
+                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size, name: name, year: year))
 
                 
             }
@@ -86,7 +96,7 @@ struct Spiral<TempleContent> {
     }
     
     // this function updateds on screen temples 
-    mutating func updateOnScreenTemples(onScreenTemplesString: Array<String>, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>) {
+    mutating func updateOnScreenTemples(onScreenTemplesString: Array<Array<String>>, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>) {
         
         //onScreenTemplesPositions = onScreenTemplesPositionsNew
         
@@ -100,7 +110,7 @@ struct Spiral<TempleContent> {
         print("updating ==========================================")
         
         for index in 0..<onScreenTemples.count {
-            onScreenTemples[index].content = Image(onScreenTemplesString[index]) as! TempleContent
+            onScreenTemples[index].content = Image(onScreenTemplesString[0][index]) as! TempleContent
             onScreenTemples[index].id = index
             
 //            if Int(onScreenTemplesPositionsP[index]) > coordinatesAndSizesP.count - 1 {
@@ -111,8 +121,10 @@ struct Spiral<TempleContent> {
                 onScreenTemples[index].x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
                 onScreenTemples[index].y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
                 onScreenTemples[index].size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
-//            }
             
+//            }
+            onScreenTemples[index].name = onScreenTemplesString[1][index]
+            onScreenTemples[index].year = onScreenTemplesString[2][index]
             
             
             //onScreenTemples.append(Temple(content: content as! TempleContent, id: id, x: x, y: y, size: size))
@@ -135,5 +147,7 @@ struct Spiral<TempleContent> {
         var x: CGFloat
         var y: CGFloat
         var size: CGFloat
+        var name: String
+        var year: String
     }
 }
