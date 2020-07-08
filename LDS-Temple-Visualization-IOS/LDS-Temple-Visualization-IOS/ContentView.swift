@@ -101,9 +101,12 @@ struct SpiralView: View {
     var modes = ["default", "spin", "3D"]
     @State private var modeIndex = 0
     
-    @State private var withAnimation = false
+    @State private var hasAnimation = false
     
     @State private var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
+    
+    let myAnimation: Animation = Animation.linear(duration: 1)
+    let myNoAnimation: Animation = Animation.linear(duration: 0.001)
     
     /*
     // we use the following three functions to get coordinates and sizes,
@@ -172,24 +175,25 @@ struct SpiralView: View {
                 .resizable()
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
-                .animation(withAnimation ? Animation.linear(duration: 1) : Animation.linear(duration: 0.001))
+                .animation(hasAnimation ? myAnimation : myNoAnimation)
                 .onTapGesture {
                     //print(temple)
                     //imageSpiralViewModel.choose(temple: temple)
                     //print(temple.year)
                     //temple.content.resizable().frame(width: screenWidth, height: screenWidth, alignment: Alignment.center)
-                    imageSpiralViewModel.changeATemple(id: temple.id)
                     
+                    imageSpiralViewModel.changeATemple(id: temple.id)
+                   
                     if (temple.tapped == true) {
-                        oneTempleInfo.removeAll()
+                        SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
+                            oneTempleInfo.removeAll()
+                        }
                     } else {
-                        self.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                        SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
+                            self.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                        }
                         //print(oneTempleInfo)
                     }
-                    
-                    
-                    
-                    
                     
                     
                 }
@@ -267,10 +271,10 @@ struct SpiralView: View {
                         
                         
                         Button(action: {
-                            withAnimation = !withAnimation
+                            hasAnimation = !hasAnimation
                         }) {
                             
-                            if withAnimation {
+                            if hasAnimation {
                                 Text("Animation: Yes")
                             } else {
                                 Text("Animation: No")
@@ -293,8 +297,10 @@ struct SpiralView: View {
                     
                     //Text("Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)")
                     //Text(ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
-                    Text(ImageSpiral.startYear == "ere" ? "Announced Temples" : ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
-                        .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+                    Text(ImageSpiral.startYear == "ere" ? "Announced Temples" : ImageSpiral.endYear != "ere" ? "Temple Years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
+                        .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center)
+                        .background(Color.blue)
+                    
                     
                 }
                 
