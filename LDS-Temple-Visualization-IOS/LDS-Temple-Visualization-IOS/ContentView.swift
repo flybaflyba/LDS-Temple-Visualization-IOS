@@ -306,7 +306,15 @@ struct SpiralView: View {
                     
                     //Text("Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)")
                     //Text(ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
-                    Text(ImageSpiral.startYear == "ere" ? "Announced Temples" : ImageSpiral.endYear != "ere" ? "Temple Years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
+                    Text(ImageSpiral.startYear == "ere" ? "Announced Temples" :
+                            ImageSpiral.endYear == "1836" ? "Move Slider to View Temples" :
+                            ImageSpiral.endYear != "ere" ? "Temple Years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" :
+                            "Temple years: \(ImageSpiral.startYear) --- 2020")
+                        
+                    
+                        
+                    
+                        
                         .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center)
                         //.background(Color.blue)
                     // we need this background color for testing purposes
