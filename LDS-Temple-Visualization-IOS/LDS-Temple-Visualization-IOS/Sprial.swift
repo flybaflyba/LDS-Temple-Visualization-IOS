@@ -33,17 +33,48 @@ struct Spiral<TempleContent> {
         print("this temple id is \(temple.id)")
     }
     
+    var oldX: CGFloat = 0
+    var oldY: CGFloat = 0
+    var oldSize: CGFloat = 0
+    
     mutating func changeATemple(id: Int) {
         
-        for index in 0..<onScreenTemples.count {
-            onScreenTemples[index].y = 0
-            onScreenTemples[index].size = 0
+        
+        if onScreenTemples[id].tapped == false {
+            
+            oldX = onScreenTemples[id].x
+            oldY = onScreenTemples[id].y
+            oldSize = onScreenTemples[id].size
+            
+            for index in 0..<onScreenTemples.count {
+                onScreenTemples[index].y = -onScreenTemples[index].y
+                onScreenTemples[index].size = -onScreenTemples[index].size
+            }
+            
+            onScreenTemples[id].x = centerX
+            onScreenTemples[id].y = centerY
+            onScreenTemples[id].size = screenWidth * 0.99
+            onScreenTemples[id].content = Image(onScreenTemples[id].fileName + "_large") as! TempleContent
+            
+            onScreenTemples[id].tapped = true
+            
+        } else {
+            
+            for index in 0..<onScreenTemples.count {
+                onScreenTemples[index].y = -onScreenTemples[index].y
+                onScreenTemples[index].size = -onScreenTemples[index].size
+            }
+            
+            onScreenTemples[id].x = oldX
+            onScreenTemples[id].y = oldY
+            onScreenTemples[id].size = oldSize
+            
+            onScreenTemples[id].content = Image(onScreenTemples[id].fileName + "") as! TempleContent
+    
+            onScreenTemples[id].tapped = false
         }
         
-        onScreenTemples[id].x = centerX
-        onScreenTemples[id].y = centerY
-        onScreenTemples[id].size = screenWidth * 0.99
-        onScreenTemples[id].content = Image(onScreenTemples[id].fileName + "_large") as! TempleContent
+        
         
     }
     
@@ -168,5 +199,6 @@ struct Spiral<TempleContent> {
         var name: String
         var year: String
         var fileName: String
+        var tapped: Bool = false
     }
 }

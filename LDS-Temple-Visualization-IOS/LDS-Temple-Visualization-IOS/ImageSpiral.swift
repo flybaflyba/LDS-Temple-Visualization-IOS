@@ -24,6 +24,16 @@ class ImageSpiral: ObservableObject {
     static let templeNames: Array<String> = readTempleNamesFromFile()
     static let templeNamesAndYears: Array<Array<String>> = readTempleNameYearFromFile()
     
+    
+    // we make each one unique, so that we can loop through them with ForEach
+    struct Info: Identifiable {
+        var content: String
+        var id: Int
+    }
+    
+    
+    
+    
     //static var coordinatesAndSizes: Array<Array<CGFloat>> = getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: "default")
     
     // we want to keep this model private, so that only this ViewModel can access to this model. (door closed)
@@ -535,10 +545,15 @@ class ImageSpiral: ObservableObject {
         return allTempleNamesYearsCombine
     }
     
-    func readOneTempleInfoFromFile(fileName: String) -> Array<String> {
-        let oneTempleInfo: Array<String> = ImageSpiral.linesFromResourceForced(fileName: fileName)
+    func readOneTempleInfoFromFile(fileName: String) -> Array<Info> {
+        let oneTempleInfoNew: Array<String> = ImageSpiral.linesFromResourceForced(fileName: fileName)
         
         print("reading this temple's info from file: \(fileName)")
+        
+        var oneTempleInfo: Array<Info> = Array<Info>()
+        for index in 0..<oneTempleInfoNew.count {
+            oneTempleInfo.append(Info(content: oneTempleInfoNew[index], id: index))
+        }
         
         return oneTempleInfo
     }

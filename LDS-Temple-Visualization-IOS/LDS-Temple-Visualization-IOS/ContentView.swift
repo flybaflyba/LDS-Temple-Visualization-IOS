@@ -103,6 +103,8 @@ struct SpiralView: View {
     
     @State private var withAnimation = false
     
+    @State private var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
+    
     /*
     // we use the following three functions to get coordinates and sizes,
     // instead of getting them straightly in for each code,
@@ -177,8 +179,19 @@ struct SpiralView: View {
                     //print(temple.year)
                     //temple.content.resizable().frame(width: screenWidth, height: screenWidth, alignment: Alignment.center)
                     imageSpiralViewModel.changeATemple(id: temple.id)
-                    var oneTempleInfo: Array<String> = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
-                    print(oneTempleInfo)
+                    
+                    if (temple.tapped == true) {
+                        oneTempleInfo.removeAll()
+                    } else {
+                        self.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                        //print(oneTempleInfo)
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
                 }
             
         }
@@ -186,140 +199,184 @@ struct SpiralView: View {
         return body
     }
     
+    func mileStoneDates() -> some View {
+        
+        VStack {
+            ForEach(oneTempleInfo) {oneInfo in
+                Text(oneInfo.content)
+                    //.position(x: screenWidth/2, y: CGFloat(oneInfo.id))
+                    //.animation(withAnimation ? Animation.linear(duration: 3) : Animation.linear(duration: 0.001))
+                    
+                    
+            }
+            
+        }
+        
+        
+        
+        
+    }
     
     var body: some View {
         
         VStack {
         
-        // this is the actual spiral view ==================================
-        ZStack {
-            //ForEach(imageSpiralViewModel.temples) { temple in
-            // looping through all on screen temples,
-            // we use index instead of the objects, so that we can use index later in these code
-            ForEach(imageSpiralViewModel.onScreenTemples) {temple in
-                drawTemple(temple: temple)
+            VStack {
+                
+            
+            
+                // this is the actual spiral view ==================================
+                ZStack {
+                    //ForEach(imageSpiralViewModel.temples) { temple in
+                    // looping through all on screen temples,
+                    // we use index instead of the objects, so that we can use index later in these code
+            
+                    ForEach(imageSpiralViewModel.onScreenTemples) {temple in
+                        drawTemple(temple: temple)
 
-                // this line shows us how the spiral looks like on screen
-                //spiralDrawing().stroke()
+                        // this line shows us how the spiral looks like on screen
+                        //spiralDrawing().stroke()
+                    }
+                }
+                
+                
+                
             }
+            .frame(width: screenWidth, height: screenHeight * 0.75, alignment: Alignment.center).background(Color.green)
             
-            
-        }.frame(width: screenWidth, height: screenHeight * 0.75, alignment: Alignment.center).background(Color.green)
-        
             Spacer(minLength: 0)
             
-            // this is year display ==================================
             
-            VStack {
-                HStack {
-                    Button(action: {
-                        if self.modeIndex == 2 {
-                            self.modeIndex = 0
-                        } else {
-                            self.modeIndex += 1
+            if oneTempleInfo.count == 0 {
+                
+                VStack {
+                    HStack {
+                        Button(action: {
+                            if self.modeIndex == 2 {
+                                self.modeIndex = 0
+                            } else {
+                                self.modeIndex += 1
+                            }
+                            imageSpiralViewModel.changeMode(newMode: modes[modeIndex])
+                        }) {
+                            Text("Mode: \(self.modes[self.modeIndex])")
                         }
-                        imageSpiralViewModel.changeMode(newMode: modes[modeIndex])
-                    }) {
-                        Text("Mode: \(self.modes[self.modeIndex])")
-                    }
-                    .background(Color.yellow)
-                    .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
-                    
-                    
-                    
-                    Button(action: {
-                        withAnimation = !withAnimation
-                    }) {
+                        .background(Color.yellow)
+                        .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
                         
-                        if withAnimation {
-                            Text("Animation: Yes")
-                        } else {
-                            Text("Animation: No")
+                        
+                        
+                        Button(action: {
+                            withAnimation = !withAnimation
+                        }) {
+                            
+                            if withAnimation {
+                                Text("Animation: Yes")
+                            } else {
+                                Text("Animation: No")
+                            }
                         }
+                        .background(Color.yellow)
+                        .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
+                       
+                        
+                        
+                        
+                        
                     }
-                    .background(Color.yellow)
-                    .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
-                   
                     
+                    // this is year display ==================================
                     
+                    // here is the logic to display on screen temples years
+                    // if the year is ere, that means we are reaching to end of the spiral, the temples are not dedicated yet
+                    // so we keep 2020 in the end, and later just announced temples
                     
+                    //Text("Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)")
+                    //Text(ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
+                    Text(ImageSpiral.startYear == "ere" ? "Announced Temples" : ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
+                        .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
                     
                 }
                 
-                // here is the logic to display on screen temples years
-                // if the year is ere, that means we are reaching to end of the spiral, the temples are not dedicated yet
-                // so we keep 2020 in the end, and later just announced temples
                 
-                //Text("Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)")
-                //Text(ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
-                Text(ImageSpiral.startYear == "ere" ? "Announced Temples" : ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
-                    .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+                    
+    //           Picker(selection: $selectedModeIndex, label: Text("")) {
+    //                             ForEach(0 ..< modes.count) {
+    //                             Text(self.modes[$0])
+    //                         }
+    //                }
+    //             .frame(width: screenWidth / 2, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
+    //             Text("You picked: \(modes[selectedModeIndex])")
+    //
                 
-            }
-            
-            
-                
-//           Picker(selection: $selectedModeIndex, label: Text("")) {
-//                             ForEach(0 ..< modes.count) {
-//                             Text(self.modes[$0])
-//                         }
-//                }
-//             .frame(width: screenWidth / 2, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
-//             Text("You picked: \(modes[selectedModeIndex])")
-//
-            
-            Spacer(minLength: 0)
-            // this is slider ==================================
-            VStack {
-            // we use Binding, so that when ever slider progress changes, we can do something
-                Slider(value: Binding(
-                        get: {
-                            self.sliderProgress
-                        },
-                        set: {(newValue) in
-//                     while newValue != self.sliderProgress {
-//                        if newValue > self.sliderProgress {
-//                            self.sliderProgress += 1
-//                        } else {
-//                            self.sliderProgress -= 1
-//                        }
-//                    }
+                Spacer(minLength: 0)
+                // this is slider ==================================
+                VStack {
+                // we use Binding, so that when ever slider progress changes, we can do something
+                    Slider(value: Binding(
+                            get: {
+                                self.sliderProgress
+                            },
+                            set: {(newValue) in
+    //                     while newValue != self.sliderProgress {
+    //                        if newValue > self.sliderProgress {
+    //                            self.sliderProgress += 1
+    //                        } else {
+    //                            self.sliderProgress -= 1
+    //                        }
+    //                    }
 
-                            self.sliderProgress = newValue
-                            self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
-                            self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
+                                self.sliderProgress = newValue
+                                self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
+                                self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
+                        
+                                print("sliderProgress is \(self.sliderProgress)")
+                                
+                                oneTempleInfo.removeAll()
+                        
+                            }),
+                       
+                       // when animation, less coordinates
+                       //in: 0...226, step: 1)
+                       // when no animation, more coordinates
+                           in: 11...7000, step: 1)
                     
-                            print("sliderProgress is \(self.sliderProgress)")
-                    
-                        }),
-                   
-                   // when animation, less coordinates
-                   //in: 0...226, step: 1)
-                   // when no animation, more coordinates
-                       in: 11...7000, step: 1)
+                //Text("Slider progress is \(sliderProgress)")
                 
-            //Text("Slider progress is \(sliderProgress)")
-            
-                }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
-            
-            
-//            Button(action: {
-//                // your action here
-//            }) {
-//                Text("Button title")
-//            }.frame(width: screenWidth / 4 * 2, height: screenHeight * 0.1, alignment: Alignment.center)
-            
-        //Spacer(minLength: 0)
-        // this is slider lable ==================================
-            HStack {
-                Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
-            
-                Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05, alignment: Alignment.center)
-            
-                Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                    }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
+                
+                
+                
+             //            Button(action: {
+             //                // your action here
+             //            }) {
+             //                Text("Button title")
+             //            }.frame(width: screenWidth / 4 * 2, height: screenHeight * 0.1, alignment: Alignment.center)
+                         
+                     //Spacer(minLength: 0)
+                     // this is slider lable ==================================
+                         HStack {
+                             Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                         
+                             Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05, alignment: Alignment.center)
+                         
+                             Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                         }
+                     //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
+                         
+                
+            } else {
+                mileStoneDates()
+                    .frame(width: screenWidth, height: screenHeight * 0.25, alignment: Alignment.center)
+                    
             }
-        //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             
+            Rectangle()
+            
+            
+            
+            
+
             
             
             
