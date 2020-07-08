@@ -34,9 +34,15 @@ struct Spiral<TempleContent> {
     }
     
     mutating func changeATemple(id: Int) {
-        onScreenTemples[id].size = screenWidth * 0.9
-        onScreenTemples[id].x = screenWidth / 2
-        onScreenTemples[id].y = screenHeight * 0.75 / 2
+        
+        for index in 0..<onScreenTemples.count {
+            onScreenTemples[index].y = 0
+            onScreenTemples[index].size = 0
+        }
+        
+        onScreenTemples[id].x = centerX
+        onScreenTemples[id].y = centerY
+        onScreenTemples[id].size = screenWidth * 0.99
         
     }
     
