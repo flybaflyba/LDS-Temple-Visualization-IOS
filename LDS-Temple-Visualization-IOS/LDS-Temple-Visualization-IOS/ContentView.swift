@@ -101,6 +101,8 @@ struct SpiralView: View {
     var modes = ["default", "spin", "3D"]
     @State private var modeIndex = 0
     
+    @State private var withAnimation = false
+    
     /*
     // we use the following three functions to get coordinates and sizes,
     // instead of getting them straightly in for each code,
@@ -168,7 +170,7 @@ struct SpiralView: View {
                 .resizable()
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
-                //.animation(Animation.linear(duration: 0.5))
+                .animation(withAnimation ? Animation.linear(duration: 0.5) : Animation.linear(duration: 0.001))
                 .onTapGesture {
                     print(temple)
                 }
@@ -198,31 +200,72 @@ struct SpiralView: View {
             
         }.frame(width: screenWidth, height: screenHeight * 0.75, alignment: Alignment.center).background(Color.green)
         
-        Spacer(minLength: 0)
+            Spacer(minLength: 0)
             
-        // this is year display ==================================
-        Text("Year display")
-            .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+            // this is year display ==================================
             
-//        Picker(selection: $selectedModeIndex, label: Text("")) {
-//                        ForEach(0 ..< modes.count) {
-//                           Text(self.modes[$0])
-//                        }
-//            }
-//        .frame(width: screenWidth / 2, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
-//        Text("You picked: \(modes[selectedModeIndex])")
+            VStack {
+                HStack {
+                    Button(action: {
+                        if self.modeIndex == 2 {
+                            self.modeIndex = 0
+                        } else {
+                            self.modeIndex += 1
+                        }
+                        imageSpiralViewModel.changeMode(newMode: modes[modeIndex])
+                    }) {
+                        Text("Mode: \(self.modes[self.modeIndex])")
+                    }
+                    .background(Color.yellow)
+                    .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
+                    
+                    
+                    
+                    Button(action: {
+                        withAnimation = !withAnimation
+                    }) {
+                        
+                        if withAnimation {
+                            Text("Animation: Yes")
+                        } else {
+                            Text("Animation: No")
+                        }
+                    }
+                    .background(Color.yellow)
+                    .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
+                   
+                    
+                    
+                    
+                    
+                }
+                
+                Text("Year display")
+                    .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
+                
+            }
+            
+            
+                
+//           Picker(selection: $selectedModeIndex, label: Text("")) {
+//                             ForEach(0 ..< modes.count) {
+//                             Text(self.modes[$0])
+//                         }
+//                }
+//             .frame(width: screenWidth / 2, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
+//             Text("You picked: \(modes[selectedModeIndex])")
 //
             
-        Spacer(minLength: 0)
-        // this is slider ==================================
-        VStack {
+            Spacer(minLength: 0)
+            // this is slider ==================================
+            VStack {
             // we use Binding, so that when ever slider progress changes, we can do something
-            Slider(value: Binding(
-                get: {
-                    self.sliderProgress
-            },
-                set: {(newValue) in
-//                    while newValue != self.sliderProgress {
+                Slider(value: Binding(
+                        get: {
+                            self.sliderProgress
+                        },
+                        set: {(newValue) in
+//                     while newValue != self.sliderProgress {
 //                        if newValue > self.sliderProgress {
 //                            self.sliderProgress += 1
 //                        } else {
@@ -230,22 +273,22 @@ struct SpiralView: View {
 //                        }
 //                    }
 
-                    self.sliderProgress = newValue
-                    self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
-                    self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
+                            self.sliderProgress = newValue
+                            self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
+                            self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
                     
-                    print("sliderProgress is \(self.sliderProgress)")
+                            print("sliderProgress is \(self.sliderProgress)")
                     
-                }),
+                        }),
                    
                    // when animation, less coordinates
                    //in: 0...226, step: 1)
                    // when no animation, more coordinates
-                   in: 11...7000, step: 1)
-            
+                       in: 11...7000, step: 1)
+                
             //Text("Slider progress is \(sliderProgress)")
             
-            }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
+                }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
             
             
 //            Button(action: {
@@ -256,26 +299,16 @@ struct SpiralView: View {
             
         //Spacer(minLength: 0)
         // this is slider lable ==================================
-        HStack {
-            Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.03, alignment: Alignment.top)
+            HStack {
+                Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
             
-            Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.03, alignment: Alignment.center)
+                Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05, alignment: Alignment.center)
             
-            Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.03, alignment: Alignment.top)
-        }
+                Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+            }
         //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             
-            Button(action: {
-                if self.modeIndex == 2 {
-                    self.modeIndex = 0
-                } else {
-                    self.modeIndex += 1
-                }
-                imageSpiralViewModel.changeMode(newMode: modes[modeIndex])
-            }) {
-                Text("Spiral Mode: \(self.modes[self.modeIndex])")
-            }
-            .frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.top).background(Color.green)
+            
             
             
         }
