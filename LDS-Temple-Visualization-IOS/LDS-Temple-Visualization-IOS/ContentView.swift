@@ -165,17 +165,23 @@ struct SpiralView: View {
     func drawTemple(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
             // temple content is a string which is name of image
-            
-            temple.content
+            HStack{
+                temple.content
                 .resizable()
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
                 .animation(withAnimation ? Animation.linear(duration: 1) : Animation.linear(duration: 0.001))
-                .onTapGesture {
+                
+                    
+                }.onTapGesture {
                     //print(temple)
-                    imageSpiralViewModel.choose(temple: temple)
-                    print(temple.year)
-                }
+                    //imageSpiralViewModel.choose(temple: temple)
+                    //print(temple.year)
+                    //temple.content.resizable().frame(width: screenWidth, height: screenWidth, alignment: Alignment.center)
+                    
+                    imageSpiralViewModel.changeATemple(id: temple.id)
+                    
+            }
             
         }
         

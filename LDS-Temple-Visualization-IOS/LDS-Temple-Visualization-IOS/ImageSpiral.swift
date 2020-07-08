@@ -78,6 +78,10 @@ class ImageSpiral: ObservableObject {
         spiralModel.choose(temple: temple)
     }
     
+    func changeATemple(id: Int) {
+        spiralModel.changeATemple(id: id)
+    }
+    
     func changeMode(newMode: String) {
         spiralModel.changeMode(newMode: newMode)
     }

@@ -30,6 +30,13 @@ struct Spiral<TempleContent> {
         //print("temple chosen: \(temple)")
         print("you clicked on \(temple.name)")
         //print("it's year is \(temple.year)")
+        print("this temple id is \(temple.id)")
+    }
+    
+    mutating func changeATemple(id: Int) {
+        onScreenTemples[id].size = screenWidth * 0.9
+        onScreenTemples[id].x = screenWidth / 2
+        onScreenTemples[id].y = screenHeight * 0.75 / 2
         
     }
     
