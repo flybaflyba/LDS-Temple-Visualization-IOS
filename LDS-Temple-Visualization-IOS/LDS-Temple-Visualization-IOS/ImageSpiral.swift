@@ -16,6 +16,9 @@ class ImageSpiral: ObservableObject {
     // then it is used to modify spiral model attributes
     static var theta: CGFloat = 3000
 
+    static var startYear: String = ""
+    static var endYear: String = ""
+    
     //static var buildingCoordinatesAndSizeLength: Int = 0
     
     static let templeNames: Array<String> = readTempleNamesFromFile()
@@ -370,6 +373,7 @@ class ImageSpiral: ObservableObject {
         
         //print(ImageSpiral.templeNamesAndYears[1])
         
+        var gotStartYear: Bool = false
         // here is the key logic to determin what temples should be on screen
         for templeIndex in 0..<ImageSpiral.templeNames.count {
             
@@ -380,7 +384,14 @@ class ImageSpiral: ObservableObject {
                 collectingOnScreenTemplesNames.append(ImageSpiral.templeNamesAndYears[0][templeIndex])
                 collectingOnScreenTemplesYears.append(ImageSpiral.templeNamesAndYears[1][templeIndex])
                 //print("name here -------\(ImageSpiral.templeNamesAndYears[0][templeIndex])")
+                
                 //print("year here +++\(ImageSpiral.templeNamesAndYears[1][templeIndex])")
+                if gotStartYear == false {
+                    startYear = ImageSpiral.templeNamesAndYears[1][templeIndex]
+                    gotStartYear = true
+                }
+                endYear = ImageSpiral.templeNamesAndYears[1][templeIndex]
+                
             }
             
             // this is kind of extra, we can just delete the < in last if,
@@ -399,6 +410,9 @@ class ImageSpiral: ObservableObject {
         print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
         print("collectingOnScreenTemplesNames length after should be \(collectingOnScreenTemplesNames.count)")
         print("collectingOnScreenTemplesYears length after should be \(collectingOnScreenTemplesYears.count)")
+        
+        print("start year is \(startYear)")
+        print("end year is \(endYear)")
         
 //        //print("buildingCoordinatesAndSizeLength is \(buildingCoordinatesAndSizeLength)")
 //        // we keep the array the same length, so that ForEach in spiral view will like it

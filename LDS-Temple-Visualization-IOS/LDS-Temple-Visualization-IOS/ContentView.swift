@@ -242,7 +242,13 @@ struct SpiralView: View {
                     
                 }
                 
-                Text("Year display")
+                // here is the logic to display on screen temples years
+                // if the year is ere, that means we are reaching to end of the spiral, the temples are not dedicated yet
+                // so we keep 2020 in the end, and later just announced temples
+                
+                //Text("Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)")
+                //Text(ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
+                Text(ImageSpiral.startYear == "ere" ? "Announced Temples" : ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
                     .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
                 
             }
