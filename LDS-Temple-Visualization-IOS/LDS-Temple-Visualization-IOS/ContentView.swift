@@ -27,7 +27,11 @@ struct ContentView: View {
             //Rectangle()
                 //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             //Spacer(minLength: 0)
-            SpiralView().frame(width: screenWidth, height: screenHeight, alignment: Alignment.center).background(Color.red)
+            SpiralView().frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
+                .background(Color.gray)
+            // we need this background color for testing purposes
+            
+            
             //Spacer(minLength: 0)
             
             //SliderLabelView().frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center).background(Color.blue)
@@ -246,7 +250,9 @@ struct SpiralView: View {
                 
                 
             }
-            .frame(width: screenWidth, height: screenHeight * 0.75, alignment: Alignment.center).background(Color.green)
+            .frame(width: screenWidth, height: screenHeight * 0.75, alignment: Alignment.center)
+            //.background(Color.green)
+            // we need this background color for testing purposes
             
             Spacer(minLength: 0)
             
@@ -265,7 +271,8 @@ struct SpiralView: View {
                         }) {
                             Text("Mode: \(self.modes[self.modeIndex])")
                         }
-                        .background(Color.yellow)
+                        //.background(Color.yellow)
+                        // we need this background color for testing purposes
                         .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
                         
                         
@@ -280,7 +287,9 @@ struct SpiralView: View {
                                 Text("Animation: No")
                             }
                         }
-                        .background(Color.yellow)
+                        //.background(Color.yellow)
+                        // we need this background color for testing purposes
+                        
                         .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
                        
                         
@@ -299,7 +308,8 @@ struct SpiralView: View {
                     //Text(ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
                     Text(ImageSpiral.startYear == "ere" ? "Announced Temples" : ImageSpiral.endYear != "ere" ? "Temple Years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
                         .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center)
-                        .background(Color.blue)
+                        //.background(Color.blue)
+                    // we need this background color for testing purposes
                     
                     
                 }
@@ -349,7 +359,9 @@ struct SpiralView: View {
                     
                 //Text("Slider progress is \(sliderProgress)")
                 
-                    }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.green)
+                    }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center)
+                //.background(Color.green)
+                // we need this background color for testing purposes
                 
                 
                 
