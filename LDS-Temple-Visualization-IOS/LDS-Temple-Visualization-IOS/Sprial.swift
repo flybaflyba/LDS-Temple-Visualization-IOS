@@ -43,6 +43,7 @@ struct Spiral<TempleContent> {
         onScreenTemples[id].x = centerX
         onScreenTemples[id].y = centerY
         onScreenTemples[id].size = screenWidth * 0.99
+        onScreenTemples[id].content = Image(onScreenTemples[id].fileName + "_large") as! TempleContent
         
     }
     
@@ -78,6 +79,7 @@ struct Spiral<TempleContent> {
                 let name: String = onScreenTemplesString[1][index]
                 let year: String = onScreenTemplesString[2][index]
                 
+                let fileName: String = onScreenTemplesString[0][index]
 //                // this is with when we temples that is outside of coordinates and sizes list,
 //                // their x y and size can noto be found, we willgive the value here
 //                if Int(onScreenTemplesPositionsP[index]) > coordinatesAndSizesP.count - 1 {
@@ -92,7 +94,7 @@ struct Spiral<TempleContent> {
 //                }
                 
                 
-                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size, name: name, year: year))
+                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size, name: name, year: year, fileName: fileName))
 
                 
             }
@@ -138,6 +140,7 @@ struct Spiral<TempleContent> {
 //            }
             onScreenTemples[index].name = onScreenTemplesString[1][index]
             onScreenTemples[index].year = onScreenTemplesString[2][index]
+            onScreenTemples[index].fileName = onScreenTemplesString[0][index]
             
             
             //onScreenTemples.append(Temple(content: content as! TempleContent, id: id, x: x, y: y, size: size))
@@ -162,5 +165,6 @@ struct Spiral<TempleContent> {
         var size: CGFloat
         var name: String
         var year: String
+        var fileName: String
     }
 }
