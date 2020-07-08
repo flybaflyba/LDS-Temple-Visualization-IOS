@@ -535,6 +535,14 @@ class ImageSpiral: ObservableObject {
         return allTempleNamesYearsCombine
     }
     
+    func readOneTempleInfoFromFile(fileName: String) -> Array<String> {
+        let oneTempleInfo: Array<String> = ImageSpiral.linesFromResourceForced(fileName: fileName)
+        
+        print("reading this temple's info from file: \(fileName)")
+        
+        return oneTempleInfo
+    }
+    
 
     
     

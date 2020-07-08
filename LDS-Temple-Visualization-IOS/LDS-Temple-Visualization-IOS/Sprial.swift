@@ -47,6 +47,8 @@ struct Spiral<TempleContent> {
         
     }
     
+    
+    
     mutating func changeMode(newMode: String) {
         mode = newMode
     }

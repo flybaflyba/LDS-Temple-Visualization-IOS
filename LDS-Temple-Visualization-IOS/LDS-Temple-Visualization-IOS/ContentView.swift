@@ -177,8 +177,8 @@ struct SpiralView: View {
                     //print(temple.year)
                     //temple.content.resizable().frame(width: screenWidth, height: screenWidth, alignment: Alignment.center)
                     imageSpiralViewModel.changeATemple(id: temple.id)
-                    
-                    
+                    var oneTempleInfo: Array<String> = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                    print(oneTempleInfo)
                 }
             
         }
