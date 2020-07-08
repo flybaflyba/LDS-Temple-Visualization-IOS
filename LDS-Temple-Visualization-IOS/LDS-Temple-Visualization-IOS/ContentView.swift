@@ -170,7 +170,7 @@ struct SpiralView: View {
                 .resizable()
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
-                .animation(withAnimation ? Animation.linear(duration: 0.5) : Animation.linear(duration: 0.001))
+                .animation(withAnimation ? Animation.linear(duration: 1) : Animation.linear(duration: 0.001))
                 .onTapGesture {
                     //print(temple)
                     imageSpiralViewModel.choose(temple: temple)

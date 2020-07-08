@@ -312,9 +312,9 @@ class ImageSpiral: ObservableObject {
             let xDirection: CGFloat = topCoordinateInSpiralX - secondTopCoordinateInSpiralX;
             let yDirection: CGFloat = topCoordinateInSpiralY - secondTopCoordinateInSpiralY;
             
-            for i in 1..<10 {
+            for i in 1..<40 {
                 
-                let step: CGFloat = CGFloat(i) * 10;
+                let step: CGFloat = CGFloat(i) * 20;
                 
                 oneSpiralCoordinateAndSize.append(xDirection / abs(xDirection) * step + secondTopCoordinateInSpiralX);
                 oneSpiralCoordinateAndSize.append(yDirection / abs(yDirection) * step + secondTopCoordinateInSpiralY);
@@ -327,7 +327,7 @@ class ImageSpiral: ObservableObject {
         } else  {
             var q = topCoordinateInSpiralX
             
-            while q < screenWidth * 1.25 {
+            while q < screenWidth * 2 {
             
                 oneSpiralCoordinateAndSize.append(q)
                 oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
