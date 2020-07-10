@@ -27,8 +27,15 @@ struct ContentView: View {
             //Rectangle()
                 //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             //Spacer(minLength: 0)
-            SpiralView().frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
-                .background(Color.gray)
+            
+            NavigationView {
+                SpiralView()
+                    //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
+                    .background(Color.gray)
+                    .navigationBarTitle("Latter-day Temples", displayMode: .inline)
+            }
+            
+            
             // we need this background color for testing purposes
             
             
@@ -92,7 +99,6 @@ struct Temple {
 //
 //}
 
-
 struct SpiralView: View {
 
     // we make this observed object,
@@ -105,12 +111,17 @@ struct SpiralView: View {
     var modes = ["default", "spin", "3D"]
     @State private var modeIndex = 0
     
-    @State private var hasAnimation = false
+    //@State private var hasAnimation = false
     
     @State private var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
     
     let myAnimation: Animation = Animation.linear(duration: 1)
     let myNoAnimation: Animation = Animation.linear(duration: 0.001)
+    
+    //@ObservedObject var settingModel = SettingModel()
+    
+    @State var mode: String = "default"
+    @State var hasAnimation: Bool = true
     
     /*
     // we use the following three functions to get coordinates and sizes,
@@ -187,6 +198,7 @@ struct SpiralView: View {
                     //temple.content.resizable().frame(width: screenWidth, height: screenWidth, alignment: Alignment.center)
                     
                     imageSpiralViewModel.changeATemple(id: temple.id)
+                    
                    
                     if (temple.tapped == true) {
                         SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
@@ -261,36 +273,45 @@ struct SpiralView: View {
                 
                 VStack {
                     HStack {
-                        Button(action: {
-                            if self.modeIndex == 2 {
-                                self.modeIndex = 0
-                            } else {
-                                self.modeIndex += 1
-                            }
-                            imageSpiralViewModel.changeMode(newMode: modes[modeIndex])
-                        }) {
-                            Text("Mode: \(self.modes[self.modeIndex])")
-                        }
+                        
+//
+//                        Button(action: {
+//                            if self.modeIndex == 2 {
+//                                self.modeIndex = 0
+//                            } else {
+//                                self.modeIndex += 1
+//                            }
+//                            imageSpiralViewModel.changeMode(newMode: modes[modeIndex])
+//                        }) {
+//                            Text("Mode: \(self.modes[self.modeIndex])")
+//                        }
+                        
+                        
                         //.background(Color.yellow)
                         // we need this background color for testing purposes
+                        //.frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
+                        
+                        NavigationLink(destination: SettingView(mode: self.$mode, hasAnimation: self.$hasAnimation)) {
+                            Text("Setting")
+                        }
                         .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
                         
+//                        Button(action: {
+//                            hasAnimation = !hasAnimation
+//                        }) {
+//
+//                            if hasAnimation {
+//                                Text("Animation: Yes")
+//                            } else {
+//                                Text("Animation: No")
+//                            }
+//                        }
                         
                         
-                        Button(action: {
-                            hasAnimation = !hasAnimation
-                        }) {
-                            
-                            if hasAnimation {
-                                Text("Animation: Yes")
-                            } else {
-                                Text("Animation: No")
-                            }
-                        }
                         //.background(Color.yellow)
                         // we need this background color for testing purposes
                         
-                        .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
+                        //.frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
                        
                         
                         
@@ -354,6 +375,11 @@ struct SpiralView: View {
                                 self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
                                 self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
                         
+                                if imageSpiralViewModel.mode != mode {
+                                    imageSpiralViewModel.changeMode(newMode: mode)
+                                }
+                                
+                                
                                 print("sliderProgress is \(self.sliderProgress)")
                                 
                                 oneTempleInfo.removeAll()

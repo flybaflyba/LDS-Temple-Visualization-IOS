@@ -72,6 +72,9 @@ class ImageSpiral: ObservableObject {
         return spiralModel.onScreenTemples
     }
     
+    var mode: String {
+        return spiralModel.mode
+    }
     /*
     var onScreenTemplesPositions: Array<CGFloat> {
         return spiralModel.onScreenTemplesPositions

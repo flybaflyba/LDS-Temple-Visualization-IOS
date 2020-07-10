@@ -246,6 +246,7 @@
 		DD47FD9224B5863600A082D6 /* oklahoma_city_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FCAF24B5863600A082D6 /* oklahoma_city_temple */; };
 		DD47FD9324B5863600A082D6 /* old_nauvoo_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FCB024B5863600A082D6 /* old_nauvoo_temple */; };
 		DDACE9FF24B55D9E0098F812 /* templeNamesYears in Resources */ = {isa = PBXBuildFile; fileRef = DDACE9FE24B55D9E0098F812 /* templeNamesYears */; };
+		DDB13D7F24B8FFDA00944506 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB13D7E24B8FFDA00944506 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -511,6 +512,7 @@
 		DD47FCAF24B5863600A082D6 /* oklahoma_city_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oklahoma_city_temple; sourceTree = "<group>"; };
 		DD47FCB024B5863600A082D6 /* old_nauvoo_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = old_nauvoo_temple; sourceTree = "<group>"; };
 		DDACE9FE24B55D9E0098F812 /* templeNamesYears */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeNamesYears; sourceTree = "<group>"; };
+		DDB13D7E24B8FFDA00944506 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,6 +566,7 @@
 				1E7A172824AAAFC300519D64 /* AppDelegate.swift */,
 				1E7A172A24AAAFC300519D64 /* SceneDelegate.swift */,
 				1E7A172C24AAAFC300519D64 /* ContentView.swift */,
+				DDB13D7E24B8FFDA00944506 /* SettingView.swift */,
 				1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */,
 				1EBF98DB24AAC678005CC70D /* Sprial.swift */,
 				1EFE4A6024AD747700FAD239 /* templeFilesNames */,
@@ -1200,6 +1203,7 @@
 				1E7A172924AAAFC300519D64 /* AppDelegate.swift in Sources */,
 				1E7A172B24AAAFC300519D64 /* SceneDelegate.swift in Sources */,
 				1EBF98DC24AAC678005CC70D /* Sprial.swift in Sources */,
+				DDB13D7F24B8FFDA00944506 /* SettingView.swift in Sources */,
 				1E7A172D24AAAFC300519D64 /* ContentView.swift in Sources */,
 				1EBF98DE24AAC883005CC70D /* ImageSpiral.swift in Sources */,
 			);
