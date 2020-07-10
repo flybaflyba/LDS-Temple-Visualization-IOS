@@ -18,6 +18,8 @@ struct SettingView: View {
     var modes = ["default", "spin", "3D"]
     @State private var modeIndex = 0
     
+    @State private var showingAlert = false
+    
     var body: some View {
         VStack{
             Button(action: {
@@ -31,6 +33,7 @@ struct SettingView: View {
                 Text("Mode: \(mode)")
             }
             .padding()
+            
             Button(action: {
                 hasAnimation = !hasAnimation
             }) {
@@ -42,7 +45,23 @@ struct SettingView: View {
                 }
             }
             .padding()
+            
+            Button(action: {
+                self.showingAlert = true
+            }) {
+                Text("About App")
+            }
+            .alert(isPresented: $showingAlert) {
+                       Alert(title: Text("App Information"), message: Text(
+                        "Temple photos are copyrighted by Intellectual Reserve, Inc. Used by permission. This app is a research project funded by Brigham Young University--Hawaii, however the contents are the responsibility of its developers. This app is not an official publication of the Church of Jesus Christ of Latter-day Saints."
+                       ), dismissButton: .default(Text("Dismiss")))
+            }
+            .padding()
+            
+            //Spacer()
+            
         }
+        
         
         
     }
