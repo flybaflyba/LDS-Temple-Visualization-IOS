@@ -18,6 +18,7 @@
 		1EBF98DC24AAC678005CC70D /* Sprial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF98DB24AAC678005CC70D /* Sprial.swift */; };
 		1EBF98DE24AAC883005CC70D /* ImageSpiral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */; };
 		1EFE4A6124AD747700FAD239 /* templeFilesNames in Resources */ = {isa = PBXBuildFile; fileRef = 1EFE4A6024AD747700FAD239 /* templeFilesNames */; };
+		DD3DF75824B9558D00689E9E /* SettingValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DF75724B9558D00689E9E /* SettingValues.swift */; };
 		DD47FCB124B5863600A082D6 /* melbourne_australia_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FBCE24B5863500A082D6 /* melbourne_australia_temple */; };
 		DD47FCB224B5863600A082D6 /* santo_domingo_dominican_republic_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FBCF24B5863500A082D6 /* santo_domingo_dominican_republic_temple */; };
 		DD47FCB324B5863600A082D6 /* asuncion_paraguay_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FBD024B5863500A082D6 /* asuncion_paraguay_temple */; };
@@ -284,6 +285,7 @@
 		1EBF98DB24AAC678005CC70D /* Sprial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprial.swift; sourceTree = "<group>"; };
 		1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSpiral.swift; sourceTree = "<group>"; };
 		1EFE4A6024AD747700FAD239 /* templeFilesNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeFilesNames; sourceTree = "<group>"; };
+		DD3DF75724B9558D00689E9E /* SettingValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingValues.swift; sourceTree = "<group>"; };
 		DD47FBCE24B5863500A082D6 /* melbourne_australia_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = melbourne_australia_temple; sourceTree = "<group>"; };
 		DD47FBCF24B5863500A082D6 /* santo_domingo_dominican_republic_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = santo_domingo_dominican_republic_temple; sourceTree = "<group>"; };
 		DD47FBD024B5863500A082D6 /* asuncion_paraguay_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = asuncion_paraguay_temple; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 			children = (
 				1E7A172824AAAFC300519D64 /* AppDelegate.swift */,
 				1E7A172A24AAAFC300519D64 /* SceneDelegate.swift */,
+				DD3DF75724B9558D00689E9E /* SettingValues.swift */,
 				1E7A172C24AAAFC300519D64 /* ContentView.swift */,
 				DDB13D7E24B8FFDA00944506 /* SettingView.swift */,
 				1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */,
@@ -1202,6 +1205,7 @@
 			files = (
 				1E7A172924AAAFC300519D64 /* AppDelegate.swift in Sources */,
 				1E7A172B24AAAFC300519D64 /* SceneDelegate.swift in Sources */,
+				DD3DF75824B9558D00689E9E /* SettingValues.swift in Sources */,
 				1EBF98DC24AAC678005CC70D /* Sprial.swift in Sources */,
 				DDB13D7F24B8FFDA00944506 /* SettingView.swift in Sources */,
 				1E7A172D24AAAFC300519D64 /* ContentView.swift in Sources */,

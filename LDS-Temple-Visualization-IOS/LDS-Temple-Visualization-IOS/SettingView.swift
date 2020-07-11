@@ -10,34 +10,47 @@ import SwiftUI
 
 struct SettingView: View {
     
-    @Environment (\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var settings: SettingValues
     
-    @Binding var mode: String
-    @Binding var hasAnimation: Bool
-    
-    var modes = ["default", "spin", "3D"]
-    @State private var modeIndex = 0
     
     @State private var showingAlert = false
     
+    var frameworks = ["UIKit", "Core Data", "CloudKit", "SwiftUI"]
+    @State private var selectedFrameworkIndex = 0
+    
     var body: some View {
         VStack{
+            
+
             Button(action: {
-                if self.modeIndex == 2 {
-                    self.modeIndex = 0
-                } else {
-                    self.modeIndex += 1
+
+                if settings.mode == "default" {
+                    settings.mode = "spin"
+                } else if settings.mode == "spin" {
+                    settings.mode = "3D"
+                } else if settings.mode == "3D" {
+                    settings.mode = "default"
                 }
-                mode = modes[modeIndex]
+
             }) {
-                Text("Mode: \(mode)")
+                Text("Mode: \(settings.mode)")
             }
             .padding()
             
+//            HStack {
+//                    Picker(selection: $selectedFrameworkIndex, label: Text("")) {
+//                        ForEach(0 ..< frameworks.count) {
+//                           Text(self.frameworks[$0])
+//                        }
+//                     }
+//                     Text("Your favorite framework: \(frameworks[selectedFrameworkIndex])")
+//                  }.padding()
+            
+            
             Button(action: {
-                hasAnimation = !hasAnimation
+                settings.hasAnimation = !settings.hasAnimation
             }) {
-                if hasAnimation {
+                if settings.hasAnimation {
                     Text("Animation: Yes")
                 } else {
                     Text("Animation: No")
@@ -53,7 +66,7 @@ struct SettingView: View {
             }
             .alert(isPresented: $showingAlert) {
                        Alert(title: Text("App Information"), message: Text(
-                        "Temple photos are copyrighted by Intellectual Reserve, Inc. Used by permission. This app is a research project funded by Brigham Young University--Hawaii, however the contents are the responsibility of its developers. This app is not an official publication of the Church of Jesus Christ of Latter-day Saints."
+                        "cuaisdygfrvehijodchbescdehirwasiugfhrvoushdklashjdciapuwdcilasjdcaoskhvfuoiewadhcasiuhcdv8weoriychdeasidcvgheasoidcsdcuyawdhcliasucdhjopasidchjoapsudhcvaopisidcjasopfhvddiuslrfyugjoadscijaedsiklrguyf;eao"
                        ), dismissButton: .default(Text("Dismiss")))
             }
             .padding()

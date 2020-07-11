@@ -16,11 +16,18 @@ let screenHeight = UIScreen.main.bounds.size.height
 let centerX = screenWidth / 2
 let centerY = screenHeight  * 0.8 / 2
 
-//let statusbarHeight = UIApplication.shared.statusBarFrame.height
+//let statusbarHeight = UIApplication.shared.st
 
 
 
 struct ContentView: View {
+//
+//    @Binding var mode: String
+//    @Binding var hasAnimation: Bool
+//
+    
+//    @State var mode: String = "default"
+//    @State var hasAnimation: Bool = true
     
     var body: some View {
         VStack {
@@ -33,6 +40,19 @@ struct ContentView: View {
                     //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
                     .background(Color.gray)
                     .navigationBarTitle("Latter-day Temples", displayMode: .inline)
+                    .navigationBarItems(trailing:
+
+                                            NavigationLink(destination: SettingView()) {
+                                                Image(systemName: "ellipsis.circle.fill")
+                                            }
+                                            
+//                                    Button(action: {
+//                                        print("Edit button pressed...")
+//                                    }) {
+//                                        Image(systemName: "ellipsis.circle.fill")
+//                                    })
+//
+                )
             }
             
             
@@ -108,9 +128,9 @@ struct SpiralView: View {
     
     @State var sliderProgress: CGFloat = 3000
     
-    var modes = ["default", "spin", "3D"]
-    @State private var modeIndex = 0
-    
+//    var modes = ["default", "spin", "3D"]
+//    @State private var modeIndex = 0
+//
     //@State private var hasAnimation = false
     
     @State private var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
@@ -119,9 +139,11 @@ struct SpiralView: View {
     let myNoAnimation: Animation = Animation.linear(duration: 0.001)
     
     //@ObservedObject var settingModel = SettingModel()
+
+//    @State var mode: String = "default"
+//    @State var hasAnimation: Bool = true
     
-    @State var mode: String = "default"
-    @State var hasAnimation: Bool = true
+    @EnvironmentObject var settings: SettingValues
     
     /*
     // we use the following three functions to get coordinates and sizes,
@@ -190,7 +212,7 @@ struct SpiralView: View {
                 .resizable()
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
-                .animation(hasAnimation ? myAnimation : myNoAnimation)
+                .animation(settings.hasAnimation ? myAnimation : myNoAnimation)
                 .onTapGesture {
                     //print(temple)
                     //imageSpiralViewModel.choose(temple: temple)
@@ -201,11 +223,11 @@ struct SpiralView: View {
                     
                    
                     if (temple.tapped == true) {
-                        SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
+                        SwiftUI.withAnimation(settings.hasAnimation ? myAnimation : myNoAnimation) {
                             oneTempleInfo.removeAll()
                         }
                     } else {
-                        SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
+                        SwiftUI.withAnimation(settings.hasAnimation ? myAnimation : myNoAnimation) {
                             self.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                         }
                         //print(oneTempleInfo)
@@ -291,11 +313,11 @@ struct SpiralView: View {
                         // we need this background color for testing purposes
                         //.frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
                         
-                        NavigationLink(destination: SettingView(mode: self.$mode, hasAnimation: self.$hasAnimation)) {
-                            Text("Setting")
-                        }
-                        .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
-                        
+//                        NavigationLink(destination: SettingView()) {
+//                            Text("Setting")
+//                        }
+//                        .frame(width: screenWidth/2, height: screenHeight*0.05, alignment: Alignment.center)
+//                        
 //                        Button(action: {
 //                            hasAnimation = !hasAnimation
 //                        }) {
@@ -375,8 +397,8 @@ struct SpiralView: View {
                                 self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
                                 self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
                         
-                                if imageSpiralViewModel.mode != mode {
-                                    imageSpiralViewModel.changeMode(newMode: mode)
+                                if imageSpiralViewModel.mode != settings.mode {
+                                    imageSpiralViewModel.changeMode(newMode: settings.mode)
                                 }
                                 
                                 
