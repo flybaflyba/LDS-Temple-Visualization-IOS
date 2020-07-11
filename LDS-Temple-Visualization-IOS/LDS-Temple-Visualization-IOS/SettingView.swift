@@ -50,25 +50,19 @@ struct SettingView: View {
                 }
             }
             
-        
         }
-        
-        
-        
-        
-        
-        
         
         
     }
 }
 
+
+
 struct SpiralEffectSettingView: View {
     
     @EnvironmentObject var settings: SettingValues
     
-    var effects = ["default", "spin", "3D"]
-    @State private var selectedEffectIndex = 0
+
     
     var body: some View {
         
@@ -76,27 +70,84 @@ struct SpiralEffectSettingView: View {
             RoundedRectangle(cornerRadius: 5)
                 .foregroundColor(Color.gray)
             VStack {
-                Picker(selection: $selectedEffectIndex, label: Text("")) {
-                    ForEach(0 ..< effects.count) {
-                        Text(self.effects[$0])
+                
+                VStack {
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(settings.defaultColor)
+                        Text("Default")
                     }
+                    .onTapGesture {
+                        SwiftUI.withAnimation(.linear) {
+                            settings.mode = "default"
+                            settings.defaultColor = settings.selectedColor
+                            settings.spinColor = settings.unSelectedColor
+                            settings.threeDColor = settings.unSelectedColor
+                        }
+                        
+                    }
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(settings.spinColor)
+                        Text("Spin")
+                        
+                    }
+                    .onTapGesture {
+                        SwiftUI.withAnimation(.linear) {
+                            settings.mode = "spin"
+                            settings.defaultColor = settings.unSelectedColor
+                            settings.spinColor = settings.selectedColor
+                            settings.threeDColor = settings.unSelectedColor
+                        }
+                        
+                    }
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(settings.threeDColor)
+                        Text("3D")
+                    
+                    }
+                    .onTapGesture {
+                        SwiftUI.withAnimation(.linear) {
+                            settings.mode = "3D"
+                            settings.defaultColor = settings.unSelectedColor
+                            settings.spinColor = settings.unSelectedColor
+                            settings.threeDColor = settings.selectedColor
+                        }
+                        
+                    }
+                    
+                    Text("Mode: \(settings.mode)")
+                        .foregroundColor(Color.blue)
+                        .padding()
                 }
+                
+                
+//                Button(action: {
+//
+//                    if settings.mode == "default" {
+//                        settings.mode = "spin"
+//                    } else if settings.mode == "spin" {
+//                        settings.mode = "3D"
+//                    } else if settings.mode == "3D" {
+//                        settings.mode = "default"
+//                    }
+//
+//                }) {
+//                    Text("Mode: \(settings.mode)")
+//                }
+                
                 .frame(maxWidth: screenWidth/2)
-                     Text("Mode: \(effects[selectedEffectIndex])")
+                
+                //Text("Mode: \(effects[selectedEffectIndex])")
             }
-            .background(Color.gray)
+            //.background(Color.gray)
             
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-                    
         
 //        Button(action: {
 //
@@ -119,24 +170,55 @@ struct AnimationSettingView: View {
     
     @EnvironmentObject var settings: SettingValues
     
-    var animationSpeeds = ["Yes", "No"]
-    @State private var selectedAnimationSpeedIndex = 0
-    
     var body: some View {
         
         ZStack {
             RoundedRectangle(cornerRadius: 5)
                 .foregroundColor(Color.gray)
             VStack {
-                Picker(selection: $selectedAnimationSpeedIndex, label: Text("")) {
-                    ForEach(0 ..< animationSpeeds.count) {
-                        Text(self.animationSpeeds[$0])
-                    }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(settings.hasAnimationOnColor)
+                    Text("On")
                 }
-                .frame(maxWidth: screenWidth/2)
-                Text("Animation: \(animationSpeeds[selectedAnimationSpeedIndex])")
+                .onTapGesture {
+                    SwiftUI.withAnimation(.linear) {
+                        settings.hasAnimation = true
+                        settings.hasAnimationOnColor = settings.selectedColor
+                        settings.hasAnimationOffColor = settings.unSelectedColor
+                    }
+                    
+                }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(settings.hasAnimationOffColor)
+                    Text("Off")
+                        
+                }
+                .onTapGesture {
+                    SwiftUI.withAnimation(.linear) {
+                        settings.hasAnimation = false
+                        settings.hasAnimationOnColor = settings.unSelectedColor
+                        settings.hasAnimationOffColor = settings.selectedColor
+                    }
+                    
+                }
+
+//                Picker(selection: $selectedAnimationSpeedIndex, label: Text("")) {
+//                    ForEach(0 ..< animationSpeeds.count) {
+//                        Text(self.animationSpeeds[$0])
+//                    }
+//                }
+//
+//                .frame(maxWidth: screenWidth/2)
+                
+                Text("Animation: \(settings.hasAnimation == true ? "On" : "Off")")
+                    .foregroundColor(Color.blue)
+                    .padding()
             }
-            .background(Color.gray)
+            //.background(Color.gray)
             
         }
         
