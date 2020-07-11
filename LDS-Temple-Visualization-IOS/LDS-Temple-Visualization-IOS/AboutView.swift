@@ -12,35 +12,45 @@ struct AboutView: View {
     
     @EnvironmentObject var settings: SettingValues
     
+    let appUrl = URL(string: "https://litianzhang.com/latter-day-temples-visualization-android-app/")
+    
+    
     var body: some View {
-        VStack {
+        
+        ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .foregroundColor(Color.gray)
             
-            Text("Programming by Litian Zhang under the supervision of Dr. Geoffrey Draper at Brigham Young University--Hawaii. \r\rTemple photos are copyrighted by Intellectual Reserve, Inc. Used by permission. \r\rThis app is a research project funded by Brigham Young University--Hawaii, however the contents are the responsibility of its developers. This app is not an \"official\" publication of the Church of Jesus Christ of Latter-day Saints.")
-                .padding()
+            VStack {
+                
+                
+                Text("Programming by Litian Zhang under the supervision of Dr. Geoffrey Draper at Brigham Young University--Hawaii. \r\rTemple photos are copyrighted by Intellectual Reserve, Inc. Used by permission. \r\rThis app is a research project funded by Brigham Young University--Hawaii, however the contents are the responsibility of its developers. This app is not an \"official\" publication of the Church of Jesus Christ of Latter-day Saints.")
+                    .padding()
 
-            Button(action: {
+                Button("Visit App Website") {UIApplication.shared.open(appUrl!)}
+                
+                    
+//                Button(action: {
+//                    SwiftUI.withAnimation(.easeOut) {
+//                        settings.showAbout = false
+//                    }
+//
+//                }) {
+//                    Text("Return to Settings")
+//                }
+                
+                .padding()
+            }
+            .onTapGesture {
                 SwiftUI.withAnimation(.easeOut) {
                     settings.showAbout = false
                 }
-                
-            }) {
-                Text("Return to Settings")
+                                    
             }
-            .padding()
-                        
-           
-//
-//            Button(action: {
-//
-//            }) {
-//                Text("Visit App Website")
-//            }
-//            .padding()
             
-           
-            //Text("<a href='https://litianzhang.com/latter-day-temples-visualization-android-app/'>Visit the app's website</a>")
-   
         }
+        
+  
     }
 }
 
