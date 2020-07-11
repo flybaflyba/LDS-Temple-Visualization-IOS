@@ -23,9 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //let spiral = ImageSpiral()
         //let contentView = ContentView(imageSpiralviewModel: spiral)
         
+        var settings = SettingValues()
+        
         let contentView = ContentView()
 
-        var settings = SettingValues()
+        
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

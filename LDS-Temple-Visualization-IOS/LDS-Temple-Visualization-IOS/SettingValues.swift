@@ -23,4 +23,11 @@ class SettingValues: ObservableObject {
     
     @Published var selectedColor = Color.blue
     @Published var unSelectedColor = Color.gray
+    
+    @Published var tappedATemple = false
+    @Published var currentTappedTempleName = " "
+    
+    @Published var appTitle = "Latter-day Temples"
+    
+    
 }

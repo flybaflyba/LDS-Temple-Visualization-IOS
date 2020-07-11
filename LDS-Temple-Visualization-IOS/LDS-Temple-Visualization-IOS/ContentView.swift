@@ -29,11 +29,22 @@ struct ContentView: View {
 //    @State var mode: String = "default"
 //    @State var hasAnimation: Bool = true
     
+    
+    //@EnvironmentObject var settings: SettingValues
+    
+        
+//    func getAppTitle() -> String {
+//        var title = settings.appTitle
+//        return title
+//    }
+    
     var body: some View {
         VStack {
             //Rectangle()
                 //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             //Spacer(minLength: 0)
+            
+            //Text(settings.currentTappedTempleName)
             
             NavigationView {
                 SpiralView()
@@ -225,10 +236,18 @@ struct SpiralView: View {
                     if (temple.tapped == true) {
                         SwiftUI.withAnimation(settings.hasAnimation ? myAnimation : myNoAnimation) {
                             oneTempleInfo.removeAll()
+                            
+                            settings.tappedATemple = false
+                            
                         }
                     } else {
                         SwiftUI.withAnimation(settings.hasAnimation ? myAnimation : myNoAnimation) {
                             self.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                            
+                            settings.tappedATemple = true
+                            settings.currentTappedTempleName = temple.name
+                 
+                            print(settings.currentTappedTempleName)
                         }
                         //print(oneTempleInfo)
                     }
@@ -244,6 +263,7 @@ struct SpiralView: View {
     func mileStoneDates() -> some View {
         
         VStack {
+            //Text(settings.currentTappedTempleName)
             ForEach(oneTempleInfo) {oneInfo in
                 Text(oneInfo.content)
                     //.position(x: screenWidth/2, y: CGFloat(oneInfo.id))
@@ -259,6 +279,8 @@ struct SpiralView: View {
         
     }
     
+
+    
     var body: some View {
         
         VStack {
@@ -266,7 +288,7 @@ struct SpiralView: View {
             VStack {
                 
             
-            
+                
                 // this is the actual spiral view ==================================
                 ZStack {
                     //ForEach(imageSpiralViewModel.temples) { temple in
@@ -280,6 +302,8 @@ struct SpiralView: View {
                         //spiralDrawing().stroke()
                     }
                 }
+                Text(settings.currentTappedTempleName)
+                    //.font(.largeTitle)
                 
                 
                 
