@@ -11,4 +11,5 @@ import Foundation
 class SettingValues: ObservableObject {
     @Published var hasAnimation = false
     @Published var mode = "default"
+    @Published var showAbout = false
 }

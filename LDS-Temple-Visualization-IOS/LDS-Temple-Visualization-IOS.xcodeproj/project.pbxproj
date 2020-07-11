@@ -248,6 +248,7 @@
 		DD47FD9324B5863600A082D6 /* old_nauvoo_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FCB024B5863600A082D6 /* old_nauvoo_temple */; };
 		DDACE9FF24B55D9E0098F812 /* templeNamesYears in Resources */ = {isa = PBXBuildFile; fileRef = DDACE9FE24B55D9E0098F812 /* templeNamesYears */; };
 		DDB13D7F24B8FFDA00944506 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB13D7E24B8FFDA00944506 /* SettingView.swift */; };
+		DDCCF89624BA61E50010E974 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCCF89524BA61E50010E974 /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -515,6 +516,7 @@
 		DD47FCB024B5863600A082D6 /* old_nauvoo_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = old_nauvoo_temple; sourceTree = "<group>"; };
 		DDACE9FE24B55D9E0098F812 /* templeNamesYears */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeNamesYears; sourceTree = "<group>"; };
 		DDB13D7E24B8FFDA00944506 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		DDCCF89524BA61E50010E974 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -570,6 +572,7 @@
 				DD3DF75724B9558D00689E9E /* SettingValues.swift */,
 				1E7A172C24AAAFC300519D64 /* ContentView.swift */,
 				DDB13D7E24B8FFDA00944506 /* SettingView.swift */,
+				DDCCF89524BA61E50010E974 /* AboutView.swift */,
 				1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */,
 				1EBF98DB24AAC678005CC70D /* Sprial.swift */,
 				1EFE4A6024AD747700FAD239 /* templeFilesNames */,
@@ -1203,6 +1206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDCCF89624BA61E50010E974 /* AboutView.swift in Sources */,
 				1E7A172924AAAFC300519D64 /* AppDelegate.swift in Sources */,
 				1E7A172B24AAAFC300519D64 /* SceneDelegate.swift in Sources */,
 				DD3DF75824B9558D00689E9E /* SettingValues.swift in Sources */,
