@@ -305,7 +305,10 @@ struct SpiralView: View {
                 //Text(settings.currentTappedTempleName)
                     //.font(.largeTitle)
                 
-                Button(settings.currentTappedTempleName) {UIApplication.shared.open(URL(string: "https://www.churchofjesuschrist.org/temples/list?lang=eng")!)}
+                if settings.tappedATemple {
+                    Button(settings.currentTappedTempleName) {UIApplication.shared.open(URL(string: "https://www.churchofjesuschrist.org/temples/list?lang=eng")!)}
+                    
+                }
                 
                 
                 
