@@ -28,13 +28,15 @@ struct InAppWebView: View {
     
     @EnvironmentObject var settings: SettingValues
     
+    var url: String
+    
     var body: some View {
-        WebView(request: URLRequest(url: URL(string: settings.thisUrl)!))
+        WebView(request: URLRequest(url: URL(string: url)!))
     }
 }
 
-struct InAppWebView_Previews: PreviewProvider {
-    static var previews: some View {
-        InAppWebView()
-    }
-}
+//struct InAppWebView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InAppWebView()
+//    }
+//}

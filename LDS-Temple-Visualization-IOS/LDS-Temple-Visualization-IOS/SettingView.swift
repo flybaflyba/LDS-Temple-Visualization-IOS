@@ -10,6 +10,15 @@ import SwiftUI
 
 struct SettingView: View {
     
+    var body: some View {
+        SettingViewMain()
+            .navigationBarTitle("Settings")
+    }
+    
+
+}
+
+struct SettingViewMain: View {
     @EnvironmentObject var settings: SettingValues
     
     
@@ -23,10 +32,6 @@ struct SettingView: View {
 //            .navigationBarTitle("Settings", displayMode: .inline)
 //
 //        }
-            
-        
-            
-        
         return HStack {
             
             if settings.showAbout == true {
@@ -46,17 +51,12 @@ struct SettingView: View {
                         AboutButtonView()
                         MoreButtonView()
                     }
-
                 }
             }
-            
         }
         
-        
     }
-}
-
-
+        }
 
 struct SpiralEffectSettingView: View {
     

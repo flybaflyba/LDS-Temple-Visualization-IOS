@@ -13,7 +13,7 @@ struct AboutView: View {
     
     @EnvironmentObject var settings: SettingValues
     
-    let appUrl = URL(string: "https://litianzhang.com/latter-day-temples-visualization-android-app/")
+    //let appUrl = URL(string: "https://litianzhang.com/latter-day-temples-visualization-android-app/")
     
     
     var body: some View {
@@ -28,7 +28,11 @@ struct AboutView: View {
                 Text("Programming by Litian Zhang under the supervision of Dr. Geoffrey Draper at Brigham Young University--Hawaii. \r\rTemple photos are copyrighted by Intellectual Reserve, Inc. Used by permission. \r\rThis app is a research project funded by Brigham Young University--Hawaii, however the contents are the responsibility of its developers. This app is not an \"official\" publication of the Church of Jesus Christ of Latter-day Saints.")
                     .padding()
 
-                Button("Visit App Website") {UIApplication.shared.open(appUrl!)}
+                NavigationLink(destination: InAppWebView(url: "https://litianzhang.com/latter-day-temples-visualization-android-app/")) {
+                    Text("Visit App Website")
+                }
+                
+                //Button("Visit App Website") {UIApplication.shared.open(appUrl!)}
                 
                 
                     

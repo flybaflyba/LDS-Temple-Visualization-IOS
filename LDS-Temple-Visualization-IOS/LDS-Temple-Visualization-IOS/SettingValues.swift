@@ -27,9 +27,9 @@ class SettingValues: ObservableObject {
     @Published var tappedATemple = false
     @Published var currentTappedTempleName = " "
     
-    @Published var appTitle = "Latter-day Temples"
+    //@Published var appTitle = "Latter-day Temples"
     
-    @Published var thisUrl = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
+    //@Published var thisUrl = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
     
     
 }

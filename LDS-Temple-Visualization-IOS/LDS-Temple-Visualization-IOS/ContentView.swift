@@ -266,7 +266,7 @@ struct SpiralView: View {
             
             if settings.tappedATemple {
                 
-                NavigationLink(destination: InAppWebView()) {
+                NavigationLink(destination: InAppWebView(url: "https://www.churchofjesuschrist.org/temples/list?lang=eng")) {
                     Text(settings.currentTappedTempleName)
                 }
                 
