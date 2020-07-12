@@ -33,10 +33,10 @@ struct SettingViewMain: View {
 //
 //        }
         return HStack {
-            
-            if settings.showAbout == true {
-                AboutView()
-            } else {
+//            
+//            if settings.showAbout == true {
+//                AboutView()
+//            } else {
                 VStack {
 
                     HStack {
@@ -52,7 +52,7 @@ struct SettingViewMain: View {
                         MoreButtonView()
                     }
                 }
-            }
+//            }
         }
         
     }
@@ -245,21 +245,30 @@ struct AboutButtonView: View {
     
     @EnvironmentObject var settings: SettingValues
     
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.gray)
-            
-            Text("About App")
-                .padding()
-        }
-        .onTapGesture {
-            SwiftUI.withAnimation(.easeIn) {
-                settings.showAbout = true
+        NavigationLink(destination: AboutView()) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 5)
+                    .foregroundColor(Color.gray)
+                
+                Text("About App")
+                    .padding()
+                    
+                    // check system is in dark or light mode then use different color 
+                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
             }
         }
+        
+        
+        
+//        .onTapGesture {
+//            SwiftUI.withAnimation(.easeIn) {
+//                settings.showAbout = true
+//            }
+//        }
         
 
         

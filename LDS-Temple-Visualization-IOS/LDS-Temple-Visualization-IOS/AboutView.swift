@@ -10,6 +10,15 @@ import SwiftUI
 
 
 struct AboutView: View {
+
+    var body: some View {
+        AboutViewMain()
+            .navigationBarTitle("About")
+    }
+
+}
+
+struct AboutViewMain: View {
     
     @EnvironmentObject var settings: SettingValues
     
@@ -58,8 +67,8 @@ struct AboutView: View {
         
   
     }
-}
-
+    
+        }
 
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {

@@ -12,7 +12,7 @@ import SwiftUI
 class SettingValues: ObservableObject {
     @Published var hasAnimation = false
     @Published var mode = "default"
-    @Published var showAbout = false
+    //@Published var showAbout = false
     
     @Published var defaultColor = Color.blue
     @Published var spinColor = Color.gray
