@@ -251,16 +251,14 @@ struct AboutButtonView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
                 .foregroundColor(Color.gray)
-            Button(action: {
-                SwiftUI.withAnimation(.easeIn) {
-                    settings.showAbout = true
-                }
-                
-            }) {
-                Text("About App")
-                    .foregroundColor(Color.white)
+            
+            Text("About App")
+                .padding()
+        }
+        .onTapGesture {
+            SwiftUI.withAnimation(.easeIn) {
+                settings.showAbout = true
             }
-            .padding()
         }
         
 
