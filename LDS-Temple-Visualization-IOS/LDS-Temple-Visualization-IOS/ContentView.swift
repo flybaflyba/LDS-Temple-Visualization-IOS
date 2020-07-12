@@ -395,7 +395,7 @@ struct SpiralView: View {
                     Text(ImageSpiral.startYear == "ere" ? "Announced Temples" :
                             ImageSpiral.endYear == "1836" ? "Move Slider to View Temples" :
                             ImageSpiral.endYear != "ere" ? "Temple Years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" :
-                            "Temple years: \(ImageSpiral.startYear) --- 2020")
+                            "Temple Years: \(ImageSpiral.startYear) --- 2020")
                         
                     
                         
