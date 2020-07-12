@@ -263,15 +263,35 @@ struct SpiralView: View {
     func mileStoneDates() -> some View {
         
         VStack {
-            //Text(settings.currentTappedTempleName)
-            ForEach(oneTempleInfo) {oneInfo in
-                Text(oneInfo.content)
-                    //.position(x: screenWidth/2, y: CGFloat(oneInfo.id))
-                    //.animation(withAnimation ? Animation.linear(duration: 3) : Animation.linear(duration: 0.001))
-                    
-                    
+            
+            if settings.tappedATemple {
+                Button(settings.currentTappedTempleName) {UIApplication.shared.open(URL(string: "https://www.churchofjesuschrist.org/temples/list?lang=eng")!)}
+                
             }
             
+            ScrollView {
+                VStack {
+                    // ...
+                    ForEach(oneTempleInfo) {oneInfo in
+                        Text(oneInfo.content)
+                            
+                            //.position(x: screenWidth/2, y: CGFloat(oneInfo.id))
+                            //.animation(withAnimation ? Animation.linear(duration: 3) : Animation.linear(duration: 0.001))
+                            
+                            
+                    }
+                    
+                }.frame(width: UIScreen.main.bounds.width)
+            }
+            
+            //Text(settings.currentTappedTempleName)
+
+        }
+        .onTapGesture {
+            SwiftUI.withAnimation(settings.hasAnimation ? myAnimation : myNoAnimation) {
+                oneTempleInfo.removeAll()
+                
+            }
         }
         
         
@@ -305,13 +325,7 @@ struct SpiralView: View {
                 //Text(settings.currentTappedTempleName)
                     //.font(.largeTitle)
                 
-                if settings.tappedATemple {
-                    Button(settings.currentTappedTempleName) {UIApplication.shared.open(URL(string: "https://www.churchofjesuschrist.org/temples/list?lang=eng")!)}
-                    
-                }
-                
-                
-                
+               
             }
             .frame(width: screenWidth, height: screenHeight * 0.75, alignment: Alignment.center)
             //.background(Color.green)
@@ -434,6 +448,8 @@ struct SpiralView: View {
                                 print("sliderProgress is \(self.sliderProgress)")
                                 
                                 oneTempleInfo.removeAll()
+                                
+                                settings.tappedATemple = false
                         
                             }),
                        
