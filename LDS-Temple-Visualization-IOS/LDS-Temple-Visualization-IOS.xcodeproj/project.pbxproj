@@ -249,6 +249,7 @@
 		DDACE9FF24B55D9E0098F812 /* templeNamesYears in Resources */ = {isa = PBXBuildFile; fileRef = DDACE9FE24B55D9E0098F812 /* templeNamesYears */; };
 		DDB13D7F24B8FFDA00944506 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB13D7E24B8FFDA00944506 /* SettingView.swift */; };
 		DDCCF89624BA61E50010E974 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCCF89524BA61E50010E974 /* AboutView.swift */; };
+		DDCCF89A24BA94180010E974 /* InAppWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCCF89924BA94180010E974 /* InAppWebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -517,6 +518,7 @@
 		DDACE9FE24B55D9E0098F812 /* templeNamesYears */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeNamesYears; sourceTree = "<group>"; };
 		DDB13D7E24B8FFDA00944506 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		DDCCF89524BA61E50010E974 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		DDCCF89924BA94180010E974 /* InAppWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -572,6 +574,7 @@
 				DD3DF75724B9558D00689E9E /* SettingValues.swift */,
 				1E7A172C24AAAFC300519D64 /* ContentView.swift */,
 				DDB13D7E24B8FFDA00944506 /* SettingView.swift */,
+				DDCCF89924BA94180010E974 /* InAppWebView.swift */,
 				DDCCF89524BA61E50010E974 /* AboutView.swift */,
 				1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */,
 				1EBF98DB24AAC678005CC70D /* Sprial.swift */,
@@ -1212,6 +1215,7 @@
 				DD3DF75824B9558D00689E9E /* SettingValues.swift in Sources */,
 				1EBF98DC24AAC678005CC70D /* Sprial.swift in Sources */,
 				DDB13D7F24B8FFDA00944506 /* SettingView.swift in Sources */,
+				DDCCF89A24BA94180010E974 /* InAppWebView.swift in Sources */,
 				1E7A172D24AAAFC300519D64 /* ContentView.swift in Sources */,
 				1EBF98DE24AAC883005CC70D /* ImageSpiral.swift in Sources */,
 			);

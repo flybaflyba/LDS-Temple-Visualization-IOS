@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct AboutView: View {
     
     @EnvironmentObject var settings: SettingValues
@@ -28,6 +29,7 @@ struct AboutView: View {
                     .padding()
 
                 Button("Visit App Website") {UIApplication.shared.open(appUrl!)}
+                
                 
                     
 //                Button(action: {

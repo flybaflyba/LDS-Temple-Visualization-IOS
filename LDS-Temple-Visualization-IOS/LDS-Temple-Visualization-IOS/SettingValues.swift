@@ -29,5 +29,7 @@ class SettingValues: ObservableObject {
     
     @Published var appTitle = "Latter-day Temples"
     
+    @Published var thisUrl = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
+    
     
 }

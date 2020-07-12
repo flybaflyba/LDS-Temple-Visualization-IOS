@@ -265,7 +265,10 @@ struct SpiralView: View {
         VStack {
             
             if settings.tappedATemple {
-                Button(settings.currentTappedTempleName) {UIApplication.shared.open(URL(string: "https://www.churchofjesuschrist.org/temples/list?lang=eng")!)}
+                
+                NavigationLink(destination: InAppWebView()) {
+                    Text(settings.currentTappedTempleName)
+                }
                 
             }
             
