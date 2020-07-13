@@ -11,10 +11,10 @@ import SwiftUI
 
 
 // use screen Height to set how much space each view should take on the screen
-let screenWidth = UIScreen.main.bounds.size.width
-let screenHeight = UIScreen.main.bounds.size.height
-let centerX = screenWidth / 2
-let centerY = screenHeight  * 0.8 / 2
+public let screenWidth = UIScreen.main.bounds.size.width
+public let screenHeight = UIScreen.main.bounds.size.height
+public let centerX = screenWidth / 2
+public let centerY = screenHeight  * 0.8 / 2
 
 //let statusbarHeight = UIApplication.shared.st
 
