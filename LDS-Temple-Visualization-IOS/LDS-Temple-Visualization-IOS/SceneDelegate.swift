@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //let spiral = ImageSpiral()
         //let contentView = ContentView(imageSpiralviewModel: spiral)
         
-        var settings = SettingValues()
+        var sharedValues = SharedValues()
         
         let contentView = ContentView()
 
@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(settings))
+            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(sharedValues))
             self.window = window
             window.makeKeyAndVisible()
         }

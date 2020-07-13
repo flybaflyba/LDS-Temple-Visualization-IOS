@@ -26,8 +26,6 @@ struct WebView : UIViewRepresentable {
 
 struct InAppWebView: View {
     
-    @EnvironmentObject var settings: SettingValues
-    
     var url: String
     
     var body: some View {

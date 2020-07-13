@@ -20,7 +20,7 @@ struct AboutView: View {
 
 struct AboutViewMain: View {
     
-    @EnvironmentObject var settings: SettingValues
+    @EnvironmentObject var sharedValues: SharedValues
     
     //let appUrl = URL(string: "https://litianzhang.com/latter-day-temples-visualization-android-app/")
     
@@ -56,12 +56,13 @@ struct AboutViewMain: View {
                 
                 .padding()
             }
-            .onTapGesture {
-                SwiftUI.withAnimation(.easeOut) {
-                    settings.showAbout = false
-                }
-                                    
-            }
+            
+//            .onTapGesture {
+//                SwiftUI.withAnimation(.easeOut) {
+//                    settings.showAbout = false
+//                }
+//                                    
+//            }
             
         }
         

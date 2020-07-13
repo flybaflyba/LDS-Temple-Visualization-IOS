@@ -19,7 +19,7 @@ struct SettingView: View {
 }
 
 struct SettingViewMain: View {
-    @EnvironmentObject var settings: SettingValues
+    @EnvironmentObject var sharedValues: SharedValues
     
     
     
@@ -60,7 +60,7 @@ struct SettingViewMain: View {
 
 struct SpiralEffectSettingView: View {
     
-    @EnvironmentObject var settings: SettingValues
+    @EnvironmentObject var sharedValues: SharedValues
     
 
     
@@ -75,52 +75,52 @@ struct SpiralEffectSettingView: View {
                     
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(settings.defaultColor)
+                            .foregroundColor(sharedValues.defaultColor)
                         Text("Default")
                     }
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
-                            settings.mode = "default"
-                            settings.defaultColor = settings.selectedColor
-                            settings.spinColor = settings.unSelectedColor
-                            settings.threeDColor = settings.unSelectedColor
+                            sharedValues.mode = "default"
+                            sharedValues.defaultColor = sharedValues.selectedColor
+                            sharedValues.spinColor = sharedValues.unSelectedColor
+                            sharedValues.threeDColor = sharedValues.unSelectedColor
                         }
                         
                     }
                     
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(settings.spinColor)
+                            .foregroundColor(sharedValues.spinColor)
                         Text("Spin")
                         
                     }
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
-                            settings.mode = "spin"
-                            settings.defaultColor = settings.unSelectedColor
-                            settings.spinColor = settings.selectedColor
-                            settings.threeDColor = settings.unSelectedColor
+                            sharedValues.mode = "spin"
+                            sharedValues.defaultColor = sharedValues.unSelectedColor
+                            sharedValues.spinColor = sharedValues.selectedColor
+                            sharedValues.threeDColor = sharedValues.unSelectedColor
                         }
                         
                     }
                     
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(settings.threeDColor)
+                            .foregroundColor(sharedValues.threeDColor)
                         Text("3D")
                     
                     }
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
-                            settings.mode = "3D"
-                            settings.defaultColor = settings.unSelectedColor
-                            settings.spinColor = settings.unSelectedColor
-                            settings.threeDColor = settings.selectedColor
+                            sharedValues.mode = "3D"
+                            sharedValues.defaultColor = sharedValues.unSelectedColor
+                            sharedValues.spinColor = sharedValues.unSelectedColor
+                            sharedValues.threeDColor = sharedValues.selectedColor
                         }
                         
                     }
                     
-                    Text("Mode: \(settings.mode)")
+                    Text("Mode: \(sharedValues.mode)")
                         .foregroundColor(Color.blue)
                         .padding()
                 }
@@ -168,7 +168,7 @@ struct SpiralEffectSettingView: View {
 
 struct AnimationSettingView: View {
     
-    @EnvironmentObject var settings: SettingValues
+    @EnvironmentObject var sharedValues: SharedValues
     
     var body: some View {
         
@@ -179,29 +179,29 @@ struct AnimationSettingView: View {
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(settings.hasAnimationOnColor)
+                        .foregroundColor(sharedValues.hasAnimationOnColor)
                     Text("On")
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        settings.hasAnimation = true
-                        settings.hasAnimationOnColor = settings.selectedColor
-                        settings.hasAnimationOffColor = settings.unSelectedColor
+                        sharedValues.hasAnimation = true
+                        sharedValues.hasAnimationOnColor = sharedValues.selectedColor
+                        sharedValues.hasAnimationOffColor = sharedValues.unSelectedColor
                     }
                     
                 }
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(settings.hasAnimationOffColor)
+                        .foregroundColor(sharedValues.hasAnimationOffColor)
                     Text("Off")
                         
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        settings.hasAnimation = false
-                        settings.hasAnimationOnColor = settings.unSelectedColor
-                        settings.hasAnimationOffColor = settings.selectedColor
+                        sharedValues.hasAnimation = false
+                        sharedValues.hasAnimationOnColor = sharedValues.unSelectedColor
+                        sharedValues.hasAnimationOffColor = sharedValues.selectedColor
                     }
                     
                 }
@@ -214,7 +214,7 @@ struct AnimationSettingView: View {
 //
 //                .frame(maxWidth: screenWidth/2)
                 
-                Text("Animation: \(settings.hasAnimation == true ? "On" : "Off")")
+                Text("Animation: \(sharedValues.hasAnimation == true ? "On" : "Off")")
                     .foregroundColor(Color.blue)
                     .padding()
             }
@@ -242,8 +242,6 @@ struct AnimationSettingView: View {
 
 
 struct AboutButtonView: View {
-    
-    @EnvironmentObject var settings: SettingValues
     
     @Environment(\.colorScheme) var colorScheme
 
@@ -288,8 +286,6 @@ struct AboutButtonView: View {
 }
 
 struct MoreButtonView: View {
-    
-    @EnvironmentObject var settings: SettingValues
     
     var body: some View {
         

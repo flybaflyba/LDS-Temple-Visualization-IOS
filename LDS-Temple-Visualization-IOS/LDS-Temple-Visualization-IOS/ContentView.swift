@@ -154,7 +154,7 @@ struct SpiralView: View {
 //    @State var mode: String = "default"
 //    @State var hasAnimation: Bool = true
     
-    @EnvironmentObject var settings: SettingValues
+    @EnvironmentObject var sharedValues: SharedValues
     
     /*
     // we use the following three functions to get coordinates and sizes,
@@ -223,7 +223,7 @@ struct SpiralView: View {
                 .resizable()
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
-                .animation(settings.hasAnimation ? myAnimation : myNoAnimation)
+                .animation(sharedValues.hasAnimation ? myAnimation : myNoAnimation)
                 .onTapGesture {
                     //print(temple)
                     //imageSpiralViewModel.choose(temple: temple)
@@ -234,20 +234,20 @@ struct SpiralView: View {
                     
                    
                     if (temple.tapped == true) {
-                        SwiftUI.withAnimation(settings.hasAnimation ? myAnimation : myNoAnimation) {
+                        SwiftUI.withAnimation(sharedValues.hasAnimation ? myAnimation : myNoAnimation) {
                             oneTempleInfo.removeAll()
                             
-                            settings.tappedATemple = false
+                            sharedValues.tappedATemple = false
                             
                         }
                     } else {
-                        SwiftUI.withAnimation(settings.hasAnimation ? myAnimation : myNoAnimation) {
+                        SwiftUI.withAnimation(sharedValues.hasAnimation ? myAnimation : myNoAnimation) {
                             self.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                             
-                            settings.tappedATemple = true
-                            settings.currentTappedTempleName = temple.name
+                            sharedValues.tappedATemple = true
+                            sharedValues.currentTappedTempleName = temple.name
                  
-                            print(settings.currentTappedTempleName)
+                            print(sharedValues.currentTappedTempleName)
                         }
                         //print(oneTempleInfo)
                     }
@@ -264,10 +264,10 @@ struct SpiralView: View {
         
         VStack {
             
-            if settings.tappedATemple {
+            if sharedValues.tappedATemple {
                 
                 NavigationLink(destination: InAppWebView(url: "https://www.churchofjesuschrist.org/temples/list?lang=eng")) {
-                    Text(settings.currentTappedTempleName)
+                    Text(sharedValues.currentTappedTempleName)
                 }
                 
             }
@@ -291,7 +291,7 @@ struct SpiralView: View {
 
         }
         .onTapGesture {
-            SwiftUI.withAnimation(settings.hasAnimation ? myAnimation : myNoAnimation) {
+            SwiftUI.withAnimation(sharedValues.hasAnimation ? myAnimation : myNoAnimation) {
                 oneTempleInfo.removeAll()
                 
             }
@@ -443,8 +443,8 @@ struct SpiralView: View {
                                 self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
                                 self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
                         
-                                if imageSpiralViewModel.mode != settings.mode {
-                                    imageSpiralViewModel.changeMode(newMode: settings.mode)
+                                if imageSpiralViewModel.mode != sharedValues.mode {
+                                    imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
                                 }
                                 
                                 
@@ -452,7 +452,7 @@ struct SpiralView: View {
                                 
                                 oneTempleInfo.removeAll()
                                 
-                                settings.tappedATemple = false
+                                sharedValues.tappedATemple = false
                         
                             }),
                        

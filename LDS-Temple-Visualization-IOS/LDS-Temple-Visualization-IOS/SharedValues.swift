@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-class SettingValues: ObservableObject {
+class SharedValues: ObservableObject {
     @Published var hasAnimation = false
     @Published var mode = "default"
     //@Published var showAbout = false
