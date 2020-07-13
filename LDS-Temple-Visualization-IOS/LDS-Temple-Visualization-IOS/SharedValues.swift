@@ -31,5 +31,15 @@ class SharedValues: ObservableObject {
     
     //@Published var thisUrl = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
     
+    @Published var myAnimation: Animation = Animation.linear(duration: 1)
+    @Published var myNoAnimation: Animation = Animation.linear(duration: 0.001)
     
+    @Published var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
+    
+    @Published var sliderProgress: CGFloat = 3000
+    
+    //@Published @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+    
+    @Published var startYear: String = ""
+    @Published var endYear: String = ""
 }

@@ -137,17 +137,17 @@ struct SpiralView: View {
     // this view will update when changes happen to the model 
     @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
     
-    @State var sliderProgress: CGFloat = 3000
+//    @State var sliderProgress: CGFloat = 3000
     
 //    var modes = ["default", "spin", "3D"]
 //    @State private var modeIndex = 0
 //
     //@State private var hasAnimation = false
     
-    @State private var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
+    //@State private var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
     
-    let myAnimation: Animation = Animation.linear(duration: 1)
-    let myNoAnimation: Animation = Animation.linear(duration: 0.001)
+//    let myAnimation: Animation = Animation.linear(duration: 1)
+//    let myNoAnimation: Animation = Animation.linear(duration: 0.001)
     
     //@ObservedObject var settingModel = SettingModel()
 
@@ -223,7 +223,7 @@ struct SpiralView: View {
                 .resizable()
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
-                .animation(sharedValues.hasAnimation ? myAnimation : myNoAnimation)
+                .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
                 .onTapGesture {
                     //print(temple)
                     //imageSpiralViewModel.choose(temple: temple)
@@ -234,15 +234,15 @@ struct SpiralView: View {
                     
                    
                     if (temple.tapped == true) {
-                        SwiftUI.withAnimation(sharedValues.hasAnimation ? myAnimation : myNoAnimation) {
-                            oneTempleInfo.removeAll()
+                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                            sharedValues.oneTempleInfo.removeAll()
                             
                             sharedValues.tappedATemple = false
                             
                         }
                     } else {
-                        SwiftUI.withAnimation(sharedValues.hasAnimation ? myAnimation : myNoAnimation) {
-                            self.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                            sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                             
                             sharedValues.tappedATemple = true
                             sharedValues.currentTappedTempleName = temple.name
@@ -260,48 +260,48 @@ struct SpiralView: View {
         return body
     }
     
-    func mileStoneDates() -> some View {
-        
-        VStack {
-            
-            if sharedValues.tappedATemple {
-                
-                NavigationLink(destination: InAppWebView(url: "https://www.churchofjesuschrist.org/temples/list?lang=eng")) {
-                    Text(sharedValues.currentTappedTempleName)
-                }
-                
-            }
-            
-            ScrollView {
-                VStack {
-                    // ...
-                    ForEach(oneTempleInfo) {oneInfo in
-                        Text(oneInfo.content)
-                            
-                            //.position(x: screenWidth/2, y: CGFloat(oneInfo.id))
-                            //.animation(withAnimation ? Animation.linear(duration: 3) : Animation.linear(duration: 0.001))
-                            
-                            
-                    }
-                    
-                }.frame(width: UIScreen.main.bounds.width)
-            }
-            
-            //Text(settings.currentTappedTempleName)
-
-        }
-        .onTapGesture {
-            SwiftUI.withAnimation(sharedValues.hasAnimation ? myAnimation : myNoAnimation) {
-                oneTempleInfo.removeAll()
-                
-            }
-        }
-        
-        
-        
-        
-    }
-    
+//    func mileStoneDates() -> some View {
+//        
+//        VStack {
+//            
+//            if sharedValues.tappedATemple {
+//                
+//                NavigationLink(destination: InAppWebView(url: "https://www.churchofjesuschrist.org/temples/list?lang=eng")) {
+//                    Text(sharedValues.currentTappedTempleName)
+//                }
+//                
+//            }
+//            
+//            ScrollView {
+//                VStack {
+//                    // ...
+//                    ForEach(sharedValues.oneTempleInfo) {oneInfo in
+//                        Text(oneInfo.content)
+//                            
+//                            //.position(x: screenWidth/2, y: CGFloat(oneInfo.id))
+//                            //.animation(withAnimation ? Animation.linear(duration: 3) : Animation.linear(duration: 0.001))
+//                            
+//                            
+//                    }
+//                    
+//                }.frame(width: UIScreen.main.bounds.width)
+//            }
+//            
+//            //Text(settings.currentTappedTempleName)
+//
+//        }
+//        .onTapGesture {
+//            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+//                sharedValues.oneTempleInfo.removeAll()
+//                
+//            }
+//        }
+//        
+//        
+//        
+//        
+//    }
+//    
 
     
     var body: some View {
@@ -337,7 +337,7 @@ struct SpiralView: View {
             Spacer(minLength: 0)
             
             
-            if oneTempleInfo.count == 0 {
+            if sharedValues.oneTempleInfo.count == 0 {
                 
                 VStack {
                     HStack {
@@ -395,18 +395,8 @@ struct SpiralView: View {
                     
                     //Text("Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)")
                     //Text(ImageSpiral.endYear != "ere" ? "Temple years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" : "Temple years: \(ImageSpiral.startYear) --- 2020")
-                    Text(ImageSpiral.startYear == "ere" ? "Announced Temples" :
-                            ImageSpiral.endYear == "1836" ? "Move Slider to View Temples" :
-                            ImageSpiral.endYear != "ere" ? "Temple Years: \(ImageSpiral.startYear) --- \(ImageSpiral.endYear)" :
-                            "Temple Years: \(ImageSpiral.startYear) --- 2020")
+                    YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
                         
-                    
-                        
-                    
-                        
-                        .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center)
-                        //.background(Color.blue)
-                    // we need this background color for testing purposes
                     
                     
                 }
@@ -425,70 +415,12 @@ struct SpiralView: View {
                 Spacer(minLength: 0)
                 // this is slider ==================================
                 VStack {
-                // we use Binding, so that when ever slider progress changes, we can do something
-                    Slider(value: Binding(
-                            get: {
-                                self.sliderProgress
-                            },
-                            set: {(newValue) in
-    //                     while newValue != self.sliderProgress {
-    //                        if newValue > self.sliderProgress {
-    //                            self.sliderProgress += 1
-    //                        } else {
-    //                            self.sliderProgress -= 1
-    //                        }
-    //                    }
-
-                                self.sliderProgress = newValue
-                                self.imageSpiralViewModel.getNewTheta(newTheta: self.sliderProgress)
-                                self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sliderProgress)
-                        
-                                if imageSpiralViewModel.mode != sharedValues.mode {
-                                    imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
-                                }
-                                
-                                
-                                print("sliderProgress is \(self.sliderProgress)")
-                                
-                                oneTempleInfo.removeAll()
-                                
-                                sharedValues.tappedATemple = false
-                        
-                            }),
-                       
-                       // when animation, less coordinates
-                       //in: 0...226, step: 1)
-                       // when no animation, more coordinates
-                           in: 11...7000, step: 1)
                     
-                //Text("Slider progress is \(sliderProgress)")
-                
-                    }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center)
-                //.background(Color.green)
-                // we need this background color for testing purposes
-                
-                
-                
-             //            Button(action: {
-             //                // your action here
-             //            }) {
-             //                Text("Button title")
-             //            }.frame(width: screenWidth / 4 * 2, height: screenHeight * 0.1, alignment: Alignment.center)
-                         
-                     //Spacer(minLength: 0)
-                     // this is slider lable ==================================
-                         HStack {
-                             Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
-                         
-                             Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05, alignment: Alignment.center)
-                         
-                             Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
-                         }
-                     //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
-                         
+                    SliderView(imageSpiralViewModel: imageSpiralViewModel)
+                }
                 
             } else {
-                mileStoneDates()
+                MileStoneDatesView()
                     .frame(width: screenWidth, height: screenHeight * 0.25, alignment: Alignment.center)
                     
             }
