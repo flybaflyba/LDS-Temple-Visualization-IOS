@@ -27,9 +27,7 @@ struct YearDisplayView: View {
                 "Temple Years: \(startYear) --- 2020")
             
             
-            .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center)
-            //.background(Color.blue)
-            // we need this background color for testing purposes
+            
         
     }
 }

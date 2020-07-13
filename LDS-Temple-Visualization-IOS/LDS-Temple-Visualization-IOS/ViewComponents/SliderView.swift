@@ -61,9 +61,7 @@ struct SliderView: View {
             
         //Text("Slider progress is \(sliderProgress)")
         
-            }.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center)
-        //.background(Color.green)
-        // we need this background color for testing purposes
+            }
         
         
         

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainScreenView.swift
 //  LDS-Temple-Visualization-IOS
 //
 //  Created by Litian Zhang on 6/29/20.
@@ -9,18 +9,18 @@
 import SwiftUI
 
 
-
 // use screen Height to set how much space each view should take on the screen
-public let screenWidth = UIScreen.main.bounds.size.width
-public let screenHeight = UIScreen.main.bounds.size.height
-public let centerX = screenWidth / 2
-public let centerY = screenHeight  * 0.8 / 2
+public var screenWidth = UIScreen.main.bounds.size.width
+public var screenHeight = UIScreen.main.bounds.size.height
+public var centerX = UIScreen.main.bounds.size.width / 2
+public var centerY = UIScreen.main.bounds.size.height * 0.8 / 2
+
 
 //let statusbarHeight = UIApplication.shared.st
 
 
 
-struct ContentView: View {
+struct MainScreenView: View {
 //
 //    @Binding var mode: String
 //    @Binding var hasAnimation: Bool
@@ -37,6 +37,12 @@ struct ContentView: View {
 //        var title = settings.appTitle
 //        return title
 //    }
+    
+    
+    //UIDevice.current.orientation.isPortrait
+   
+    
+    
     
     var body: some View {
         
@@ -60,6 +66,15 @@ struct ContentView: View {
 
 struct SpiralView: View {
 
+    
+    var screenWidth = UIScreen.main.bounds.size.width
+    var screenHeight = UIScreen.main.bounds.size.height
+    var centerX = UIScreen.main.bounds.size.width / 2
+    var centerY = UIScreen.main.bounds.size.height * 0.8 / 2
+    
+    //@EnvironmentObject var deviceOrientationEnv: DeviceOrientationEnv
+    
+    
     // we make this observed object,
     // along with its published spiral model in its class,
     // this view will update when changes happen to the model 
@@ -67,6 +82,7 @@ struct SpiralView: View {
 
     
     @EnvironmentObject var sharedValues: SharedValues
+    
     
     func drawTemple(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
@@ -85,6 +101,8 @@ struct SpiralView: View {
                     
                     imageSpiralViewModel.changeATemple(id: temple.id)
                     
+                    print(screenWidth)
+                    print(sharedValues.orientation.rawValue)
                    
                     if (temple.tapped == true) {
                         SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
@@ -133,15 +151,22 @@ struct SpiralView: View {
             Spacer(minLength: 0)
             
             
+            
             if sharedValues.oneTempleInfo.count == 0 {
                 
                
                     
                 YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                    .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center)
+                    //.background(Color.blue)
+                    // we need this background color for testing purposes
                  
                 Spacer(minLength: 0)
 
                 SliderView(imageSpiralViewModel: imageSpiralViewModel)
+                    .frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center)
+                    //.background(Color.green)
+                    // we need this background color for testing purposes
                 
                 
             } else {
@@ -151,6 +176,7 @@ struct SpiralView: View {
             }
             
             Rectangle()
+                .background(Color.gray)
             
         }
         
@@ -164,7 +190,6 @@ struct SpiralView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-        
+        MainScreenView()
     }
 }

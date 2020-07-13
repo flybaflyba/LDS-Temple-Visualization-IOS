@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         var sharedValues = SharedValues()
         
-        let contentView = ContentView()
+        let contentView = MainScreenView()
 
         
         
