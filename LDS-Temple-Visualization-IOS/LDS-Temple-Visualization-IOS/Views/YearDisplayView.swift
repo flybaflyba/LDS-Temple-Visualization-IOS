@@ -17,6 +17,10 @@ struct YearDisplayView: View {
     
     var body: some View {
         
+        // here is the logic to display on screen temples years
+        // if the year is ere, that means we are reaching to end of the spiral, the temples are not dedicated yet
+        // so we keep 2020 in the end, and later just announced temples
+        
         Text(startYear == "ere" ? "Announced Temples" :
                 endYear == "1836" ? "Move Slider to View Temples" :
                 endYear != "ere" ? "Temple Years: \(startYear) --- \(endYear)" :
@@ -25,7 +29,7 @@ struct YearDisplayView: View {
             
             .frame(width: screenWidth, height: screenHeight * 0.05, alignment: Alignment.center)
             //.background(Color.blue)
-        // we need this background color for testing purposes
+            // we need this background color for testing purposes
         
     }
 }

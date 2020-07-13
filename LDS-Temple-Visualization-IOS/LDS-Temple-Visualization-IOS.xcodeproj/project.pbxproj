@@ -577,14 +577,8 @@
 			children = (
 				1E7A172824AAAFC300519D64 /* AppDelegate.swift */,
 				1E7A172A24AAAFC300519D64 /* SceneDelegate.swift */,
+				DD44BEDE24BCE32F00C6669E /* Views */,
 				DD3DF75724B9558D00689E9E /* SharedValues.swift */,
-				1E7A172C24AAAFC300519D64 /* ContentView.swift */,
-				DD44BEDC24BCDF9600C6669E /* YearDisplayView.swift */,
-				DD44BEDA24BCD96F00C6669E /* SliderView.swift */,
-				DD44BED824BCD71000C6669E /* MileStoneDatesView.swift */,
-				DDB13D7E24B8FFDA00944506 /* SettingView.swift */,
-				DDCCF89924BA94180010E974 /* InAppWebView.swift */,
-				DDCCF89524BA61E50010E974 /* AboutView.swift */,
 				1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */,
 				1EBF98DB24AAC678005CC70D /* Sprial.swift */,
 				1EFE4A6024AD747700FAD239 /* templeFilesNames */,
@@ -622,6 +616,20 @@
 				1E7A174C24AAAFC500519D64 /* Info.plist */,
 			);
 			path = "LDS-Temple-Visualization-IOSUITests";
+			sourceTree = "<group>";
+		};
+		DD44BEDE24BCE32F00C6669E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E7A172C24AAAFC300519D64 /* ContentView.swift */,
+				DD44BEDC24BCDF9600C6669E /* YearDisplayView.swift */,
+				DD44BEDA24BCD96F00C6669E /* SliderView.swift */,
+				DD44BED824BCD71000C6669E /* MileStoneDatesView.swift */,
+				DDB13D7E24B8FFDA00944506 /* SettingView.swift */,
+				DDCCF89924BA94180010E974 /* InAppWebView.swift */,
+				DDCCF89524BA61E50010E974 /* AboutView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DD47FBCD24B5863500A082D6 /* AllTemplesInfo */ = {
