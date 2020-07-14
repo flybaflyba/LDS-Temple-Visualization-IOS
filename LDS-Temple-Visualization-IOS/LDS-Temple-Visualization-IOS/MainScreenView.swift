@@ -217,9 +217,37 @@ struct SpiralView: View {
                     
                 }
             } else if sharedValues.orientationInText == "landscape" {
-                VStack {
-                    Text("landscape")
-                    drawTemples().background(Color.red)
+                ZStack {
+                    HStack {
+                        
+                        
+                        drawTemples()
+                            .frame(width: currentScreenWidth * 1 / 2 , height: currentScreenHeight, alignment: Alignment.center)
+                        
+                        
+                        if sharedValues.oneTempleInfo.count == 0 {
+                            VStack {
+                                YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
+                                SliderView(imageSpiralViewModel: imageSpiralViewModel)
+                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.center)
+                            }
+                            
+                        } else {
+                            VStack {
+                                Rectangle()
+                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight * 0.3, alignment: Alignment.center)
+                                    .background(Color.gray)
+                                MileStoneDatesView()
+                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight * 0.7, alignment: Alignment.center)
+                            }
+                            
+                        }
+                    }
+                  
+                    //Rectangle()
+                        //.background(Color.gray)
+                    
                 }
             }
         }

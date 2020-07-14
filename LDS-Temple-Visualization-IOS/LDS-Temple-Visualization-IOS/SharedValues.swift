@@ -90,11 +90,20 @@ class SharedValues: ObservableObject {
             currentScreenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
+            centerX = currentScreenWidth / 2
+            centerY = currentScreenHeight * 0.8 / 2
+            
         } else if (self.orientationInText == "landscape") {
             print("device rotates to landscape")
             currentScreenWidth = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+            
+            screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
+            
+            centerX = currentScreenWidth / 3
+            centerY = currentScreenHeight / 2
         }
+        
         
         
         
@@ -102,8 +111,7 @@ class SharedValues: ObservableObject {
         print(currentScreenWidth)
         print(currentScreenHeight)
         
-        centerX = currentScreenWidth / 2
-        centerY = currentScreenHeight * 0.8 / 2
+        
         
         orientationChanged = true
         

@@ -15,19 +15,38 @@ struct YearDisplayView: View {
     var startYear: String
     var endYear: String
     
+    @EnvironmentObject var sharedValues: SharedValues
+    
     var body: some View {
         
         // here is the logic to display on screen temples years
         // if the year is ere, that means we are reaching to end of the spiral, the temples are not dedicated yet
         // so we keep 2020 in the end, and later just announced temples
         
-        Text(startYear == "ere" ? "Announced Temples" :
-                endYear == "1836" ? "Move Slider to View Temples" :
-                endYear != "ere" ? "Temple Years: \(startYear) --- \(endYear)" :
-                "Temple Years: \(startYear) --- 2020")
-            
-            
-            
+        VStack {
+            if sharedValues.orientationInText == "portrait" {
+                Text(startYear == "ere" ? "Announced Temples" :
+                        endYear == "1836" ? "Move Slider to View Temples" :
+                        endYear != "ere" ? "Temple Years: \(startYear) --- \(endYear)" :
+                        "Temple Years: \(startYear) --- 2020")
+            } else if sharedValues.orientationInText == "landscape" {
+                if startYear == "ere" {
+                    Text("Announced Temples")
+                } else if endYear == "1836" {
+                    Text("Move Slider")
+                    Text("to")
+                    Text("View Temples")
+                } else if endYear != "ere" {
+                    Text("Temple Years:")
+                    Text("\(startYear) --- \(endYear)")
+                } else {
+                    Text("Temple Years:")
+                    Text("\(startYear) --- 2020")
+                }
+            }
+        }
+        
+        
         
     }
 }
