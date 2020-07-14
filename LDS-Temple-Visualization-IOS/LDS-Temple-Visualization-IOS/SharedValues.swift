@@ -51,9 +51,12 @@ class SharedValues: ObservableObject {
     //@Published var orientation = UIDevice.current.orientation.isPortrait
     //@Published var orientation = (UIDeviceOrientation.portrait).isPortrait
     @Published var orientation = UIDevice.current.orientation
+    
     @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
         UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
         UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
+  
+//    @Published var orientationInText = (UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height ? "portrait" : "landscape")
     
     init() {
         // 检测设备方向
@@ -70,6 +73,13 @@ class SharedValues: ObservableObject {
         self.orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
             UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
             UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
+//        
+//        if UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height {
+//            self.orientationInText = "portrait"
+//        } else {
+//            self.orientationInText = "landscape"
+//        }
+        
         
         print(self.orientationInText)
         
