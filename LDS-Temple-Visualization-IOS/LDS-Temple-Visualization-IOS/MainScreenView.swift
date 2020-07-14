@@ -195,7 +195,7 @@ struct SpiralView: View {
                         
                         YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
                             .frame(width: currentScreenWidth, height: currentScreenHeight * 0.05, alignment: Alignment.center)
-                            //.background(Color.blue)
+                            .background(Color.blue)
                             // we need this background color for testing purposes
                          
                         Spacer(minLength: 0)

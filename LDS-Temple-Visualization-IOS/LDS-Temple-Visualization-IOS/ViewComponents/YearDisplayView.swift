@@ -24,12 +24,12 @@ struct YearDisplayView: View {
         // so we keep 2020 in the end, and later just announced temples
         
         VStack {
-            if sharedValues.orientationInText == "portrait" {
+            if sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" {
                 Text(startYear == "ere" ? "Announced Temples" :
                         endYear == "1836" ? "Move Slider to View Temples" :
                         endYear != "ere" ? "Temple Years: \(startYear) --- \(endYear)" :
                         "Temple Years: \(startYear) --- 2020")
-            } else if sharedValues.orientationInText == "landscape" {
+            } else if sharedValues.orientationInText == "landscape" || sharedValues.orientationInText == "unknown"  {
                 if startYear == "ere" {
                     Text("Announced Temples")
                 } else if endYear == "1836" {
