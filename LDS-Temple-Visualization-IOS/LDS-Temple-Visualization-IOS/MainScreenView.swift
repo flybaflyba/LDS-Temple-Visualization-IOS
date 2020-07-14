@@ -12,8 +12,8 @@ import SwiftUI
 // use screen Height to set how much space each view should take on the screen
 public var screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
 public var screenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
-public var centerX = SharedValues().currentScreenWidth / 2
-public var centerY = SharedValues().currentScreenHeight * 0.8 / 2
+public var centerX = screenWidth / 2
+public var centerY = screenHeight * 0.8 / 2
 
 
 
@@ -81,18 +81,26 @@ struct SpiralView: View {
     
     var currentScreenWidth: CGFloat {
         get {
-            sharedValues.currentScreenWidth
+            print("new screen width: \(sharedValues.currentScreenWidth)")
+            return sharedValues.currentScreenWidth
         }
     }
     
     var currentScreenHeight: CGFloat {
         get {
-            sharedValues.currentScreenHeight
+            print("new screen height: \(sharedValues.currentScreenWidth)")
+            return sharedValues.currentScreenHeight
         }
     }
     
     
     func drawTemples() -> some View {
+        
+        if sharedValues.orientationChanged == true {
+            imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+            sharedValues.orientationChanged = false
+        }
+        
         var body: some View {
            
             ZStack {
@@ -165,7 +173,9 @@ struct SpiralView: View {
     
     var body: some View {
         
-        ZStack {
+        
+        
+        return ZStack {
         
             if sharedValues.orientationInText == "portrait" {
                 VStack {

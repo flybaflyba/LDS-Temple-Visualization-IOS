@@ -157,6 +157,8 @@ class ImageSpiral: ObservableObject {
         
         let coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: spiralModel.mode)
         
+        print("centerX and centerY in updateOnScreenTemples function: \(centerX), \(centerY)")
+        
         let onScreenTemplesString: Array<Array<String>> = ImageSpiral.getOnScreenTemples(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         let onScreenTemplesPositions: Array<CGFloat> = ImageSpiral.getOnScreenTemplesPositions(theta: ImageSpiral.theta, coordinatesLength: CGFloat(coordinatesAndSizes.count))
         

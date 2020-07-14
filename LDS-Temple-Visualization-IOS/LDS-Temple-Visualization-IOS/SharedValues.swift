@@ -52,6 +52,8 @@ class SharedValues: ObservableObject {
     //@Published var orientation = (UIDeviceOrientation.portrait).isPortrait
     @Published var orientation = UIDevice.current.orientation
     
+    @Published var orientationChanged = false
+    
     @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
         UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
         UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
@@ -96,8 +98,16 @@ class SharedValues: ObservableObject {
         
         
         
+        
         print(currentScreenWidth)
         print(currentScreenHeight)
+        
+        centerX = currentScreenWidth / 2
+        centerY = currentScreenHeight * 0.8 / 2
+        
+        orientationChanged = true
+        
+        print("centerX and centerY once orientation changed: \(centerX), \(centerY)")
         
                 switch UIDevice.current.orientation {
                 case UIDeviceOrientation.unknown:

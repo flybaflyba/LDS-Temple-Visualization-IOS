@@ -16,8 +16,6 @@ struct SliderView: View {
     
     @ObservedObject var imageSpiralViewModel: ImageSpiral
     
- 
-    
     var body: some View {
         
         

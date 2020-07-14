@@ -39,8 +39,6 @@ struct Spiral<TempleContent> {
     var oldY: CGFloat = 0
     var oldSize: CGFloat = 0
     
-
-    
     mutating func changeATemple(id: Int) {
         
         
