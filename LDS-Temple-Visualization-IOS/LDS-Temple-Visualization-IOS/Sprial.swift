@@ -55,7 +55,7 @@ struct Spiral<TempleContent> {
             
             onScreenTemples[id].x = centerX
             onScreenTemples[id].y = centerY
-            onScreenTemples[id].size = screenWidth * 0.99
+            onScreenTemples[id].size = screenWidth * 0.9
             onScreenTemples[id].content = Image(onScreenTemples[id].fileName + "_large") as! TempleContent
             
             onScreenTemples[id].tapped = true

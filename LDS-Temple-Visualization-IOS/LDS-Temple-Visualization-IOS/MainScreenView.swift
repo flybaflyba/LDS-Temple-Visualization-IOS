@@ -223,6 +223,8 @@ struct SpiralView: View {
                         
                         drawTemples()
                             .frame(width: currentScreenWidth * 1 / 2 , height: currentScreenHeight, alignment: Alignment.center)
+                            .background(Color.yellow)
+                        
                         
                         
                         if sharedValues.oneTempleInfo.count == 0 {
@@ -235,11 +237,11 @@ struct SpiralView: View {
                             
                         } else {
                             VStack {
-                                Rectangle()
-                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight * 0.3, alignment: Alignment.center)
-                                    .background(Color.gray)
+                                
+                                
                                 MileStoneDatesView()
-                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight * 0.7, alignment: Alignment.center)
+                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight * 0.6, alignment: Alignment.center)
+                                    .background(Color.red)
                             }
                             
                         }

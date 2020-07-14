@@ -99,6 +99,8 @@ class SharedValues: ObservableObject {
             currentScreenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
+            screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+            
             centerX = currentScreenWidth / 2
             centerY = currentScreenHeight * 0.8 / 2
             
@@ -107,9 +109,9 @@ class SharedValues: ObservableObject {
             currentScreenWidth = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
-            screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+            screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
             
-            centerX = currentScreenWidth / 3
+            centerX = currentScreenWidth / 4
             centerY = currentScreenHeight * 0.6
         }
         
