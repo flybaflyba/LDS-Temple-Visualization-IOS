@@ -88,7 +88,7 @@ struct SpiralView: View {
     
     var currentScreenHeight: CGFloat {
         get {
-            print("new screen height: \(sharedValues.currentScreenWidth)")
+            print("new screen height: \(sharedValues.currentScreenHeight)")
             return sharedValues.currentScreenHeight
         }
     }

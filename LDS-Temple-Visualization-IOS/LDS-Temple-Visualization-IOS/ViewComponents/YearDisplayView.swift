@@ -33,8 +33,7 @@ struct YearDisplayView: View {
                 if startYear == "ere" {
                     Text("Announced Temples")
                 } else if endYear == "1836" {
-                    Text("Move Slider")
-                    Text("to")
+                    Text("Move Slider to")
                     Text("View Temples")
                 } else if endYear != "ere" {
                     Text("Temple Years:")

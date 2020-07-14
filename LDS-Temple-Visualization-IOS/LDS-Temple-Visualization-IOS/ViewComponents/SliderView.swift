@@ -16,6 +16,25 @@ struct SliderView: View {
     
     @ObservedObject var imageSpiralViewModel: ImageSpiral
     
+    func updateSpiral() {
+        
+        imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+        imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+
+        if imageSpiralViewModel.mode != sharedValues.mode {
+            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+        }
+        
+        
+        print("sliderProgress is \(sharedValues.sliderProgress)")
+        
+        //print(currentScreenWidth)
+        
+        sharedValues.oneTempleInfo.removeAll()
+        
+        sharedValues.tappedATemple = false
+    }
+    
     var body: some View {
         
         
@@ -27,52 +46,23 @@ struct SliderView: View {
             
             //ProgressBar(progress: Float(sharedValues.sliderProgress / 7000))
          
-            
           
-            
-            // we use Binding, so that when ever slider progress changes, we can do something
-            Slider(value: Binding(
-                    get: {
-                        sharedValues.sliderProgress
-                    },
-                    set: {(newValue) in
-    //                     while newValue != self.sliderProgress {
-    //                        if newValue > self.sliderProgress {
-    //                            self.sliderProgress += 1
-    //                        } else {
-    //                            self.sliderProgress -= 1
-    //                        }
-    //                    }
-
-                        sharedValues.sliderProgress = newValue
-                        imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                        imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
-                
-                        if imageSpiralViewModel.mode != sharedValues.mode {
-                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+                HStack {
+                    Image(systemName: "arrow.left.square.fill")
+                        .onTapGesture {
+                            sharedValues.sliderProgress -= 100
+                            updateSpiral()
                         }
-                        
-                        
-                        print("sliderProgress is \(sharedValues.sliderProgress)")
-                        
-                        //print(currentScreenWidth)
-                        
-                        sharedValues.oneTempleInfo.removeAll()
-                        
-                        sharedValues.tappedATemple = false
-                
-                    }),
-               
-               // when animation, less coordinates
-               //in: 0...226, step: 1)
-               // when no animation, more coordinates
-                   in: 11...7000, step: 1)
+                    MySlider(imageSpiralViewModel: imageSpiralViewModel)
+                        .frame(maxWidth: screenWidth * 0.8)
+                        .background(Color.red)
+                    Image(systemName: "arrow.right.square.fill")
+                        .onTapGesture {
+                            sharedValues.sliderProgress += 100
+                            updateSpiral()
+                        }
+                }
             
-        //Text("Slider progress is \(sliderProgress)")
-        
-            }
-        
-        
         
      //            Button(action: {
      //                // your action here
@@ -93,28 +83,6 @@ struct SliderView: View {
         }
         }
         
-    }
-
-
-struct ProgressBar: View {
-    
-    var progress: Float
-    
-    var body: some View {
-        ZStack {
-            Circle()
-                .stroke(lineWidth: 20.0)
-                .opacity(0.3)
-                .foregroundColor(Color.red)
-            
-            Circle()
-                .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
-                .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                .foregroundColor(Color.red)
-                .rotationEffect(Angle(degrees: 270.0))
-                .animation(.linear)
-        }
-    }
 }
 
 //struct SliderView_Previews: PreviewProvider {
@@ -122,3 +90,61 @@ struct ProgressBar: View {
 //        SliderView()
 //    }
 //}
+
+}
+
+
+struct MySlider: View {
+    
+    @EnvironmentObject var sharedValues: SharedValues
+    
+    @ObservedObject var imageSpiralViewModel: ImageSpiral
+    
+    var body: some View {
+        // we use Binding, so that when ever slider progress changes, we can do something
+        Slider(value: Binding(
+                get: {
+                    sharedValues.sliderProgress
+                },
+                set: {(newValue) in
+//                     while newValue != self.sliderProgress {
+//                        if newValue > self.sliderProgress {
+//                            self.sliderProgress += 1
+//                        } else {
+//                            self.sliderProgress -= 1
+//                        }
+//                    }
+
+                    sharedValues.sliderProgress = newValue
+                    
+                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+            
+                    if imageSpiralViewModel.mode != sharedValues.mode {
+                        imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+                    }
+                    
+                    
+                    print("sliderProgress is \(sharedValues.sliderProgress)")
+                    
+                    //print(currentScreenWidth)
+                    
+                    sharedValues.oneTempleInfo.removeAll()
+                    
+                    sharedValues.tappedATemple = false
+                    
+            
+                }),
+           
+           // when animation, less coordinates
+           //in: 0...226, step: 1)
+           // when no animation, more coordinates
+               in: 11...7000, step: 1)
+            
+        
+    //Text("Slider progress is \(sliderProgress)")
+    
+        }
+    
+    
+}
