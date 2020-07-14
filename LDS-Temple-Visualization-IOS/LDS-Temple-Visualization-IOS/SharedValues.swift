@@ -72,9 +72,18 @@ class SharedValues: ObservableObject {
         // 屏幕方向
         self.orientation = UIDevice.current.orientation
 
-        self.orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
-            UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
-            UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
+//        self.orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
+//            UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
+//            UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
+        
+        if UIDevice.current.orientation.rawValue == 0 {
+            self.orientationInText = "unknown"
+        } else if UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 {
+            self.orientationInText = "portrait"
+        } else if UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 {
+            self.orientationInText = "landscape"
+        }
+        
 //        
 //        if UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height {
 //            self.orientationInText = "portrait"
@@ -101,7 +110,7 @@ class SharedValues: ObservableObject {
             screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
             
             centerX = currentScreenWidth / 3
-            centerY = currentScreenHeight / 2
+            centerY = currentScreenHeight * 0.6
         }
         
         

@@ -177,7 +177,7 @@ struct SpiralView: View {
         
         return ZStack {
         
-            if sharedValues.orientationInText == "portrait" {
+            if sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" {
                 VStack {
                 
                     drawTemples()
@@ -216,7 +216,7 @@ struct SpiralView: View {
                         .background(Color.gray)
                     
                 }
-            } else if sharedValues.orientationInText == "landscape" {
+            } else if sharedValues.orientationInText == "landscape" || sharedValues.orientationInText == "unknown" {
                 ZStack {
                     HStack {
                         
