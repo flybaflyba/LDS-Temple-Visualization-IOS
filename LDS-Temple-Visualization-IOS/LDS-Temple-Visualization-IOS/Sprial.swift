@@ -14,6 +14,8 @@ import SwiftUI
 //TempleContent is a don;t care type, here we will use image for it 
 struct Spiral<TempleContent> {
     
+    @EnvironmentObject var sharedValues: SharedValues
+    
     //var temples: Array<Temple>
        
     //var coordinatesAndSizes: Array<Array<CGFloat>>
@@ -36,6 +38,8 @@ struct Spiral<TempleContent> {
     var oldX: CGFloat = 0
     var oldY: CGFloat = 0
     var oldSize: CGFloat = 0
+    
+
     
     mutating func changeATemple(id: Int) {
         

@@ -10,14 +10,13 @@ import SwiftUI
 
 
 // use screen Height to set how much space each view should take on the screen
-public var screenWidth = UIScreen.main.bounds.size.width
-public var screenHeight = UIScreen.main.bounds.size.height
-public var centerX = UIScreen.main.bounds.size.width / 2
-public var centerY = UIScreen.main.bounds.size.height * 0.8 / 2
+public var screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+public var screenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+public var centerX = screenWidth / 2
+public var centerY = screenHeight * 0.8 / 2
 
 
 //let statusbarHeight = UIApplication.shared.st
-
 
 
 struct MainScreenView: View {
@@ -67,11 +66,6 @@ struct MainScreenView: View {
 struct SpiralView: View {
 
     
-    var screenWidth = UIScreen.main.bounds.size.width
-    var screenHeight = UIScreen.main.bounds.size.height
-    var centerX = UIScreen.main.bounds.size.width / 2
-    var centerY = UIScreen.main.bounds.size.height * 0.8 / 2
-    
     //@EnvironmentObject var deviceOrientationEnv: DeviceOrientationEnv
     
     
@@ -80,6 +74,7 @@ struct SpiralView: View {
     // this view will update when changes happen to the model 
     @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
 
+    //screenWidth: SharedValues.screenWidth, screenHeight: SharedValues.screenHeight, centerX: SharedValues.centerX, centerY: SharedValues.centerY
     
     @EnvironmentObject var sharedValues: SharedValues
     

@@ -10,6 +10,8 @@ import SwiftUI
 
 // this is a ViewModel file
 
+
+
 class ImageSpiral: ObservableObject {
     
     // theta is modified acoording to slider progress
@@ -23,7 +25,16 @@ class ImageSpiral: ObservableObject {
     
     static let templeNames: Array<String> = readTempleNamesFromFile()
     static let templeNamesAndYears: Array<Array<String>> = readTempleNameYearFromFile()
-    
+//    
+////    static var screenWidth: CGFloat = SharedValues().screenWidth
+////    static var screenHeight: CGFloat = SharedValues().screenHeight
+////    static var centerX: CGFloat = SharedValues().centerX
+////    static var centerY: CGFloat = SharedValues().centerY
+//    
+//    static var screenWidth = UIScreen.main.bounds.size.width
+//    static var screenHeight = UIScreen.main.bounds.size.height
+//    static var centerX = UIScreen.main.bounds.size.width / 2
+//    static var centerY = UIScreen.main.bounds.size.height * 0.8 / 2
     
     // we make each one unique, so that we can loop through them with ForEach
     struct Info: Identifiable {

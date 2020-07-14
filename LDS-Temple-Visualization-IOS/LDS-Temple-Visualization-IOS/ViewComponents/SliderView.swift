@@ -16,7 +16,11 @@ struct SliderView: View {
     
     @ObservedObject var imageSpiralViewModel: ImageSpiral
     
+ 
+    
     var body: some View {
+        
+        
         
         VStack {
             
@@ -47,6 +51,8 @@ struct SliderView: View {
                         
                         
                         print("sliderProgress is \(sharedValues.sliderProgress)")
+                        
+                        //print(currentScreenWidth)
                         
                         sharedValues.oneTempleInfo.removeAll()
                         

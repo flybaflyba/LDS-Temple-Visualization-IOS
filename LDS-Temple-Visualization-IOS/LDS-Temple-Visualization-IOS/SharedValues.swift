@@ -45,14 +45,20 @@ class SharedValues: ObservableObject {
     
     @Published var modeTest: String = "default"
     
+    @Published var currentScreenWidth = UIScreen.main.bounds.size.width
+    @Published var currentScreenHeight = UIScreen.main.bounds.size.height
+    
     //@Published var orientation = UIDevice.current.orientation.isPortrait
     //@Published var orientation = (UIDeviceOrientation.portrait).isPortrait
     @Published var orientation = UIDevice.current.orientation
-    //@Published var orientationPortrait: (UIDevice.current.orientation.rawValue == 0 ? true : false)
+    @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
+        UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
+        UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
     
     init() {
         // 检测设备方向
         NotificationCenter.default.addObserver(self, selector: #selector(receivedRotation), name: UIDevice.orientationDidChangeNotification, object: nil)
+        print("device rotation when app launch: \(orientationInText)")
     }
     
     
@@ -61,7 +67,27 @@ class SharedValues: ObservableObject {
         // 屏幕方向
         self.orientation = UIDevice.current.orientation
 
-        //print(UIDevice.current.orientation)
+        self.orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
+            UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
+            UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
+        
+        print(self.orientationInText)
+        
+        if (self.orientationInText == "portrait") {
+            print("device rotates to portrait")
+            currentScreenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+            currentScreenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+            
+        } else if (self.orientationInText == "landscape") {
+            print("device rotates to landscape")
+            currentScreenWidth = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+            currentScreenHeight = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+        }
+        
+        
+        
+        print(currentScreenWidth)
+        print(currentScreenHeight)
         
                 switch UIDevice.current.orientation {
                 case UIDeviceOrientation.unknown:
