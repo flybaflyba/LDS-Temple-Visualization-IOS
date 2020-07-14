@@ -140,8 +140,6 @@ struct SpiralEffectSettingView: View {
 //                    Text("Mode: \(settings.mode)")
 //                }
                 
-                .frame(maxWidth: screenWidth/2)
-                
                 //Text("Mode: \(effects[selectedEffectIndex])")
             }
             //.background(Color.gray)
