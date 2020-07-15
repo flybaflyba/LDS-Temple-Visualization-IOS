@@ -32,7 +32,7 @@ struct SliderView: View {
         
         sharedValues.oneTempleInfo.removeAll()
         
-        sharedValues.tappedATemple = false
+        //sharedValues.tappedATemple = false
     }
     
     var body: some View {
@@ -54,8 +54,8 @@ struct SliderView: View {
                             updateSpiral()
                         }
                     MySlider(imageSpiralViewModel: imageSpiralViewModel)
-                        .frame(maxWidth: screenWidth * 0.8)
-                        .background(Color.red)
+                        .frame(maxWidth: (min(sharedValues.currentScreenWidth, sharedValues.currentScreenHeight)) * 0.8)
+                        //.background(Color.red)
                     Image(systemName: "arrow.right.square.fill")
                         .onTapGesture {
                             sharedValues.sliderProgress += 100
@@ -131,7 +131,7 @@ struct MySlider: View {
                     
                     sharedValues.oneTempleInfo.removeAll()
                     
-                    sharedValues.tappedATemple = false
+                    //sharedValues.tappedATemple = false
                     
             
                 }),

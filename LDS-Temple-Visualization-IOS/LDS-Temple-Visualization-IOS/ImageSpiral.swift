@@ -371,6 +371,7 @@ class ImageSpiral: ObservableObject {
             }
             
         }
+            
         
         
         
@@ -564,7 +565,7 @@ class ImageSpiral: ObservableObject {
     //func readOneTempleInfoFromFile(fileName: String) -> String {
         let oneTempleInfoNew: Array<String> = ImageSpiral.linesFromResourceForced(fileName: fileName)
         
-        print("reading this temple's info from file: \(fileName)")
+        //print("reading this temple's info from file: \(fileName)")
         
         var oneTempleInfo: Array<Info> = Array<Info>()
         for index in 0..<oneTempleInfoNew.count {

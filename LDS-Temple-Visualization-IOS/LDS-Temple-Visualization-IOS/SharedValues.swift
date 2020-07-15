@@ -24,8 +24,9 @@ class SharedValues: ObservableObject {
     @Published var selectedColor = Color.blue
     @Published var unSelectedColor = Color.gray
     
-    @Published var tappedATemple = false
+    //@Published var tappedATemple = false
     @Published var currentTappedTempleName = " "
+    @Published var currentTappedTempleId: Int = 0
     
     //@Published var appTitle = "Latter-day Temples"
     
@@ -47,6 +48,7 @@ class SharedValues: ObservableObject {
     
     @Published var currentScreenWidth = UIScreen.main.bounds.size.width
     @Published var currentScreenHeight = UIScreen.main.bounds.size.height
+    
     
     //@Published var orientation = UIDevice.current.orientation.isPortrait
     //@Published var orientation = (UIDeviceOrientation.portrait).isPortrait
@@ -111,7 +113,7 @@ class SharedValues: ObservableObject {
             
             screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
             
-            centerX = currentScreenWidth / 4
+            centerX = currentScreenWidth * 1 / 4
             centerY = currentScreenHeight * 0.6
         }
         

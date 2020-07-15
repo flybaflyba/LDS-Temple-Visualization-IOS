@@ -41,8 +41,11 @@ struct Spiral<TempleContent> {
     
     mutating func changeATemple(id: Int) {
         
+        print("change a temple starts here")
+        print("id is \(id)")
         
         if onScreenTemples[id].tapped == false {
+            
             
             oldX = onScreenTemples[id].x
             oldY = onScreenTemples[id].y
@@ -65,11 +68,16 @@ struct Spiral<TempleContent> {
             for index in 0..<onScreenTemples.count {
                 onScreenTemples[index].y = -onScreenTemples[index].y
                 onScreenTemples[index].size = -onScreenTemples[index].size
+                
+                //print("hi")
+                
             }
             
             onScreenTemples[id].x = oldX
             onScreenTemples[id].y = oldY
             onScreenTemples[id].size = oldSize
+            
+            //print("hi")
             
             onScreenTemples[id].content = Image(onScreenTemples[id].fileName + "") as! TempleContent
     

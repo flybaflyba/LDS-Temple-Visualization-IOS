@@ -46,7 +46,16 @@ struct MainScreenView: View {
     
     var body: some View {
         
-
+        ZStack {
+          
+//            Rectangle()
+//                .background(Color.red)
+//                .scaledToFill()
+//                .edgesIgnoringSafeArea(.all)
+                
+            
+            
+            
             NavigationView {
             SpiralView()
                 //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
@@ -59,9 +68,19 @@ struct MainScreenView: View {
                                             
 
             )
+                
+                
+                
         }
+            
+        }
+
+            
+            
+            
     }
 }
+
 
 
 struct SpiralView: View {
@@ -81,14 +100,14 @@ struct SpiralView: View {
     
     var currentScreenWidth: CGFloat {
         get {
-            print("new screen width: \(sharedValues.currentScreenWidth)")
+            //print("new screen width: \(sharedValues.currentScreenWidth)")
             return sharedValues.currentScreenWidth
         }
     }
     
     var currentScreenHeight: CGFloat {
         get {
-            print("new screen height: \(sharedValues.currentScreenHeight)")
+            //print("new screen height: \(sharedValues.currentScreenHeight)")
             return sharedValues.currentScreenHeight
         }
     }
@@ -116,30 +135,46 @@ struct SpiralView: View {
                             //print(temple.year)
                             //temple.content.resizable().frame(width: screenWidth, height: screenWidth, alignment: Alignment.center)
                             
+                            print("tapped a temple")
+                            
                             imageSpiralViewModel.changeATemple(id: temple.id)
                             
-                            print(screenWidth)
-                            print(sharedValues.orientation.rawValue)
+                            
+                            
+                            //print(screenWidth)
+                            //print(sharedValues.orientation.rawValue)
                            
+                            //print("hi")
+                            
                             if (temple.tapped == true) {
                                 SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
                                     sharedValues.oneTempleInfo.removeAll()
                                     
-                                    sharedValues.tappedATemple = false
-                                    
+                                    //sharedValues.tappedATemple = false
+                                 
+                                    print("tap a large temple")
                                 }
                             } else {
                                 SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                                     
-                                    sharedValues.tappedATemple = true
-                                    sharedValues.currentTappedTempleName = temple.name
-                         
-                                    print(sharedValues.currentTappedTempleName)
+                                    //sharedValues.tappedATemple = true
+                                    
+                                    
+                                    print("tap a small temple")
                                 }
+                                
+                                sharedValues.currentTappedTempleName = temple.name
+                            
+                                sharedValues.currentTappedTempleId = temple.id
+                            
+                                //print(sharedValues.currentTappedTempleName)
+                                
+                                
                                 //print(oneTempleInfo)
                             }
                             
+                            //print("hello")
                             
                         }
                     // this line shows us how the spiral looks like on screen
@@ -170,6 +205,126 @@ struct SpiralView: View {
     }
     
     
+    func PortraitView() -> some View {
+        
+        var body: some View {
+            VStack {
+            
+                drawTemples()
+                   
+                .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
+                //.position(x: currentScreenWidth/2, y: currentScreenHeight/2)
+                //.background(Color.green)
+                // we need this background color for testing purposes
+                
+                Spacer(minLength: 0)
+                
+                if sharedValues.oneTempleInfo.count == 0 {
+                    
+                    YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.05, alignment: Alignment.center)
+                        //.background(Color.blue)
+                        // we need this background color for testing purposes
+                     
+                    Spacer(minLength: 0)
+
+                    SliderView(imageSpiralViewModel: imageSpiralViewModel)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
+                        //.background(Color.green)
+                        // we need this background color for testing purposes
+                    
+                    
+                } else {
+                    MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
+                        
+                }
+                
+    //                    Rectangle()
+    //                        .foregroundColor(Color.gray)
+                
+            }
+        }
+        
+        return body
+}
+    
+    func LandscapeView() -> some View {
+        
+        var body: some View {
+    
+            HStack {
+                drawTemples()
+                    .frame(width: currentScreenWidth / 2 , height: currentScreenHeight, alignment: Alignment.center)
+                    //.background(Color.yellow)
+                
+        
+
+                if sharedValues.oneTempleInfo.count == 0 {
+                    VStack {
+                        YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
+                            //.background(Color.green)
+                        
+                        SliderView(imageSpiralViewModel: imageSpiralViewModel)
+                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.center)
+                            //.background(Color.red)
+                    }
+                } else {
+//                    Rectangle()
+                    MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
+                        .frame(maxHeight: currentScreenHeight * 0.6)
+                        //.background(Color.purple)
+//                        .onTapGesture {
+//                            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+//                                sharedValues.oneTempleInfo.removeAll()
+//                            }
+//
+//                        }
+                    
+                }
+
+                
+              
+                
+            }
+            
+            
+//            HStack {
+//
+//
+//                drawTemples()
+//                    .frame(width: currentScreenWidth * 1 / 2 , height: currentScreenHeight, alignment: Alignment.center)
+//                    .background(Color.yellow)
+//
+//                Spacer(minLength: 0)
+//
+//                if sharedValues.oneTempleInfo.count == 0 {
+//                    VStack {
+//                        YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+//                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
+//
+//                        Spacer(minLength: 0)
+//
+//                        SliderView(imageSpiralViewModel: imageSpiralViewModel)
+//                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.center)
+//
+//                    }
+//                } else {
+//                    MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
+//                        .frame(width: currentScreenWidth / 2, height: currentScreenHeight * 0.6, alignment: Alignment.center)
+//                        .background(Color.red)
+//
+//
+//
+//                }
+//        }
+//
+            
+        }
+        
+        return body
+}
     
     var body: some View {
         
@@ -178,79 +333,13 @@ struct SpiralView: View {
         return ZStack {
         
             if sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" {
-                VStack {
                 
-                    drawTemples()
-                       
-                    .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
-                    //.position(x: currentScreenWidth/2, y: currentScreenHeight/2)
-                    //.background(Color.green)
-                    // we need this background color for testing purposes
-                    
-                    Spacer(minLength: 0)
-                    
-                    
-                    
-                    if sharedValues.oneTempleInfo.count == 0 {
-                        
-                        YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                            .frame(width: currentScreenWidth, height: currentScreenHeight * 0.05, alignment: Alignment.center)
-                            .background(Color.blue)
-                            // we need this background color for testing purposes
-                         
-                        Spacer(minLength: 0)
-
-                        SliderView(imageSpiralViewModel: imageSpiralViewModel)
-                            .frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
-                            //.background(Color.green)
-                            // we need this background color for testing purposes
-                        
-                        
-                    } else {
-                        MileStoneDatesView()
-                            .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
-                            
-                    }
-                    
-                    Rectangle()
-                        .background(Color.gray)
-                    
-                }
+                PortraitView()
+                
             } else if sharedValues.orientationInText == "landscape" || sharedValues.orientationInText == "unknown" {
-                ZStack {
-                    HStack {
-                        
-                        
-                        drawTemples()
-                            .frame(width: currentScreenWidth * 1 / 2 , height: currentScreenHeight, alignment: Alignment.center)
-                            .background(Color.yellow)
-                        
-                        
-                        
-                        if sharedValues.oneTempleInfo.count == 0 {
-                            VStack {
-                                YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
-                                SliderView(imageSpiralViewModel: imageSpiralViewModel)
-                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.center)
-                            }
-                            
-                        } else {
-                            VStack {
-                                
-                                
-                                MileStoneDatesView()
-                                    .frame(width: currentScreenWidth / 2, height: currentScreenHeight * 0.6, alignment: Alignment.center)
-                                    .background(Color.red)
-                            }
-                            
-                        }
-                    }
-                  
-                    //Rectangle()
-                        //.background(Color.gray)
-                    
-                }
+             
+                LandscapeView()
+             
             }
         }
         
@@ -263,6 +352,7 @@ struct SpiralView: View {
     
     
 }
+
 
 
 
