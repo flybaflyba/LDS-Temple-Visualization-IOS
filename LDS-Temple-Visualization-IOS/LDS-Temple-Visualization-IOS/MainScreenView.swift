@@ -122,6 +122,10 @@ struct SpiralView: View {
             print("relocate spiral")
             
 
+            imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+            
+            imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+           
             print("changed a temple")
         
         }
