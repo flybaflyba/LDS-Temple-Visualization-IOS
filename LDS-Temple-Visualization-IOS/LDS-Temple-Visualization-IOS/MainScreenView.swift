@@ -119,6 +119,11 @@ struct SpiralView: View {
         if sharedValues.orientationChanged == true {
             imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
             sharedValues.orientationChanged = false
+            print("relocate spiral")
+            
+
+            print("changed a temple")
+        
         }
         
         var body: some View {
@@ -153,6 +158,7 @@ struct SpiralView: View {
                                     
                                     //sharedValues.tappedATemple = false
                                  
+                                    sharedValues.singleTempleShow = false
                                     print("tap a large temple")
                                 }
                             } else {
@@ -161,7 +167,7 @@ struct SpiralView: View {
                                     
                                     //sharedValues.tappedATemple = true
                                     
-                                    
+                                    sharedValues.singleTempleShow = true
                                     print("tap a small temple")
                                 }
                                 
@@ -342,11 +348,19 @@ struct SpiralView: View {
         
         return ZStack {
         
-            if sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" {
+            if (sharedValues.orientationInText == "portrait"
+                    || sharedValues.orientationInText == "unknown")
+                
+                
+            {
                 
                 PortraitView()
                 
-            } else if sharedValues.orientationInText == "landscape" || sharedValues.orientationInText == "unknown" {
+            } else if (sharedValues.orientationInText == "landscape"
+                        || sharedValues.orientationInText == "unknown")
+                        
+                
+            {
              
                 LandscapeView()
              

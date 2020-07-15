@@ -134,6 +134,8 @@ struct MySlider: View {
                     //sharedValues.tappedATemple = false
                     
             
+                    sharedValues.singleTempleShow = false
+                    
                 }),
            
            // when animation, less coordinates

@@ -49,6 +49,7 @@ struct MileStoneDatesView: View {
                 //var thisId = Int(sharedValues.currentTappedTempleId)
                 //imageSpiralViewModel.changeATemple(id: thisId)
 
+                //sharedValues.singleTempleShow = false
             }
         }
         

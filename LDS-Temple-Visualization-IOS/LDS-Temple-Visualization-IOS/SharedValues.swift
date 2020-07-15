@@ -49,6 +49,7 @@ class SharedValues: ObservableObject {
     @Published var currentScreenWidth = UIScreen.main.bounds.size.width
     @Published var currentScreenHeight = UIScreen.main.bounds.size.height
     
+    @Published var singleTempleShow = false 
     
     //@Published var orientation = UIDevice.current.orientation.isPortrait
     //@Published var orientation = (UIDeviceOrientation.portrait).isPortrait
@@ -59,6 +60,8 @@ class SharedValues: ObservableObject {
     @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
         UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
         UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
+    
+    var orientationRawValueHistory: Array<Int> = [0, 0, 0]
   
 //    @Published var orientationInText = (UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height ? "portrait" : "landscape")
     
@@ -78,9 +81,11 @@ class SharedValues: ObservableObject {
 //            UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
 //            UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
         
+        orientationRawValueHistory.append(UIDevice.current.orientation.rawValue)
+        
         if UIDevice.current.orientation.rawValue == 0 {
             self.orientationInText = "unknown"
-        } else if UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 {
+        } else if UIDevice.current.orientation.rawValue == 1 {
             self.orientationInText = "portrait"
         } else if UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 {
             self.orientationInText = "landscape"
@@ -93,7 +98,46 @@ class SharedValues: ObservableObject {
 //            self.orientationInText = "landscape"
 //        }
         
+        // if changed to portrait, landscapes left or right, we only update if last orientation is landscapes or portrait respectively
+        if orientationRawValueHistory[orientationRawValueHistory.count-1] == 1 {
+            if orientationRawValueHistory[orientationRawValueHistory.count-2] == 3 ||
+                orientationRawValueHistory[orientationRawValueHistory.count-2] == 4 ||
+                // if user turn the phone rotates to portrait through face up, is the last orientation landscape? if so turn, if not, now turn 
+                (orientationRawValueHistory[orientationRawValueHistory.count-2] == 5 &&
+                    (orientationRawValueHistory[orientationRawValueHistory.count-3] == 3 ||
+                        orientationRawValueHistory[orientationRawValueHistory.count-3] == 4 ||
+                        orientationRawValueHistory[orientationRawValueHistory.count-3] == 0)) {
+                //if singleTempleShow == false {
+                    orientationChanged = true
+                //}
+                oneTempleInfo.removeAll()
+                
+            }
+        } else if orientationRawValueHistory[orientationRawValueHistory.count-1] == 3 ||
+                    orientationRawValueHistory[orientationRawValueHistory.count-1] == 4 {
+            if orientationRawValueHistory[orientationRawValueHistory.count-2] == 1 ||
+                (orientationRawValueHistory[orientationRawValueHistory.count-2] == 5 &&
+                    orientationRawValueHistory[orientationRawValueHistory.count-3] == 1 ||
+                    orientationRawValueHistory[orientationRawValueHistory.count-3] == 0) {
+                //if singleTempleShow == false {
+                    orientationChanged = true
+                //}
+                oneTempleInfo.removeAll()
+            }
+        }
         
+        
+//        if // last orientation is not unknow, upsidedown, faceup facedown
+//            (orientationRawValueHistory[orientationRawValueHistory.count-2] == 0 ||
+//            orientationRawValueHistory[orientationRawValueHistory.count-2] == 2 ||
+//            orientationRawValueHistory[orientationRawValueHistory.count-2] == 5 ||
+//            orientationRawValueHistory[orientationRawValueHistory.count-2] == 6)
+//        {
+//            // do nothing
+//        } else {
+//            orientationChanged = true
+//        }
+//
         print(self.orientationInText)
         
         if (self.orientationInText == "portrait") {
@@ -106,6 +150,13 @@ class SharedValues: ObservableObject {
             centerX = currentScreenWidth / 2
             centerY = currentScreenHeight * 0.8 / 2
             
+            // when orientation changed to portrait or landscape.
+            // when changed to other ones, such as face up or upside down, no need to change view
+//            if UIDevice.current.orientation.rawValue != 2 && UIDevice.current.orientation.rawValue != 5 && UIDevice.current.orientation.rawValue != 6 {
+//                orientationChanged = true
+//            }
+            
+            
         } else if (self.orientationInText == "landscape") {
             print("device rotates to landscape")
             currentScreenWidth = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
@@ -115,6 +166,10 @@ class SharedValues: ObservableObject {
             
             centerX = currentScreenWidth * 0.25
             centerY = currentScreenHeight * 0.6
+            
+//            if UIDevice.current.orientation.rawValue != 2 && UIDevice.current.orientation.rawValue != 5 && UIDevice.current.orientation.rawValue != 6 {
+//                orientationChanged = true
+//            }
         }
         
         
@@ -124,7 +179,7 @@ class SharedValues: ObservableObject {
         
         
         
-        orientationChanged = true
+        
         
         print("centerX and centerY once orientation changed: \(centerX), \(centerY)")
         
