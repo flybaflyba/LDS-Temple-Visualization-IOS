@@ -116,15 +116,21 @@ struct SpiralView: View {
     
     func drawTemples() -> some View {
         
+       
+        
         if sharedValues.orientationChanged == true {
+            
+            if sharedValues.singleTempleShow {
+                imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+            }
+            
             imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
             sharedValues.orientationChanged = false
             print("relocate spiral")
             
-
-            imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
-            
-            imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+            if sharedValues.singleTempleShow {
+                imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+            }
            
             print("changed a temple")
         
