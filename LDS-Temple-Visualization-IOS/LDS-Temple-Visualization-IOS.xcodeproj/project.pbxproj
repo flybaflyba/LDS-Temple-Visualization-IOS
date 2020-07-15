@@ -625,8 +625,8 @@
 				DD44BEDC24BCDF9600C6669E /* YearDisplayView.swift */,
 				DD44BEDA24BCD96F00C6669E /* SliderView.swift */,
 				DD44BED824BCD71000C6669E /* MileStoneDatesView.swift */,
-				DDB13D7E24B8FFDA00944506 /* SettingView.swift */,
 				DDCCF89924BA94180010E974 /* InAppWebView.swift */,
+				DDB13D7E24B8FFDA00944506 /* SettingView.swift */,
 				DDCCF89524BA61E50010E974 /* AboutView.swift */,
 			);
 			path = ViewComponents;

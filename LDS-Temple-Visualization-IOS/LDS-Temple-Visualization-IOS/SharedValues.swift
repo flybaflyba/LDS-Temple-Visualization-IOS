@@ -201,6 +201,14 @@ class SharedValues: ObservableObject {
                     print("屏幕朝下 \(UIDevice.current.orientation.rawValue)") // 6
                 }
         
+        
+        print(UIDevice.current.userInterfaceIdiom)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+           print("running on iPhone")
+        }
+        
     }
+    
+    
     
 }

@@ -11,8 +11,10 @@ import SwiftUI
 struct SettingView: View {
     
     var body: some View {
+        
         SettingViewMain()
             .navigationBarTitle("Settings")
+        
     }
     
 

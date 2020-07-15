@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var sharedValues = SharedValues()
         
         let contentView = MainScreenView()
-
+        //let contentView = SettingView()
         
         
         // Use a UIHostingController as window root view controller.

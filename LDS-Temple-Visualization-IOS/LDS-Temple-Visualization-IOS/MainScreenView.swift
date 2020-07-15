@@ -52,27 +52,25 @@ struct MainScreenView: View {
 //                .background(Color.red)
 //                .scaledToFill()
 //                .edgesIgnoringSafeArea(.all)
-                
-            
             
             
             NavigationView {
-            SpiralView()
-                //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
-                //.background(Color.gray)
-                .navigationBarTitle("Latter-day Temples", displayMode: .inline)
-                .navigationBarItems(trailing:
-                                        NavigationLink(destination: SettingView()) {
-                                            Image(systemName: "ellipsis.circle.fill")
+                SpiralView()
+                    
+                    //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
+                    //.background(Color.gray)
+                    .navigationBarTitle("Latter-day Temples", displayMode: .inline)
+                    .navigationBarItems(trailing:
+                                            NavigationLink(destination: SettingView()) {
+                                                Image(systemName: "ellipsis.circle.fill")
 
-                                        }
-                                            
+                                            }
+                                                
 
-            )
-                
-                
+                )
                 
         }
+            .navigationViewStyle(StackNavigationViewStyle())
             
         }
 
