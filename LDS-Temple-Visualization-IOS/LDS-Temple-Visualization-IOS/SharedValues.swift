@@ -113,7 +113,7 @@ class SharedValues: ObservableObject {
             
             screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
             
-            centerX = currentScreenWidth * 1 / 4
+            centerX = currentScreenWidth * 0.25
             centerY = currentScreenHeight * 0.6
         }
         
