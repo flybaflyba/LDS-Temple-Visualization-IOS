@@ -59,11 +59,12 @@ struct MainScreenView: View {
             NavigationView {
             SpiralView()
                 //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
-                .background(Color.gray)
+                //.background(Color.gray)
                 .navigationBarTitle("Latter-day Temples", displayMode: .inline)
                 .navigationBarItems(trailing:
                                         NavigationLink(destination: SettingView()) {
                                             Image(systemName: "ellipsis.circle.fill")
+
                                         }
                                             
 
@@ -222,14 +223,14 @@ struct SpiralView: View {
                 if sharedValues.oneTempleInfo.count == 0 {
                     
                     YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.05, alignment: Alignment.center)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
                         //.background(Color.blue)
                         // we need this background color for testing purposes
                      
                     Spacer(minLength: 0)
 
                     SliderView(imageSpiralViewModel: imageSpiralViewModel)
-                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.15, alignment: Alignment.center)
                         //.background(Color.green)
                         // we need this background color for testing purposes
                     
@@ -254,6 +255,9 @@ struct SpiralView: View {
         var body: some View {
     
             HStack {
+                
+                
+                
                 drawTemples()
                     .frame(width: currentScreenWidth / 2 , height: currentScreenHeight, alignment: Alignment.center)
                     //.background(Color.yellow)
@@ -282,7 +286,13 @@ struct SpiralView: View {
 //
 //                        }
                     
+//                    Rectangle()
+//                        .background(Color.green)
+                    
                 }
+                
+//                Rectangle()
+//                    .background(Color.green)
 
                 
               
