@@ -32,7 +32,7 @@ class SharedValues: ObservableObject {
     
     //@Published var appTitle = "Latter-day Temples"
     
-    //@Published var thisUrl = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
+    @Published var templesList = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
     
     @Published var myAnimation: Animation = Animation.linear(duration: 1)
     @Published var myNoAnimation: Animation = Animation.linear(duration: 0.001)

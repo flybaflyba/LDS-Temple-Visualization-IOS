@@ -26,10 +26,23 @@ struct WebView : UIViewRepresentable {
 
 struct InAppWebView: View {
     
+    @EnvironmentObject var sharedValues: SharedValues
+    
     var url: String
     
     var body: some View {
-        WebView(request: URLRequest(url: URL(string: url)!))
+        
+        VStack {
+            if url == "no link" {
+                Text("This temple does not have a website yet.")
+            } else {
+                WebView(request: URLRequest(url: URL(string: url)!))
+            }
+        }
+        
+        
+        
+        
     }
 }
 
