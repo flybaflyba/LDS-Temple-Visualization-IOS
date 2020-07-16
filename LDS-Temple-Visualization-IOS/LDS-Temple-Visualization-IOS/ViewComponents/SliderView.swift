@@ -103,19 +103,29 @@ struct SliderView: View {
                  //Spacer(minLength: 0)
                  // this is slider lable ==================================
                 HStack {
-                    Text("1836")
-                        .padding()
+                    
+                    if sharedValues.currentDevice == .phone && sharedValues.orientationInText == "landscape" {
                         
-                        //.frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                    } else {
+                        Text("1836")
+                            .padding()
+                            //.frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                        
+                    }
                     
                     //Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05, alignment: Alignment.center)
                     YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
                         //.background(Color.red)
                         .padding()
                      
-                    Text("2020")
-                        .padding()
-                        //.frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                    if sharedValues.currentDevice == .phone && sharedValues.orientationInText == "landscape" {
+                        
+                    } else {
+                        Text("2020")
+                            .padding()
+                            //.frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                    }
+                    
                 }
                  //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             }

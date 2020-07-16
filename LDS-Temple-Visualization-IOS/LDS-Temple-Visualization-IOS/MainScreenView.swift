@@ -284,16 +284,23 @@ struct SpiralView: View {
 
 //                if sharedValues.oneTempleInfo.count == 0 {
                 if sharedValues.tappedATemple == false {
-                    VStack {
-                        //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                            //.frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
-                            //.background(Color.green)
-                        
-                        
-                        SliderView(imageSpiralViewModel: imageSpiralViewModel)
-                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 3, alignment: Alignment.center)
-                            //.background(Color.red)
+                    GeometryReader { geometry in
+                        VStack {
+                            //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                                //.frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
+                                //.background(Color.green)
+                            
+                            
+                            SliderView(imageSpiralViewModel: imageSpiralViewModel)
+                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.3, alignment: Alignment.center)
+                                //.background(Color.red)
+                                //.frame(maxWidth: currentScreenWidth * 0.5, maxHeight: currentScreenHeight * 0.6)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
+                        }
+                    
                     }
+                            
+                    
                 } else {
 //                    Rectangle()
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
