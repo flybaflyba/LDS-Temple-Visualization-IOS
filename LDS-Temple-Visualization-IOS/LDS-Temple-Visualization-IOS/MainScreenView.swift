@@ -284,8 +284,9 @@ struct SpiralView: View {
                             //.frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
                             //.background(Color.green)
                         
+                        
                         SliderView(imageSpiralViewModel: imageSpiralViewModel)
-                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.center)
+                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 3, alignment: Alignment.center)
                             //.background(Color.red)
                     }
                 } else {
@@ -350,7 +351,7 @@ struct SpiralView: View {
         return body
 }
     
-    // this is very much like PortraitView 
+    // this is very much like PortraitView
     func LandscapeViewForPad() -> some View {
         
         var body: some View {

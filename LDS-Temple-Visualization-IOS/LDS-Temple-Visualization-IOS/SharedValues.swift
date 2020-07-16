@@ -28,6 +28,7 @@ class SharedValues: ObservableObject {
     @Published var currentTappedTempleName = " "
     @Published var currentTappedTempleId: Int = 0
     
+    
     //@Published var appTitle = "Latter-day Temples"
     
     //@Published var thisUrl = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
@@ -194,7 +195,7 @@ class SharedValues: ObservableObject {
             
             centerX = currentScreenWidth / 2
 //            centerY = currentScreenHeight * 0.8 / 2
-            centerY = screenWidth * 0.8
+            centerY = currentScreenHeight * 0.4
             
             // when orientation changed to portrait or landscape.
             // when changed to other ones, such as face up or upside down, no need to change view
@@ -214,7 +215,7 @@ class SharedValues: ObservableObject {
             if currentDevice == .phone {
                 screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
                 centerX = currentScreenWidth / 4
-                centerY = screenWidth * 0.7
+                centerY = currentScreenHeight * 0.6
             } else {
                 screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6
                 centerX = currentScreenWidth / 2
