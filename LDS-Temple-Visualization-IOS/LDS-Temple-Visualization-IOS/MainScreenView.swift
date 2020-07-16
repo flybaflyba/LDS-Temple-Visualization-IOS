@@ -162,18 +162,21 @@ struct SpiralView: View {
                             
                             if (temple.tapped == true) {
                                 SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
-                                    sharedValues.oneTempleInfo.removeAll()
                                     
-                                    //sharedValues.tappedATemple = false
+                                    //sharedValues.oneTempleInfo.removeAll()
+                                    
+                                    sharedValues.tappedATemple = false
                                  
                                     sharedValues.singleTempleShow = false
                                     print("tap a large temple")
+                                    
+                                
                                 }
                             } else {
                                 SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                                     
-                                    //sharedValues.tappedATemple = true
+                                    sharedValues.tappedATemple = true
                                     
                                     sharedValues.singleTempleShow = true
                                     print("tap a small temple")
@@ -234,7 +237,8 @@ struct SpiralView: View {
                 
                 Spacer(minLength: 0)
                 
-                if sharedValues.oneTempleInfo.count == 0 {
+//                if sharedValues.oneTempleInfo.count == 0 {
+                if sharedValues.tappedATemple == false {
                     
                     //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
                         //.frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
@@ -278,7 +282,8 @@ struct SpiralView: View {
                 
         
 
-                if sharedValues.oneTempleInfo.count == 0 {
+//                if sharedValues.oneTempleInfo.count == 0 {
+                if sharedValues.tappedATemple == false {
                     VStack {
                         //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
                             //.frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
@@ -366,7 +371,8 @@ struct SpiralView: View {
                 
                 Spacer(minLength: 0)
                 
-                if sharedValues.oneTempleInfo.count == 0 {
+//                if sharedValues.oneTempleInfo.count == 0 {
+                if sharedValues.tappedATemple == false {
                     
                     
                      

@@ -24,7 +24,7 @@ class SharedValues: ObservableObject {
     @Published var selectedColor = Color.blue
     @Published var unSelectedColor = Color.gray
     
-    //@Published var tappedATemple = false
+    @Published var tappedATemple = false
     @Published var currentTappedTempleName = " "
     @Published var currentTappedTempleId: Int = 0
     @Published var currentTappedTempleLink = " "
@@ -115,7 +115,11 @@ class SharedValues: ObservableObject {
                 orientationRawValueHistory.removeAll()
                 
                 orientationChanged = true
-                oneTempleInfo.removeAll()
+//                SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
+//                    oneTempleInfo.removeAll()
+//                }
+               
+                
                 
                 print("hi")
                 
@@ -129,7 +133,10 @@ class SharedValues: ObservableObject {
                 orientationRawValueHistory.removeAll()
                 
                 orientationChanged = true
-                oneTempleInfo.removeAll()
+                
+//                SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
+//                    oneTempleInfo.removeAll()
+//                }
                 
                 
             }
