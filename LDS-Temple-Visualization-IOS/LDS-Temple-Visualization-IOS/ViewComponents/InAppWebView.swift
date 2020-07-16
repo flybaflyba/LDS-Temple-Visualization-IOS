@@ -26,7 +26,6 @@ struct WebView : UIViewRepresentable {
 
 struct InAppWebView: View {
     
-    @EnvironmentObject var sharedValues: SharedValues
     
     var url: String
     

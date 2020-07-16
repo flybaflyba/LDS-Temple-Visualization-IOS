@@ -286,15 +286,24 @@ struct AboutButtonView: View {
 }
 
 struct MoreButtonView: View {
+    @EnvironmentObject var sharedValues: SharedValues
     
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         
+            NavigationLink(destination: InAppWebView(url: sharedValues.templesList)) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(Color.gray)
+                    Text("Temple List")
+                        .padding()
+                        // check system is in dark or light mode then use different color
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                }
+            }
+            
         
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.gray)
-            Text("More to Come")
-        }
     }
 }
 
