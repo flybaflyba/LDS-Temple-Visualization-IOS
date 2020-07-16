@@ -16,7 +16,6 @@ public var centerX = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.s
 public var centerY = screenHeight * 0.8 / 2
 
 
-
 //let statusbarHeight = UIApplication.shared.st
 
 
@@ -420,30 +419,38 @@ struct SpiralView: View {
         
 //            PortraitView()
             
-            if (sharedValues.orientationInText == "portrait"
-                    || sharedValues.orientationInText == "unknown")
-
-
-            {
-
-                PortraitView()
-
-            } else if (sharedValues.orientationInText == "landscape"
+            if sharedValues.orientationInText == "unknown" {
+                
+                Text("orientationInText when launch is \(sharedValues.orientationInText) why is it unknow? ")
+                
+            } else {
+                if (sharedValues.orientationInText == "portrait"
                         || sharedValues.orientationInText == "unknown")
 
 
-            {
+                {
 
-                if sharedValues.currentDevice == .phone {
-                    LandscapeViewForPhone()
-                } else {
-                    LandscapeViewForPad()
-                    //PortraitView()
+                    PortraitView()
+
+                } else if (sharedValues.orientationInText == "landscape"
+                            || sharedValues.orientationInText == "unknown")
+
+
+                {
+
+                    if sharedValues.currentDevice == .phone {
+                        LandscapeViewForPhone()
+                    } else {
+                        LandscapeViewForPad()
+                        //PortraitView()
+                    }
+                    //LandscapeView()
+
+                    //LandscapeViewSimilarToPortraitView()
                 }
-                //LandscapeView()
-
-                //LandscapeViewSimilarToPortraitView()
             }
+            
+            
         }
         
                         
