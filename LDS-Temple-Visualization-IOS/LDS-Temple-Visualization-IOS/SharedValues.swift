@@ -27,6 +27,7 @@ class SharedValues: ObservableObject {
     //@Published var tappedATemple = false
     @Published var currentTappedTempleName = " "
     @Published var currentTappedTempleId: Int = 0
+    @Published var currentTappedTempleLink = " "
     
     
     //@Published var appTitle = "Latter-day Temples"

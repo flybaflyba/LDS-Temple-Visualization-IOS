@@ -33,6 +33,7 @@ struct Spiral<TempleContent> {
         print("you clicked on \(temple.name)")
         //print("it's year is \(temple.year)")
         print("this temple id is \(temple.id)")
+        print("this temple id is \(temple.link)")
     }
     
     var oldX: CGFloat = 0
@@ -121,6 +122,7 @@ struct Spiral<TempleContent> {
                 
                 let name: String = onScreenTemplesString[1][index]
                 let year: String = onScreenTemplesString[2][index]
+                let link: String = onScreenTemplesString[3][index]
                 
                 let fileName: String = onScreenTemplesString[0][index]
 //                // this is with when we temples that is outside of coordinates and sizes list,
@@ -137,7 +139,7 @@ struct Spiral<TempleContent> {
 //                }
                 
                 
-                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size, name: name, year: year, fileName: fileName))
+                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size, name: name, year: year, fileName: fileName, link: link))
 
                 
             }
@@ -183,6 +185,7 @@ struct Spiral<TempleContent> {
 //            }
             onScreenTemples[index].name = onScreenTemplesString[1][index]
             onScreenTemples[index].year = onScreenTemplesString[2][index]
+            onScreenTemples[index].link = onScreenTemplesString[3][index]
             onScreenTemples[index].fileName = onScreenTemplesString[0][index]
             
             
@@ -210,5 +213,6 @@ struct Spiral<TempleContent> {
         var year: String
         var fileName: String
         var tapped: Bool = false
+        var link: String
     }
 }

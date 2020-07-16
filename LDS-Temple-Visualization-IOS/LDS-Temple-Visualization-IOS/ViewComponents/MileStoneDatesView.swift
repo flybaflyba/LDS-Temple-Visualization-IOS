@@ -16,8 +16,10 @@ struct MileStoneDatesView: View {
     
     var body: some View {
         
+        // "https://www.churchofjesuschrist.org/temples/list?lang=eng"
+        
         VStack {
-            NavigationLink(destination: InAppWebView(url: "https://www.churchofjesuschrist.org/temples/list?lang=eng")) {
+            NavigationLink(destination: InAppWebView(url: sharedValues.currentTappedTempleLink)) {
                     Text(sharedValues.currentTappedTempleName)
             }
             

@@ -400,6 +400,7 @@ class ImageSpiral: ObservableObject {
         
         var collectingOnScreenTemplesNames = Array<String>()
         var collectingOnScreenTemplesYears = Array<String>()
+        var collectingOnScreenTemplesLinks = Array<String>()
         
         //print(ImageSpiral.templeNamesAndYears[1])
         
@@ -413,6 +414,7 @@ class ImageSpiral: ObservableObject {
                 collectingOnScreenTemples.append(ImageSpiral.templeNames[templeIndex])
                 collectingOnScreenTemplesNames.append(ImageSpiral.templeNamesAndYears[0][templeIndex])
                 collectingOnScreenTemplesYears.append(ImageSpiral.templeNamesAndYears[1][templeIndex])
+                collectingOnScreenTemplesLinks.append(ImageSpiral.templeNamesAndYears[2][templeIndex])
                 //print("name here -------\(ImageSpiral.templeNamesAndYears[0][templeIndex])")
                 
                 //print("year here +++\(ImageSpiral.templeNamesAndYears[1][templeIndex])")
@@ -432,14 +434,16 @@ class ImageSpiral: ObservableObject {
                 collectingOnScreenTemples.append("clear_image")
                 collectingOnScreenTemplesNames.append("No Temple")
                 collectingOnScreenTemplesYears.append("No Year")
+                collectingOnScreenTemplesLinks.append("No link")
             }
             
             //print(templePosition)
             
         }
         print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
-        print("collectingOnScreenTemplesNames length after should be \(collectingOnScreenTemplesNames.count)")
-        print("collectingOnScreenTemplesYears length after should be \(collectingOnScreenTemplesYears.count)")
+        print("collectingOnScreenTemples Names length after should be \(collectingOnScreenTemplesNames.count)")
+        print("collectingOnScreenTemples Years length after should be \(collectingOnScreenTemplesYears.count)")
+        print("collectingOnScreenTemples Links length after should be \(collectingOnScreenTemplesYears.count)")
         
         print("start year is \(startYear)")
         print("end year is \(endYear)")
@@ -457,6 +461,7 @@ class ImageSpiral: ObservableObject {
         collectingOnScreenTemplesNamesAndYears.append(collectingOnScreenTemples)
         collectingOnScreenTemplesNamesAndYears.append(collectingOnScreenTemplesNames)
         collectingOnScreenTemplesNamesAndYears.append(collectingOnScreenTemplesYears)
+        collectingOnScreenTemplesNamesAndYears.append(collectingOnScreenTemplesLinks)
         
         //print(collectingOnScreenTemplesNamesAndYears)
         
@@ -524,7 +529,7 @@ class ImageSpiral: ObservableObject {
         
         allTempleNames.removeLast()
     
-        print("allTempleNames length is \(allTempleNames.count)")
+        print("allTempleFileNames length is \(allTempleNames.count)")
         
         return allTempleNames
     }
@@ -545,18 +550,26 @@ class ImageSpiral: ObservableObject {
         
         var allTempleNames: Array<String> = Array<String>()
         var allTempleYears: Array<String> = Array<String>()
+        var allTempleLinks: Array<String> = Array<String>()
         
         for i in 0..<allTempleNamesYears.count / 2 {
             allTempleNames.append(allTempleNamesYears[2 * i])
             allTempleYears.append(allTempleNamesYears[2 * i + 1])
+            //allTempleLinks.append("https://www.google.com/")
         }
+        
+        allTempleLinks = readTempleLinksFromFile()
         
         print("allTempleYear length is \(allTempleYears.count)")
         print("allTempleNames length is \(allTempleNames.count)")
+        print("allTempleLinks length is \(allTempleLinks.count)")
         
         var allTempleNamesYearsCombine: Array<Array<String>> = Array<Array<String>>()
         allTempleNamesYearsCombine.append(allTempleNames)
         allTempleNamesYearsCombine.append(allTempleYears)
+        allTempleNamesYearsCombine.append(allTempleLinks)
+        
+        print("allTemple Info length is \(allTempleNamesYearsCombine.count)")
         
         return allTempleNamesYearsCombine
     }
@@ -583,7 +596,14 @@ class ImageSpiral: ObservableObject {
     }
     
 
-    
+    static func readTempleLinksFromFile() -> Array<String> {
+        
+        //var templeNames: Array<String> = Array<String>()
+        var allTempleLinks: Array<String> = linesFromResourceForced(fileName: "templeLinks")
+        allTempleLinks.removeLast()
+        print("allTempleLinks length when read is \(allTempleLinks.count)")
+        return allTempleLinks
+    }
     
     
     

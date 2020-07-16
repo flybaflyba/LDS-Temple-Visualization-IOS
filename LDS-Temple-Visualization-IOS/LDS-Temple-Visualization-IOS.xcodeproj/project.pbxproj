@@ -249,6 +249,7 @@
 		DD47FD9124B5863600A082D6 /* brasilia_brazil_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FCAE24B5863600A082D6 /* brasilia_brazil_temple */; };
 		DD47FD9224B5863600A082D6 /* oklahoma_city_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FCAF24B5863600A082D6 /* oklahoma_city_temple */; };
 		DD47FD9324B5863600A082D6 /* old_nauvoo_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD47FCB024B5863600A082D6 /* old_nauvoo_temple */; };
+		DD5CC41224C0E44400A53AD1 /* templeLinks in Resources */ = {isa = PBXBuildFile; fileRef = DD5CC41124C0E44400A53AD1 /* templeLinks */; };
 		DDACE9FF24B55D9E0098F812 /* templeNamesYears in Resources */ = {isa = PBXBuildFile; fileRef = DDACE9FE24B55D9E0098F812 /* templeNamesYears */; };
 		DDB13D7F24B8FFDA00944506 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB13D7E24B8FFDA00944506 /* SettingView.swift */; };
 		DDCCF89624BA61E50010E974 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCCF89524BA61E50010E974 /* AboutView.swift */; };
@@ -521,6 +522,7 @@
 		DD47FCAE24B5863600A082D6 /* brasilia_brazil_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = brasilia_brazil_temple; sourceTree = "<group>"; };
 		DD47FCAF24B5863600A082D6 /* oklahoma_city_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oklahoma_city_temple; sourceTree = "<group>"; };
 		DD47FCB024B5863600A082D6 /* old_nauvoo_temple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = old_nauvoo_temple; sourceTree = "<group>"; };
+		DD5CC41124C0E44400A53AD1 /* templeLinks */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeLinks; sourceTree = "<group>"; };
 		DDACE9FE24B55D9E0098F812 /* templeNamesYears */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeNamesYears; sourceTree = "<group>"; };
 		DDB13D7E24B8FFDA00944506 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		DDCCF89524BA61E50010E974 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */,
 				1EBF98DB24AAC678005CC70D /* Sprial.swift */,
 				1EFE4A6024AD747700FAD239 /* templeFilesNames */,
+				DD5CC41124C0E44400A53AD1 /* templeLinks */,
 				DDACE9FE24B55D9E0098F812 /* templeNamesYears */,
 				1E7A172E24AAAFC500519D64 /* Assets.xcassets */,
 				1E7A173324AAAFC500519D64 /* LaunchScreen.storyboard */,
@@ -1121,6 +1124,7 @@
 				DD47FCE224B5863600A082D6 /* monterrey_mexico_temple in Resources */,
 				DD47FCC824B5863600A082D6 /* recife_brazil_temple in Resources */,
 				DD47FD9124B5863600A082D6 /* brasilia_brazil_temple in Resources */,
+				DD5CC41224C0E44400A53AD1 /* templeLinks in Resources */,
 				DD47FD5924B5863600A082D6 /* concepcion_chile_temple in Resources */,
 				DD47FD8A24B5863600A082D6 /* aba_nigeria_temple in Resources */,
 				DD47FD2D24B5863600A082D6 /* montevideo_uruguay_temple in Resources */,

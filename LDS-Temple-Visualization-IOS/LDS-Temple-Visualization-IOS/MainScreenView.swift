@@ -153,7 +153,7 @@ struct SpiralView: View {
                             
                             imageSpiralViewModel.changeATemple(id: temple.id)
                             
-                            
+                            print("tapped temple Link is \(temple.link)")
                             
                             //print(screenWidth)
                             //print(sharedValues.orientation.rawValue)
@@ -180,8 +180,8 @@ struct SpiralView: View {
                                 }
                                 
                                 sharedValues.currentTappedTempleName = temple.name
-                            
                                 sharedValues.currentTappedTempleId = temple.id
+                                sharedValues.currentTappedTempleLink = temple.link
                             
                                 //print(sharedValues.currentTappedTempleName)
                                 
