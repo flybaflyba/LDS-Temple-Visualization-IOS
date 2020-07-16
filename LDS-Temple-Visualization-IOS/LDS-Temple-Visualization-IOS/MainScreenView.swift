@@ -236,15 +236,15 @@ struct SpiralView: View {
                 
                 if sharedValues.oneTempleInfo.count == 0 {
                     
-                    YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
+                    //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                        //.frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
                         //.background(Color.blue)
                         // we need this background color for testing purposes
                      
-                    Spacer(minLength: 0)
+                    //Spacer(minLength: 0)
 
                     SliderView(imageSpiralViewModel: imageSpiralViewModel)
-                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.15, alignment: Alignment.center)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
                         //.background(Color.green)
                         // we need this background color for testing purposes
                     
@@ -280,8 +280,8 @@ struct SpiralView: View {
 
                 if sharedValues.oneTempleInfo.count == 0 {
                     VStack {
-                        YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
+                        //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                            //.frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
                             //.background(Color.green)
                         
                         SliderView(imageSpiralViewModel: imageSpiralViewModel)
@@ -350,28 +350,79 @@ struct SpiralView: View {
         return body
 }
     
+    
+    func LandscapeViewSimilarToPortraitView() -> some View {
+        
+        var body: some View {
+            VStack {
+            
+                drawTemples()
+                   
+                .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
+                //.position(x: currentScreenWidth/2, y: currentScreenHeight/2)
+                //.background(Color.green)
+                // we need this background color for testing purposes
+                
+                Spacer(minLength: 0)
+                
+                if sharedValues.oneTempleInfo.count == 0 {
+                    
+                    
+                     
+                    
+
+                    SliderView(imageSpiralViewModel: imageSpiralViewModel)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
+                        //.background(Color.green)
+                        // we need this background color for testing purposes
+                    
+                    //Spacer(minLength: 0)
+                    
+                    //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                        //.frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
+                        //.background(Color.blue)
+                        // we need this background color for testing purposes
+                    
+                } else {
+                    MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
+                        
+                }
+                
+    //                    Rectangle()
+    //                        .foregroundColor(Color.gray)
+                
+            }
+        }
+        
+        return body
+}
+    
     var body: some View {
         
         
         
         return ZStack {
         
+//            PortraitView()
+            
             if (sharedValues.orientationInText == "portrait"
                     || sharedValues.orientationInText == "unknown")
-                
-                
+
+
             {
-                
+
                 PortraitView()
-                
+
             } else if (sharedValues.orientationInText == "landscape"
                         || sharedValues.orientationInText == "unknown")
-                        
-                
+
+
             {
-             
-                LandscapeView()
-             
+
+                //LandscapeView()
+
+                LandscapeViewSimilarToPortraitView()
             }
         }
         

@@ -148,7 +148,8 @@ class SharedValues: ObservableObject {
             screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
             centerX = currentScreenWidth / 2
-            centerY = currentScreenHeight * 0.8 / 2
+//            centerY = currentScreenHeight * 0.8 / 2
+            centerY = screenWidth * 0.8
             
             // when orientation changed to portrait or landscape.
             // when changed to other ones, such as face up or upside down, no need to change view
@@ -162,10 +163,14 @@ class SharedValues: ObservableObject {
             currentScreenWidth = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
-            screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
+            screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6
             
-            centerX = currentScreenWidth * 0.25
-            centerY = currentScreenHeight * 0.6
+            centerX = currentScreenWidth / 2
+//            centerY = currentScreenHeight * 0.8 / 2
+            centerY = screenWidth * 0.8
+            
+//            centerX = currentScreenWidth * 0.25
+//            centerY = currentScreenHeight * 0.6
             
 //            if UIDevice.current.orientation.rawValue != 2 && UIDevice.current.orientation.rawValue != 5 && UIDevice.current.orientation.rawValue != 6 {
 //                orientationChanged = true

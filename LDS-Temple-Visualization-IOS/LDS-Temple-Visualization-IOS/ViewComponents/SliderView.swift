@@ -35,52 +35,96 @@ struct SliderView: View {
         //sharedValues.tappedATemple = false
     }
     
+//    
+//    func landscapeSliderView() -> some View {
+//        
+//        var body: some View {
+//            
+//            HStack {
+//                Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+//                Image(systemName: "arrow.left.square.fill")
+//                    .onTapGesture {
+//                        sharedValues.sliderProgress -= 100
+//                        updateSpiral()
+//                    }
+//                MySlider(imageSpiralViewModel: imageSpiralViewModel)
+//                    .frame(maxWidth: (min(sharedValues.currentScreenWidth, sharedValues.currentScreenHeight)) * 0.8)
+//                    //.background(Color.red)
+//                Image(systemName: "arrow.right.square.fill")
+//                    .onTapGesture {
+//                        sharedValues.sliderProgress += 100
+//                        updateSpiral()
+//                    }
+//                Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+//            }
+//         
+//                    
+//       
+//        }
+//        
+//        return body
+//    }
+    
     var body: some View {
         
-        
-        
-        VStack {
+        VStack{
             
         
-        VStack {
+        //if sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" {
             
-            //ProgressBar(progress: Float(sharedValues.sliderProgress / 7000))
-         
-          
-                HStack {
-                    Image(systemName: "arrow.left.square.fill")
-                        .onTapGesture {
-                            sharedValues.sliderProgress -= 100
-                            updateSpiral()
-                        }
-                    MySlider(imageSpiralViewModel: imageSpiralViewModel)
-                        .frame(maxWidth: (min(sharedValues.currentScreenWidth, sharedValues.currentScreenHeight)) * 0.8)
-                        //.background(Color.red)
-                    Image(systemName: "arrow.right.square.fill")
-                        .onTapGesture {
-                            sharedValues.sliderProgress += 100
-                            updateSpiral()
-                        }
-                }
-            
-        
-     //            Button(action: {
-     //                // your action here
-     //            }) {
-     //                Text("Button title")
-     //            }.frame(width: screenWidth / 4 * 2, height: screenHeight * 0.1, alignment: Alignment.center)
-                 
-             //Spacer(minLength: 0)
-             // this is slider lable ==================================
-            HStack {
-                Text("1836").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+            VStack {
                 
-                Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05, alignment: Alignment.center)
-                 
-                Text("2020").frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                //ProgressBar(progress: Float(sharedValues.sliderProgress / 7000))
+             
+              
+                    HStack {
+                        Image(systemName: "arrow.left.square.fill")
+                            .onTapGesture {
+                                sharedValues.sliderProgress -= 100
+                                updateSpiral()
+                            }
+                        MySlider(imageSpiralViewModel: imageSpiralViewModel)
+                            .frame(maxWidth: (min(sharedValues.currentScreenWidth, sharedValues.currentScreenHeight)) * 0.8)
+                            //.background(Color.red)
+                        Image(systemName: "arrow.right.square.fill")
+                            .onTapGesture {
+                                sharedValues.sliderProgress += 100
+                                updateSpiral()
+                            }
+                    }
+                
+            
+         //            Button(action: {
+         //                // your action here
+         //            }) {
+         //                Text("Button title")
+         //            }.frame(width: screenWidth / 4 * 2, height: screenHeight * 0.1, alignment: Alignment.center)
+                     
+                 //Spacer(minLength: 0)
+                 // this is slider lable ==================================
+                HStack {
+                    Text("1836")
+                        .padding()
+                        
+                        //.frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                    
+                    //Text("").frame(width: screenWidth / 4 * 2, height: screenHeight * 0.05, alignment: Alignment.center)
+                    YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                        //.background(Color.red)
+                        .padding()
+                     
+                    Text("2020")
+                        .padding()
+                        //.frame(width: screenWidth / 4, height: screenHeight * 0.05, alignment: Alignment.top)
+                }
+                 //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
             }
-             //.frame(width: screenWidth, height: screenHeight * 0.1, alignment: Alignment.center).background(Color.blue)
-        }
+            
+//        } else if sharedValues.orientationInText == "landscape" || sharedValues.orientationInText == "unknown"  {
+//
+//            landscapeSliderView()
+//        }
+            
         }
         
 }
