@@ -51,6 +51,8 @@ class SharedValues: ObservableObject {
     
     @Published var singleTempleShow = false 
     
+    @Published var currentDevice = UIDevice.current.userInterfaceIdiom
+    
     //@Published var orientation = UIDevice.current.orientation.isPortrait
     //@Published var orientation = (UIDeviceOrientation.portrait).isPortrait
     @Published var orientation = UIDevice.current.orientation
@@ -60,6 +62,7 @@ class SharedValues: ObservableObject {
     @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
         UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
         UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
+
     
     var orientationRawValueHistory: Array<Int> = [0, 0, 0]
   
@@ -145,7 +148,12 @@ class SharedValues: ObservableObject {
             currentScreenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
-            screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+            if currentDevice == .phone {
+                screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+            } else if currentDevice == .pad {
+                screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7
+            }
+            
             
             centerX = currentScreenWidth / 2
 //            centerY = currentScreenHeight * 0.8 / 2
@@ -210,7 +218,9 @@ class SharedValues: ObservableObject {
         print(UIDevice.current.userInterfaceIdiom)
         if UIDevice.current.userInterfaceIdiom == .phone {
            print("running on iPhone")
-        }
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
+            print("running on iPad")
+         }
         
     }
     
