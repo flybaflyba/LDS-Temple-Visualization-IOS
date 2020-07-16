@@ -12,7 +12,7 @@ import SwiftUI
 // use screen Height to set how much space each view should take on the screen
 public var screenWidth = (UIDevice.current.userInterfaceIdiom == .phone ? min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) : min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7)
 public var screenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
-public var centerX = screenWidth / 2
+public var centerX = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2
 public var centerY = screenHeight * 0.8 / 2
 
 
