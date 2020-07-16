@@ -208,11 +208,24 @@ class SharedValues: ObservableObject {
             currentScreenWidth = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
-            screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6
             
-            centerX = currentScreenWidth / 2
-//            centerY = currentScreenHeight * 0.8 / 2
-            centerY = screenWidth * 0.8
+            
+            
+            if currentDevice == .phone {
+                screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
+                centerX = currentScreenWidth / 4
+                centerY = screenWidth * 0.7
+            } else {
+                screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6
+                centerX = currentScreenWidth / 2
+                centerY = screenWidth * 0.8
+            }
+            
+            
+//
+//            centerX = currentScreenWidth / 2
+////            centerY = currentScreenHeight * 0.8 / 2
+//            centerY = screenWidth * 0.8
             
 //            centerX = currentScreenWidth * 0.25
 //            centerY = currentScreenHeight * 0.6

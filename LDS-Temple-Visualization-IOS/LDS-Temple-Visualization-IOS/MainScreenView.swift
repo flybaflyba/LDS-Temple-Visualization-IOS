@@ -264,7 +264,7 @@ struct SpiralView: View {
         return body
 }
     
-    func LandscapeView() -> some View {
+    func LandscapeViewForPhone() -> some View {
         
         var body: some View {
     
@@ -350,8 +350,8 @@ struct SpiralView: View {
         return body
 }
     
-    
-    func LandscapeViewSimilarToPortraitView() -> some View {
+    // this is very much like PortraitView 
+    func LandscapeViewForPad() -> some View {
         
         var body: some View {
             VStack {
@@ -420,9 +420,15 @@ struct SpiralView: View {
 
             {
 
+                if sharedValues.currentDevice == .phone {
+                    LandscapeViewForPhone()
+                } else {
+                    LandscapeViewForPad()
+                    //PortraitView()
+                }
                 //LandscapeView()
 
-                LandscapeViewSimilarToPortraitView()
+                //LandscapeViewSimilarToPortraitView()
             }
         }
         
