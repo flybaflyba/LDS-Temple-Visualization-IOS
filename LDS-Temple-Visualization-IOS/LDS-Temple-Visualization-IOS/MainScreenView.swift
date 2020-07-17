@@ -114,6 +114,7 @@ struct SpiralView: View {
     func drawTemples() -> some View {
         
        
+        print("app launchs here screen width and height \(UIScreen.main.bounds.size.width) \(UIScreen.main.bounds.size.height)")
         
         if sharedValues.orientationChanged == true {
             
@@ -419,13 +420,26 @@ struct SpiralView: View {
         
 //            PortraitView()
             
-            if sharedValues.orientationInText == "unknown" {
-                
-                Text("orientationInText when launch is \(sharedValues.orientationInText) why is it unknow? ")
-                
-            } else {
+            // when app lauch, orientation is alway unknown, weird, at least with my phone. it's like this
+//            if sharedValues.orientationInText == "unknown" {
+//
+//                if UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height {
+//                    PortraitView()
+//                } else {
+//                    if sharedValues.currentDevice == .phone {
+//                        LandscapeViewForPhone()
+//                    } else {
+//                        LandscapeViewForPad()
+//                        //PortraitView()
+//                    }
+//                }
+//
+//                //Text("orientationInText when launch is \(sharedValues.orientationInText) why is it unknow? ")
+//
+//            } else {
                 if (sharedValues.orientationInText == "portrait"
-                        || sharedValues.orientationInText == "unknown")
+                        || sharedValues.orientationInText == "unknown"
+                )
 
 
                 {
@@ -433,7 +447,8 @@ struct SpiralView: View {
                     PortraitView()
 
                 } else if (sharedValues.orientationInText == "landscape"
-                            || sharedValues.orientationInText == "unknown")
+                        || sharedValues.orientationInText == "unknown"
+                )
 
 
                 {
@@ -448,7 +463,7 @@ struct SpiralView: View {
 
                     //LandscapeViewSimilarToPortraitView()
                 }
-            }
+//            }
             
             
         }
