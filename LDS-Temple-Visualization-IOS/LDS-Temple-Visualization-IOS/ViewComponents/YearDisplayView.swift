@@ -31,7 +31,7 @@ struct YearDisplayView: View {
 //                    "Temple Years: \(startYear) --- 2020")
             
   
-            Text(startYear == "ere" ? "Announced Temples" :
+            Text(startYear == "ere" ? "Future Temples" :
                     endYear == "1836" ? "Welcome" :
                     endYear != "ere" ? "\(startYear) --- \(endYear)" :
                     "\(startYear) --- 2020")

@@ -15,6 +15,10 @@ public var screenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bou
 public var centerX = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2
 public var centerY = screenHeight * 0.8 / 2
 
+public var currentScreenWidthPublic: CGFloat = 0
+public var currentScreenHeighPublic: CGFloat = 0
+public var orientationInTextPublic: String = " "
+
 
 //let statusbarHeight = UIApplication.shared.st
 
@@ -98,6 +102,9 @@ struct SpiralView: View {
     
     var currentScreenWidth: CGFloat {
         get {
+            currentScreenWidthPublic = sharedValues.currentScreenWidth
+            currentScreenHeighPublic = sharedValues.currentScreenHeight
+            orientationInTextPublic = sharedValues.orientationInText
             //print("new screen width: \(sharedValues.currentScreenWidth)")
             return sharedValues.currentScreenWidth
         }
@@ -106,6 +113,7 @@ struct SpiralView: View {
     var currentScreenHeight: CGFloat {
         get {
             //print("new screen height: \(sharedValues.currentScreenHeight)")
+            
             return sharedValues.currentScreenHeight
         }
     }

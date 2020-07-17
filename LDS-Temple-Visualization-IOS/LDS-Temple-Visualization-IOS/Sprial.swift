@@ -45,6 +45,16 @@ struct Spiral<TempleContent> {
         print("change a temple starts here")
         print("id is \(id)")
         
+        print("currentScreenWidthPublic and currentScreenHeighPublic are \(currentScreenWidthPublic) \(currentScreenHeighPublic)")
+        
+        var singleTempleLargeCircleMoveUpThisMuch: CGFloat = 0
+        
+        if orientationInTextPublic == "landscape" {
+            singleTempleLargeCircleMoveUpThisMuch = currentScreenHeighPublic * 0.1
+        } else {
+            singleTempleLargeCircleMoveUpThisMuch = 0
+        }
+        
         if onScreenTemples[id].tapped == false {
             
             
@@ -58,7 +68,7 @@ struct Spiral<TempleContent> {
             }
             
             onScreenTemples[id].x = centerX
-            onScreenTemples[id].y = centerY
+            onScreenTemples[id].y = centerY - singleTempleLargeCircleMoveUpThisMuch
             onScreenTemples[id].size = screenWidth * 0.9
             onScreenTemples[id].content = Image(onScreenTemples[id].fileName + "_large") as! TempleContent
             
