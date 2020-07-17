@@ -150,83 +150,46 @@ struct SpiralView: View {
                         .resizable()
                         .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                         .position(x: temple.x, y: temple.y)
+                        //.position(x: temple.x, y: (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.25 ? temple.y : temple.y) : (temple.size > currentScreenHeight * 0.2 ? temple.y : temple.y) ))
                         .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
                         .onTapGesture {
-                            //print(temple)
-                            //imageSpiralViewModel.choose(temple: temple)
-                            //print(temple.year)
-                            //temple.content.resizable().frame(width: screenWidth, height: screenWidth, alignment: Alignment.center)
-                            
                             print("tapped a temple")
-                            
                             imageSpiralViewModel.changeATemple(id: temple.id)
-                            
-                            print("tapped temple Link is \(temple.link)")
-                            
-                            //print(screenWidth)
-                            //print(sharedValues.orientation.rawValue)
-                           
-                            //print("hi")
-                            
+                            //print("tapped temple Link is \(temple.link)")
                             if (temple.tapped == true) {
                                 SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
-                                    
-                                    //sharedValues.oneTempleInfo.removeAll()
-                                    
                                     sharedValues.tappedATemple = false
-                                 
                                     sharedValues.singleTempleShow = false
                                     print("tap a large temple")
-                                    
-                                
                                 }
                             } else {
                                 SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
-                                    
                                     sharedValues.tappedATemple = true
-                                    
                                     sharedValues.singleTempleShow = true
                                     print("tap a small temple")
                                 }
-                                
                                 sharedValues.currentTappedTempleName = temple.name
                                 sharedValues.currentTappedTempleId = temple.id
                                 sharedValues.currentTappedTempleLink = temple.link
-                            
-                                //print(sharedValues.currentTappedTempleName)
-                                
-                                
-                                //print(oneTempleInfo)
                             }
-                            
-                            //print("hello")
-                            
+                            print("tapped temple's size is \(temple.size)")
                         }
                     // this line shows us how the spiral looks like on screen
                     //spiralDrawing().stroke()
                 }
-                
-//                if sharedValues.orientationInText == "portrait" {
-//                    VStack {
-//                        Text("portrait")
-//                        Text("currentScreenWidth is: \(currentScreenWidth)")
-//                        Text("currentScreenHeight is: \(currentScreenHeight)")
-//                    }
-//                } else if sharedValues.orientationInText == "landscape" {
-//                    VStack {
-//                        Text("landscape")
-//                        Text("currentScreenWidth is: \(currentScreenWidth)")
-//                        Text("currentScreenHeight is: \(currentScreenHeight)")
-//                    }
-//                }
+                 
+                // display temple names on larger temples 
+                ForEach(imageSpiralViewModel.onScreenTemples) {temple in
+                    Text((sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.2 ? temple.location : "") : (temple.size > currentScreenHeight * 0.15 ? temple.location : "")))
+                        //.frame(width: temple.size, height: temple.size / 2, alignment: Alignment.center)
+                        .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
+                        .font(.system(size: 10))
+                        .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+                }
                 
             }
-            
-           
-            
         }
-        
         return body
     }
     
@@ -312,7 +275,7 @@ struct SpiralView: View {
                 } else {
 //                    Rectangle()
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
-                        .frame(maxHeight: currentScreenHeight * 0.6)
+                        .frame(maxHeight: currentScreenHeight * 0.5)
                         //.background(Color.purple)
 //                        .onTapGesture {
 //                            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {

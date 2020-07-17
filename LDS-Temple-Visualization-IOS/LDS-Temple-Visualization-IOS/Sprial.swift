@@ -224,5 +224,23 @@ struct Spiral<TempleContent> {
         var fileName: String
         var tapped: Bool = false
         var link: String
+        var location: String {
+            get {
+                var loc = " "
+                
+                if tapped {
+                    loc = " "
+                } else {
+                    if link != "no link" {
+                        loc = String(name.prefix(upTo: name.index(name.startIndex, offsetBy: name.count - 7)))
+                    } else {
+                        loc = " "
+                    }
+                }
+                
+                return loc
+            }
+            
+        }
     }
 }

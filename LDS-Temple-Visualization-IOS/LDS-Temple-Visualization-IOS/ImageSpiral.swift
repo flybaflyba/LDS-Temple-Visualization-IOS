@@ -479,6 +479,10 @@ class ImageSpiral: ObservableObject {
                 collectingOnScreenTemplesPositions.append(templePosition)
             }
             
+//            if templeIndex == 0 {
+//                print("first temple postion is \(templePosition)")
+//            }
+            
             if templePosition < 0 || templePosition >= CGFloat(coordinatesLength) {
                 collectingOnScreenTemplesPositions.append(0)
             }
