@@ -90,7 +90,7 @@ class SharedValues: ObservableObject {
         
         if UIDevice.current.orientation.rawValue == 0 {
             self.orientationInText = "unknown"
-        } else if UIDevice.current.orientation.rawValue == 1 {
+        } else if UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 {
             self.orientationInText = "portrait"
         } else if UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 {
             self.orientationInText = "landscape"
@@ -108,7 +108,8 @@ class SharedValues: ObservableObject {
         
         print("before \(orientationRawValueHistory)")
         // if changed to portrait, landscapes left or right, we only update if last orientation is landscapes or portrait respectively
-        if orientationRawValueHistory[orientationRawValueHistory.count-1] == 1 {
+        if orientationRawValueHistory[orientationRawValueHistory.count-1] == 1 ||
+            orientationRawValueHistory[orientationRawValueHistory.count-1] == 2 {
             
             if orientationRawValueHistory.contains(3) || orientationRawValueHistory.contains(4) {
                 
@@ -128,7 +129,7 @@ class SharedValues: ObservableObject {
         } else if orientationRawValueHistory[orientationRawValueHistory.count-1] == 3 ||
                     orientationRawValueHistory[orientationRawValueHistory.count-1] == 4 {
             
-            if orientationRawValueHistory.contains(1) {
+            if orientationRawValueHistory.contains(1) || orientationRawValueHistory.contains(2) {
                 
                 orientationRawValueHistory.removeAll()
                 
