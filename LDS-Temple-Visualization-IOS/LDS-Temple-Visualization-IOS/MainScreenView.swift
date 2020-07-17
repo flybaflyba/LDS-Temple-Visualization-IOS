@@ -122,7 +122,7 @@ struct SpiralView: View {
     func drawTemples() -> some View {
         
        
-        print("app launchs here screen width and height \(UIScreen.main.bounds.size.width) \(UIScreen.main.bounds.size.height)")
+        //print("app launchs here screen width and height \(UIScreen.main.bounds.size.width) \(UIScreen.main.bounds.size.height)")
         
         if sharedValues.orientationChanged == true {
             

@@ -49,7 +49,7 @@ struct Spiral<TempleContent> {
         
         var singleTempleLargeCircleMoveUpThisMuch: CGFloat = 0
         
-        if orientationInTextPublic == "landscape" {
+        if orientationInTextPublic == "landscape" || orientationInTextPublic == "unknown"  {
             singleTempleLargeCircleMoveUpThisMuch = currentScreenHeighPublic * 0.1
         } else {
             singleTempleLargeCircleMoveUpThisMuch = 0
