@@ -35,7 +35,7 @@ class SharedValues: ObservableObject {
     @Published var templesList = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
     
     @Published var myAnimation: Animation = Animation.linear(duration: 1)
-    @Published var myNoAnimation: Animation = Animation.linear(duration: 0.001)
+    @Published var myNoAnimation: Animation = Animation.linear(duration: 0.5)
     
     @Published var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
     
@@ -55,6 +55,8 @@ class SharedValues: ObservableObject {
     
     @Published var currentDevice = UIDevice.current.userInterfaceIdiom
     
+    @Published var animationInProgress = false
+    
     //@Published var orientation = UIDevice.current.orientation.isPortrait
     //@Published var orientation = (UIDeviceOrientation.portrait).isPortrait
     @Published var orientation = UIDevice.current.orientation
@@ -73,7 +75,7 @@ class SharedValues: ObservableObject {
     init() {
         // 检测设备方向
         NotificationCenter.default.addObserver(self, selector: #selector(receivedRotation), name: UIDevice.orientationDidChangeNotification, object: nil)
-        print("device rotation when app launch: \(orientationInText)")
+        //print("device rotation when app launch: \(orientationInText)")
     }
     
     
@@ -106,7 +108,7 @@ class SharedValues: ObservableObject {
         // store current orientation 
         orientationRawValueHistory.append(UIDevice.current.orientation.rawValue)
         
-        print("before \(orientationRawValueHistory)")
+        //print("before \(orientationRawValueHistory)")
         // if changed to portrait, landscapes left or right, we only update if last orientation is landscapes or portrait respectively
         if orientationRawValueHistory[orientationRawValueHistory.count-1] == 1 ||
             orientationRawValueHistory[orientationRawValueHistory.count-1] == 2 {
@@ -122,7 +124,7 @@ class SharedValues: ObservableObject {
                
                 
                 
-                print("hi")
+                
                 
                 
             }
@@ -143,7 +145,7 @@ class SharedValues: ObservableObject {
             }
         }
         
-        print("after \(orientationRawValueHistory)")
+        //print("after \(orientationRawValueHistory)")
         
         // remember last orientaion
         orientationRawValueHistory.append(UIDevice.current.orientation.rawValue)
@@ -188,10 +190,10 @@ class SharedValues: ObservableObject {
 //            orientationChanged = true
 //        }
 //
-        print(self.orientationInText)
+        //print(self.orientationInText)
         
         if (self.orientationInText == "portrait") {
-            print("device rotates to portrait")
+            //print("device rotates to portrait")
             currentScreenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
@@ -214,7 +216,7 @@ class SharedValues: ObservableObject {
             
             
         } else if (self.orientationInText == "landscape") {
-            print("device rotates to landscape")
+            //print("device rotates to landscape")
             currentScreenWidth = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             

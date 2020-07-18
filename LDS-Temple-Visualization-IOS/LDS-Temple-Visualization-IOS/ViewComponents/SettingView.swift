@@ -180,7 +180,7 @@ struct AnimationSettingView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.hasAnimationOnColor)
-                    Text("On")
+                    Text("Slow")
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
@@ -194,7 +194,7 @@ struct AnimationSettingView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.hasAnimationOffColor)
-                    Text("Off")
+                    Text("Fast")
                         
                 }
                 .onTapGesture {

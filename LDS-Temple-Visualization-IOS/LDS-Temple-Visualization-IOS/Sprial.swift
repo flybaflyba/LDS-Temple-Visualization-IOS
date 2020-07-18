@@ -32,6 +32,7 @@ struct Spiral<TempleContent> {
         //print("temple chosen: \(temple)")
         print("you clicked on \(temple.name)")
         //print("it's year is \(temple.year)")
+        
         print("this temple id is \(temple.id)")
         print("this temple id is \(temple.link)")
     }
@@ -42,10 +43,10 @@ struct Spiral<TempleContent> {
     
     mutating func changeATemple(id: Int) {
         
-        print("change a temple starts here")
-        print("id is \(id)")
+        //print("change a temple starts here")
+        //print("id is \(id)")
         
-        print("currentScreenWidthPublic and currentScreenHeighPublic are \(currentScreenWidthPublic) \(currentScreenHeighPublic)")
+        //print("currentScreenWidthPublic and currentScreenHeighPublic are \(currentScreenWidthPublic) \(currentScreenHeighPublic)")
         
         var singleTempleLargeCircleMoveUpThisMuch: CGFloat = 0
         
@@ -177,7 +178,7 @@ struct Spiral<TempleContent> {
 //            onScreenTemples.append(Temple(content: content, id: index, x: 20, y: 20, size: 20))
 //        }
         
-        print("updating ==========================================")
+        //print("updating ==========================================")
         
         for index in 0..<onScreenTemples.count {
             onScreenTemples[index].content = Image(onScreenTemplesString[0][index]) as! TempleContent
@@ -204,7 +205,7 @@ struct Spiral<TempleContent> {
             
         
         
-        print("NEW on screen temples length \(onScreenTemples.count)")
+        //print("NEW on screen temples length \(onScreenTemples.count)")
         //print("NEW on screen positions length \(onScreenTemplesPositions.count)")
         
         //print("NEW on screen temples \(onScreenTemples)")

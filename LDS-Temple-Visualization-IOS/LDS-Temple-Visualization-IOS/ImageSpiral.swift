@@ -112,7 +112,7 @@ class ImageSpiral: ObservableObject {
     
     func getNewTheta(newTheta: CGFloat) {
         ImageSpiral.theta = newTheta
-        print("new theta is \(ImageSpiral.theta)")
+        //print("new theta is \(ImageSpiral.theta)")
     }
     /*
     // when updating, we will modify all coordinates acoording to user's selection of moving mode.
@@ -382,7 +382,7 @@ class ImageSpiral: ObservableObject {
         //print("screenHeight is \(screenHeight)")
         
         //print("buildingCoordinates is \(buildingCoordinates)")
-        print("buildingCoordinatesAndSize length is \(buildingCoordinatesAndSize.count)")
+        //print("buildingCoordinatesAndSize length is \(buildingCoordinatesAndSize.count)")
         //print("buildingCoordinatesAndSize is \(buildingCoordinatesAndSize)")
         
         //buildingCoordinatesAndSizeLength = buildingCoordinatesAndSize.count
@@ -440,13 +440,13 @@ class ImageSpiral: ObservableObject {
             //print(templePosition)
             
         }
-        print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
-        print("collectingOnScreenTemples Names length after should be \(collectingOnScreenTemplesNames.count)")
-        print("collectingOnScreenTemples Years length after should be \(collectingOnScreenTemplesYears.count)")
-        print("collectingOnScreenTemples Links length after should be \(collectingOnScreenTemplesYears.count)")
+//        print("collectingOnScreenTemples length after should be \(collectingOnScreenTemples.count)")
+//        print("collectingOnScreenTemples Names length after should be \(collectingOnScreenTemplesNames.count)")
+//        print("collectingOnScreenTemples Years length after should be \(collectingOnScreenTemplesYears.count)")
+//        print("collectingOnScreenTemples Links length after should be \(collectingOnScreenTemplesYears.count)")
         
-        print("start year is \(startYear)")
-        print("end year is \(endYear)")
+        //print("start year is \(startYear)")
+        //print("end year is \(endYear)")
         
 //        //print("buildingCoordinatesAndSizeLength is \(buildingCoordinatesAndSizeLength)")
 //        // we keep the array the same length, so that ForEach in spiral view will like it
@@ -489,7 +489,7 @@ class ImageSpiral: ObservableObject {
             
         }
          
-        print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
+        //print("collectingOnScreenTemplesPositions length should be \(collectingOnScreenTemplesPositions.count)")
     
 //        //print("buildingCoordinatesAndSizeLength is \(buildingCoordinatesAndSizeLength)")
 //        while collectingOnScreenTemplesPositions.count < 61 {
@@ -564,16 +564,16 @@ class ImageSpiral: ObservableObject {
         
         allTempleLinks = readTempleLinksFromFile()
         
-        print("allTempleYear length is \(allTempleYears.count)")
-        print("allTempleNames length is \(allTempleNames.count)")
-        print("allTempleLinks length is \(allTempleLinks.count)")
+//        print("allTempleYear length is \(allTempleYears.count)")
+//        print("allTempleNames length is \(allTempleNames.count)")
+//        print("allTempleLinks length is \(allTempleLinks.count)")
         
         var allTempleNamesYearsCombine: Array<Array<String>> = Array<Array<String>>()
         allTempleNamesYearsCombine.append(allTempleNames)
         allTempleNamesYearsCombine.append(allTempleYears)
         allTempleNamesYearsCombine.append(allTempleLinks)
         
-        print("allTemple Info length is \(allTempleNamesYearsCombine.count)")
+        //print("allTemple Info length is \(allTempleNamesYearsCombine.count)")
         
         return allTempleNamesYearsCombine
     }

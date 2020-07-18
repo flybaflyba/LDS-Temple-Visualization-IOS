@@ -119,6 +119,68 @@ struct SpiralView: View {
     }
     
     
+    struct AnimatableModifierHere: AnimatableModifier {
+
+        var targetValue: CGFloat
+
+        // SwiftUI gradually varies it from old value to the new value
+        var animatableData: CGFloat {
+            didSet {
+                checkIfFinished()
+            }
+        }
+
+        var completion: () -> ()
+
+        // Re-created every time the control argument changes
+        init(bindedValue: CGFloat, completion: @escaping () -> ()) {
+            self.completion = completion
+
+            // Set animatableData to the new value. But SwiftUI again directly
+            // and gradually varies the value while the body
+            // is being called to animate. Following line serves the purpose of
+            // associating the extenal argument with the animatableData.
+            self.animatableData = bindedValue
+            targetValue = bindedValue
+        }
+
+        func checkIfFinished() -> () {
+            //print("Current value: \(animatableData)")
+            if (animatableData == targetValue) {
+                //if animatableData.isEqual(to: targetValue) {
+                DispatchQueue.main.async {
+                    self.completion()
+                }
+            }
+        }
+
+        // Called after each gradual change in animatableData to allow the
+        // modifier to animate
+        func body(content: Content) -> some View {
+            // content is the view on which .modifier is applied
+            content
+            // We don't want the system also to
+            // implicitly animate default system animatons it each time we set it. It will also cancel
+            // out other implicit animations now present on the content.
+                .animation(nil)
+        }
+    }
+
+//    var animationProgress: Double = 0
+//
+//    var animatableData: Double {
+//            get {
+//                print("animation progress is \(animationProgress)")
+//                return animationProgress
+//
+//            }
+//            set {
+//                print("animation progress is \(animationProgress)")
+//                animationProgress = newValue
+//
+//            }
+//        }
+    
     func drawTemples() -> some View {
         
        
@@ -152,6 +214,7 @@ struct SpiralView: View {
                         .position(x: temple.x, y: temple.y)
                         //.position(x: temple.x, y: (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.25 ? temple.y : temple.y) : (temple.size > currentScreenHeight * 0.2 ? temple.y : temple.y) ))
                         .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+                        //.modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {})
                         .onTapGesture {
                             print("tapped a temple")
                             imageSpiralViewModel.changeATemple(id: temple.id)
@@ -181,11 +244,34 @@ struct SpiralView: View {
                  
                 // display temple names on larger temples 
                 ForEach(imageSpiralViewModel.onScreenTemples) {temple in
-                    Text((sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.2 ? temple.location : "") : (temple.size > currentScreenHeight * 0.15 ? temple.location : "")))
+                    Text(
+                        //(sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.2 ? temple.location : "") : (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
+                        
+                    (sharedValues.animationInProgress ? " " :
+                        (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ?
+                        (temple.size > currentScreenWidth * 0.2 ? temple.location : "") :
+                        (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
+                    )
+                    )
+                    
                         //.frame(width: temple.size, height: temple.size / 2, alignment: Alignment.center)
                         .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
                         .font(.system(size: 10))
-                        .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+                    .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+
+                        if sharedValues.animationInProgress {
+                            print("animation finished")
+                            sharedValues.animationInProgress = false
+                        }
+                        
+                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+                        
+                        
+                                    })
+                    
+                        
+                    
                 }
                 
             }

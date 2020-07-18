@@ -76,11 +76,34 @@ struct SliderView: View {
                 
                 //ProgressBar(progress: Float(sharedValues.sliderProgress / 7000))
              
-              
+                ZStack {
+                    
+//                    Rectangle()
+//                        .foregroundColor(Color.red)
+//                        .onTapGesture {
+//                            print("taped rectancle")
+//                        }
+//                        .gesture(
+//                            DragGesture(minimumDistance: 0)
+//                                .onChanged({ (touch) in
+//                                    sharedValues.sliderTouched = true
+//                                    print("sliderTouched: \(sharedValues.sliderTouched)")
+//                                })
+//                                .onEnded({ (touch) in
+//                                    sharedValues.sliderTouched = false
+//                                    print("sliderTouched: \(sharedValues.sliderTouched)")
+//                                })
+//    
+//                        )
+                                        
+                    
                     HStack {
                         Image(systemName: "arrow.left.square.fill")
                             .onTapGesture {
-                                sharedValues.sliderProgress -= 100
+                                sharedValues.animationInProgress = true
+                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                                    sharedValues.sliderProgress -= 100
+                                }
                                 updateSpiral()
                             }
                         MySlider(imageSpiralViewModel: imageSpiralViewModel)
@@ -88,10 +111,45 @@ struct SliderView: View {
                             //.background(Color.red)
                         Image(systemName: "arrow.right.square.fill")
                             .onTapGesture {
-                                sharedValues.sliderProgress += 100
+                                sharedValues.animationInProgress = true
+                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                                    sharedValues.sliderProgress += 100
+                                }
                                 updateSpiral()
+                                
                             }
                     }
+                    
+                }
+                    
+
+                   
+//                    .gesture(
+//                        DragGesture(minimumDistance: 0)
+//                            .onChanged({ (touch) in
+//                                sharedValues.sliderTouched = true
+//                                print("sliderTouched: \(sharedValues.sliderTouched)")
+//                            })
+//                            .onEnded({ (touch) in
+//                                sharedValues.sliderTouched = false
+//                                print("sliderTouched: \(sharedValues.sliderTouched)")
+//                            })
+//
+//                    )
+                
+//                    .gesture(
+//                         DragGesture(minimumDistance: 0)
+//                             .onChanged({ (touch) in
+//                                 self.touchState = (self.touchState == .none || self.touchState == .ended) ? .began : .moved
+//                                 self.touchPoint = touch.location
+//                             })
+//                             .onEnded({ (touch) in
+//                                 self.touchPoint = touch.location
+//                                 self.touchState = .ended
+//                             })
+//                     )
+                                   
+                            
                 
             
          //            Button(action: {
@@ -158,49 +216,86 @@ struct MySlider: View {
         // we use Binding, so that when ever slider progress changes, we can do something
         Slider(value: Binding(
                 get: {
-                    sharedValues.sliderProgress
+                    //sharedValues.sliderTouched = false
+                    
+                    return Double(sharedValues.sliderProgress)
                 },
                 set: {(newValue) in
-//                     while newValue != self.sliderProgress {
-//                        if newValue > self.sliderProgress {
-//                            self.sliderProgress += 1
-//                        } else {
-//                            self.sliderProgress -= 1
-//                        }
-//                    }
-
-                    sharedValues.sliderProgress = newValue
                     
-                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
-            
-                    if imageSpiralViewModel.mode != sharedValues.mode {
-                        imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+                    // only run the following code when sliderporgess changed
+                    // if not checking newvalue and sliderprogress,
+                    // newvalue might be the same as sliderprogress, these lines may excute too
+                    // this might cause problems with checking if animation stops
+                    
+                    if CGFloat(newValue) != sharedValues.sliderProgress {
+                        
+//                        while newValue != self.sliderProgress {
+//                           if newValue > self.sliderProgress {
+//                               self.sliderProgress += 1
+//                           } else {
+//                               self.sliderProgress -= 1
+//                           }
+//                       }
+                                            
+                        //sharedValues.sliderTouched = true
+                        
+                        //sharedValues.sliderProgress = CGFloat(newValue)
+                        imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                        imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                                    
+                      
+                        //if sharedValues.hasAnimation {
+                            // to check if animation stops, we must use withAnimation
+                            if sharedValues.animationInProgress != true {
+                                sharedValues.animationInProgress = true
+                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                                    sharedValues.sliderProgress = CGFloat(newValue)
+                                }
+                            }
+                        //}
+                        
+                        //SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                                                
+                            sharedValues.sliderProgress = CGFloat(newValue)
+                        
+                        //imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                        //imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                        //}
+                                            
+                        
+                        if imageSpiralViewModel.mode != sharedValues.mode {
+                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+                        }
+                        
+                        
+                        print("sliderProgress is \(sharedValues.sliderProgress)")
+                        print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+                        
+                        //print(currentScreenWidth)
+                        
+                        sharedValues.oneTempleInfo.removeAll()
+                        
+                        //sharedValues.tappedATemple = false
+                        
+                        sharedValues.singleTempleShow = false
+    
                     }
-                    
-                    
-                    print("sliderProgress is \(sharedValues.sliderProgress)")
-                    
-                    //print(currentScreenWidth)
-                    
-                    sharedValues.oneTempleInfo.removeAll()
-                    
-                    //sharedValues.tappedATemple = false
-                    
-            
-                    sharedValues.singleTempleShow = false
-                    
                 }),
            
            // when animation, less coordinates
            //in: 0...226, step: 1)
            // when no animation, more coordinates
                in: 11...7000, step: 1)
+            //.background(Color.red)
+
+
             
         
     //Text("Slider progress is \(sliderProgress)")
     
         }
+    
+    
     
     
 }
