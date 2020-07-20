@@ -285,7 +285,7 @@ struct MySlider: View {
            // when animation, less coordinates
            //in: 0...226, step: 1)
            // when no animation, more coordinates
-               in: 11...7000, step: 1)
+               in: 11...7500, step: 1)
             //.background(Color.red)
 
 

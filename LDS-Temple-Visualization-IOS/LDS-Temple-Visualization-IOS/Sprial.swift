@@ -149,9 +149,11 @@ struct Spiral<TempleContent> {
                 
 //                }
                 
+                let showName = onScreenTemplesPositionsP[index] < 450 ? true : false
                 
-                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size, name: name, year: year, fileName: fileName, link: link))
+                onScreenTemples.append(Temple(content: content as! TempleContent , id: id, x: x, y: y, size: size, name: name, year: year, fileName: fileName, link: link, showName: showName))
 
+            //print("onScreenTemplesPositionsP[index] \(onScreenTemplesPositionsP[index])")
                 
             }
             
@@ -199,6 +201,10 @@ struct Spiral<TempleContent> {
             onScreenTemples[index].link = onScreenTemplesString[3][index]
             onScreenTemples[index].fileName = onScreenTemplesString[0][index]
             
+            onScreenTemples[index].showName = onScreenTemplesPositionsP[index] < 450 ? true : false
+            
+            
+            //print("onScreenTemplesPositionsP[index] \(onScreenTemplesPositionsP[index])")
             
             //onScreenTemples.append(Temple(content: content as! TempleContent, id: id, x: x, y: y, size: size))
         }
@@ -243,5 +249,7 @@ struct Spiral<TempleContent> {
             }
             
         }
+        
+        var showName: Bool
     }
 }

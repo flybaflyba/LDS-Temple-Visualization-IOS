@@ -356,7 +356,7 @@ class ImageSpiral: ObservableObject {
         } else  {
             var q = topCoordinateInSpiralX
             
-            while q < screenWidth * 4.5 {
+            while q < screenWidth * 4 {
             
                 oneSpiralCoordinateAndSize.append(q)
                 oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)

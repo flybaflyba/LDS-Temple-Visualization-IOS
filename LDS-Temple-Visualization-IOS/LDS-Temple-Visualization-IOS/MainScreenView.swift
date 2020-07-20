@@ -181,6 +181,83 @@ struct SpiralView: View {
 //            }
 //        }
     
+    func drawOneTemple(temple: Spiral<Image>.Temple) -> some View {
+        var body: some View {
+            
+            ZStack {
+                
+            
+                temple.content
+                .resizable()
+                .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
+                .position(x: temple.x, y: temple.y)
+                //.position(x: temple.x, y: (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.25 ? temple.y : temple.y) : (temple.size > currentScreenHeight * 0.2 ? temple.y : temple.y) ))
+                .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+                //.modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {})
+                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+
+                        if sharedValues.animationInProgress {
+                            print("animation finished")
+                            sharedValues.animationInProgress = false
+                        }
+
+                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+
+                    })
+                    
+                    
+                .onTapGesture {
+                    print("tapped a temple")
+                    
+                    print("showName is \(temple.showName)")
+                    
+                    imageSpiralViewModel.changeATemple(id: temple.id)
+                    //print("tapped temple Link is \(temple.link)")
+                    if (temple.tapped == true) {
+                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                            sharedValues.tappedATemple = false
+                            sharedValues.singleTempleShow = false
+                            print("tap a large temple")
+                        }
+                    } else {
+                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                            sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                            sharedValues.tappedATemple = true
+                            sharedValues.singleTempleShow = true
+                            print("tap a small temple")
+                        }
+                        sharedValues.currentTappedTempleName = temple.name
+                        sharedValues.currentTappedTempleId = temple.id
+                        sharedValues.currentTappedTempleLink = temple.link
+                    }
+                    print("tapped temple's size is \(temple.size)")
+                }
+                
+                drawOneTempleName(temple: temple)
+                
+            }
+        }
+        
+        return body
+    }
+    
+    func drawOneTempleName(temple: Spiral<Image>.Temple) -> some View {
+        var body: some View {
+            HStack {
+                if temple.showName && sharedValues.animationInProgress == false {
+                    Text(temple.name)
+                        .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
+                        .font(.system(size: 10))
+                          
+                }
+            }
+            .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+         
+        }
+        
+        return body
+    }
+    
     func drawTemples() -> some View {
         
        
@@ -207,72 +284,62 @@ struct SpiralView: View {
         var body: some View {
            
             ZStack {
-                ForEach(imageSpiralViewModel.onScreenTemples) {temple in
-                    temple.content
-                        .resizable()
-                        .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
-                        .position(x: temple.x, y: temple.y)
-                        //.position(x: temple.x, y: (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.25 ? temple.y : temple.y) : (temple.size > currentScreenHeight * 0.2 ? temple.y : temple.y) ))
-                        .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
-                        //.modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {})
-                        .onTapGesture {
-                            print("tapped a temple")
-                            imageSpiralViewModel.changeATemple(id: temple.id)
-                            //print("tapped temple Link is \(temple.link)")
-                            if (temple.tapped == true) {
-                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
-                                    sharedValues.tappedATemple = false
-                                    sharedValues.singleTempleShow = false
-                                    print("tap a large temple")
-                                }
-                            } else {
-                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
-                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
-                                    sharedValues.tappedATemple = true
-                                    sharedValues.singleTempleShow = true
-                                    print("tap a small temple")
-                                }
-                                sharedValues.currentTappedTempleName = temple.name
-                                sharedValues.currentTappedTempleId = temple.id
-                                sharedValues.currentTappedTempleLink = temple.link
-                            }
-                            print("tapped temple's size is \(temple.size)")
-                        }
-                    // this line shows us how the spiral looks like on screen
-                    //spiralDrawing().stroke()
+                ForEach(imageSpiralViewModel.onScreenTemples) { temple in
+                    
+                    ZStack {
+                        
+                        drawOneTemple(temple: temple)
+                        
+                        // this line shows us how the spiral looks like on screen
+                        //spiralDrawing().stroke()
+                        
+
+                        //drawOneTempleName(temple: temple)
+                        
+                       
+//                        Text(
+//                            sharedValues.animationInProgress ? " " :
+//                                    (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ?
+//                                    (temple.size > currentScreenWidth * 0.2 ? temple.location : "") :
+//                                    (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
+//                        )
+//
+                        
+                        
+                }
+                    
                 }
                  
-                // display temple names on larger temples 
-                ForEach(imageSpiralViewModel.onScreenTemples) {temple in
-                    Text(
-                        //(sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.2 ? temple.location : "") : (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
-                        
-                    (sharedValues.animationInProgress ? " " :
-                        (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ?
-                        (temple.size > currentScreenWidth * 0.2 ? temple.location : "") :
-                        (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
-                    )
-                    )
-                    
-                        //.frame(width: temple.size, height: temple.size / 2, alignment: Alignment.center)
-                        .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
-                        .font(.system(size: 10))
-                    .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
-                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
-
-                        if sharedValues.animationInProgress {
-                            print("animation finished")
-                            sharedValues.animationInProgress = false
-                        }
-                        
-                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
-                        
-                        
-                                    })
-                    
-                        
-                    
-                }
+//                // display temple names on larger temples
+//                ForEach(imageSpiralViewModel.onScreenTemples) { temple in
+//                    Text(
+//                        //(sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.2 ? temple.location : "") : (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
+//
+//                    (sharedValues.animationInProgress ? " " :
+//                        (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ?
+//                        (temple.size > currentScreenWidth * 0.2 ? temple.location : "") :
+//                        (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
+//                    )
+//                    )
+//
+//                        //.frame(width: temple.size, height: temple.size / 2, alignment: Alignment.center)
+//                        .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
+//                        .font(.system(size: 10))
+//                    //.animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+////                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+////
+////                        if sharedValues.animationInProgress {
+////                            print("animation finished")
+////                            sharedValues.animationInProgress = false
+////                        }
+////
+////                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+////
+////                                    })
+//
+//
+//
+//                }
                 
             }
         }
