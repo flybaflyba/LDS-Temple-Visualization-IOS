@@ -118,6 +118,12 @@ struct SpiralView: View {
         }
     }
     
+    var animationGoingOn: Bool {
+        get {
+            return sharedValues.animationInProgress
+        }
+    }
+    
     
     struct AnimatableModifierHere: AnimatableModifier {
 
@@ -233,7 +239,22 @@ struct SpiralView: View {
                     print("tapped temple's size is \(temple.size)")
                 }
                 
-                drawOneTempleName(temple: temple)
+                
+                //if temple.showName {
+                    //HStack {
+                        
+                    //}
+                //}
+                
+               
+                
+                
+                
+                
+                
+           
+         
+         
                 
             }
         }
@@ -241,22 +262,23 @@ struct SpiralView: View {
         return body
     }
     
-    func drawOneTempleName(temple: Spiral<Image>.Temple) -> some View {
-        var body: some View {
-            HStack {
-                if temple.showName && sharedValues.animationInProgress == false {
-                    Text(temple.name)
-                        .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
-                        .font(.system(size: 10))
-                          
-                }
-            }
-            .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
-         
-        }
-        
-        return body
-    }
+//    func drawOneTempleName(temple: Spiral<Image>.Temple) -> some View {
+//        var body: some View {
+//            ZStack {
+//                if temple.showName && sharedValues.animationInProgress == false {
+//                    Text(temple.name)
+//                        .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
+//                        .font(.system(size: 10))
+//                        .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+//                          
+//                }
+//            }
+//            
+//         
+//        }
+//        
+//        return body
+//    }
     
     func drawTemples() -> some View {
         
@@ -286,29 +308,23 @@ struct SpiralView: View {
             ZStack {
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
                     
-                    ZStack {
-                        
                         drawOneTemple(temple: temple)
                         
                         // this line shows us how the spiral looks like on screen
                         //spiralDrawing().stroke()
-                        
-
                         //drawOneTempleName(temple: temple)
-                        
-                       
-//                        Text(
-//                            sharedValues.animationInProgress ? " " :
-//                                    (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ?
-//                                    (temple.size > currentScreenWidth * 0.2 ? temple.location : "") :
-//                                    (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
-//                        )
-//
-                        
-                        
-                }
                     
                 }
+                
+                ForEach(imageSpiralViewModel.onScreenTemples) { temple in
+                    if temple.showName && sharedValues.animationInProgress == false {
+                        Text(temple.name)
+                            .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
+                            .font(.system(size: 10))
+                    }
+                }
+                //.animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+                
                  
 //                // display temple names on larger temples
 //                ForEach(imageSpiralViewModel.onScreenTemples) { temple in
@@ -342,6 +358,7 @@ struct SpiralView: View {
 //                }
                 
             }
+            .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
         }
         return body
     }

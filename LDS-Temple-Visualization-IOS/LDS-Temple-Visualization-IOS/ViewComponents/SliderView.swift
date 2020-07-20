@@ -268,8 +268,8 @@ struct MySlider: View {
                         }
                         
                         
-                        print("sliderProgress is \(sharedValues.sliderProgress)")
-                        print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+                        //print("sliderProgress is \(sharedValues.sliderProgress)")
+                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
                         
                         //print(currentScreenWidth)
                         
