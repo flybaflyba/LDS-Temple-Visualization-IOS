@@ -66,7 +66,7 @@ struct SettingViewMain: View {
         }
 
 struct SpiralEffectSettingButton: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var sharedValues: SharedValues
     
 
@@ -128,8 +128,8 @@ struct SpiralEffectSettingButton: View {
                     }
                     
                     Text("Mode")
-                        .foregroundColor(Color.blue)
                         .padding()
+                        .font(.headline)
                 }
                 
                 
@@ -172,7 +172,7 @@ struct SpiralEffectSettingButton: View {
 }
 
 struct AnimationSettingButton: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var sharedValues: SharedValues
     
     var body: some View {
@@ -220,8 +220,8 @@ struct AnimationSettingButton: View {
 //                .frame(maxWidth: screenWidth/2)
                 
                 Text("Animation")
-                    .foregroundColor(Color.blue)
                     .padding()
+                    .font(.headline)
             }
             //.background(Color.gray)
             
@@ -247,6 +247,8 @@ struct AnimationSettingButton: View {
 
 
 struct LabelSettingButton: View {
+    
+    @Environment(\.colorScheme) var colorScheme
     
     @EnvironmentObject var sharedValues: SharedValues
     
@@ -295,8 +297,8 @@ struct LabelSettingButton: View {
 //                .frame(maxWidth: screenWidth/2)
                 
                 Text("Label")
-                    .foregroundColor(Color.blue)
                     .padding()
+                    .font(.headline)
             }
             //.background(Color.gray)
             
