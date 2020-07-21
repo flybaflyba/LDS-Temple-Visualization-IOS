@@ -43,15 +43,20 @@ struct SettingViewMain: View {
 
                     HStack {
 
-                        SpiralEffectSettingView()
+                        SpiralEffectSettingButton()
 
-                        AnimationSettingView()
+                        AnimationSettingButton()
 
                     }
 
                     HStack {
-                        AboutButtonView()
-                        MoreButtonView()
+                        LabelSettingButton()
+                        VStack {
+                            TempleListButton()
+                            AboutButton()
+                        }
+                        
+                        
                     }
                 }
 //            }
@@ -60,7 +65,7 @@ struct SettingViewMain: View {
     }
         }
 
-struct SpiralEffectSettingView: View {
+struct SpiralEffectSettingButton: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
@@ -122,7 +127,7 @@ struct SpiralEffectSettingView: View {
                         
                     }
                     
-                    Text("Mode: \(sharedValues.mode)")
+                    Text("Mode")
                         .foregroundColor(Color.blue)
                         .padding()
                 }
@@ -166,7 +171,7 @@ struct SpiralEffectSettingView: View {
     }
 }
 
-struct AnimationSettingView: View {
+struct AnimationSettingButton: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
@@ -179,29 +184,29 @@ struct AnimationSettingView: View {
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(sharedValues.hasAnimationOnColor)
+                        .foregroundColor(sharedValues.slowAnimationOnColor)
                     Text("Slow")
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
                         sharedValues.hasAnimation = true
-                        sharedValues.hasAnimationOnColor = sharedValues.selectedColor
-                        sharedValues.hasAnimationOffColor = sharedValues.unSelectedColor
+                        sharedValues.slowAnimationOnColor = sharedValues.selectedColor
+                        sharedValues.fastAnimationColor = sharedValues.unSelectedColor
                     }
                     
                 }
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(sharedValues.hasAnimationOffColor)
+                        .foregroundColor(sharedValues.fastAnimationColor)
                     Text("Fast")
                         
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
                         sharedValues.hasAnimation = false
-                        sharedValues.hasAnimationOnColor = sharedValues.unSelectedColor
-                        sharedValues.hasAnimationOffColor = sharedValues.selectedColor
+                        sharedValues.slowAnimationOnColor = sharedValues.unSelectedColor
+                        sharedValues.fastAnimationColor = sharedValues.selectedColor
                     }
                     
                 }
@@ -214,7 +219,7 @@ struct AnimationSettingView: View {
 //
 //                .frame(maxWidth: screenWidth/2)
                 
-                Text("Animation: \(sharedValues.hasAnimation == true ? "On" : "Off")")
+                Text("Animation")
                     .foregroundColor(Color.blue)
                     .padding()
             }
@@ -241,7 +246,82 @@ struct AnimationSettingView: View {
 }
 
 
-struct AboutButtonView: View {
+struct LabelSettingButton: View {
+    
+    @EnvironmentObject var sharedValues: SharedValues
+    
+    var body: some View {
+        
+        ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .foregroundColor(Color.gray)
+            VStack {
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(sharedValues.showLabelOn)
+                    Text("On")
+                }
+                .onTapGesture {
+                    SwiftUI.withAnimation(.linear) {
+                        sharedValues.showLabel = true
+                        sharedValues.showLabelOn = sharedValues.selectedColor
+                        sharedValues.showLabelOff = sharedValues.unSelectedColor
+                    }
+                    
+                }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(sharedValues.showLabelOff)
+                    Text("Off")
+                        
+                }
+                .onTapGesture {
+                    SwiftUI.withAnimation(.linear) {
+                        sharedValues.showLabel = false
+                        sharedValues.showLabelOn = sharedValues.unSelectedColor
+                        sharedValues.showLabelOff = sharedValues.selectedColor
+                    }
+                    
+                }
+
+//                Picker(selection: $selectedAnimationSpeedIndex, label: Text("")) {
+//                    ForEach(0 ..< animationSpeeds.count) {
+//                        Text(self.animationSpeeds[$0])
+//                    }
+//                }
+//
+//                .frame(maxWidth: screenWidth/2)
+                
+                Text("Label")
+                    .foregroundColor(Color.blue)
+                    .padding()
+            }
+            //.background(Color.gray)
+            
+        }
+        
+        
+        
+        
+        
+//        Button(action: {
+//            settings.hasAnimation = !settings.hasAnimation
+//        }) {
+//            if settings.hasAnimation {
+//                Text("Animation: Yes")
+//            } else {
+//                Text("Animation: No")
+//
+//            }
+//        }
+//        .padding()
+    }
+}
+
+
+struct AboutButton: View {
     
     @Environment(\.colorScheme) var colorScheme
 
@@ -285,7 +365,7 @@ struct AboutButtonView: View {
     }
 }
 
-struct MoreButtonView: View {
+struct TempleListButton: View {
     @EnvironmentObject var sharedValues: SharedValues
     
     @Environment(\.colorScheme) var colorScheme

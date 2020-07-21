@@ -101,7 +101,7 @@ struct SliderView: View {
                         Image(systemName: "arrow.left.square.fill")
                             .onTapGesture {
                                 sharedValues.animationInProgress = true
-                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
                                     sharedValues.sliderProgress -= 100
                                 }
                                 updateSpiral()
@@ -112,7 +112,7 @@ struct SliderView: View {
                         Image(systemName: "arrow.right.square.fill")
                             .onTapGesture {
                                 sharedValues.animationInProgress = true
-                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
                                     sharedValues.sliderProgress += 100
                                 }
                                 updateSpiral()
@@ -248,7 +248,7 @@ struct MySlider: View {
                             // to check if animation stops, we must use withAnimation
                             if sharedValues.animationInProgress != true {
                                 sharedValues.animationInProgress = true
-                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                                SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
                                     sharedValues.sliderProgress = CGFloat(newValue)
                                 }
                             }

@@ -60,7 +60,7 @@ struct MileStoneDatesView: View {
         }
         //.animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
         .onTapGesture {
-            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
                 //sharedValues.oneTempleInfo.removeAll()
                 //imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                 sharedValues.tappedATemple = false

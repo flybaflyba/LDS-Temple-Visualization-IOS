@@ -198,7 +198,7 @@ struct SpiralView: View {
                 .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                 .position(x: temple.x, y: temple.y)
                 //.position(x: temple.x, y: (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.25 ? temple.y : temple.y) : (temple.size > currentScreenHeight * 0.2 ? temple.y : temple.y) ))
-                .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+                .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
                 //.modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {})
                     .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
 
@@ -220,13 +220,13 @@ struct SpiralView: View {
                     imageSpiralViewModel.changeATemple(id: temple.id)
                     //print("tapped temple Link is \(temple.link)")
                     if (temple.tapped == true) {
-                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
                             sharedValues.tappedATemple = false
                             sharedValues.singleTempleShow = false
                             print("tap a large temple")
                         }
                     } else {
-                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
+                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
                             sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                             sharedValues.tappedATemple = true
                             sharedValues.singleTempleShow = true
@@ -313,7 +313,7 @@ struct SpiralView: View {
                         // this line shows us how the spiral looks like on screen
                         //spiralDrawing().stroke()
                         //drawOneTempleName(temple: temple)
-                    if temple.showName && sharedValues.animationInProgress == false {
+                    if temple.showName && sharedValues.animationInProgress == false && sharedValues.showLabel {
                         
                         // handle the last few temples, where their images is just with their names on it,
                         // we dont what to show the names, so we just used name as " "
@@ -328,7 +328,7 @@ struct SpiralView: View {
                 
 //                ForEach(imageSpiralViewModel.onScreenTemples) { temple in
 //                    if temple.showName && sharedValues.animationInProgress == false {
-//                        
+//
 //                        // handle the last few temples, where their images is just with their names on it,
 //                        // we dont what to show the names, so we just used name as " "
 ////                        if link == "no link" {
@@ -374,7 +374,7 @@ struct SpiralView: View {
 //                }
                 
             }
-            .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
+            .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
         }
         return body
     }

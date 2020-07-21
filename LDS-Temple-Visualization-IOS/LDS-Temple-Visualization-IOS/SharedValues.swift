@@ -18,8 +18,12 @@ class SharedValues: ObservableObject {
     @Published var spinColor = Color.gray
     @Published var threeDColor = Color.gray
     
-    @Published var hasAnimationOnColor = Color.gray
-    @Published var hasAnimationOffColor = Color.blue
+    @Published var slowAnimationOnColor = Color.gray
+    @Published var fastAnimationColor = Color.blue
+    
+    @Published var showLabelOn = Color.gray
+    @Published var showLabelOff = Color.blue
+    
     
     @Published var selectedColor = Color.blue
     @Published var unSelectedColor = Color.gray
@@ -34,8 +38,10 @@ class SharedValues: ObservableObject {
     
     @Published var templesList = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
     
-    @Published var myAnimation: Animation = Animation.linear(duration: 1)
-    @Published var myNoAnimation: Animation = Animation.linear(duration: 0.5)
+    @Published var mySlowAnimation: Animation = Animation.linear(duration: 1)
+    @Published var myFastAnimation: Animation = Animation.linear(duration: 0.5)
+    
+    @Published var showLabel = false
     
     @Published var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
     
