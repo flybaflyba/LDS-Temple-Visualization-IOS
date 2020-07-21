@@ -313,7 +313,7 @@ struct SpiralView: View {
                         // this line shows us how the spiral looks like on screen
                         //spiralDrawing().stroke()
                         //drawOneTempleName(temple: temple)
-                    if temple.showName && sharedValues.animationInProgress == false && sharedValues.showLabel {
+                    if temple.showName && sharedValues.animationInProgress == false && sharedValues.showLabel && sharedValues.tappedATemple == false{
                         
                         // handle the last few temples, where their images is just with their names on it,
                         // we dont what to show the names, so we just used name as " "
