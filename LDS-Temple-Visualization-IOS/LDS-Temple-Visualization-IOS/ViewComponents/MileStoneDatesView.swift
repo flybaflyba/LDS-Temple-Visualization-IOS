@@ -34,7 +34,11 @@ struct MileStoneDatesView: View {
 //                                                        (sharedValues.currentTappedTempleLink == "no link" ? sharedValues.templesList : sharedValues.currentTappedTempleLink)
                                                         sharedValues.currentTappedTempleLink
                             )) {
+                HStack {
                     Text(sharedValues.currentTappedTempleName)
+                    Image(systemName: "link")
+                }
+                    
             }
             
             ScrollView {

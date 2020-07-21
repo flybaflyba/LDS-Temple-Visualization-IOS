@@ -52,8 +52,9 @@ struct SettingViewMain: View {
                     HStack {
                         LabelSettingButton()
                         VStack {
-                            TempleListButton()
                             AboutButton()
+                            TempleListButton()
+                            
                         }
                         
                         
@@ -378,7 +379,11 @@ struct TempleListButton: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(Color.gray)
-                    Text("Temple List")
+                    HStack {
+                        Text("Temple List")
+                        Image(systemName: "link")
+                    }
+                    
                         .padding()
                         // check system is in dark or light mode then use different color
                         .foregroundColor(colorScheme == .dark ? Color.white : Color.black)

@@ -38,7 +38,11 @@ struct AboutViewMain: View {
                     .padding()
 
                 NavigationLink(destination: InAppWebView(url: "https://litianzhang.com/latter-day-temples-visualization-android-app/")) {
-                    Text("Visit App Website")
+                    
+                    HStack {
+                        Text("Visit App Website")
+                        Image(systemName: "link")
+                    }
                 }
                 
                 //Button("Visit App Website") {UIApplication.shared.open(appUrl!)}
