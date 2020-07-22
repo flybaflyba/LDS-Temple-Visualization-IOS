@@ -16,17 +16,10 @@ struct Spiral<TempleContent> {
     
     @EnvironmentObject var sharedValues: SharedValues
     
-    //var temples: Array<Temple>
-       
-    //var coordinatesAndSizes: Array<Array<CGFloat>>
-    
     var onScreenTemples: Array<Temple>
     
     var mode: String = "default" 
-    // var onScreenTemplesPositions: Array<CGFloat>
-    
-    //var startYear: String
-    //var endYear: String
+
     
     func choose(temple: Temple) {
         //print("temple chosen: \(temple)")
@@ -138,16 +131,11 @@ struct Spiral<TempleContent> {
                 let fileName: String = onScreenTemplesString[0][index]
 //                // this is with when we temples that is outside of coordinates and sizes list,
 //                // their x y and size can noto be found, we willgive the value here
-//                if Int(onScreenTemplesPositionsP[index]) > coordinatesAndSizesP.count - 1 {
-//                    x = centerX
-//                    y = centerY
-//                    size = 10
-//                } else {
-                    x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
-                    y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
-                    size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
+
+                x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
+                y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
+                size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
                 
-//                }
                 
                 let showName = onScreenTemplesPositionsP[index] < 450 ? true : false
                 
@@ -160,10 +148,7 @@ struct Spiral<TempleContent> {
 //            for i in onScreenTemples {
 //                print(i)
 //            }
-            
-//         onScreenTemplesPositions = onScreenTemplesPositionsP
-//         coordinatesAndSizes = coordinatesAndSizesP.reversed()
-         
+
          //print("on screen temples when app starts length \(onScreenTemples.count)")
          //print("on screen positions when app starts length \(onScreenTemplesPositions.count)")
     }
@@ -174,28 +159,17 @@ struct Spiral<TempleContent> {
         //onScreenTemplesPositions = onScreenTemplesPositionsNew
         
         //onScreenTemples.removeAll()
-        
-//        for index in 0..<onScreenTemplesNew.count{
-//            let content = onScreenTemplesNew[index]
-//            onScreenTemples.append(Temple(content: content, id: index, x: 20, y: 20, size: 20))
-//        }
-        
+
         //print("updating ==========================================")
         
         for index in 0..<onScreenTemples.count {
             onScreenTemples[index].content = Image(onScreenTemplesString[0][index]) as! TempleContent
             onScreenTemples[index].id = index
+
+            onScreenTemples[index].x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
+            onScreenTemples[index].y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
+            onScreenTemples[index].size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
             
-//            if Int(onScreenTemplesPositionsP[index]) > coordinatesAndSizesP.count - 1 {
-//                onScreenTemples[index].x = centerX
-//                onScreenTemples[index].y = centerY
-//                onScreenTemples[index].size = 10
-//            } else {
-                onScreenTemples[index].x = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][0]
-                onScreenTemples[index].y = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][1]
-                onScreenTemples[index].size = coordinatesAndSizesP[Int(onScreenTemplesPositionsP[index])][2]
-            
-//            }
             onScreenTemples[index].name = onScreenTemplesString[1][index]
             onScreenTemples[index].year = onScreenTemplesString[2][index]
             onScreenTemples[index].link = onScreenTemplesString[3][index]
@@ -206,10 +180,7 @@ struct Spiral<TempleContent> {
             
             //print("onScreenTemplesPositionsP[index] \(onScreenTemplesPositionsP[index])")
             
-            //onScreenTemples.append(Temple(content: content as! TempleContent, id: id, x: x, y: y, size: size))
         }
-            
-        
         
         //print("NEW on screen temples length \(onScreenTemples.count)")
         //print("NEW on screen positions length \(onScreenTemplesPositions.count)")
@@ -234,7 +205,6 @@ struct Spiral<TempleContent> {
         var location: String {
             get {
                 var loc = " "
-                
                 if tapped {
                     loc = " "
                 } else {
@@ -244,12 +214,9 @@ struct Spiral<TempleContent> {
                         loc = " "
                     }
                 }
-                
                 return loc
             }
-            
         }
-        
         var showName: Bool
     }
 }

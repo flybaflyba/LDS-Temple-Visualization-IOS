@@ -19,44 +19,10 @@ public var currentScreenWidthPublic: CGFloat = 0
 public var currentScreenHeighPublic: CGFloat = 0
 public var orientationInTextPublic: String = " "
 
-
-//let statusbarHeight = UIApplication.shared.st
-
-
 struct MainScreenView: View {
-//
-//    @Binding var mode: String
-//    @Binding var hasAnimation: Bool
-//
-    
-//    @State var mode: String = "default"
-//    @State var hasAnimation: Bool = true
-    
-    
-    //@EnvironmentObject var settings: SettingValues
-    
-        
-//    func getAppTitle() -> String {
-//        var title = settings.appTitle
-//        return title
-//    }
-    
-    
-    //UIDevice.current.orientation.isPortrait
-   
-    
-    
     
     var body: some View {
-        
         ZStack {
-          
-//            Rectangle()
-//                .background(Color.red)
-//                .scaledToFill()
-//                .edgesIgnoringSafeArea(.all)
-            
-            
             NavigationView {
                 SpiralView()
                     
@@ -66,20 +32,11 @@ struct MainScreenView: View {
                     .navigationBarItems(trailing:
                                             NavigationLink(destination: SettingView()) {
                                                 Image(systemName: "ellipsis.circle.fill")
-
                                             }
-                                                
-
-                )
-                
-        }
+                    )
+            }
             .navigationViewStyle(StackNavigationViewStyle())
-            
         }
-
-            
-            
-            
     }
 }
 
@@ -87,19 +44,14 @@ struct MainScreenView: View {
 
 struct SpiralView: View {
 
-    
-    //@EnvironmentObject var deviceOrientationEnv: DeviceOrientationEnv
-    
-    
     // we make this observed object,
     // along with its published spiral model in its class,
     // this view will update when changes happen to the model 
     @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
 
-    //screenWidth: SharedValues.screenWidth, screenHeight: SharedValues.screenHeight, centerX: SharedValues.centerX, centerY: SharedValues.centerY
-    
     @EnvironmentObject var sharedValues: SharedValues
     
+    // we use computed value, we do this so that we can use sharefValues above
     var currentScreenWidth: CGFloat {
         get {
             currentScreenWidthPublic = sharedValues.currentScreenWidth
@@ -113,7 +65,6 @@ struct SpiralView: View {
     var currentScreenHeight: CGFloat {
         get {
             //print("new screen height: \(sharedValues.currentScreenHeight)")
-            
             return sharedValues.currentScreenHeight
         }
     }
@@ -124,7 +75,8 @@ struct SpiralView: View {
         }
     }
     
-    
+    // this struct is to check if animation ends
+    // this is from online, so i still have questions about the logics in here...
     struct AnimatableModifierHere: AnimatableModifier {
 
         var targetValue: CGFloat
@@ -171,361 +123,175 @@ struct SpiralView: View {
                 .animation(nil)
         }
     }
-
-//    var animationProgress: Double = 0
-//
-//    var animatableData: Double {
-//            get {
-//                print("animation progress is \(animationProgress)")
-//                return animationProgress
-//
-//            }
-//            set {
-//                print("animation progress is \(animationProgress)")
-//                animationProgress = newValue
-//
-//            }
-//        }
     
+    // this function takes in on temple and draw it at a spicific location with a spicific size
+    // animation, animation modifier(check if animation ends) and tap action are also implemented here
     func drawOneTemple(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
-            
             ZStack {
-                
-            
                 temple.content
-                .resizable()
-                .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
-                .position(x: temple.x, y: temple.y)
-                //.position(x: temple.x, y: (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.25 ? temple.y : temple.y) : (temple.size > currentScreenHeight * 0.2 ? temple.y : temple.y) ))
-                .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
-                //.modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {})
+                    .resizable()
+                    .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
+                    .position(x: temple.x, y: temple.y)
+                    .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
                     .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
-
                         if sharedValues.animationInProgress {
                             print("animation finished")
                             sharedValues.animationInProgress = false
                         }
-
                         //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
-
                     })
-                    
-                    
-                .onTapGesture {
-                    print("tapped a temple")
-                    
-                    print("showName is \(temple.showName)")
-                    
-                    imageSpiralViewModel.changeATemple(id: temple.id)
-                    //print("tapped temple Link is \(temple.link)")
-                    if (temple.tapped == true) {
-                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
-                            sharedValues.tappedATemple = false
-                            sharedValues.singleTempleShow = false
-                            print("tap a large temple")
-                        }
-                    } else {
-                        SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
-                            sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
-                            sharedValues.tappedATemple = true
-                            sharedValues.singleTempleShow = true
-                            print("tap a small temple")
-                        }
-                        sharedValues.currentTappedTempleName = temple.name
-                        sharedValues.currentTappedTempleId = temple.id
-                        sharedValues.currentTappedTempleLink = temple.link
-                    }
-                    print("tapped temple's size is \(temple.size)")
-                }
-                
-                
-                //if temple.showName {
-                    //HStack {
+                    .onTapGesture {
+                        print("tapped a temple")
+                        print("showName is \(temple.showName)")
                         
-                    //}
-                //}
-                
-               
-                
-                
-                
-                
-                
-           
-         
-         
-                
+                        // when tapped, we need to change the tapped temple size and location,
+                        // we tapped again, we need to change it back
+                        // how to detect we are tapping it in spiral view or single view? logic is in the method
+                        imageSpiralViewModel.changeATemple(id: temple.id)
+                        //print("tapped temple Link is \(temple.link)")
+                        if (temple.tapped == true) {
+                            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                                sharedValues.tappedATemple = false
+                                sharedValues.singleTempleShow = false
+                                print("tap a large temple")
+                            }
+                        } else {
+                            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                                sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                                sharedValues.tappedATemple = true
+                                sharedValues.singleTempleShow = true
+                                print("tap a small temple")
+                            }
+                            sharedValues.currentTappedTempleName = temple.name
+                            sharedValues.currentTappedTempleId = temple.id
+                            sharedValues.currentTappedTempleLink = temple.link
+                        }
+                        print("tapped temple's size is \(temple.size)")
+                    }
             }
         }
-        
         return body
     }
     
-//    func drawOneTempleName(temple: Spiral<Image>.Temple) -> some View {
-//        var body: some View {
-//            ZStack {
-//                if temple.showName && sharedValues.animationInProgress == false {
-//                    Text(temple.name)
-//                        .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
-//                        .font(.system(size: 10))
-//                        .animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
-//
-//                }
-//            }
-//
-//
-//        }
-//
-//        return body
-//    }
+    // we used functions to return a value then use it later to avoid the expressing to be too long. expressing is too long will cause can't type check in reasonable amount of time error
     
     func showNameLabelCondition(temple: Spiral<Image>.Temple) -> Bool {
         temple.showName && sharedValues.animationInProgress == false && sharedValues.showLabel && sharedValues.tappedATemple == false
     }
     
     func showNameLabelContent(temple: Spiral<Image>.Temple) -> String {
+        // handle the last few temples, where their images is just with their names on it,
+        // we dont what to show the names, so we just used name as " "
         temple.link == "no link" ? "" : temple.name
             
     }
     
     func drawTemples() -> some View {
         
-       
         //print("app launchs here screen width and height \(UIScreen.main.bounds.size.width) \(UIScreen.main.bounds.size.height)")
         
         if sharedValues.orientationChanged == true {
             
+            // we need this to keep the single temple view show after orientation changed.
+            // we do this, we resume single temple view temple attributes into spiral view
+            // then we do this again
             if sharedValues.singleTempleShow {
                 imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
             }
             
+            // when orientation changed, we need to relocate spiral with current center x and y and sizes
             imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
             sharedValues.orientationChanged = false
             print("relocate spiral")
             
+            // we do this above code again, after we relocate spiral, we bring up single temple view again by changeing the same temples attributes, such as x y and size
             if sharedValues.singleTempleShow {
                 imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
             }
-           
+            
             print("changed a temple")
-        
         }
         
         var body: some View {
-           
             ZStack {
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
                     
                     drawOneTemple(temple: temple)
-                        
+                    
+                    // we need to write a spiralDrawing method to used this comments with the coordinates, this method will just draw spiral on screen, for testing purposes. not it's not working. keep it here just in case we need to see how spiral looks
                     // this line shows us how the spiral looks like on screen
                     //spiralDrawing().stroke()
                     //drawOneTempleName(temple: temple)
                     if showNameLabelCondition(temple: temple) {
-                        
-                        // handle the last few temples, where their images is just with their names on it,
-                        // we dont what to show the names, so we just used name as " "
-//                        if link == "no link" {
-//                            name = " "
-//                        }
                         Text(showNameLabelContent(temple: temple))
                             .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
                             .font(.system(size: 10))
                     }
                 }
-                
-//                ForEach(imageSpiralViewModel.onScreenTemples) { temple in
-//                    if temple.showName && sharedValues.animationInProgress == false {
-//
-//                        // handle the last few temples, where their images is just with their names on it,
-//                        // we dont what to show the names, so we just used name as " "
-////                        if link == "no link" {
-////                            name = " "
-////                        }
-//                        Text(temple.link == "no link" ? "" : temple.name)
-//                            .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
-//                            .font(.system(size: 10))
-//                    }
-//                }
-                //.animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
-                
-                 
-//                // display temple names on larger temples
-//                ForEach(imageSpiralViewModel.onScreenTemples) { temple in
-//                    Text(
-//                        //(sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ? (temple.size > currentScreenWidth * 0.2 ? temple.location : "") : (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
-//
-//                    (sharedValues.animationInProgress ? " " :
-//                        (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown" ?
-//                        (temple.size > currentScreenWidth * 0.2 ? temple.location : "") :
-//                        (temple.size > currentScreenHeight * 0.15 ? temple.location : ""))
-//                    )
-//                    )
-//
-//                        //.frame(width: temple.size, height: temple.size / 2, alignment: Alignment.center)
-//                        .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
-//                        .font(.system(size: 10))
-//                    //.animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
-////                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
-////
-////                        if sharedValues.animationInProgress {
-////                            print("animation finished")
-////                            sharedValues.animationInProgress = false
-////                        }
-////
-////                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
-////
-////                                    })
-//
-//
-//
-//                }
-                
             }
+            // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
+            // we still need to animation in drawonetemple method.
             .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
         }
         return body
     }
     
-    
     func PortraitView() -> some View {
         
         var body: some View {
             VStack {
-            
                 drawTemples()
-                   
                 .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
-                //.position(x: currentScreenWidth/2, y: currentScreenHeight/2)
-                //.background(Color.green)
-                // we need this background color for testing purposes
                 
                 Spacer(minLength: 0)
                 
-//                if sharedValues.oneTempleInfo.count == 0 {
+                // we show mile stone dates once a temple is tapped,
                 if sharedValues.tappedATemple == false {
                     
-                    //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                        //.frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
-                        //.background(Color.blue)
-                        // we need this background color for testing purposes
-                     
-                    //Spacer(minLength: 0)
-
                     SliderView(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
                         //.background(Color.green)
-                        // we need this background color for testing purposes
-                    
-                    
+                        // leave this this background color comment here for testing purposes
+      
                 } else {
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
-                        
                 }
-                
-    //                    Rectangle()
-    //                        .foregroundColor(Color.gray)
-                
+                // if we put back ground color for spiral, we might need this to fill up the bottom,
+                // no need this if we don't set any custome color, just use the default light and dart mode of ios
+//                Rectangle()
+//                    .foregroundColor(Color.gray)
             }
         }
-        
         return body
 }
     
     func LandscapeViewForPhone() -> some View {
         
         var body: some View {
-    
             HStack {
-                
-                
-                
                 drawTemples()
                     .frame(width: currentScreenWidth / 2 , height: currentScreenHeight, alignment: Alignment.center)
                     //.background(Color.yellow)
                 
-        
-
-//                if sharedValues.oneTempleInfo.count == 0 {
                 if sharedValues.tappedATemple == false {
                     GeometryReader { geometry in
                         VStack {
-                            //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                                //.frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
-                                //.background(Color.green)
-                            
-                            
+                            // be aware force slider size was causing me a HUGE bug. that's why we used geometry reader here
                             SliderView(imageSpiralViewModel: imageSpiralViewModel)
                                 .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.3, alignment: Alignment.center)
                                 //.background(Color.red)
-                                //.frame(maxWidth: currentScreenWidth * 0.5, maxHeight: currentScreenHeight * 0.6)
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                         }
-                    
                     }
-                            
-                    
                 } else {
-//                    Rectangle()
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(maxHeight: currentScreenHeight * 0.5)
                         //.background(Color.purple)
-//                        .onTapGesture {
-//                            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation) {
-//                                sharedValues.oneTempleInfo.removeAll()
-//                            }
-//
-//                        }
-                    
-//                    Rectangle()
-//                        .background(Color.green)
-                    
                 }
-                
-//                Rectangle()
-//                    .background(Color.green)
-
-                
-              
-                
             }
-            
-            
-//            HStack {
-//
-//
-//                drawTemples()
-//                    .frame(width: currentScreenWidth * 1 / 2 , height: currentScreenHeight, alignment: Alignment.center)
-//                    .background(Color.yellow)
-//
-//                Spacer(minLength: 0)
-//
-//                if sharedValues.oneTempleInfo.count == 0 {
-//                    VStack {
-//                        YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-//                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.bottom)
-//
-//                        Spacer(minLength: 0)
-//
-//                        SliderView(imageSpiralViewModel: imageSpiralViewModel)
-//                            .frame(width: currentScreenWidth / 2, height: currentScreenHeight / 2, alignment: Alignment.center)
-//
-//                    }
-//                } else {
-//                    MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
-//                        .frame(width: currentScreenWidth / 2, height: currentScreenHeight * 0.6, alignment: Alignment.center)
-//                        .background(Color.red)
-//
-//
-//
-//                }
-//        }
-//
-            
         }
-        
         return body
 }
     
@@ -534,44 +300,23 @@ struct SpiralView: View {
         
         var body: some View {
             VStack {
-            
-                drawTemples()
-                   
-                .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
-                //.position(x: currentScreenWidth/2, y: currentScreenHeight/2)
-                //.background(Color.green)
-                // we need this background color for testing purposes
                 
+                drawTemples()
+                .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
+
                 Spacer(minLength: 0)
                 
-//                if sharedValues.oneTempleInfo.count == 0 {
                 if sharedValues.tappedATemple == false {
                     
-                    
-                     
-                    
-
                     SliderView(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
                         //.background(Color.green)
-                        // we need this background color for testing purposes
-                    
-                    //Spacer(minLength: 0)
-                    
-                    //YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                        //.frame(width: currentScreenWidth, height: currentScreenHeight * 0.1, alignment: Alignment.center)
-                        //.background(Color.blue)
-                        // we need this background color for testing purposes
-                    
+                        // leave this this background color comment here for testing purposes
                 } else {
+                    
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
-                        
                 }
-                
-    //                    Rectangle()
-    //                        .foregroundColor(Color.gray)
-                
             }
         }
         
@@ -579,73 +324,24 @@ struct SpiralView: View {
 }
     
     var body: some View {
-        
-        
-        
         return ZStack {
-        
-//            PortraitView()
             
-            // when app lauch, orientation is alway unknown, weird, at least with my phone. it's like this
-//            if sharedValues.orientationInText == "unknown" {
-//
-//                if UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height {
-//                    PortraitView()
-//                } else {
-//                    if sharedValues.currentDevice == .phone {
-//                        LandscapeViewForPhone()
-//                    } else {
-//                        LandscapeViewForPad()
-//                        //PortraitView()
-//                    }
-//                }
-//
-//                //Text("orientationInText when launch is \(sharedValues.orientationInText) why is it unknow? ")
-//
-//            } else {
-                if (sharedValues.orientationInText == "portrait"
-                        || sharedValues.orientationInText == "unknown"
-                )
-
-
-                {
-
-                    PortraitView()
-
-                } else if (sharedValues.orientationInText == "landscape"
-                        || sharedValues.orientationInText == "unknown"
-                )
-
-
-                {
-
-                    if sharedValues.currentDevice == .phone {
-                        LandscapeViewForPhone()
-                    } else {
-                        LandscapeViewForPad()
-                        //PortraitView()
-                    }
-                    //LandscapeView()
-
-                    //LandscapeViewSimilarToPortraitView()
+            // we are checking for unknow here, every time app launches, orientation is unknow,
+            // here is a possible bug, don't know how to solve yet
+            // even user launch app in landscape mode, portrait view will still show...
+            if (sharedValues.orientationInText == "portrait" || sharedValues.orientationInText == "unknown") {
+                PortraitView()
+            } else if (sharedValues.orientationInText == "landscape" || sharedValues.orientationInText == "unknown") {
+                if sharedValues.currentDevice == .phone {
+                    LandscapeViewForPhone()
+                } else {
+                    LandscapeViewForPad()
+                    //PortraitView()
                 }
-//            }
-            
-            
+            }
         }
-        
-                        
-        
-        
-        
-        
     }
-    
-    
 }
-
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -26,62 +26,30 @@ struct MileStoneDatesView: View {
     }
     
     var body: some View {
-        
-        // "https://www.churchofjesuschrist.org/temples/list?lang=eng"
-        
         VStack {
-            NavigationLink(destination: InAppWebView(url:
-//                                                        (sharedValues.currentTappedTempleLink == "no link" ? sharedValues.templesList : sharedValues.currentTappedTempleLink)
-                                                        sharedValues.currentTappedTempleLink
-                            )) {
+            NavigationLink(destination: InAppWebView(url: sharedValues.currentTappedTempleLink)) {
                 HStack {
                     Text(sharedValues.currentTappedTempleName)
                     Image(systemName: "link")
                 }
-                    
             }
-            
             ScrollView {
                 VStack {
-                    // ...
-//                    ForEach(sharedValues.oneTempleInfo) {oneInfo in
-//                        Text(oneInfo.content)
-//                            //.fontWeight(.light)
-//
-//                            //.position(x: screenWidth/2, y: CGFloat(oneInfo.id))
-//                            //.animation(withAnimation ? Animation.linear(duration: 3) : Animation.linear(duration: 0.001))
-//
-//                    }
                     Text(oneTempleInfo)
                         .multilineTextAlignment(.center)
-                    
                 }
-                //.frame(width: UIScreen.main.bounds.width)
             }
-            
-            //Text(settings.currentTappedTempleName)
-
         }
-        //.animation(sharedValues.hasAnimation ? sharedValues.myAnimation : sharedValues.myNoAnimation)
         .onTapGesture {
             SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
-                //sharedValues.oneTempleInfo.removeAll()
-                //imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                // when we tap mile stone dates in single temple view, we will bring slider back and makk mile stone dates disappear
                 sharedValues.tappedATemple = false
-                //var thisId = Int(sharedValues.currentTappedTempleId)
-                //imageSpiralViewModel.changeATemple(id: thisId)
-
-                //sharedValues.singleTempleShow = false
             }
         }
-        
-        
-        
     }
 }
 
-//
-//
+
 //struct MileStoneDatesView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        MileStoneDatesView()

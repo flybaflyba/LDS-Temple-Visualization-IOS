@@ -33,9 +33,6 @@ class SharedValues: ObservableObject {
     @Published var currentTappedTempleId: Int = 0
     @Published var currentTappedTempleLink = " "
     
-    
-    //@Published var appTitle = "Latter-day Temples"
-    
     @Published var templesList = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
     
     @Published var mySlowAnimation: Animation = Animation.linear(duration: 1)
@@ -46,8 +43,6 @@ class SharedValues: ObservableObject {
     @Published var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
     
     @Published var sliderProgress: CGFloat = 3000
-    
-    //@Published @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
     
     @Published var startYear: String = ""
     @Published var endYear: String = ""
@@ -63,39 +58,27 @@ class SharedValues: ObservableObject {
     
     @Published var animationInProgress = false
     
-    //@Published var orientation = UIDevice.current.orientation.isPortrait
-    //@Published var orientation = (UIDeviceOrientation.portrait).isPortrait
     @Published var orientation = UIDevice.current.orientation
-    
     @Published var orientationChanged = false
-    
     @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
         UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
         UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
-
-    
     var orientationRawValueHistory: Array<Int> = [UIDevice.current.orientation.rawValue]
   
-//    @Published var orientationInText = (UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height ? "portrait" : "landscape")
-    
     init() {
-        // 检测设备方向
+        // Detect device orientation
         NotificationCenter.default.addObserver(self, selector: #selector(receivedRotation), name: UIDevice.orientationDidChangeNotification, object: nil)
         //print("device rotation when app launch: \(orientationInText)")
     }
     
     
-    //通知监听触发的方法
+    //once orientation changed, this function will get called
     @objc func receivedRotation(){
-        // 屏幕方向
+        // orientaion here
         self.orientation = UIDevice.current.orientation
 
-//        self.orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
-//            UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
-//            UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
-        
-        
-        
+        // convert orientaion code into text, we dont care about 5 and 6 which are face up and down
+        // for 1, 2 and 3, 4. we treat them the same
         if UIDevice.current.orientation.rawValue == 0 {
             self.orientationInText = "unknown"
         } else if UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 {
@@ -104,98 +87,41 @@ class SharedValues: ObservableObject {
             self.orientationInText = "landscape"
         }
         
-//        
-//        if UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height {
-//            self.orientationInText = "portrait"
-//        } else {
-//            self.orientationInText = "landscape"
-//        }
-        
-        // store current orientation 
+        // store current orientation in an array, we will need to check what last orientaion is once orientation changed
         orientationRawValueHistory.append(UIDevice.current.orientation.rawValue)
         
         //print("before \(orientationRawValueHistory)")
+        
         // if changed to portrait, landscapes left or right, we only update if last orientation is landscapes or portrait respectively
+        // we have a unsolved bug here, every time app launches, the orientation is unknow, which is 0, so that first time rotating, we cannot detect what last orientation is, portrait or landscape? so the view might look not in order, but that's only for the first time rotation. this does not seem to happen on the simulator, just on my device... maybe there is something wrong with my device, i hope so and not hope so ... 😂😂😂
+        
+        // if we rotate to portrait
         if orientationRawValueHistory[orientationRawValueHistory.count-1] == 1 ||
             orientationRawValueHistory[orientationRawValueHistory.count-1] == 2 {
-            
+            // if last orientain is landscape
             if orientationRawValueHistory.contains(3) || orientationRawValueHistory.contains(4) {
-                
+                // remove history for next check
                 orientationRawValueHistory.removeAll()
-                
+                // orientaion really changed, for instance, not from landscape left to landscape right
                 orientationChanged = true
-//                SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
-//                    oneTempleInfo.removeAll()
-//                }
-               
-                
-                
-                
-                
-                
             }
+        // if we rotate to landscape
         } else if orientationRawValueHistory[orientationRawValueHistory.count-1] == 3 ||
                     orientationRawValueHistory[orientationRawValueHistory.count-1] == 4 {
-            
+            //if last orientaion is portrait
             if orientationRawValueHistory.contains(1) || orientationRawValueHistory.contains(2) {
-                
                 orientationRawValueHistory.removeAll()
-                
                 orientationChanged = true
                 
-//                SwiftUI.withAnimation(hasAnimation ? myAnimation : myNoAnimation) {
-//                    oneTempleInfo.removeAll()
-//                }
-                
-                
+  
             }
         }
         
         //print("after \(orientationRawValueHistory)")
         
-        // remember last orientaion
+        // remember last orientaions
         orientationRawValueHistory.append(UIDevice.current.orientation.rawValue)
-        
-//        // if changed to portrait, landscapes left or right, we only update if last orientation is landscapes or portrait respectively
-//        if orientationRawValueHistory[orientationRawValueHistory.count-1] == 1 {
-//            if orientationRawValueHistory[orientationRawValueHistory.count-2] == 3 ||
-//                orientationRawValueHistory[orientationRawValueHistory.count-2] == 4 ||
-//                // if user turn the phone rotates to portrait through face up, is the last orientation landscape? if so turn, if not, now turn
-//                (orientationRawValueHistory[orientationRawValueHistory.count-2] == 5 &&
-//                    (orientationRawValueHistory[orientationRawValueHistory.count-3] == 3 ||
-//                        orientationRawValueHistory[orientationRawValueHistory.count-3] == 4 ||
-//                        orientationRawValueHistory[orientationRawValueHistory.count-3] == 0)) {
-//                //if singleTempleShow == false {
-//                    orientationChanged = true
-//                //}
-//                oneTempleInfo.removeAll()
-//
-//            }
-//        } else if orientationRawValueHistory[orientationRawValueHistory.count-1] == 3 ||
-//                    orientationRawValueHistory[orientationRawValueHistory.count-1] == 4 {
-//            if orientationRawValueHistory[orientationRawValueHistory.count-2] == 1 ||
-//                (orientationRawValueHistory[orientationRawValueHistory.count-2] == 5 &&
-//                    orientationRawValueHistory[orientationRawValueHistory.count-3] == 1 ||
-//                    orientationRawValueHistory[orientationRawValueHistory.count-3] == 0) {
-//                //if singleTempleShow == false {
-//                    orientationChanged = true
-//                //}
-//                oneTempleInfo.removeAll()
-//            }
-//        }
-        
-        
-//        if // last orientation is not unknow, upsidedown, faceup facedown
-//            (orientationRawValueHistory[orientationRawValueHistory.count-2] == 0 ||
-//            orientationRawValueHistory[orientationRawValueHistory.count-2] == 2 ||
-//            orientationRawValueHistory[orientationRawValueHistory.count-2] == 5 ||
-//            orientationRawValueHistory[orientationRawValueHistory.count-2] == 6)
-//        {
-//            // do nothing
-//        } else {
-//            orientationChanged = true
-//        }
-//
+
         //print(self.orientationInText)
         
         if (self.orientationInText == "portrait") {
@@ -209,26 +135,16 @@ class SharedValues: ObservableObject {
                 screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7
             }
             
-            
             centerX = currentScreenWidth / 2
-//            centerY = currentScreenHeight * 0.8 / 2
             centerY = currentScreenHeight * 0.4
-            
-            // when orientation changed to portrait or landscape.
-            // when changed to other ones, such as face up or upside down, no need to change view
-//            if UIDevice.current.orientation.rawValue != 2 && UIDevice.current.orientation.rawValue != 5 && UIDevice.current.orientation.rawValue != 6 {
-//                orientationChanged = true
-//            }
-            
+
             
         } else if (self.orientationInText == "landscape") {
             //print("device rotates to landscape")
             currentScreenWidth = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             currentScreenHeight = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
             
-            
-            
-            
+            // in landscape mode, phone and pad will have different layout in spiral view
             if currentDevice == .phone {
                 screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
                 centerX = currentScreenWidth / 4
@@ -238,29 +154,10 @@ class SharedValues: ObservableObject {
                 centerX = currentScreenWidth / 2
                 centerY = screenWidth * 0.8
             }
-            
-            
-//
-//            centerX = currentScreenWidth / 2
-////            centerY = currentScreenHeight * 0.8 / 2
-//            centerY = screenWidth * 0.8
-            
-//            centerX = currentScreenWidth * 0.25
-//            centerY = currentScreenHeight * 0.6
-            
-//            if UIDevice.current.orientation.rawValue != 2 && UIDevice.current.orientation.rawValue != 5 && UIDevice.current.orientation.rawValue != 6 {
-//                orientationChanged = true
-//            }
         }
-        
-        
         
         //print(currentScreenWidth)
         //print(currentScreenHeight)
-        
-        
-        
-        
         
         //print("centerX and centerY once orientation changed: \(centerX), \(centerY)")
         
@@ -280,8 +177,9 @@ class SharedValues: ObservableObject {
                     print("屏幕朝上 \(UIDevice.current.orientation.rawValue)") // 5
                 case .faceDown: // Device oriented flat, face down
                     print("屏幕朝下 \(UIDevice.current.orientation.rawValue)") // 6
+                @unknown default:
+                    print("orientaion not being detected, may be added in furture versions")
                 }
-        
         
         //print(UIDevice.current.userInterfaceIdiom)
         if UIDevice.current.userInterfaceIdiom == .phone {
