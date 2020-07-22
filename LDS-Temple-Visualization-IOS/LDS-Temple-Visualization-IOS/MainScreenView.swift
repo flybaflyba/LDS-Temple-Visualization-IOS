@@ -280,6 +280,15 @@ struct SpiralView: View {
 //        return body
 //    }
     
+    func showNameLabelCondition(temple: Spiral<Image>.Temple) -> Bool {
+        temple.showName && sharedValues.animationInProgress == false && sharedValues.showLabel && sharedValues.tappedATemple == false
+    }
+    
+    func showNameLabelContent(temple: Spiral<Image>.Temple) -> String {
+        temple.link == "no link" ? "" : temple.name
+            
+    }
+    
     func drawTemples() -> some View {
         
        
@@ -308,19 +317,19 @@ struct SpiralView: View {
             ZStack {
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
                     
-                        drawOneTemple(temple: temple)
+                    drawOneTemple(temple: temple)
                         
-                        // this line shows us how the spiral looks like on screen
-                        //spiralDrawing().stroke()
-                        //drawOneTempleName(temple: temple)
-                    if temple.showName && sharedValues.animationInProgress == false && sharedValues.showLabel && sharedValues.tappedATemple == false{
+                    // this line shows us how the spiral looks like on screen
+                    //spiralDrawing().stroke()
+                    //drawOneTempleName(temple: temple)
+                    if showNameLabelCondition(temple: temple) {
                         
                         // handle the last few temples, where their images is just with their names on it,
                         // we dont what to show the names, so we just used name as " "
 //                        if link == "no link" {
 //                            name = " "
 //                        }
-                        Text(temple.link == "no link" ? "" : temple.name)
+                        Text(showNameLabelContent(temple: temple))
                             .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
                             .font(.system(size: 10))
                     }
