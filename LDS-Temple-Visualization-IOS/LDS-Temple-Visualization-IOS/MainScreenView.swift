@@ -183,7 +183,7 @@ struct SpiralView: View {
     func showNameLabelContent(temple: Spiral<Image>.Temple) -> String {
         // handle the last few temples, where their images is just with their names on it,
         // we dont what to show the names, so we just used name as " "
-        temple.link == "no link" ? "" : temple.name
+        temple.link == "no link" ? "" : temple.location
             
     }
     
