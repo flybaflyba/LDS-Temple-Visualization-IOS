@@ -69,22 +69,24 @@ struct SpiralView: View {
         }
     }
     
+    
     var animationGoingOn: Bool {
         get {
             return sharedValues.animationInProgress
         }
     }
+
     
     // this struct is to check if animation ends
     // this is from online, so i still have questions about the logics in here...
     struct AnimatableModifierHere: AnimatableModifier {
 
         var targetValue: CGFloat
-
+        
         // SwiftUI gradually varies it from old value to the new value
         var animatableData: CGFloat {
             didSet {
-                checkIfFinished()
+                    checkIfFinished()
             }
         }
 
@@ -100,10 +102,12 @@ struct SpiralView: View {
             // associating the extenal argument with the animatableData.
             self.animatableData = bindedValue
             targetValue = bindedValue
+            
         }
 
         func checkIfFinished() -> () {
             //print("Current value: \(animatableData)")
+            //print("checkIfFinished in animatable modifier called")
             if (animatableData == targetValue) {
                 //if animatableData.isEqual(to: targetValue) {
                 DispatchQueue.main.async {
@@ -123,6 +127,8 @@ struct SpiralView: View {
                 .animation(nil)
         }
     }
+    
+    
     
     // this function takes in on temple and draw it at a spicific location with a spicific size
     // animation, animation modifier(check if animation ends) and tap action are also implemented here
@@ -223,6 +229,12 @@ struct SpiralView: View {
             
     }
     
+    func showNameLabel(temple: Spiral<Image>.Temple) -> some View {
+        Text(showNameLabelContent(temple: temple))
+            .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
+            .font(.system(size: 10))
+    }
+    
     func drawTemples() -> some View {
         
         //print("app launchs here screen width and height \(UIScreen.main.bounds.size.width) \(UIScreen.main.bounds.size.height)")
@@ -264,10 +276,9 @@ struct SpiralView: View {
                     //spiralDrawing().stroke()
                     //drawOneTempleName(temple: temple)
                     if showNameLabelCondition(temple: temple) {
-                        Text(showNameLabelContent(temple: temple))
-                            .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
-                            .font(.system(size: 10))
+                        showNameLabel(temple: temple)
                     }
+                    
                 }
             }
             // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
