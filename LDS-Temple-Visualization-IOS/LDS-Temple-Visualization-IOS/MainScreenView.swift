@@ -188,6 +188,7 @@ struct SpiralView: View {
                     .resizable()
                     .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                     .position(x: temple.x, y: temple.y)
+                    .animation(.none)
                     .onTapGesture {
                         print("tapped a temple")
                         imageSpiralViewModel.changeATemple(id: temple.id)
@@ -277,13 +278,14 @@ struct SpiralView: View {
                     //drawOneTempleName(temple: temple)
                     if showNameLabelCondition(temple: temple) {
                         showNameLabel(temple: temple)
+                        
                     }
                     
                 }
             }
             // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
             // we still need to animation in drawonetemple method.
-            //.animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
+            .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
             .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
                 //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
                 
