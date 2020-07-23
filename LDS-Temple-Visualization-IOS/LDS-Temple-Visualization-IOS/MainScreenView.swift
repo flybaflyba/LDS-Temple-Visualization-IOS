@@ -133,7 +133,7 @@ struct SpiralView: View {
                     .resizable()
                     .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                     .position(x: temple.x, y: temple.y)
-                    .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
+                    .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
 //                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
 //                        if sharedValues.animationInProgress {
 //                            print("animation finished")
@@ -152,13 +152,13 @@ struct SpiralView: View {
                         imageSpiralViewModel.changeATemple(id: temple.id)
                         //print("tapped temple Link is \(temple.link)")
                         if (temple.tapped == true) {
-                            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
                                 sharedValues.tappedATemple = false
                                 sharedValues.singleTempleShow = false
                                 print("tap a large temple")
                             }
                         } else {
-                            SwiftUI.withAnimation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
                                 sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                                 sharedValues.tappedATemple = true
                                 sharedValues.singleTempleShow = true
@@ -174,6 +174,41 @@ struct SpiralView: View {
         }
         return body
     }
+    
+    func drawOneTempleWithoutAnimation(temple: Spiral<Image>.Temple) -> some View {
+        var body: some View {
+            ZStack {
+                temple.content
+                    .resizable()
+                    .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
+                    .position(x: temple.x, y: temple.y)
+                    .onTapGesture {
+                        print("tapped a temple")
+                        imageSpiralViewModel.changeATemple(id: temple.id)
+                        if (temple.tapped == true) {
+                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                                sharedValues.tappedATemple = false
+                                sharedValues.singleTempleShow = false
+                                print("tap a large temple")
+                            }
+                        } else {
+                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                                sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                                sharedValues.tappedATemple = true
+                                sharedValues.singleTempleShow = true
+                                print("tap a small temple")
+                            }
+                            sharedValues.currentTappedTempleName = temple.name
+                            sharedValues.currentTappedTempleId = temple.id
+                            sharedValues.currentTappedTempleLink = temple.link
+                        }
+                        print("tapped temple's size is \(temple.size)")
+                    }
+            }
+        }
+        return body
+    }
+    
     
     // we used functions to return a value then use it later to avoid the expressing to be too long. expressing is too long will cause can't type check in reasonable amount of time error
     
@@ -217,8 +252,12 @@ struct SpiralView: View {
         var body: some View {
             ZStack {
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
+                    if sharedValues.animationOption == "off" {
+                        drawOneTempleWithoutAnimation(temple: temple)
+                    } else {
+                        drawOneTempleWithAnimation(temple: temple)
+                    }
                     
-                    drawOneTempleWithAnimation(temple: temple)
                     
                     // we need to write a spiralDrawing method to used this comments with the coordinates, this method will just draw spiral on screen, for testing purposes. not it's not working. keep it here just in case we need to see how spiral looks
                     // this line shows us how the spiral looks like on screen
@@ -233,15 +272,15 @@ struct SpiralView: View {
             }
             // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
             // we still need to animation in drawonetemple method.
-            .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
-            .modifier(AnimatableModifierHere(bindedValue: sharedValues.bindedValueForAnimatableModifier) {
+            //.animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
+            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
                 //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
                 
 //                print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
 //                print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
 //                print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
                 
-                print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
+                //print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
                 
                 print("animatable modifier is called")
                 

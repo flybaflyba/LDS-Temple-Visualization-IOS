@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 class SharedValues: ObservableObject {
-    @Published var hasAnimation = false
+    @Published var animationOption = "off"
     @Published var mode = "default"
     //@Published var showAbout = false
     
@@ -18,8 +18,9 @@ class SharedValues: ObservableObject {
     @Published var spinColor = Color.gray
     @Published var threeDColor = Color.gray
     
-    @Published var slowAnimationOnColor = Color.gray
-    @Published var fastAnimationColor = Color.blue
+    @Published var slowAnimationColor = Color.gray
+    @Published var fastAnimationColor = Color.gray
+    @Published var offAnimationColor = Color.blue
     
     @Published var showLabelOn = Color.gray
     @Published var showLabelOff = Color.blue

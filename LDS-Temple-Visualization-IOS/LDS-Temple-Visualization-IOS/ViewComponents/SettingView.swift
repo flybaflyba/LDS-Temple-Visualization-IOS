@@ -115,14 +115,15 @@ struct AnimationSettingButton: View {
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(sharedValues.slowAnimationOnColor)
+                        .foregroundColor(sharedValues.slowAnimationColor)
                     Text("Slow")
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        sharedValues.hasAnimation = true
-                        sharedValues.slowAnimationOnColor = sharedValues.selectedColor
+                        sharedValues.animationOption = "slow"
+                        sharedValues.slowAnimationColor = sharedValues.selectedColor
                         sharedValues.fastAnimationColor = sharedValues.unSelectedColor
+                        sharedValues.offAnimationColor = sharedValues.unSelectedColor
                     }
                 }
                 
@@ -134,9 +135,24 @@ struct AnimationSettingButton: View {
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        sharedValues.hasAnimation = false
-                        sharedValues.slowAnimationOnColor = sharedValues.unSelectedColor
+                        sharedValues.animationOption = "fast"
+                        sharedValues.slowAnimationColor = sharedValues.unSelectedColor
                         sharedValues.fastAnimationColor = sharedValues.selectedColor
+                        sharedValues.offAnimationColor = sharedValues.unSelectedColor
+                    }
+                }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(sharedValues.offAnimationColor)
+                    Text("Off")
+                }
+                .onTapGesture {
+                    SwiftUI.withAnimation(.linear) {
+                        sharedValues.animationOption = "off"
+                        sharedValues.slowAnimationColor = sharedValues.unSelectedColor
+                        sharedValues.fastAnimationColor = sharedValues.unSelectedColor
+                        sharedValues.offAnimationColor = sharedValues.selectedColor
                     }
                 }
                 
