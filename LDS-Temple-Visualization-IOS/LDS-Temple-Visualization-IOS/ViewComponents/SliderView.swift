@@ -92,6 +92,8 @@ struct MySlider: View {
                 },
                 set: {(newValue) in
                     
+                    sharedValues.lastSliderProgress = sharedValues.sliderProgress
+                    
                     // only run the following code when sliderporgess changed
                     // if not checking newvalue and sliderprogress,
                     // newvalue might be the same as sliderprogress, these lines may excute too
@@ -111,8 +113,11 @@ struct MySlider: View {
                                 sharedValues.sliderProgress = CGFloat(newValue)
                             }
                         }
-                            
+                        
+                        
                         sharedValues.sliderProgress = CGFloat(newValue)
+                        
+                        
                         
                         if imageSpiralViewModel.mode != sharedValues.mode {
                             imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
@@ -122,6 +127,19 @@ struct MySlider: View {
                         
                         sharedValues.singleTempleShow = false
                     }
+                    
+                    print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
+                    print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
+                    print("newValue is \(newValue)")
+                    
+                    if sharedValues.lastSliderProgress == sharedValues.sliderProgress {
+                        sharedValues.bindedValueForAnimatableModifier = sharedValues.sliderProgress
+                    } else {
+                        //sharedValues.bindedValueForAnimatableModifier = 0
+                    }
+                    
+                    print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
+                    
                 }),
                in: 11...7500, step: 1)
             //.background(Color.red)
