@@ -126,7 +126,7 @@ struct SpiralView: View {
     
     // this function takes in on temple and draw it at a spicific location with a spicific size
     // animation, animation modifier(check if animation ends) and tap action are also implemented here
-    func drawOneTemple(temple: Spiral<Image>.Temple) -> some View {
+    func drawOneTempleWithAnimation(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
             ZStack {
                 temple.content
@@ -134,16 +134,17 @@ struct SpiralView: View {
                     .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                     .position(x: temple.x, y: temple.y)
                     .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
-                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
-                        if sharedValues.animationInProgress {
-                            print("animation finished")
-                            sharedValues.animationInProgress = false
-                        }
-                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
-                    })
+//                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+//                        if sharedValues.animationInProgress {
+//                            print("animation finished")
+//                            sharedValues.animationInProgress = false
+//                        }
+//                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+//                        print("animatable modifier is called")
+//                    })
                     .onTapGesture {
                         print("tapped a temple")
-                        print("showName is \(temple.showName)")
+                        //print("showName is \(temple.showName)")
                         
                         // when tapped, we need to change the tapped temple size and location,
                         // we tapped again, we need to change it back
@@ -217,7 +218,7 @@ struct SpiralView: View {
             ZStack {
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
                     
-                    drawOneTemple(temple: temple)
+                    drawOneTempleWithAnimation(temple: temple)
                     
                     // we need to write a spiralDrawing method to used this comments with the coordinates, this method will just draw spiral on screen, for testing purposes. not it's not working. keep it here just in case we need to see how spiral looks
                     // this line shows us how the spiral looks like on screen
@@ -233,6 +234,14 @@ struct SpiralView: View {
             // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
             // we still need to animation in drawonetemple method.
             .animation(sharedValues.hasAnimation ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
+            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+                if sharedValues.animationInProgress {
+                    print("animation finished")
+                    sharedValues.animationInProgress = false
+                }
+                //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+                print("animatable modifier is called")
+            })
         }
         return body
     }
