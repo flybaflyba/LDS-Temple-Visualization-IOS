@@ -70,11 +70,11 @@ struct SpiralView: View {
     }
     
     
-    var animationGoingOn: Bool {
-        get {
-            return sharedValues.animationInProgress
-        }
-    }
+//    var animationGoingOn: Bool {
+//        get {
+//            return sharedValues.animationInProgress
+//        }
+//    }
 
     
     // this struct is to check if animation ends
@@ -86,7 +86,9 @@ struct SpiralView: View {
         // SwiftUI gradually varies it from old value to the new value
         var animatableData: CGFloat {
             didSet {
-                    checkIfFinished()
+                //print("animatableData is \(animatableData)")
+                //print("targetValue is \(targetValue)")
+                checkIfFinished()
             }
         }
 
@@ -124,13 +126,13 @@ struct SpiralView: View {
             // We don't want the system also to
             // implicitly animate default system animatons it each time we set it. It will also cancel
             // out other implicit animations now present on the content.
-                .animation(nil)
+                //.animation(.none)
         }
     }
     
     
     
-    // this function takes in on temple and draw it at a spicific location with a spicific size
+    // this function takes in one temple and draw it at a spicific location with a spicific size
     // animation, animation modifier(check if animation ends) and tap action are also implemented here
     func drawOneTempleWithAnimation(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
@@ -148,6 +150,7 @@ struct SpiralView: View {
 //                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
 //                        print("animatable modifier is called")
 //                    })
+                    
                     .onTapGesture {
                         print("tapped a temple")
                         //print("showName is \(temple.showName)")
@@ -286,21 +289,23 @@ struct SpiralView: View {
             // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
             // we still need to animation in drawonetemple method.
             .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation)
-            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress == sharedValues.lastSliderProgress ? sharedValues.sliderProgress : 0) {
                 //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
                 
-//                print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
-//                print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
+                print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
+                print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
 //                print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
                 
                 //print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
                 
                 print("animatable modifier is called")
                 
-                if sharedValues.animationInProgress {
-                    print("animation finished")
-                    sharedValues.animationInProgress = false
-                }
+                sharedValues.animationInProgress = false
+                
+//                if sharedValues.animationInProgress {
+//                    print("animation finished")
+//                    sharedValues.animationInProgress = false
+//                }
                 //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
                 
             })
