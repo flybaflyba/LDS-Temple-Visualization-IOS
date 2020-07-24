@@ -218,6 +218,7 @@ struct SpiralView: View {
         Text(showNameLabelContent(temple: temple))
             .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
             .font(.system(size: 10))
+        
     }
     
     func drawTemples() -> some View {
@@ -266,7 +267,7 @@ struct SpiralView: View {
             // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
             // we still need to animation in drawonetemple method.
             // we have to keep this default, even when the setting is off, otherwise, animation ends checking will not run, i do not know why
-            .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .default)
+            .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : sharedValues.myVeryFastAnimation)
 //            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
 //                //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
 //
