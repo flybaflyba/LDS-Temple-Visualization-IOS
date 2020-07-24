@@ -38,10 +38,14 @@ struct YearPicker: View {
                 
                 Spacer()
                 
-                Text("show temples dedicated in this year")
-                    //.background(Color.red)
-                //Text("\(allYearsArray[sharedValues.selectedYearIndex])")
-                Text("\(sharedValues.selectedYearIndex + 1836)")
+                Text("swip down to view")
+                Image(systemName: "arrow.down")
+                    .font(.system(size: geometry.size.width * 0.1))
+                    .onTapGesture {
+                        sharedValues.showYearPicker.toggle()
+                        print("sheet gone clicking")
+                    }
+                
                 Spacer()
                 
                 Picker(selection: $sharedValues.selectedYearIndex, label: Text("")) {
@@ -55,13 +59,11 @@ struct YearPicker: View {
                 
                 Spacer()
                 
-                Text("swip down to view")
-                Image(systemName: "arrow.down")
-                    .font(.system(size: geometry.size.width * 0.1))
-                    .onTapGesture {
-                        sharedValues.showYearPicker.toggle()
-                        print("sheet gone clicking")
-                    }
+                Text("show temples dedicated in ")
+                    //.background(Color.red)
+                //Text("\(allYearsArray[sharedValues.selectedYearIndex])")
+                 + Text("\(sharedValues.selectedYearIndex + 1836)")
+                
                 
             }
             //.background(Color.gray)
