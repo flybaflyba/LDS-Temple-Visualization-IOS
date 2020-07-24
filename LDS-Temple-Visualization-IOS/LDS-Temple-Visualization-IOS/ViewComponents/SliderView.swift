@@ -35,7 +35,7 @@ struct SliderView: View {
                         .onTapGesture {
                             sharedValues.animationInProgress = true
                             // we need to put this in withAnimation, so that we can check if the animation ends so that we can decide to display name label
-                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                                 sharedValues.sliderProgress -= 100
                             }
                             updateSpiral()
@@ -46,7 +46,7 @@ struct SliderView: View {
                     Image(systemName: "arrow.right.square.fill")
                         .onTapGesture {
                             sharedValues.animationInProgress = true
-                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                                 sharedValues.sliderProgress += 100
                             }
                             updateSpiral()
@@ -106,14 +106,22 @@ struct MySlider: View {
                         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
                         imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                         
+                        
                         if sharedValues.animationInProgress != true {
-                            sharedValues.animationInProgress = true
+                            
                             // we need to put this in withAnimation, so that we can check if the animation ends so that we can decide to display name label
-                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.myFastAnimation) {
+                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                                 sharedValues.sliderProgress = CGFloat(newValue)
                             }
                         }
                         
+                        sharedValues.animationInProgress = true
+                        
+                        //sharedValues.animationInProgress = true
+                        
+//                        SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+//                            sharedValues.sliderProgress = CGFloat(newValue)
+//                        }
                         
                         sharedValues.sliderProgress = CGFloat(newValue)
                         
@@ -131,14 +139,7 @@ struct MySlider: View {
 //                    print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
 //                    print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
 //                    print("newValue is \(newValue)")
-//
-//                    if sharedValues.lastSliderProgress == sharedValues.sliderProgress {
-//                        sharedValues.bindedValueForAnimatableModifier = sharedValues.sliderProgress
-//                    } else {
-//                        //sharedValues.bindedValueForAnimatableModifier = 0
-//                    }
-//
-//                    print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
+
                     
                 }),
                in: 11...7500, step: 1)
