@@ -265,7 +265,8 @@ struct SpiralView: View {
             }
             // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
             // we still need to animation in drawonetemple method.
-            .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none)
+            // we have to keep this default, even when the setting is off, otherwise, animation ends checking will not run, i do not know why
+            .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .default)
 //            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
 //                //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
 //
