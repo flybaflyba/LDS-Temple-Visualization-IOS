@@ -35,9 +35,9 @@ struct SliderView: View {
                         .onTapGesture {
                             sharedValues.animationInProgress = true
                             // we need to put this in withAnimation, so that we can check if the animation ends so that we can decide to display name label
-                            SwiftUI.withAnimation(.default) {
+                            //SwiftUI.withAnimation(.default) {
                                 sharedValues.sliderProgress -= 100
-                            }
+                            //}
                             updateSpiral()
                         }
                     MySlider(imageSpiralViewModel: imageSpiralViewModel)
@@ -46,9 +46,9 @@ struct SliderView: View {
                     Image(systemName: "arrow.right.square.fill")
                         .onTapGesture {
                             sharedValues.animationInProgress = true
-                            SwiftUI.withAnimation(.default) {
+                            //SwiftUI.withAnimation(.default) {
                                 sharedValues.sliderProgress += 100
-                            }
+                            //}
                             updateSpiral()
                         }
                 }
@@ -106,15 +106,15 @@ struct MySlider: View {
                         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
                         imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                         
-                        
-                        if sharedValues.animationInProgress != true {
-                            
-                            // we need to put this in withAnimation, so that we can check if the animation ends so that we can decide to display name label
-                            SwiftUI.withAnimation(.default) {
-                                sharedValues.sliderProgress = CGFloat(newValue)
-                            }
-                        }
-                        
+
+//                        if sharedValues.animationInProgress != true {
+// we don't need this anymore when we put animatable modifer on each temple to check if animation ends?... accidetally fixed label moving while appearing and disappearing bug...
+//                            // we need to put this in withAnimation, so that we can check if the animation ends so that we can decide to display name label
+//                            SwiftUI.withAnimation(.none) {
+//                                sharedValues.sliderProgress = CGFloat(newValue)
+//                            }
+//                        }
+//
                         sharedValues.animationInProgress = true
                         
                         //sharedValues.animationInProgress = true
