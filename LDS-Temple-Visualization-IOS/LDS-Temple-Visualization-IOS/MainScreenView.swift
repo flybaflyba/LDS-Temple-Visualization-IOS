@@ -21,6 +21,8 @@ public var orientationInTextPublic: String = " "
 
 struct MainScreenView: View {
     
+    @EnvironmentObject var sharedValues: SharedValues
+    
     //@State var showYearPicker = false
         
     var body: some View {
@@ -32,7 +34,16 @@ struct MainScreenView: View {
                     //.background(Color.gray)
                     .navigationBarTitle("Latter-day Temples", displayMode: .inline)
                     .navigationBarItems(
-     
+                        leading:
+                            Button(action: {
+                                sharedValues.showYearPicker.toggle()
+                                    }) {
+                                Image(systemName: "calendar.circle.fill")
+                            }.sheet(isPresented: $sharedValues.showYearPicker) {
+                                        YearPicker()
+                                            .environmentObject(self.sharedValues)
+                                            
+                                    },
                                             
                                         
                         trailing:
