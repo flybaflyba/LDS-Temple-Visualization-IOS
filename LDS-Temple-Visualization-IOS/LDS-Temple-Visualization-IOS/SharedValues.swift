@@ -36,8 +36,10 @@ class SharedValues: ObservableObject {
     
     @Published var templesList = "https://www.churchofjesuschrist.org/temples/list?lang=eng"
     
+    //@Published var myVerySlowAnimation: Animation = Animation.linear(duration: 10)
     @Published var mySlowAnimation: Animation = Animation.linear(duration: 1)
     @Published var myFastAnimation: Animation = Animation.linear(duration: 0.5)
+    @Published var myVeryFastAnimation: Animation = Animation.linear(duration: 0.05)
     
     @Published var showLabel = false
     

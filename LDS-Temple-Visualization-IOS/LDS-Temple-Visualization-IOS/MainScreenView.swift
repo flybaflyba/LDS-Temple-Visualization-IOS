@@ -142,14 +142,29 @@ struct SpiralView: View {
                     .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                     .position(x: temple.x, y: temple.y)
                     .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none)
-//                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
-//                        if sharedValues.animationInProgress {
-//                            print("animation finished")
-//                            sharedValues.animationInProgress = false
-//                        }
-//                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
-//                        print("animatable modifier is called")
-//                    })
+                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+                        //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
+                        
+                        //print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
+                        //print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
+                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
+                        
+                        //print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
+                        
+                        //print("animatable modifier is called")
+                        
+                        //if sharedValues.sliderProgress == sharedValues.lastSliderProgress {
+                            //sharedValues.animationInProgress = false
+                            //print("animation finished")
+                        //}
+                        
+                        if sharedValues.animationInProgress {
+                            print("animation finished")
+                            sharedValues.animationInProgress = false
+                        }
+                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+                        
+                    })
                     
                     .onTapGesture {
                         print("tapped a temple")
@@ -237,8 +252,6 @@ struct SpiralView: View {
                     
                     drawOneTemple(temple: temple)
                     
-                    
-                    
                     // we need to write a spiralDrawing method to used this comments with the coordinates, this method will just draw spiral on screen, for testing purposes. not it's not working. keep it here just in case we need to see how spiral looks
                     // this line shows us how the spiral looks like on screen
                     //spiralDrawing().stroke()
@@ -253,29 +266,29 @@ struct SpiralView: View {
             // we do animation here so that label show and disappear is animiated, cant do it on Text within if (i dont know why)
             // we still need to animation in drawonetemple method.
             .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none)
-            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
-                //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
-                
-                print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
-                print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
-//                print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
-                
-                //print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
-                
-                print("animatable modifier is called")
-                
-                //if sharedValues.sliderProgress == sharedValues.lastSliderProgress {
-                    sharedValues.animationInProgress = false
-                    print("animation finished")
-                //}
-                
-//                if sharedValues.animationInProgress {
-//                    print("animation finished")
+//            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+//                //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
+//
+//                print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
+//                print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
+////                print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
+//
+//                //print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
+//
+//                print("animatable modifier is called")
+//
+//                //if sharedValues.sliderProgress == sharedValues.lastSliderProgress {
 //                    sharedValues.animationInProgress = false
-//                }
-                //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
-                
-            })
+//                    print("animation finished")
+//                //}
+//
+////                if sharedValues.animationInProgress {
+////                    print("animation finished")
+////                    sharedValues.animationInProgress = false
+////                }
+//                //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+//
+//            })
         }
         return body
     }
