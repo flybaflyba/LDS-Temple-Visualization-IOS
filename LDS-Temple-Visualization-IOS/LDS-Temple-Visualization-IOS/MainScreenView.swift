@@ -21,6 +21,8 @@ public var orientationInTextPublic: String = " "
 
 struct MainScreenView: View {
     
+    //@State var showYearPicker = false
+        
     var body: some View {
         ZStack {
             NavigationView {
@@ -29,10 +31,17 @@ struct MainScreenView: View {
                     //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
                     //.background(Color.gray)
                     .navigationBarTitle("Latter-day Temples", displayMode: .inline)
-                    .navigationBarItems(trailing:
-                                            NavigationLink(destination: SettingView()) {
-                                                Image(systemName: "ellipsis.circle.fill")
-                                            }
+                    .navigationBarItems(
+     
+                                            
+                                        
+                        trailing:
+                            NavigationLink(destination: SettingView()) {
+                                Image(systemName: "ellipsis.circle.fill")
+                                                
+                        }
+                                        
+                                           
                     )
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -137,34 +146,17 @@ struct SpiralView: View {
     func drawOneTemple(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
             ZStack {
+                
+                Circle()
+                    .fill(Color.green)
+                    .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
+                    .position(x: temple.x, y: temple.y)
+                
                 temple.content
                     .resizable()
                     .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                     .position(x: temple.x, y: temple.y)
-                    .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none)
-                    .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
-                        //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
-                        
-                        //print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
-                        //print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
-                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
-                        
-                        //print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
-                        
-                        //print("animatable modifier is called")
-                        
-                        //if sharedValues.sliderProgress == sharedValues.lastSliderProgress {
-                            //sharedValues.animationInProgress = false
-                            //print("animation finished")
-                        //}
-                        
-                        if sharedValues.animationInProgress {
-                            print("animation finished")
-                            sharedValues.animationInProgress = false
-                        }
-                        //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
-                        
-                    })
+                    
                     
                     .onTapGesture {
                         print("tapped a temple")
@@ -194,7 +186,24 @@ struct SpiralView: View {
                         }
                         print("tapped temple's size is \(temple.size)")
                     }
+                
+                    
+                
+                
             }
+            .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none)
+            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+                //print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
+                //print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
+                //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
+                //print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
+                //print("animatable modifier is called")
+                if sharedValues.animationInProgress {
+                    print("animation finished")
+                    sharedValues.animationInProgress = false
+                }
+                //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
+            })
         }
         return body
     }
@@ -249,6 +258,7 @@ struct SpiralView: View {
         
         var body: some View {
             ZStack {
+                
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
                     
                     drawOneTemple(temple: temple)
