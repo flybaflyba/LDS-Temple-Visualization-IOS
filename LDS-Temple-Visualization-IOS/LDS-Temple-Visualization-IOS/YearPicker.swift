@@ -12,11 +12,26 @@ struct YearPicker: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
+    @State var selectedDate = Date()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .onTapGesture {
-                sharedValues.showYearPicker.toggle()
-            }
+        VStack {
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                .background(Color.red)
+                .onTapGesture {
+                    sharedValues.showYearPicker.toggle()
+                    print("sheet gone clicking")
+                    sharedValues.selectedYear = "2020"
+                }
+            
+            
+            
+            DatePicker("Please enter a date", selection: $selectedDate, in: Date()...)
+            Text("Your selected date: \(selectedDate)")
+            
+        }
+        
+        
     }
 }
 

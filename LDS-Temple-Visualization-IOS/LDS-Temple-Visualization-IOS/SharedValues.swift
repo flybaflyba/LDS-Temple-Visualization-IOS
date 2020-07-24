@@ -64,6 +64,7 @@ class SharedValues: ObservableObject {
     @Published var animationInProgress = false
     
     @Published var showYearPicker = false
+    @Published var selectedYear = "2000"
     
     @Published var orientation = UIDevice.current.orientation
     @Published var orientationChanged = false

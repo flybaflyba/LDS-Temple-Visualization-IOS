@@ -21,6 +21,8 @@ public var orientationInTextPublic: String = " "
 
 struct MainScreenView: View {
     
+    @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+    
     @EnvironmentObject var sharedValues: SharedValues
     
     //@State var showYearPicker = false
@@ -28,8 +30,7 @@ struct MainScreenView: View {
     var body: some View {
         ZStack {
             NavigationView {
-                SpiralView()
-                    
+                SpiralView(imageSpiralViewModel: imageSpiralViewModel)
                     //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
                     //.background(Color.gray)
                     .navigationBarTitle("Latter-day Temples", displayMode: .inline)
@@ -39,20 +40,22 @@ struct MainScreenView: View {
                                 sharedValues.showYearPicker.toggle()
                                     }) {
                                 Image(systemName: "calendar.circle.fill")
-                            }.sheet(isPresented: $sharedValues.showYearPicker) {
+                            }.sheet(isPresented: $sharedValues.showYearPicker, onDismiss: {
+                                print("sheet gone by swiping down")
+                                
+//                                sharedValues.sliderProgress = 1000
+//                                imageSpiralViewModel.getNewTheta(newTheta: 1000)
+//                                imageSpiralViewModel.updateOnScreenTemples(newTheta: 1000)
+                                
+                                
+                            }) {
                                         YearPicker()
                                             .environmentObject(self.sharedValues)
-                                            
                                     },
-                                            
-                                        
                         trailing:
                             NavigationLink(destination: SettingView()) {
                                 Image(systemName: "ellipsis.circle.fill")
-                                                
                         }
-                                        
-                                           
                     )
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -67,8 +70,9 @@ struct SpiralView: View {
     // we make this observed object,
     // along with its published spiral model in its class,
     // this view will update when changes happen to the model 
-    @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
-
+    //@ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
+    @ObservedObject var imageSpiralViewModel: ImageSpiral
+    
     @EnvironmentObject var sharedValues: SharedValues
     
     // we use computed value, we do this so that we can use sharefValues above
@@ -158,10 +162,10 @@ struct SpiralView: View {
         var body: some View {
             ZStack {
                 
-                Circle()
-                    .fill(Color.green)
-                    .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
-                    .position(x: temple.x, y: temple.y)
+//                Circle()
+//                    .fill(Color.green)
+//                    .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
+//                    .position(x: temple.x, y: temple.y)
                 
                 temple.content
                     .resizable()
