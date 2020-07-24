@@ -12,22 +12,60 @@ struct YearPicker: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
-    @State var selectedDate = Date()
+  
+    func allYears() -> Array<String> {
+        var allYearArray: Array<String> = Array<String>()
+        
+        for i in 1836..<2021 {
+            allYearArray.append(String(i))
+        }
+        
+        return allYearArray
+    }
+    
+    var allYearsArray: Array<String> {
+        return allYears()
+    }
+    
+    //@State var selectedYearIndex = 0
     
     var body: some View {
-        VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                .background(Color.red)
-                .onTapGesture {
-                    sharedValues.showYearPicker.toggle()
-                    print("sheet gone clicking")
-                    sharedValues.selectedYear = "2020"
-                }
+        
+        return GeometryReader { geometry in
             
             
-            
-            DatePicker("Please enter a date", selection: $selectedDate, in: Date()...)
-            Text("Your selected date: \(selectedDate)")
+            VStack {
+                
+                Spacer()
+                
+                Text("show temples dedicated in this year")
+                    //.background(Color.red)
+                //Text("\(allYearsArray[sharedValues.selectedYearIndex])")
+                Text("\(sharedValues.selectedYearIndex + 1836)")
+                Spacer()
+                
+                Picker(selection: $sharedValues.selectedYearIndex, label: Text("")) {
+                            ForEach(0 ..< allYearsArray.count) {
+                               Text(self.allYearsArray[$0])
+                            }
+                         }
+                .labelsHidden()
+                //.frame(width: geometry.size.width * 1, height: geometry.size.height * 0.5, alignment: Alignment.center)
+                //.background(Color.red)
+                
+                Spacer()
+                
+                Text("swip down to view")
+                Image(systemName: "arrow.down")
+                    .font(.system(size: geometry.size.width * 0.1))
+                    .onTapGesture {
+                        sharedValues.showYearPicker.toggle()
+                        print("sheet gone clicking")
+                    }
+                
+            }
+            //.background(Color.gray)
+        
             
         }
         

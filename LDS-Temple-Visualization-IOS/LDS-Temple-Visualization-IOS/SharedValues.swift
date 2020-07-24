@@ -63,8 +63,10 @@ class SharedValues: ObservableObject {
     
     @Published var animationInProgress = false
     
+    // these two value is binded to year picker in yearpickerview and left button on spiralview navigation bar
+    // year is just 1836 + index 
     @Published var showYearPicker = false
-    @Published var selectedYear = "2000"
+    @Published var selectedYearIndex = 0
     
     @Published var orientation = UIDevice.current.orientation
     @Published var orientationChanged = false
