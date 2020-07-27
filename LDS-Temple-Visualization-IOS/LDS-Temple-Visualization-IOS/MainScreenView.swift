@@ -41,28 +41,28 @@ struct MainScreenView: View {
                                 sharedValues.showYearPicker.toggle()
                                     }) {
                                 Image(systemName: "calendar.circle.fill")
-                            }.sheet(isPresented: $sharedValues.showYearPicker, onDismiss: {
+                            }.sheet(isPresented: $sharedValues.showYearPicker
+                                    , onDismiss: {
+                                        // if user goes to year picker, but did not move the picker, the value here is not changed its still -1
+                                        // it shows 1836 on year picker, if this happends, we set it to 0,
+                                        if sharedValues.selectedYearIndex == -1 {
+                                            sharedValues.selectedYearIndex = 0
+                                        }
+                                        
+                                        print("sheet gone by swiping down")
+                                        print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+        //                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
+        //                                print(ImageSpiral.templeYears)
+        //                                print("theta now is \(sharedValues.sliderProgress)")
+                                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex]
+                                        sharedValues.sliderProgress = newThetaFromYearPicker
+                                        imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
+                                        imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                                        
+                                        print("new theta now is \(newThetaFromYearPicker)")
                                 
-                                // if user goes to year picker, but did not move the picker, the value here is not changed its still -1
-                                // it shows 1836 on year picker, if this happends, we set it to 0,
-                                if sharedValues.selectedYearIndex == -1 {
-                                    sharedValues.selectedYearIndex = 0
-                                }
-                                
-                                print("sheet gone by swiping down")
-                                print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
-//                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
-//                                print(ImageSpiral.templeYears)
-//                                print("theta now is \(sharedValues.sliderProgress)")
-                                let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex]
-                                sharedValues.sliderProgress = newThetaFromYearPicker
-                                imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
-                                imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
-                                
-                                print("new theta now is \(newThetaFromYearPicker)")
-                                
-                                
-                            }) {
+                                    }
+                            ) {
                                 YearPicker()
                                     .environmentObject(self.sharedValues)
                                     },

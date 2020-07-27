@@ -19,30 +19,39 @@ struct YearPicker: View {
     var body: some View {
         
         return GeometryReader { geometry in
-            
-            
             VStack {
+                //Spacer()
                 
-                Spacer()
+//                Image(systemName: "arrow.down")
+//                    .font(.system(size: geometry.size.width * 0.1))
+//                    .onTapGesture {
+//                        sharedValues.showYearPicker.toggle()
+//                        print("sheet gone clicking")
+//                    }
                 
-                Image(systemName: "arrow.down")
-                    .font(.system(size: geometry.size.width * 0.1))
-                    .onTapGesture {
-                        sharedValues.showYearPicker.toggle()
-                        print("sheet gone clicking")
-                    }
-                Text("swip down to view")
+//                ZStack {
+//                    RoundedRectangle(cornerRadius: 5)
+//                        .size(width: geometry.size.width * 0.1, height: geometry.size.width * 0.1)
+//                    Text("View")
+//                }
+//                .onTapGesture {
+//                    sharedValues.showYearPicker.toggle()
+//                    print("sheet gone clicking")
+//                }
+                
+                Button(action: {
+                    sharedValues.showYearPicker.toggle()
+                }) {
+                    Text("View")
+                }
+                
+                    
                 if sharedValues.selectedYearIndex != -1 {
                     Text(sharedValues.selectedYearIndex == templeYears.count - 1 ? "Announced Temples" :
                         sharedValues.selectedYearIndex == templeYears.count - 2 ? "Temples under construction" : "Temples dedicated in \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
                 } else {
                     Text("Temples dedicated in 1836")
                 }
-                
-                
-                    //.background(Color.red)
-                //Text("\(allYearsArray[sharedValues.selectedYearIndex])")
-                //+ Text("")
                 
                 //Spacer()
                 
@@ -54,16 +63,10 @@ struct YearPicker: View {
                 .labelsHidden()
                 //.frame(width: geometry.size.width * 1, height: geometry.size.height * 0.5, alignment: Alignment.center)
                 //.background(Color.red)
-                
-                Spacer()
-                
-               
-                
-                
+                //Spacer()
             }
             //.background(Color.gray)
         
-            
         }
         
         
