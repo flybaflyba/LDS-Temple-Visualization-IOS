@@ -27,6 +27,7 @@ struct MainScreenView: View {
     
     //@State var showYearPicker = false
         
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -42,6 +43,9 @@ struct MainScreenView: View {
                                 Image(systemName: "calendar.circle.fill")
                             }.sheet(isPresented: $sharedValues.showYearPicker, onDismiss: {
                                 print("sheet gone by swiping down")
+                                print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                                
+                                print(ImageSpiral.templeYears)
                                 
 //                                sharedValues.sliderProgress = 1000
 //                                imageSpiralViewModel.getNewTheta(newTheta: 1000)
@@ -49,8 +53,8 @@ struct MainScreenView: View {
                                 
                                 
                             }) {
-                                        YearPicker()
-                                            .environmentObject(self.sharedValues)
+                                YearPicker()
+                                    .environmentObject(self.sharedValues)
                                     },
                         trailing:
                             NavigationLink(destination: SettingView()) {
@@ -161,11 +165,15 @@ struct SpiralView: View {
     func drawOneTemple(temple: Spiral<Image>.Temple) -> some View {
         var body: some View {
             ZStack {
+
+                if temple.year == String(sharedValues.selectedYearIndex + 1836) {
+                    Circle()
+                        .fill(Color.green)
+                        .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
+                        .position(x: temple.x, y: temple.y)
+                }
                 
-//                Circle()
-//                    .fill(Color.green)
-//                    .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
-//                    .position(x: temple.x, y: temple.y)
+
                 
                 temple.content
                     .resizable()

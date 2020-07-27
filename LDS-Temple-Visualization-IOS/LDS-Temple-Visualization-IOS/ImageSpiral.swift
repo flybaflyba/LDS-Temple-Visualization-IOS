@@ -21,6 +21,7 @@ class ImageSpiral: ObservableObject {
     static var startYear: String = ""
     static var endYear: String = ""
     
+    static var templeYears: Array<String> = Array<String>()
     
     static let templeNames: Array<String> = readTempleNamesFromFile()
     static let templeNamesAndYears: Array<Array<String>> = readTempleNameYearFromFile()
@@ -368,11 +369,22 @@ class ImageSpiral: ObservableObject {
         var allTempleYears: Array<String> = Array<String>()
         var allTempleLinks: Array<String> = Array<String>()
         
+        
+        
         for i in 0..<allTempleNamesYears.count / 2 {
             allTempleNames.append(allTempleNamesYears[2 * i])
             allTempleYears.append(allTempleNamesYears[2 * i + 1])
             //allTempleLinks.append("https://www.google.com/")
         }
+        
+        // a collection of all temple years on screen
+        // used for year picker
+        templeYears = allTempleYears
+        // remove all ere (future temples without dedication years)
+        let ere = ["ere"]
+        templeYears.removeAll(where: { ere.contains($0) })
+        templeYears = templeYears.removingDuplicates()
+        
         
         allTempleLinks = readTempleLinksFromFile()
         
@@ -414,4 +426,20 @@ class ImageSpiral: ObservableObject {
         return allTempleLinks
     }
     
+    
+    
+}
+
+extension Array where Element: Hashable {
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
+    }
 }

@@ -12,20 +12,7 @@ struct YearPicker: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
-  
-    func allYears() -> Array<String> {
-        var allYearArray: Array<String> = Array<String>()
-        
-        for i in 1836..<2021 {
-            allYearArray.append(String(i))
-        }
-        
-        return allYearArray
-    }
-    
-    var allYearsArray: Array<String> {
-        return allYears()
-    }
+    var templeYears: Array<String> = ImageSpiral.templeYears
     
     //@State var selectedYearIndex = 0
     
@@ -38,19 +25,23 @@ struct YearPicker: View {
                 
                 Spacer()
                 
-                Text("swip down to view")
                 Image(systemName: "arrow.down")
                     .font(.system(size: geometry.size.width * 0.1))
                     .onTapGesture {
                         sharedValues.showYearPicker.toggle()
                         print("sheet gone clicking")
                     }
+                Text("swip down to view")
+                Text("temples dedicated in ")
+                    //.background(Color.red)
+                //Text("\(allYearsArray[sharedValues.selectedYearIndex])")
+                 + Text("\(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
                 
-                Spacer()
+                //Spacer()
                 
                 Picker(selection: $sharedValues.selectedYearIndex, label: Text("")) {
-                            ForEach(0 ..< allYearsArray.count) {
-                               Text(self.allYearsArray[$0])
+                            ForEach(0 ..< templeYears.count) {
+                               Text(self.templeYears[$0])
                             }
                          }
                 .labelsHidden()
@@ -59,10 +50,7 @@ struct YearPicker: View {
                 
                 Spacer()
                 
-                Text("show temples dedicated in ")
-                    //.background(Color.red)
-                //Text("\(allYearsArray[sharedValues.selectedYearIndex])")
-                 + Text("\(sharedValues.selectedYearIndex + 1836)")
+               
                 
                 
             }
@@ -75,8 +63,8 @@ struct YearPicker: View {
     }
 }
 
-struct YearPicker_Previews: PreviewProvider {
-    static var previews: some View {
-        YearPicker()
-    }
-}
+//struct YearPicker_Previews: PreviewProvider {
+//    static var previews: some View {
+//        YearPicker()
+//    }
+//}
