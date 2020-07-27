@@ -22,7 +22,7 @@ class ImageSpiral: ObservableObject {
     static var endYear: String = ""
     
     static var templeYears: Array<String> = Array<String>()
-    static var templeYearsThetaFriends: Array<String> = ["245", "300", "325", "340", "380", "420", "450", "490", "520", "1540", "570", "610", "680", "715", "750", "780", "810", "830", "850", "1070", "1290", "1430", "1520", "1540", "1575", "1630", "1660", "1700", "1710", "1755", "1850", "1890", "2315", "3320", "3540", "3720", "3800", "3850", "3950", "4030", "4110", "4200", "4300", "4400", "4520", "4540", "4650", "4785", "4935", "5100", "5110", "5320", "5330"]
+    static var templeYearsThetaFriends: Array<CGFloat> = [245, 300, 325, 340, 380, 420, 450, 490, 520, 540, 570, 610, 680, 715, 750, 780, 810, 830, 850, 1070, 1290, 1430, 1520, 1540, 1575, 1630, 1660, 1700, 1710, 1755, 1850, 1890, 2315, 3320, 3540, 3720, 3800, 3850, 3950, 4030, 4110, 4200, 4300, 4400, 4520, 4540, 4650, 4785, 4935, 5100, 5110, 5320, 5330]
     
     static let templeNames: Array<String> = readTempleNamesFromFile()
     static let templeNamesAndYears: Array<Array<String>> = readTempleNameYearFromFile()

@@ -42,15 +42,15 @@ struct MainScreenView: View {
                                     }) {
                                 Image(systemName: "calendar.circle.fill")
                             }.sheet(isPresented: $sharedValues.showYearPicker, onDismiss: {
-                                print("sheet gone by swiping down")
-                                print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
-                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
-                                print(ImageSpiral.templeYears)
-                                print("theta now is \(sharedValues.sliderProgress)")
-                                
-//                                sharedValues.sliderProgress = 1000
-//                                imageSpiralViewModel.getNewTheta(newTheta: 1000)
-//                                imageSpiralViewModel.updateOnScreenTemples(newTheta: 1000)
+//                                print("sheet gone by swiping down")
+//                                print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+//                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
+//                                print(ImageSpiral.templeYears)
+//                                print("theta now is \(sharedValues.sliderProgress)")
+                                let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex]
+                                sharedValues.sliderProgress = newThetaFromYearPicker
+                                imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
+                                imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
                                 
                                 
                             }) {
@@ -167,7 +167,7 @@ struct SpiralView: View {
         var body: some View {
             ZStack {
 
-                if temple.year == "2020" {
+                if temple.year == ImageSpiral.templeYears[sharedValues.selectedYearIndex] {
                     Circle()
                         .fill(Color.green)
                         .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
