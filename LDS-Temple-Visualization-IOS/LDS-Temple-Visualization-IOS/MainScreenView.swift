@@ -42,8 +42,8 @@ struct MainScreenView: View {
                                     }) {
                                 Image(systemName: "calendar.circle.fill")
                             }.sheet(isPresented: $sharedValues.showYearPicker, onDismiss: {
-//                                print("sheet gone by swiping down")
-//                                print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                                print("sheet gone by swiping down")
+                                print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
 //                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
 //                                print(ImageSpiral.templeYears)
 //                                print("theta now is \(sharedValues.sliderProgress)")
@@ -51,6 +51,8 @@ struct MainScreenView: View {
                                 sharedValues.sliderProgress = newThetaFromYearPicker
                                 imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
                                 imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                                
+                                print("new theta now is \(newThetaFromYearPicker)")
                                 
                                 
                             }) {
