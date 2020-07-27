@@ -44,7 +44,7 @@ struct MainScreenView: View {
                             }.sheet(isPresented: $sharedValues.showYearPicker, onDismiss: {
                                 
                                 // if user goes to year picker, but did not move the picker, the value here is not changed its still -1
-                                // it shows 1836 on year picker, if this happends, we set it to 0, 
+                                // it shows 1836 on year picker, if this happends, we set it to 0,
                                 if sharedValues.selectedYearIndex == -1 {
                                     sharedValues.selectedYearIndex = 0
                                 }
@@ -198,7 +198,7 @@ struct SpiralView: View {
                         print("tapped a temple")
                         //print("showName is \(temple.showName)")
                         
-                        sharedValues.selectedYearIndex = -1
+                        //sharedValues.selectedYearIndex = -1
                         
                         // when tapped, we need to change the tapped temple size and location,
                         // we tapped again, we need to change it back
