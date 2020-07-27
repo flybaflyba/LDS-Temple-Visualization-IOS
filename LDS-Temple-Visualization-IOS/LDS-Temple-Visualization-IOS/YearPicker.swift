@@ -32,10 +32,12 @@ struct YearPicker: View {
                         print("sheet gone clicking")
                     }
                 Text("swip down to view")
-                Text("temples dedicated in ")
+                
+                Text(sharedValues.selectedYearIndex == templeYears.count - 1 ? "Announced Temples" :
+                    sharedValues.selectedYearIndex == templeYears.count - 2 ? "Temples under construction" : "Temples dedicated in \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
                     //.background(Color.red)
                 //Text("\(allYearsArray[sharedValues.selectedYearIndex])")
-                 + Text("\(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                //+ Text("")
                 
                 //Spacer()
                 
