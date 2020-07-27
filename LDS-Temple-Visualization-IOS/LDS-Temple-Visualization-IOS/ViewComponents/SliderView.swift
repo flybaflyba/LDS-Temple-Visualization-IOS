@@ -39,6 +39,8 @@ struct SliderView: View {
                                 sharedValues.sliderProgress -= 100
                             //}
                             updateSpiral()
+                            
+                            sharedValues.selectedYearIndex = -1
                         }
                     MySlider(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(maxWidth: (min(sharedValues.currentScreenWidth, sharedValues.currentScreenHeight)) * 0.8)
@@ -50,6 +52,8 @@ struct SliderView: View {
                                 sharedValues.sliderProgress += 100
                             //}
                             updateSpiral()
+                            
+                            sharedValues.selectedYearIndex = -1
                         }
                 }
             }
@@ -91,6 +95,8 @@ struct MySlider: View {
                     return Double(sharedValues.sliderProgress)
                 },
                 set: {(newValue) in
+                    
+                    sharedValues.selectedYearIndex = -1
                     
                     sharedValues.lastSliderProgress = sharedValues.sliderProgress
                     
