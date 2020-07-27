@@ -28,6 +28,8 @@ struct MainScreenView: View {
     //@State var showYearPicker = false
         
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -40,7 +42,13 @@ struct MainScreenView: View {
                             Button(action: {
                                 sharedValues.showYearPicker.toggle()
                                     }) {
-                                Image(systemName: "calendar.circle.fill")
+                                ZStack {
+                                    Circle()
+                                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                                        .frame(width: 40, height: 40, alignment:.center)
+                                    Image(systemName: "calendar.circle.fill")
+                                }
+                                
                             }.sheet(isPresented: $sharedValues.showYearPicker
                                     , onDismiss: {
                                         // if user goes to year picker, but did not move the picker, the value here is not changed its still -1
@@ -68,11 +76,17 @@ struct MainScreenView: View {
                                     },
                         trailing:
                             NavigationLink(destination: SettingView()) {
-                                Image(systemName: "ellipsis.circle.fill")
+                                ZStack {
+                                    Circle()
+                                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                                        .frame(width: 40, height: 40, alignment:.center)
+                                    Image(systemName: "ellipsis.circle.fill")
+                                }
                         }
                     )
             }
             .navigationViewStyle(StackNavigationViewStyle())
+            
         }
     }
 }
