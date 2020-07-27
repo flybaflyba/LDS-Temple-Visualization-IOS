@@ -166,7 +166,7 @@ struct SpiralView: View {
         var body: some View {
             ZStack {
 
-                if temple.year == String(sharedValues.selectedYearIndex + 1836) {
+                if temple.year == String(ImageSpiral.templeYears[sharedValues.selectedYearIndex]) {
                     Circle()
                         .fill(Color.green)
                         .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
