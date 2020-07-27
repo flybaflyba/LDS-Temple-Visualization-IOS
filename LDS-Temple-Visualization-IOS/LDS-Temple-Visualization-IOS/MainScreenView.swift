@@ -68,6 +68,10 @@ struct MainScreenView: View {
                                         imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
                                         
                                         print("new theta now is \(newThetaFromYearPicker)")
+                                        
+                                        if imageSpiralViewModel.mode != sharedValues.mode {
+                                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+                                        }
                                 
                                     }
                             ) {
