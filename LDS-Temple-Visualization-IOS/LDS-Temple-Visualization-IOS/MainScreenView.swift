@@ -62,7 +62,7 @@ struct MainScreenView: View {
         //                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
         //                                print(ImageSpiral.templeYears)
         //                                print("theta now is \(sharedValues.sliderProgress)")
-                                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex]
+                                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex] + 20
                                         sharedValues.sliderProgress = newThetaFromYearPicker
                                         imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
                                         imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
