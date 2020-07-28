@@ -331,7 +331,7 @@ struct SpiralView: View {
                 }
             }
             
-            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
+            .modifier(AnimatableModifierHere(bindedValue: sharedValues.showLabel ? sharedValues.sliderProgress : 0) {
                 //print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
                 //print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
                 //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
