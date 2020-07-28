@@ -203,14 +203,12 @@ struct SpiralView: View {
                     }
                 }
                 
-                
-
-                
                 temple.content
                     .resizable()
                     .frame(width: temple.size, height: temple.size, alignment: Alignment.center)
                     .position(x: temple.x, y: temple.y)
-                    
+                    //.opacity(0.3)
+                    //.shadow(radius: 10)
                     
                     .onTapGesture {
                         print("tapped a temple")
@@ -242,9 +240,6 @@ struct SpiralView: View {
                         }
                         print("tapped temple's size is \(temple.size)")
                     }
-                
-                    
-                
                 
             }
             .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none)
@@ -316,8 +311,13 @@ struct SpiralView: View {
             ZStack {
                 
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
+                    if temple.name == "No Temple" {
+                        
+                    } else {
+                        drawOneTemple(temple: temple)
+                    }
                     
-                    drawOneTemple(temple: temple)
+                    
                     
                     // we need to write a spiralDrawing method to used this comments with the coordinates, this method will just draw spiral on screen, for testing purposes. not it's not working. keep it here just in case we need to see how spiral looks
                     // this line shows us how the spiral looks like on screen
