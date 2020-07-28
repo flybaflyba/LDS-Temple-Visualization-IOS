@@ -197,6 +197,7 @@ class ImageSpiral: ObservableObject {
         let topCoordinateInSpiralX = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][0];
         let topCoordinateInSpiralY = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][1];
         let topSizeInSpiral = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][2];
+        var q = topCoordinateInSpiralX
         
         if mode == "spin" {
             let secondTopCoordinateInSpiralX: CGFloat = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-2)][0];
@@ -204,22 +205,24 @@ class ImageSpiral: ObservableObject {
             let xDirection: CGFloat = topCoordinateInSpiralX - secondTopCoordinateInSpiralX;
             let yDirection: CGFloat = topCoordinateInSpiralY - secondTopCoordinateInSpiralY;
             
-            for i in 1..<40 {
+            while q < screenWidth * 3 {
                 
-                let step: CGFloat = CGFloat(i) * 30;
+                let step: CGFloat = CGFloat(q) //* 30;
                 
                 oneSpiralCoordinateAndSize.append(xDirection / abs(xDirection) * step + secondTopCoordinateInSpiralX);
                 oneSpiralCoordinateAndSize.append(yDirection / abs(yDirection) * step + secondTopCoordinateInSpiralY);
                 oneSpiralCoordinateAndSize.append(topSizeInSpiral)
                 buildingCoordinatesAndSize.append(oneSpiralCoordinateAndSize)
                 oneSpiralCoordinateAndSize.removeAll()
+                
+                q += 5
             }
             
             
         } else  {
-            var q = topCoordinateInSpiralX
             
-            while q < screenWidth * 4 {
+            
+            while q < screenWidth * 3 {
             
                 oneSpiralCoordinateAndSize.append(q)
                 oneSpiralCoordinateAndSize.append(topCoordinateInSpiralY)
