@@ -107,6 +107,8 @@ struct SpiralView: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
+    @Environment(\.colorScheme) var colorScheme
+    
     // we use computed value, we do this so that we can use sharefValues above
     var currentScreenWidth: CGFloat {
         get {
@@ -276,8 +278,14 @@ struct SpiralView: View {
     
     func showNameLabel(temple: Spiral<Image>.Temple) -> some View {
         Text(showNameLabelContent(temple: temple))
-            .position(x: temple.x, y: temple.y + temple.size / 2 + 5)
+            .frame(maxWidth: temple.size)
+            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green.opacity(0.5)))
+            //colorScheme == .dark ? Color.black : Color.white
+            .position(x: temple.x, y: temple.y + temple.size / 2 - 5)
             .font(.system(size: 10))
+            .multilineTextAlignment(.center)
+            
+            
         
     }
     
