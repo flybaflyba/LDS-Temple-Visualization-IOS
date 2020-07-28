@@ -279,7 +279,7 @@ struct SpiralView: View {
     func showNameLabel(temple: Spiral<Image>.Temple) -> some View {
         Text(showNameLabelContent(temple: temple))
             .frame(maxWidth: temple.size)
-            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green.opacity(0.5)))
+            .background(temple.link == "no link" ? RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green.opacity(0)) : RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green.opacity(0.5)))
             //colorScheme == .dark ? Color.black : Color.white
             .position(x: temple.x, y: temple.y + temple.size / 2 - 5)
             .font(.system(size: 10))
