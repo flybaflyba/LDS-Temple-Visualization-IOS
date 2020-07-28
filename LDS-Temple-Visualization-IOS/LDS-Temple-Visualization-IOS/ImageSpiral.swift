@@ -199,7 +199,7 @@ class ImageSpiral: ObservableObject {
         let topSizeInSpiral = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-1)][2];
         var q = topCoordinateInSpiralX
         
-        if mode == "spin" {
+        if mode == "spin" || mode == "3D" {
             let secondTopCoordinateInSpiralX: CGFloat = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-2)][0];
             let secondTopCoordinateInSpiralY: CGFloat = buildingCoordinatesAndSize[(buildingCoordinatesAndSize.count-2)][1];
             let xDirection: CGFloat = topCoordinateInSpiralX - secondTopCoordinateInSpiralX;
