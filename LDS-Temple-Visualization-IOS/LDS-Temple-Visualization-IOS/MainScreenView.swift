@@ -347,7 +347,7 @@ struct SpiralView: View {
             // we still need to animation in drawonetemple method.
             // we have to keep this default, even when the setting is off, otherwise, animation ends checking will not run, i do not know why
             // im assuming, guessing, when aniamtion on each temple is .none, this animation will be checked by animatable modifer to see if animation ends
-            .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : Animation.linear(duration: 0.15))
+            .animation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : Animation.linear(duration: 0.2))
 //            .modifier(AnimatableModifierHere(bindedValue: sharedValues.sliderProgress) {
 //                //(bindedValue: ((sharedValues.sliderProgress == sharedValues.lastSliderProgress && sharedValues.animationInProgress) ? sharedValues.sliderProgress : 0))
 //
