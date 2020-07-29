@@ -165,12 +165,70 @@ struct AnimationSettingButton: View {
     }
 }
 
-
-struct LabelSettingButton: View {
+struct LabelBackGroundSettingButton: View {
     
     @Environment(\.colorScheme) var colorScheme
     
     @EnvironmentObject var sharedValues: SharedValues
+    
+    @State var showLabelBackgroundYes = Color.gray
+    @State var showLabelBackgroundNo = Color.blue
+    
+    var body: some View {
+    
+        ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .foregroundColor(Color.gray)
+            VStack {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(showLabelBackgroundYes)
+                    VStack {
+                        Text("Yes")
+                    }
+                    
+                }
+                .onTapGesture {
+                    SwiftUI.withAnimation(.linear) {
+                        showLabelBackgroundYes = sharedValues.selectedColor
+                        showLabelBackgroundNo = sharedValues.unSelectedColor
+                        sharedValues.showLabelBackgroundOption.toggle()
+                        sharedValues.showLabelBackground = true
+                    }
+                }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(showLabelBackgroundNo)
+                    Text("No")
+                        
+                }
+                .onTapGesture {
+                    SwiftUI.withAnimation(.linear) {
+                        showLabelBackgroundYes = sharedValues.unSelectedColor
+                        showLabelBackgroundNo = sharedValues.selectedColor
+                        sharedValues.showLabelBackgroundOption.toggle()
+                        sharedValues.showLabelBackground = false
+                    }
+                }
+                
+                Text("Background")
+                    .padding()
+                    .font(.headline)
+            }
+            //.background(Color.gray)
+        }
+        
+    }
+    
+}
+
+struct LabelSettingOnOffButton: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    @EnvironmentObject var sharedValues: SharedValues
+    
     
     var body: some View {
         
@@ -181,13 +239,19 @@ struct LabelSettingButton: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.showLabelOn)
-                    Text("On")
+                    VStack {
+                        Text("On")
+                        Text(sharedValues.showLabelBackground ? "with background" : "without background")
+                            .font(.system(size: 10))
+                    }
+                    
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
                         sharedValues.showLabel = true
                         sharedValues.showLabelOn = sharedValues.selectedColor
                         sharedValues.showLabelOff = sharedValues.unSelectedColor
+                        sharedValues.showLabelBackgroundOption.toggle()
                     }
                 }
                 
@@ -215,6 +279,25 @@ struct LabelSettingButton: View {
 }
 
 
+struct LabelSettingButton: View {
+        
+    
+    @EnvironmentObject var sharedValues: SharedValues
+    
+    var body: some View {
+        HStack {
+            if sharedValues.showLabelBackgroundOption {
+                LabelBackGroundSettingButton()
+            } else {
+                LabelSettingOnOffButton()
+            }
+        }
+        
+        
+        
+    }
+    
+}
 struct AboutButton: View {
     
     @Environment(\.colorScheme) var colorScheme

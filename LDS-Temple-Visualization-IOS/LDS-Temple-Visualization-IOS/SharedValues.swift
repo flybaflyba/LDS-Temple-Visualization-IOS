@@ -42,6 +42,8 @@ class SharedValues: ObservableObject {
     @Published var myVeryFastAnimation: Animation = Animation.linear(duration: 0.05)
     
     @Published var showLabel = false
+    @Published var showLabelBackground = false
+    @Published var showLabelBackgroundOption = false
     
     @Published var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
     
