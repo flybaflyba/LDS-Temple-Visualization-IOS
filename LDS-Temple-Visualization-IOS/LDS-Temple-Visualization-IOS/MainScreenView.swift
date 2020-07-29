@@ -241,6 +241,7 @@ struct SpiralView: View {
                             sharedValues.currentTappedTempleLink = temple.link
                         }
                         print("tapped temple's size is \(temple.size)")
+                        print(temple)
                     }
                 
             }
@@ -272,8 +273,13 @@ struct SpiralView: View {
     func showNameLabelContent(temple: Spiral<Image>.Temple) -> String {
         // handle the last few temples, where their images is just with their names on it,
         // we dont what to show the names, so we just used name as " "
-        temple.link == "no link" ? "" : temple.location
-            
+        //print("showNameLabelContent called \(temple.location)")
+        return
+        //temple.link == "no link" ? "" :
+            temple.location
+        
+        
+        //"hihihi"
     }
     
     func showNameLabel(temple: Spiral<Image>.Temple) -> some View {
@@ -284,9 +290,6 @@ struct SpiralView: View {
             .position(x: temple.x, y: temple.y + temple.size / 2 - 5)
             .font(.system(size: 10))
             .multilineTextAlignment(.center)
-            
-            
-        
     }
     
     func drawTemples() -> some View {

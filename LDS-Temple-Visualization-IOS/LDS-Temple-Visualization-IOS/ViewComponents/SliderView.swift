@@ -107,10 +107,7 @@ struct MySlider: View {
                     
                     if CGFloat(newValue) != sharedValues.sliderProgress {
                         
-                        // we update spiral here,
-                        // we call functions in imagespiral view mode to call functions in spiral mode, to change it
-                        imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                        imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                        
                         
 
 //                        if sharedValues.animationInProgress != true {
@@ -140,6 +137,11 @@ struct MySlider: View {
                         sharedValues.oneTempleInfo.removeAll()
                         
                         sharedValues.singleTempleShow = false
+                        
+                        // we update spiral here,
+                        // we call functions in imagespiral view mode to call functions in spiral mode, to change it
+                        imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                        imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                     }
                     
 //                    print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
