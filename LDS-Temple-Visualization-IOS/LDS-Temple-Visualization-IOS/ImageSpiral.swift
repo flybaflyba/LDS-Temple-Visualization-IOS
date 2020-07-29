@@ -16,7 +16,7 @@ class ImageSpiral: ObservableObject {
     
     // theta is modified acoording to slider progress
     // then it is used to modify spiral model attributes
-    static var theta: CGFloat = 3000
+    static var theta: CGFloat = 5300
 
     static var startYear: String = ""
     static var endYear: String = ""

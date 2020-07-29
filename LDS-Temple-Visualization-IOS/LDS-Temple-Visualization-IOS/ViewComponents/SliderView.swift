@@ -143,7 +143,7 @@ struct MySlider: View {
                     }
                     
 //                    print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
-                    //print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
+                    print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
 //                    print("newValue is \(newValue)")
 
                     
