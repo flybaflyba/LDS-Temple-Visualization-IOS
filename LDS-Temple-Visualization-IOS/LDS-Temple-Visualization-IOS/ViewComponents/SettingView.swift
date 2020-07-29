@@ -171,9 +171,6 @@ struct LabelBackGroundSettingButton: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
-    @State var showLabelBackgroundYes = Color.gray
-    @State var showLabelBackgroundNo = Color.blue
-    
     var body: some View {
     
         ZStack {
@@ -182,7 +179,7 @@ struct LabelBackGroundSettingButton: View {
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(showLabelBackgroundYes)
+                        .foregroundColor(sharedValues.showLabelBackgroundYes)
                     VStack {
                         Text("Yes")
                     }
@@ -190,8 +187,8 @@ struct LabelBackGroundSettingButton: View {
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        showLabelBackgroundYes = sharedValues.selectedColor
-                        showLabelBackgroundNo = sharedValues.unSelectedColor
+                        sharedValues.showLabelBackgroundYes = sharedValues.selectedColor
+                        sharedValues.showLabelBackgroundNo = sharedValues.unSelectedColor
                         sharedValues.showLabelBackgroundOption.toggle()
                         sharedValues.showLabelBackground = true
                     }
@@ -199,22 +196,23 @@ struct LabelBackGroundSettingButton: View {
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(showLabelBackgroundNo)
+                        .foregroundColor(sharedValues.showLabelBackgroundNo)
                     Text("No")
                         
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        showLabelBackgroundYes = sharedValues.unSelectedColor
-                        showLabelBackgroundNo = sharedValues.selectedColor
+                        sharedValues.showLabelBackgroundYes = sharedValues.unSelectedColor
+                        sharedValues.showLabelBackgroundNo = sharedValues.selectedColor
                         sharedValues.showLabelBackgroundOption.toggle()
                         sharedValues.showLabelBackground = false
                     }
                 }
                 
-                Text("Background")
+                Text("Label Background")
                     .padding()
                     .font(.headline)
+                    .multilineTextAlignment(.center)
             }
             //.background(Color.gray)
         }

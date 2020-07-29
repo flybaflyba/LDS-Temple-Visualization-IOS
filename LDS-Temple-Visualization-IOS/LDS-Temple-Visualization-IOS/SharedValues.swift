@@ -25,6 +25,8 @@ class SharedValues: ObservableObject {
     @Published var showLabelOn = Color.gray
     @Published var showLabelOff = Color.blue
     
+    @Published var showLabelBackgroundYes = Color.gray
+    @Published var showLabelBackgroundNo = Color.blue
     
     @Published var selectedColor = Color.blue
     @Published var unSelectedColor = Color.gray
