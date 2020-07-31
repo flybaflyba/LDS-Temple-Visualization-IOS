@@ -148,7 +148,7 @@ class ImageSpiral: ObservableObject {
             
             
             if mode == "spin" {
-                angle = theta / 50
+                angle = theta / 100
                 xNew = (x - centerX) * cos(angle) - (y - centerY) * sin(angle) + centerX;
                 yNew = (y - centerY) * cos(angle) + (x - centerX) * sin(angle) + centerY;
             } else if mode == "zoom" {
