@@ -58,26 +58,33 @@ struct SliderView: View {
                 }
             }
                 
-            HStack {
-                
-                // we dont display slider label: start year and current year in landscape mode of phone, because of limited space
-                if sharedValues.currentDevice == .phone && sharedValues.orientationInText == "landscape" {
-                    // do nothing
-                } else {
-                    Text("1836")
-                        .padding()
-                }
-                YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
-                    //.background(Color.red)
-                    .padding()
-                 
-                if sharedValues.currentDevice == .phone && sharedValues.orientationInText == "landscape" {
-                    // do nothing
-                } else {
-                    Text("2020")
-                        .padding()
-                }
-            }
+                            
+            YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+                //.background(Color.red)
+                .padding()
+            
+            // we are not show the slider label in any situation anymore
+//            HStack {
+//                // we dont display slider label: start year and current year in landscape mode of phone, because of limited space
+//                if sharedValues.currentDevice == .phone && sharedValues.orientationInText == "landscape" {
+//                    // do nothing
+//                } else {
+//                    Text("1836")
+//                        .padding()
+//                }
+//
+//                YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+//                    //.background(Color.red)
+//                    .padding()
+//
+//                if sharedValues.currentDevice == .phone && sharedValues.orientationInText == "landscape" {
+//                    // do nothing
+//                } else {
+//                    Text("2020")
+//                        .padding()
+//                }
+//            }
+            
         }
     }
 }
