@@ -53,9 +53,10 @@ struct MainScreenView: View {
                                     , onDismiss: {
                                         // if user goes to year picker, but did not move the picker, the value here is not changed its still -1
                                         // it shows 1836 on year picker, if this happends, we set it to 0,
-                                        if sharedValues.selectedYearIndex == -1 {
-                                            sharedValues.selectedYearIndex = 0
-                                        }
+                                        //if sharedValues.selectedYearIndex == -1 {
+                                            //sharedValues.selectedYearIndex = 52
+                                        //}
+                                        sharedValues.yearPickerSet = true
                                         
                                         print("sheet gone by swiping down")
                                         print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
@@ -196,7 +197,8 @@ struct SpiralView: View {
         var body: some View {
             ZStack {
 
-                if sharedValues.selectedYearIndex != -1 {
+                //if sharedValues.selectedYearIndex != -1 {
+                if sharedValues.yearPickerSet == true {
                     if temple.year == ImageSpiral.templeYears[sharedValues.selectedYearIndex] {
                         Circle()
                             .fill(Color.green)
@@ -204,6 +206,7 @@ struct SpiralView: View {
                             .position(x: temple.x, y: temple.y)
                     }
                 }
+                //}
                 
                 temple.content
                     .resizable()

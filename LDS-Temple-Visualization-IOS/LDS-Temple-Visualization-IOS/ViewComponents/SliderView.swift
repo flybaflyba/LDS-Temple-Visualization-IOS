@@ -40,7 +40,8 @@ struct SliderView: View {
                             //}
                             updateSpiral()
                             
-                            sharedValues.selectedYearIndex = -1
+                            sharedValues.yearPickerSet = false
+                            sharedValues.selectedYearIndex = 52
                         }
                     MySlider(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(maxWidth: (min(sharedValues.currentScreenWidth, sharedValues.currentScreenHeight)) * 0.8)
@@ -53,7 +54,8 @@ struct SliderView: View {
                             //}
                             updateSpiral()
                             
-                            sharedValues.selectedYearIndex = -1
+                            sharedValues.yearPickerSet = false
+                            sharedValues.selectedYearIndex = 52
                         }
                 }
             }
@@ -103,7 +105,8 @@ struct MySlider: View {
                 },
                 set: {(newValue) in
                     
-                    sharedValues.selectedYearIndex = -1
+                    sharedValues.yearPickerSet = false
+                    sharedValues.selectedYearIndex = 52
                     
                     sharedValues.lastSliderProgress = sharedValues.sliderProgress
                     
