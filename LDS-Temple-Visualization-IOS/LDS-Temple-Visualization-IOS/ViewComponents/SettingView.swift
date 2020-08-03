@@ -239,8 +239,15 @@ struct LabelSettingOnOffButton: View {
                         .foregroundColor(sharedValues.showLabelOn)
                     VStack {
                         Text("on")
-                        Text(sharedValues.showLabelBackground ? "with background" : "without background")
-                            .font(.system(size: 10))
+                        if sharedValues.showLabelBackground {
+                            Text("with.background").font(.system(size: 10))
+                        } else {
+                            Text("without.background").font(.system(size: 10))
+                        }
+                        // cannot use this, because string wont localize
+                        //Text(sharedValues.showLabelBackground ?  : "without background")
+                            
+                            
                     }
                     
                 }

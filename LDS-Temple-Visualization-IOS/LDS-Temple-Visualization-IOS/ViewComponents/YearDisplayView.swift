@@ -24,7 +24,7 @@ struct YearDisplayView: View {
         VStack {
             
             if startYear == "announced temples" || startYear == "under construction" {
-                Text("future.temples")
+                Text("announced.temples")
             } else if endYear == "1836" {
                 Text("welcome")
             } else if endYear != "announced temples" && endYear != "under construction" {

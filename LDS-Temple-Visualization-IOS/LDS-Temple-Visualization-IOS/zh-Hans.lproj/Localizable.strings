@@ -6,4 +6,44 @@
   Copyright © 2020 Litian Zhang. All rights reserved.
 */
 
+// MainScreenView
 "app.title" = "后期圣殿";
+
+// YearPicker
+"announced.temples" = "已宣布的圣殿";
+"temples.under.construction" = "建设中的圣殿";
+"temples.dedicated.in" = "圣殿奉献于";
+"view" = "显示";
+
+// YeasDisplayView
+//"announced.temples" = "Announced Temples";
+"welcome" = "欢迎";
+
+// InAppWebView
+"this.temple.does.not.have.a.website.yet" = "此圣殿还没有网站";
+
+// SettingView
+"settings" = "设置";
+"default" = "默认";
+"spin" = "旋转";
+"3d" = "3D";
+"mode" = "模式";
+"slow" = "慢速";
+"fast" = "快速";
+"off" = "关闭";
+"animation" = "过渡";
+"yes" = "好的";
+"no" = "不用";
+"label.background" = "标签背景";
+"on" = "打开";
+//"off" = "Off";
+"label" = "标签";
+"about" = "关于";
+"temple.list" = "圣殿列表";
+"with.background" = "显示背景";
+"without.background" = "无背景";
+
+// AboutView
+"about.content" = "此应用由杨百翰大学夏威夷分校学生张力天在杰弗里·德拉普尔教授指导下编写。\r\r圣殿图片知识版权由耶稣基督后期圣徒教会所有，此应用在经其许可的条件下使用。\r\r此应用是由杨百翰大学夏威夷分校资助的研究项目，但其内容由其开发人员负责。此应用不是耶稣基督后期圣徒教会的\"官方\"出版物";
+"app.website" = "应用网站";
+
