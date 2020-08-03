@@ -22,10 +22,17 @@ struct YearDisplayView: View {
         // so we keep 2020 in the end, and later just announced temples
         
         VStack {
-            Text(startYear == "announced temples" || startYear == "under construction" ? "Future Temples" :
-                    endYear == "1836" ? "Welcome" :
-                    endYear != "announced temples" && endYear != "under construction" ? "\(startYear) --- \(endYear)" :
-                    "\(startYear) --- 2020")
+            
+            if startYear == "announced temples" || startYear == "under construction" {
+                Text("future.temples")
+            } else if endYear == "1836" {
+                Text("welcome")
+            } else if endYear != "announced temples" && endYear != "under construction" {
+                Text("\(startYear) --- \(endYear)")
+            } else {
+                Text("\(startYear) --- 2020")
+            }
+            
         }
     }
 }

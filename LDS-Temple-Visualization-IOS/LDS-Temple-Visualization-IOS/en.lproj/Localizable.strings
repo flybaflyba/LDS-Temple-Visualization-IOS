@@ -6,4 +6,50 @@
   Copyright © 2020 Litian Zhang. All rights reserved.
 */
 
+// MainScreenView
 "app.title" = "Latter-day Temples";
+
+// YearPicker
+"announced.temples" = "Announced Temples";
+"temples.under.construction" = "Temples under construction";
+"temples.dedicated.in" = "Temples dedicated in";
+"view" = "View";
+
+// YeasDisplayView
+"future.temples" = "Future Temples";
+"welcome" = "Welcome";
+
+// InAppWebView
+"this.temple.does.not.have.a.website.yet" = "This temple does not have a website yet";
+
+// SettingView
+"settings" = "Settings";
+"default" = "Default";
+"spin" = "Spin";
+"3d" = "3D";
+"mode" = "Mode";
+"slow" = "Slow";
+"fast" = "Fast";
+"off" = "Off";
+"animation" = "Animation";
+"yes" = "Yes";
+"no" = "No";
+"label.background" = "Label Background";
+"on" = "On";
+//"off" = "Off";
+"label" = "Label";
+"about" = "About";
+"temple.list" = "Temple List";
+
+// AboutView
+"about.content" = "Programming by Litian Zhang under the supervision of Dr. Geoffrey Draper at Brigham Young University--Hawaii. \r\rTemple photos are copyrighted by Intellectual Reserve, Inc. Used by permission. \r\rThis app is a research project funded by Brigham Young University--Hawaii, however the contents are the responsibility of its developers. This app is not an \"official\" publication of the Church of Jesus Christ of Latter-day Saints.";
+"app.website" = "App Website";
+
+
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+
+
+

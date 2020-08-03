@@ -30,12 +30,12 @@ struct AboutViewMain: View {
                 ScrollView {
                     Text("  ")
                     Text("  ")
-                    Text("Programming by Litian Zhang under the supervision of Dr. Geoffrey Draper at Brigham Young University--Hawaii. \r\rTemple photos are copyrighted by Intellectual Reserve, Inc. Used by permission. \r\rThis app is a research project funded by Brigham Young University--Hawaii, however the contents are the responsibility of its developers. This app is not an \"official\" publication of the Church of Jesus Christ of Latter-day Saints.")
+                    Text("about.content")
                     Text("  ")
                     
                     NavigationLink(destination: InAppWebView(url: "https://litianzhang.com/latter-day-temples-visualization-android-app/")) {
                         HStack {
-                            Text("Visit App Website")
+                            Text("app.website")
                             Image(systemName: "link")
                         }
                     }

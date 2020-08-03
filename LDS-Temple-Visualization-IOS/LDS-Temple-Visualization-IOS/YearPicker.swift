@@ -39,9 +39,21 @@ struct YearPicker: View {
 //                    print("sheet gone clicking")
 //                }
                 
+                if sharedValues.selectedYearIndex == templeYears.count - 1 {
+                    Text("announced.temples")
+                } else if sharedValues.selectedYearIndex == templeYears.count - 2 {
+                    Text("temples.under.construction")
+                } else {
+                    HStack {
+                        Text("temples.dedicated.in")
+                        Text("\(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                    }
+                }
+                
                 //if sharedValues.selectedYearIndex != -1 {
-                    Text(sharedValues.selectedYearIndex == templeYears.count - 1 ? "Announced Temples" :
-                        sharedValues.selectedYearIndex == templeYears.count - 2 ? "Temples under construction" : "Temples dedicated in \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                // we cannot use this way to do if statement, because strings wont localize under this way
+//                    Text(sharedValues.selectedYearIndex == templeYears.count - 1 ? "announced.temples" :
+//                        sharedValues.selectedYearIndex == templeYears.count - 2 ? "temples.under.construction" : "temples.dedicated.in" + " \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
                 //} else {
                     //Text("Temples dedicated in 1836")
                 //}
@@ -61,7 +73,7 @@ struct YearPicker: View {
                 Button(action: {
                     sharedValues.showYearPicker.toggle()
                 }) {
-                    Text("View")
+                    Text("view")
                 }
                 
             }

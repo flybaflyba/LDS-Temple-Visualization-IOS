@@ -12,7 +12,7 @@ struct SettingView: View {
     
     var body: some View {
         SettingViewMain()
-            .navigationBarTitle("Settings")
+            .navigationBarTitle("settings")
     }
 }
 
@@ -53,7 +53,7 @@ struct SpiralEffectSettingButton: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(sharedValues.defaultColor)
-                        Text("Default")
+                        Text("default")
                     }
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
@@ -67,7 +67,7 @@ struct SpiralEffectSettingButton: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(sharedValues.spinColor)
-                        Text("Spin")
+                        Text("spin")
                         
                     }
                     .onTapGesture {
@@ -82,7 +82,7 @@ struct SpiralEffectSettingButton: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(sharedValues.threeDColor)
-                        Text("3D")
+                        Text("3d")
                     }
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
@@ -93,7 +93,7 @@ struct SpiralEffectSettingButton: View {
                         }
                     }
                     
-                    Text("Mode")
+                    Text("mode")
                         .padding()
                         .font(.headline)
                 }
@@ -116,7 +116,7 @@ struct AnimationSettingButton: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.slowAnimationColor)
-                    Text("Slow")
+                    Text("slow")
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
@@ -130,7 +130,7 @@ struct AnimationSettingButton: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.fastAnimationColor)
-                    Text("Fast")
+                    Text("fast")
                         
                 }
                 .onTapGesture {
@@ -145,7 +145,7 @@ struct AnimationSettingButton: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.offAnimationColor)
-                    Text("Off")
+                    Text("off")
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
@@ -156,7 +156,7 @@ struct AnimationSettingButton: View {
                     }
                 }
                 
-                Text("Animation")
+                Text("animation")
                     .padding()
                     .font(.headline)
             }
@@ -181,7 +181,7 @@ struct LabelBackGroundSettingButton: View {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.showLabelBackgroundYes)
                     VStack {
-                        Text("Yes")
+                        Text("yes")
                     }
                     
                 }
@@ -197,7 +197,7 @@ struct LabelBackGroundSettingButton: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.showLabelBackgroundNo)
-                    Text("No")
+                    Text("no")
                         
                 }
                 .onTapGesture {
@@ -209,7 +209,7 @@ struct LabelBackGroundSettingButton: View {
                     }
                 }
                 
-                Text("Label Background")
+                Text("label.background")
                     .padding()
                     .font(.headline)
                     .multilineTextAlignment(.center)
@@ -238,7 +238,7 @@ struct LabelSettingOnOffButton: View {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.showLabelOn)
                     VStack {
-                        Text("On")
+                        Text("on")
                         Text(sharedValues.showLabelBackground ? "with background" : "without background")
                             .font(.system(size: 10))
                     }
@@ -256,7 +256,7 @@ struct LabelSettingOnOffButton: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(sharedValues.showLabelOff)
-                    Text("Off")
+                    Text("off")
                         
                 }
                 .onTapGesture {
@@ -267,7 +267,7 @@ struct LabelSettingOnOffButton: View {
                     }
                 }
                 
-                Text("Label")
+                Text("label")
                     .padding()
                     .font(.headline)
             }
@@ -307,7 +307,7 @@ struct AboutButton: View {
                 RoundedRectangle(cornerRadius: 5)
                     .foregroundColor(Color.gray)
                 
-                Text("About App")
+                Text("about")
                     .padding()
                     // check system is in dark or light mode then use different color 
                     .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
@@ -327,7 +327,7 @@ struct TempleListButton: View {
                 RoundedRectangle(cornerRadius: 5)
                     .foregroundColor(Color.gray)
                 HStack {
-                    Text("Temple List")
+                    Text("temple.list")
                     Image(systemName: "link")
                 }
                     .padding()
