@@ -36,7 +36,7 @@ struct MainScreenView: View {
                 SpiralView(imageSpiralViewModel: imageSpiralViewModel)
                     //.frame(width: screenWidth, height: screenHeight, alignment: Alignment.center)
                     //.background(Color.gray)
-                    .navigationBarTitle("Latter-day Temples", displayMode: .inline)
+                    .navigationBarTitle("app.title", displayMode: .inline)
                     .navigationBarItems(
                         leading:
                             Button(action: {
@@ -93,7 +93,9 @@ struct MainScreenView: View {
             .navigationViewStyle(StackNavigationViewStyle())
             
         }
+        //.environment(\.locale, .init(identifier: "zh"))
     }
+    
 }
 
 
