@@ -12,7 +12,7 @@
 // YearPicker
 "announced.temples" = "已宣布的圣殿";
 "temples.under.construction" = "建设中的圣殿";
-"temples.dedicated.in" = "圣殿奉献于";
+"temples.dedicated.in" = "年奉献的圣殿"; // the use of this string in YearPicker is in different order in different languages 
 "view" = "显示";
 
 // YeasDisplayView

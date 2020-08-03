@@ -16,6 +16,8 @@ struct YearPicker: View {
     
     //@State var selectedYearIndex = 0
     
+    let deviceLanguage = Locale.current.languageCode
+    
     var body: some View {
         
         return GeometryReader { geometry in
@@ -45,8 +47,14 @@ struct YearPicker: View {
                     Text("temples.under.construction")
                 } else {
                     HStack {
-                        Text("temples.dedicated.in")
-                        Text("\(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                        if deviceLanguage == "zh" {
+                            Text("\(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                            + Text("temples.dedicated.in")
+                        } else {
+                            Text("temples.dedicated.in")
+                            Text("\(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                        }
+                        
                     }
                 }
                 

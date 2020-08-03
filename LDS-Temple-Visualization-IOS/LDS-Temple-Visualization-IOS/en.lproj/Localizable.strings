@@ -12,7 +12,7 @@
 // YearPicker
 "announced.temples" = "Announced Temples";
 "temples.under.construction" = "Temples under construction";
-"temples.dedicated.in" = "Temples dedicated in";
+"temples.dedicated.in" = "Temples dedicated in"; // the use of this string in YearPicker is in different order in different languages 
 "view" = "View";
 
 // YeasDisplayView
