@@ -39,13 +39,6 @@ struct YearPicker: View {
 //                    print("sheet gone clicking")
 //                }
                 
-                Button(action: {
-                    sharedValues.showYearPicker.toggle()
-                }) {
-                    Text("View")
-                }
-                
-                    
                 if sharedValues.selectedYearIndex != -1 {
                     Text(sharedValues.selectedYearIndex == templeYears.count - 1 ? "Announced Temples" :
                         sharedValues.selectedYearIndex == templeYears.count - 2 ? "Temples under construction" : "Temples dedicated in \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
@@ -64,6 +57,13 @@ struct YearPicker: View {
                 //.frame(width: geometry.size.width * 1, height: geometry.size.height * 0.5, alignment: Alignment.center)
                 //.background(Color.red)
                 //Spacer()
+                
+                Button(action: {
+                    sharedValues.showYearPicker.toggle()
+                }) {
+                    Text("View")
+                }
+                
             }
             //.background(Color.gray)
         
