@@ -75,6 +75,8 @@ struct MainScreenView: View {
                                         if imageSpiralViewModel.mode != sharedValues.mode {
                                             imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
                                         }
+                                        
+                                        
                                 
                                     }
                             ) {
@@ -246,6 +248,13 @@ struct SpiralView: View {
                             sharedValues.currentTappedTempleName = temple.name
                             sharedValues.currentTappedTempleId = temple.id
                             sharedValues.currentTappedTempleLink = temple.link
+                            
+//                            if temple.link == "no link" {
+//                                sharedValues.thisTempleHasNoLink = true
+//                            } else {
+//                                sharedValues.thisTempleHasNoLink = false
+//                            }
+                            
                         }
                         print("tapped temple's size is \(temple.size)")
                         print(temple)

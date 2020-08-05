@@ -61,7 +61,8 @@ class SharedValues: ObservableObject {
     @Published var currentScreenWidth = UIScreen.main.bounds.size.width
     @Published var currentScreenHeight = UIScreen.main.bounds.size.height
     
-    @Published var singleTempleShow = false 
+    @Published var singleTempleShow = false
+    //@Published var thisTempleHasNoLink = true
     
     @Published var currentDevice = UIDevice.current.userInterfaceIdiom
     

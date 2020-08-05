@@ -13,6 +13,7 @@ struct MileStoneDatesView: View {
     @EnvironmentObject var sharedValues: SharedValues
     
     @ObservedObject var imageSpiralViewModel: ImageSpiral
+  
     
     var oneTempleInfo: String {
         get {
@@ -33,6 +34,7 @@ struct MileStoneDatesView: View {
                     Image(systemName: "link")
                 }
             }
+            
             ScrollView {
                 VStack {
                     //ForEach() { in }

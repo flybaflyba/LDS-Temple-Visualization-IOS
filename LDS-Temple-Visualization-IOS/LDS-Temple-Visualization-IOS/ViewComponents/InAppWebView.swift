@@ -25,17 +25,22 @@ struct WebView : UIViewRepresentable {
 
 struct InAppWebView: View {
     
+    @EnvironmentObject var sharedValues: SharedValues
+    
     var url: String
     
     var body: some View {
         VStack {
             // if the passed in text is no link, we will just display a message, instead of a webview 
             if url == "no link" {
-                Text("this.temple.does.not.have.a.website.yet")
+                Text("this.temple.does.not.have.a.website.yet") // we don't need this anymore, because we are showing a alert, see below
             } else {
                 WebView(request: URLRequest(url: URL(string: url)!))
             }
         }
+//        .alert(isPresented: $sharedValues.thisTempleHasNoLink) {
+//                    Alert(title: Text("Hello SwiftUI!"), message: Text("This is some detail message"), dismissButton: .default(Text("OK")))
+//                }
     }
 }
 
