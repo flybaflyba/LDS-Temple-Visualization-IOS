@@ -14,6 +14,8 @@
 "temples.under.construction" = "建设中的圣殿";
 "temples.dedicated.in" = "年奉献的圣殿"; // the use of this string in YearPicker is in different order in different languages 
 "view" = "显示";
+"announced.temples.lower.case" = "已宣布的圣殿";
+"temples.under.construction.lower.case" = "建设中的圣殿";
 
 // YeasDisplayView
 //"announced.temples" = "Announced Temples";

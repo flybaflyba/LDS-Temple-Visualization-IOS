@@ -391,6 +391,10 @@ class ImageSpiral: ObservableObject {
         templeYears.removeAll(where: { ere.contains($0) })
         templeYears = templeYears.removingDuplicates()
         
+//        var temp: Array<String> = ["temples under construction"]
+//        templeYears.replaceSubrange(Range(uncheckedBounds: (templeYears.count - 2, templeYears.count - 1)), with: temp)
+//
+        
         
         allTempleLinks = readTempleLinksFromFile()
         

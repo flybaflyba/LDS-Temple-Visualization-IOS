@@ -70,7 +70,15 @@ struct YearPicker: View {
                 
                 Picker(selection: $sharedValues.selectedYearIndex, label: Text("")) {
                             ForEach(0 ..< templeYears.count) {
-                               Text(self.templeYears[$0])
+                                if self.templeYears[$0] == "0000" {
+                                    Text("temples.under.construction.lower.case")
+                                } else if self.templeYears[$0] == "1111" {
+                                    Text("announced.temples.lower.case")
+                                } else {
+                                    Text(self.templeYears[$0])
+                                }
+                                
+                                
                             }
                          }
                 .labelsHidden()
