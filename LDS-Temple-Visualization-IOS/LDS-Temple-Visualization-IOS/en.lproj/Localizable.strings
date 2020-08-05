@@ -23,6 +23,7 @@
 
 // InAppWebView
 "this.temple.does.not.have.a.website.yet" = "This temple does not have a website yet";
+"slide.right.to.return" = "Slide Right to Return";
 
 // SettingView
 "settings" = "Settings";

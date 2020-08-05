@@ -23,6 +23,7 @@
 
 // InAppWebView
 "this.temple.does.not.have.a.website.yet" = "此圣殿还没有网站";
+"slide.right.to.return" = "右滑以返回";
 
 // SettingView
 "settings" = "设置";
