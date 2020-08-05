@@ -19,6 +19,8 @@ public var currentScreenWidthPublic: CGFloat = 0
 public var currentScreenHeighPublic: CGFloat = 0
 public var orientationInTextPublic: String = " "
 
+// localizing all temple info files and adding their Chinese translation is now finished
+
 struct MainScreenView: View {
     
     @ObservedObject var imageSpiralViewModel: ImageSpiral = ImageSpiral()
