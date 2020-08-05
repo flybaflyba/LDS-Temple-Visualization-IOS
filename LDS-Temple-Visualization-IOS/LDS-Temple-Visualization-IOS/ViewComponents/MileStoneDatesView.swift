@@ -19,7 +19,7 @@ struct MileStoneDatesView: View {
             
             var s: String = " "
             for i in sharedValues.oneTempleInfo {
-                s += i.content
+                s += i.content + "\n"
             }
             return s
         }
@@ -35,6 +35,8 @@ struct MileStoneDatesView: View {
             }
             ScrollView {
                 VStack {
+                    //ForEach() { in }
+                    
                     Text(oneTempleInfo)
                         .multilineTextAlignment(.center)
                 }
