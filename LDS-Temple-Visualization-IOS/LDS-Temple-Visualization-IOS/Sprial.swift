@@ -190,6 +190,8 @@ struct Spiral<TempleContent> {
         
     }
     
+    
+    
     // we make each temple unique, so that we can loop through them with ForEach 
     struct Temple: Identifiable {
         var content: TempleContent
@@ -204,12 +206,18 @@ struct Spiral<TempleContent> {
         var link: String
         var location: String {
             get {
+                let deviceLanguage = Locale.current.languageCode
                 var loc = " "
                 //if tapped {
                     //loc = " "
                 //} else {
                     if link != "no link" {
-                        loc = String(name.prefix(upTo: name.index(name.startIndex, offsetBy: name.count - 7)))
+                        if deviceLanguage == "zh" {
+                            loc = String(name.prefix(upTo: name.index(name.startIndex, offsetBy: name.count - 2)))
+                        } else {
+                            loc = String(name.prefix(upTo: name.index(name.startIndex, offsetBy: name.count - 7)))
+                        }
+                        
                     } else {
                         loc = " "
                     }
