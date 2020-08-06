@@ -49,6 +49,7 @@
 // AboutView
 "about.content" = "此应用由杨百翰大学夏威夷分校学生张力天在杰弗里·德拉普尔教授指导下编写。\r\r圣殿图片知识版权由耶稣基督后期圣徒教会所有，此应用在经其许可的条件下使用。\r\r此应用是由杨百翰大学夏威夷分校资助的研究项目，但其内容由其开发人员负责。此应用不是耶稣基督后期圣徒教会的\"官方\"出版物";
 "app.website" = "应用网站";
+"app.website.url" = "https://latterdaytemples.litianzhang.com/apple-chinese/";
 
 // finish translating english to chinese
 

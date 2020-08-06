@@ -21,6 +21,8 @@ struct AboutViewMain: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
+    let url = NSLocalizedString("app.website.url", comment: "app website url")
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
@@ -33,7 +35,7 @@ struct AboutViewMain: View {
                     Text("about.content")
                     Text("  ")
                     
-                    NavigationLink(destination: InAppWebView(url: "https://litianzhang.com/latter-day-temples-visualization-android-app/")) {
+                    NavigationLink(destination: InAppWebView(url: url)) {
                         HStack {
                             Text("app.website")
                             Image(systemName: "link")
