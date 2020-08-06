@@ -38,8 +38,7 @@ struct MainScreenView: View {
                 sharedValues.showYearPicker.toggle()
                     }) {
                 ZStack {
-                    Circle()
-                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                    Rectangle().foregroundColor(Color.green.opacity(0))
                         .frame(width: 40, height: 40, alignment:.center)
                     Image(systemName: "calendar.circle.fill")
                 }
@@ -90,10 +89,12 @@ struct MainScreenView: View {
                 sharedValues.singleTempleShow = false
                     }) {
                 ZStack {
-                    Circle()
-                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                    Rectangle().foregroundColor(Color.green.opacity(0))
                         .frame(width: 40, height: 40, alignment:.center)
                     Image(systemName: "arrowshape.turn.up.left.circle")
+                        //.resizable()
+                        //.frame(width: 30, height: 30, alignment:.center)
+                        
                 }
                 
             }
@@ -123,8 +124,7 @@ struct MainScreenView: View {
                         trailing:
                             NavigationLink(destination: SettingView()) {
                                 ZStack {
-                                    Circle()
-                                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                                    Rectangle().foregroundColor(Color.green.opacity(0))
                                         .frame(width: 40, height: 40, alignment:.center)
                                     Image(systemName: "ellipsis.circle.fill")
                                 }
