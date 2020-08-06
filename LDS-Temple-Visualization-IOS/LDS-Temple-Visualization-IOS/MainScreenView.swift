@@ -32,6 +32,76 @@ struct MainScreenView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    func buttonToYearPicker() -> some View {
+        var body: some View {
+            Button(action: {
+                sharedValues.showYearPicker.toggle()
+                    }) {
+                ZStack {
+                    Circle()
+                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                        .frame(width: 40, height: 40, alignment:.center)
+                    Image(systemName: "calendar.circle.fill")
+                }
+                
+            }.sheet(isPresented: $sharedValues.showYearPicker
+                    , onDismiss: {
+                        // if user goes to year picker, but did not move the picker, the value here is not changed its still -1
+                        // it shows 1836 on year picker, if this happends, we set it to 0,
+                        //if sharedValues.selectedYearIndex == -1 {
+                            //sharedValues.selectedYearIndex = 52
+                        //}
+                        sharedValues.yearPickerSet = true
+                        
+                        print("sheet gone by swiping down")
+                        print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+//                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
+//                                print(ImageSpiral.templeYears)
+//                                print("theta now is \(sharedValues.sliderProgress)")
+                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex] + 20
+                        sharedValues.sliderProgress = newThetaFromYearPicker
+                        imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
+                        imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                        
+                        print("new theta now is \(newThetaFromYearPicker)")
+                        
+                        if imageSpiralViewModel.mode != sharedValues.mode {
+                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+                        }
+                        
+                        
+                
+                    }
+            ) {
+                YearPicker()
+                    .environmentObject(self.sharedValues)
+                    }
+        }
+        return body
+    }
+    
+    
+    func returnButtonFromLargeTemple() -> some View {
+        var body: some View {
+            Button(action: {
+                print("pressed return button from large temple")
+                imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+                sharedValues.tappedATemple = false
+                sharedValues.singleTempleShow = false
+                    }) {
+                ZStack {
+                    Circle()
+                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                        .frame(width: 40, height: 40, alignment:.center)
+                    Image(systemName: "arrowshape.turn.up.left.circle")
+                }
+                
+            }
+            
+        }
+        return body
+    }
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -40,49 +110,16 @@ struct MainScreenView: View {
                     //.background(Color.gray)
                     .navigationBarTitle("app.title", displayMode: .inline)
                     .navigationBarItems(
-                        leading:
-                            Button(action: {
-                                sharedValues.showYearPicker.toggle()
-                                    }) {
-                                ZStack {
-                                    Circle()
-                                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
-                                        .frame(width: 40, height: 40, alignment:.center)
-                                    Image(systemName: "calendar.circle.fill")
+                        leading: //buttonToYearPicker(),
+                            HStack {
+                                if sharedValues.tappedATemple {
+                                    returnButtonFromLargeTemple()
+                                } else {
+                                    buttonToYearPicker()
                                 }
-                                
-                            }.sheet(isPresented: $sharedValues.showYearPicker
-                                    , onDismiss: {
-                                        // if user goes to year picker, but did not move the picker, the value here is not changed its still -1
-                                        // it shows 1836 on year picker, if this happends, we set it to 0,
-                                        //if sharedValues.selectedYearIndex == -1 {
-                                            //sharedValues.selectedYearIndex = 52
-                                        //}
-                                        sharedValues.yearPickerSet = true
-                                        
-                                        print("sheet gone by swiping down")
-                                        print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
-        //                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
-        //                                print(ImageSpiral.templeYears)
-        //                                print("theta now is \(sharedValues.sliderProgress)")
-                                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex] + 20
-                                        sharedValues.sliderProgress = newThetaFromYearPicker
-                                        imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
-                                        imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
-                                        
-                                        print("new theta now is \(newThetaFromYearPicker)")
-                                        
-                                        if imageSpiralViewModel.mode != sharedValues.mode {
-                                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
-                                        }
-                                        
-                                        
-                                
-                                    }
-                            ) {
-                                YearPicker()
-                                    .environmentObject(self.sharedValues)
-                                    },
+                            }
+                        
+                        ,
                         trailing:
                             NavigationLink(destination: SettingView()) {
                                 ZStack {
