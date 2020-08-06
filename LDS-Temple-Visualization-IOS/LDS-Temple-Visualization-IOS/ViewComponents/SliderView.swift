@@ -36,7 +36,12 @@ struct SliderView: View {
                             sharedValues.animationInProgress = true
                             // we need to put this in withAnimation, so that we can check if the animation ends so that we can decide to display name label
                             //SwiftUI.withAnimation(.default) {
+                            
+                            if sharedValues.sliderProgress - 30 <= 180 {
+                                sharedValues.sliderProgress = 180
+                            } else {
                                 sharedValues.sliderProgress -= 30
+                            }
                             //}
                             updateSpiral()
                             
@@ -50,7 +55,12 @@ struct SliderView: View {
                         .onTapGesture {
                             sharedValues.animationInProgress = true
                             //SwiftUI.withAnimation(.default) {
+                            
+                            if sharedValues.sliderProgress + 30 >= 6980 {
+                                sharedValues.sliderProgress = 6980
+                            } else {
                                 sharedValues.sliderProgress += 30
+                            }
                             //}
                             updateSpiral()
                             
@@ -160,7 +170,7 @@ struct MySlider: View {
 
                     
                 }),
-               in: 11...7500, step: 1)
+               in: 180...6980, step: 1)
             //.background(Color.red)
         }
 }
