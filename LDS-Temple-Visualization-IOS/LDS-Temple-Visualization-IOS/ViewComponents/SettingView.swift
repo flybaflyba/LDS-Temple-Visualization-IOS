@@ -165,70 +165,19 @@ struct AnimationSettingButton: View {
     }
 }
 
-struct LabelBackGroundSettingButton: View {
-    
-    @Environment(\.colorScheme) var colorScheme
-    
-    @EnvironmentObject var sharedValues: SharedValues
-    
-    var body: some View {
-    
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.gray)
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(sharedValues.showLabelBackgroundYes)
-                    VStack {
-                        Text("yes")
-                    }
-                    
-                }
-                .onTapGesture {
-                    SwiftUI.withAnimation(.linear) {
-                        sharedValues.showLabelBackgroundYes = sharedValues.selectedColor
-                        sharedValues.showLabelBackgroundNo = sharedValues.unSelectedColor
-                        sharedValues.showLabelBackgroundOption.toggle()
-                        sharedValues.showLabelBackground = true
-                    }
-                }
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(sharedValues.showLabelBackgroundNo)
-                    Text("no")
-                        
-                }
-                .onTapGesture {
-                    SwiftUI.withAnimation(.linear) {
-                        sharedValues.showLabelBackgroundYes = sharedValues.unSelectedColor
-                        sharedValues.showLabelBackgroundNo = sharedValues.selectedColor
-                        sharedValues.showLabelBackgroundOption.toggle()
-                        sharedValues.showLabelBackground = false
-                    }
-                }
-                
-                Text("label.background")
-                    .padding()
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-            }
-            //.background(Color.gray)
-        }
+struct LabelSettingButton: View {
         
-    }
-    
-}
-
-struct LabelSettingOnOffButton: View {
-    
     @Environment(\.colorScheme) var colorScheme
-    
     @EnvironmentObject var sharedValues: SharedValues
     
-    
     var body: some View {
+//        HStack {
+//            if sharedValues.showLabelBackgroundOption {
+//                LabelBackGroundSettingButton()
+//            } else {
+//                LabelSettingOnOffButton()
+//            }
+//        }
         
         ZStack {
             RoundedRectangle(cornerRadius: 5)
@@ -239,11 +188,12 @@ struct LabelSettingOnOffButton: View {
                         .foregroundColor(sharedValues.showLabelOn)
                     VStack {
                         Text("on")
-                        if sharedValues.showLabelBackground {
-                            Text("with.background").font(.system(size: 10))
-                        } else {
-                            Text("without.background").font(.system(size: 10))
-                        }
+                        
+//                        if sharedValues.showLabelBackground {
+//                            Text("with.background").font(.system(size: 10))
+//                        } else {
+//                            Text("without.background").font(.system(size: 10))
+//                        }
                         // cannot use this, because string wont localize
                         //Text(sharedValues.showLabelBackground ?  : "without background")
                             
@@ -256,7 +206,7 @@ struct LabelSettingOnOffButton: View {
                         sharedValues.showLabel = true
                         sharedValues.showLabelOn = sharedValues.selectedColor
                         sharedValues.showLabelOff = sharedValues.unSelectedColor
-                        sharedValues.showLabelBackgroundOption.toggle()
+                        //sharedValues.showLabelBackgroundOption.toggle()
                     }
                 }
                 
@@ -280,24 +230,6 @@ struct LabelSettingOnOffButton: View {
             }
             //.background(Color.gray)
         }
-    }
-}
-
-
-struct LabelSettingButton: View {
-        
-    
-    @EnvironmentObject var sharedValues: SharedValues
-    
-    var body: some View {
-        HStack {
-            if sharedValues.showLabelBackgroundOption {
-                LabelBackGroundSettingButton()
-            } else {
-                LabelSettingOnOffButton()
-            }
-        }
-        
         
         
     }

@@ -307,7 +307,7 @@ struct SpiralView: View {
         
         return Text(showNameLabelContent(temple: temple))
             .frame(maxWidth: temple.size)
-            .background(temple.link == "no link" || sharedValues.showLabelBackground == false ? RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green.opacity(0)) : RoundedRectangle(cornerRadius: 10).foregroundColor(labelForegroundColor))
+            .background(temple.link == "no link" ? RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green.opacity(0)) : RoundedRectangle(cornerRadius: 10).foregroundColor(labelForegroundColor))
             //colorScheme == .dark ? Color.black : Color.white
             .position(x: temple.x, y: temple.y + temple.size / 2 - 5)
             .font(.system(size: 10))
