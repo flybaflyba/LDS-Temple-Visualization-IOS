@@ -18,8 +18,8 @@
 "temples.under.construction.lower.case" = "temples under construction";
 
 // YeasDisplayView
-"future.temples" = "Future Temples";
-"welcome" = "Welcome";
+//"future.temples" = "Future Temples";
+"first.temple" = "First Temple: 1836";
 
 // InAppWebView
 "this.temple.does.not.have.a.website.yet" = "This temple does not have a website yet";

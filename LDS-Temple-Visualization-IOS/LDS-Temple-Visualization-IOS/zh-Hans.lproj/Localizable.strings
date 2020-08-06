@@ -19,7 +19,7 @@
 
 // YeasDisplayView
 //"announced.temples" = "Announced Temples";
-"welcome" = "欢迎";
+"first.temple" = "第一座圣殿: 1836";
 
 // InAppWebView
 "this.temple.does.not.have.a.website.yet" = "此圣殿还没有网站";
