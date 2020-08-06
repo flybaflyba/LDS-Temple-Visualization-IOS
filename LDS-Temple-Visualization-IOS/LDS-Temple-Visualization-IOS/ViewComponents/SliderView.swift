@@ -13,6 +13,8 @@ struct SliderView: View {
     @EnvironmentObject var sharedValues: SharedValues
     @ObservedObject var imageSpiralViewModel: ImageSpiral
     
+    
+    
     // we update spiral here,
     // we call functions in imagespiral view mode to call functions in spiral mode, to change itself
     func updateSpiral() {
@@ -71,7 +73,8 @@ struct SliderView: View {
             }
                 
                             
-            YearDisplayView(startYear: ImageSpiral.startYear, endYear: ImageSpiral.endYear)
+//            YearDisplayView(startYear: ImageSpiral.startYearTest, endYear: ImageSpiral.endYearTest)
+            YearDisplayView(startYear: sharedValues.startYear, endYear: sharedValues.endYear)
                 //.background(Color.red)
                 .padding()
             
@@ -107,13 +110,37 @@ struct MySlider: View {
     
     @ObservedObject var imageSpiralViewModel: ImageSpiral
     
+    func getStartAndEndYear(){
+        var startYear = ""
+        var endYear = ""
+        var gotStartYear = false
+        for i in imageSpiralViewModel.onScreenTemples {
+            if i.year != "No Year" {
+                if i.x <= sharedValues.currentScreenWidth {
+                    if gotStartYear == false {
+                        startYear = i.year
+                        gotStartYear = true
+                    }
+                    endYear = i.year
+                }
+                
+            }
+            
+        }
+        sharedValues.startYear = startYear
+        sharedValues.endYear = endYear
+    }
+    
     var body: some View {
         // we use Binding, so that when ever slider progress changes, we can do something
         Slider(value: Binding(
                 get: {
+                    //getStartAndEndYear()
                     return Double(sharedValues.sliderProgress)
                 },
                 set: {(newValue) in
+                    
+                    getStartAndEndYear()
                     
                     sharedValues.yearPickerSet = false
                     sharedValues.selectedYearIndex = 52

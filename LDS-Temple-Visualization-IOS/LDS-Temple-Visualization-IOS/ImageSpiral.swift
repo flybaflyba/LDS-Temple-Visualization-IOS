@@ -18,8 +18,8 @@ class ImageSpiral: ObservableObject {
     // then it is used to modify spiral model attributes
     static var theta: CGFloat = 5300
 
-    static var startYear: String = ""
-    static var endYear: String = ""
+    static var startYearTest: String = ""
+    static var endYearTest: String = ""
     
     static var templeYears: Array<String> = Array<String>()
     static var templeYearsThetaFriends: Array<CGFloat> = [245, 300, 325, 340, 380, 420, 450, 490, 520, 540, 570, 610, 680, 715, 750, 780, 810, 850, 890, 1070, 1290, 1430, 1520, 1540, 1575, 1630, 1660, 1700, 1710, 1755, 1850, 1890, 2315, 3330, 3540, 3720, 3800, 3850, 3950, 4030, 4110, 4200, 4300, 4400, 4520, 4540, 4650, 4785, 4935, 5100, 5110, 5320, 5330, 5800, 6990]
@@ -276,14 +276,16 @@ class ImageSpiral: ObservableObject {
                 collectingOnScreenTemplesYears.append(ImageSpiral.templeNamesAndYears[1][templeIndex])
                 collectingOnScreenTemplesLinks.append(ImageSpiral.templeNamesAndYears[2][templeIndex])
                 //print("name here -------\(ImageSpiral.templeNamesAndYears[0][templeIndex])")
-                
                 //print("year here +++\(ImageSpiral.templeNamesAndYears[1][templeIndex])")
+                
+                
                 if gotStartYear == false {
-                    startYear = ImageSpiral.templeNamesAndYears[1][templeIndex]
+                    startYearTest = ImageSpiral.templeNamesAndYears[1][templeIndex]
                     gotStartYear = true
                 }
-                endYear = ImageSpiral.templeNamesAndYears[1][templeIndex]
+                endYearTest = ImageSpiral.templeNamesAndYears[1][templeIndex]
                 
+            
             }
             
             // this is kind of extra, we can just delete the < in last if,
