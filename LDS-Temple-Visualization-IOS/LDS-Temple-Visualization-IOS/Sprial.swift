@@ -48,6 +48,10 @@ struct Spiral<TempleContent> {
     var oldY: CGFloat = 0
     var oldSize: CGFloat = 0
     
+    mutating func thisTempleIsUsedForDraging(id: Int, name: String)  {
+        onScreenTemples[id].name = name
+    }
+    
     mutating func changeATemple(id: Int) {
         
         //print("change a temple starts here")

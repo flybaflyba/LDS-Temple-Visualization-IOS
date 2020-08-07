@@ -98,6 +98,9 @@ class ImageSpiral: ObservableObject {
     func changeATemple(id: Int) {
         spiralModel.changeATemple(id: id)
     }
+    func thisTempleIsUsedForDraging(id: Int, name: String) {
+        spiralModel.thisTempleIsUsedForDraging(id: id, name: name)
+    }
     
     func changeMode(newMode: String) {
         spiralModel.changeMode(newMode: newMode)
