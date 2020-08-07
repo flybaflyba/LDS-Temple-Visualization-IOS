@@ -424,12 +424,17 @@ struct SpiralView: View {
                 Rectangle()
                     .foregroundColor(Color.green.opacity(0.0001)) // we have to keep the opacity none 0, if it's 0, gesture won;t work on it.
                     .gesture(DragGesture()
+                                
                                 .onChanged { value in
-                                    
-                                    
                                     
                                     print("last location is \(sharedValues.touchScreenLastX) \(sharedValues.touchScreenLastY)" )
                                     print("onChanged \(value.location) \(value.translation)")
+                                    
+                                    if sharedValues.rememberFirstTouchLocation == false {
+                                        sharedValues.touchScreenLastX = value.location.x
+                                        sharedValues.touchScreenLastY = value.location.y
+                                        sharedValues.rememberFirstTouchLocation = true
+                                    }
                                     
                                     let xDirection = value.location.x - sharedValues.touchScreenLastX
                                     let yDirection = value.location.y - sharedValues.touchScreenLastY
@@ -483,6 +488,8 @@ struct SpiralView: View {
                                     print("currentScreenHeigth is \(sharedValues.currentScreenHeight)")
                                     print("sliderProgress is \(sharedValues.sliderProgress)")
 
+                                    sharedValues.rememberFirstTouchLocation = false
+                                    
                                 }
                     )
                 
