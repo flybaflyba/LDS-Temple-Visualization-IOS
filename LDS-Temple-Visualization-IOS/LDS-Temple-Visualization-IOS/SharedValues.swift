@@ -9,7 +9,67 @@
 import Foundation
 import SwiftUI
 
+// use screen Height to set how much space each view should take on the screen
+public var screenWidth = (UIDevice.current.userInterfaceIdiom == .phone ? min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) : min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7)
+public var screenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+public var centerX = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2
+public var centerY = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8 / 2
+
+//public var screenWidth:CGFloat {
+//    get {
+////        var temporaryValue: CGFloat = 0
+////        if UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 {
+////            temporaryValue = (UIDevice.current.userInterfaceIdiom == .phone ? min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) : min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7)
+////        } else if UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 {
+////            temporaryValue = (UIDevice.current.userInterfaceIdiom == .phone ? min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8 : min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6)
+////        } else if UIDevice.current.orientation.rawValue == 0 {
+////            temporaryValue = 100
+////        }
+////        return temporaryValue
+//
+//        (UIDevice.current.userInterfaceIdiom == .phone ? min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) : min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7)
+//
+//    } set {
+//
+//    }
+//}
+//
+//
+//
+//public var screenHeight:CGFloat {
+//    get {
+//        max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+//    } set {
+//
+//    }
+//}
+//
+//public var centerX: CGFloat {
+//    get {
+//        min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2
+//    }
+//    set {
+//
+//    }
+//}
+//public var centerY: CGFloat {
+//    get {
+//        max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8 / 2
+//    }
+//    set {
+//
+//    }
+//}
+
+
 class SharedValues: ObservableObject {
+    
+//    @Published var screenWidth: CGFloat = 100
+//    @Published var screenHeight: CGFloat = 100
+//    @Published var centerX: CGFloat = 100
+//    @Published var centerY: CGFloat = 100
+    
+    
     @Published var animationOption = "off"
     @Published var mode = "default"
     //@Published var showAbout = false
@@ -91,15 +151,23 @@ class SharedValues: ObservableObject {
         // orientaion here
         self.orientation = UIDevice.current.orientation
 
+        print(self.orientationRawValueHistory)
+        
         // convert orientaion code into text, we dont care about 5 and 6 which are face up and down
         // for 1, 2 and 3, 4. we treat them the same
         if UIDevice.current.orientation.rawValue == 0 {
             self.orientationInText = "unknown"
+            if self.orientationRawValueHistory.contains(1) || self.orientationRawValueHistory.contains(2) {
+                self.orientationInText = "portrait"
+            } else if self.orientationRawValueHistory.contains(3) || self.orientationRawValueHistory.contains(4) {
+                self.orientationInText = "landscape"
+            }
         } else if UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 {
             self.orientationInText = "portrait"
         } else if UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 {
             self.orientationInText = "landscape"
         }
+        print(self.orientationInText)
         
         // store current orientation in an array, we will need to check what last orientaion is once orientation changed
         orientationRawValueHistory.append(UIDevice.current.orientation.rawValue)

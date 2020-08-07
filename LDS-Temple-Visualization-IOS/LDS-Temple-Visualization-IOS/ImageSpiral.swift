@@ -14,6 +14,11 @@ import SwiftUI
 
 class ImageSpiral: ObservableObject {
     
+//    static var centerX: CGFloat = 100
+//    static var centerY: CGFloat = 100
+//    static var screenWidth: CGFloat = 100
+//    static var screenHeight: CGFloat = 100
+    
     // theta is modified acoording to slider progress
     // then it is used to modify spiral model attributes
     static var theta: CGFloat = 5300
@@ -35,12 +40,21 @@ class ImageSpiral: ObservableObject {
         var id: Int
     }
     
+//    init(centerX: CGFloat, centerY: CGFloat, screenWidth: CGFloat, screenHeight: CGFloat) {
+//        ImageSpiral.centerX = centerX
+//        ImageSpiral.centerY = centerY
+//        ImageSpiral.screenWidth = screenWidth
+//        ImageSpiral.screenHeight = screenHeight
+//    }
+//
+    
     // we want to keep this model private, so that only this ViewModel can access to this model. (door closed)
     // we put set here, so that only this ViewModel can modify this model, but others can see it. (glass door)
     // private(set) var spiralModel: Spiral<String>
     
     // we can also close the door and use a function to access the model
     @Published private var spiralModel: Spiral<Image> = ImageSpiral.createSpiral()
+
     
     // we will initialize with a function, createSpiral()
     // static means we can call this function on class, fot instace, we use this to initialze the model
@@ -60,6 +74,7 @@ class ImageSpiral: ObservableObject {
 //        return Spiral<String>(numberOfTemples: onScreenTemples.count, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions) { index in
 //        return onScreenTemples[index]
             
+//        return Spiral<Image>(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions, centerX: centerX, centerY: centerY, screenWidth: screenWidth)
         return Spiral<Image>(onScreenTemplesString: onScreenTemplesString, coordinatesAndSizesP: coordinatesAndSizes, onScreenTemplesPositionsP: onScreenTemplesPositions)
         
     }
@@ -95,6 +110,8 @@ class ImageSpiral: ObservableObject {
     
     // this function updateds on screen temples
     func updateOnScreenTemples(newTheta: CGFloat) {
+        
+//        let coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: ImageSpiral.centerX, centerY: ImageSpiral.centerY, mode: spiralModel.mode)
         
         let coordinatesAndSizes: Array<Array<CGFloat>> = ImageSpiral.getCoordinatesAndSizes(centerX: centerX, centerY: centerY, mode: spiralModel.mode)
         

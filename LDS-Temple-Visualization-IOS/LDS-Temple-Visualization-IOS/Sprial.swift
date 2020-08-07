@@ -20,6 +20,20 @@ struct Spiral<TempleContent> {
     
     var mode: String = "default" 
 
+//    var centerX: CGFloat {
+//        get {
+//            print("centerX in Spiral is \(sharedValues.centerXInEnv)")
+//            return sharedValues.centerXInEnv
+//        }
+//    }
+//
+//    func getCenterX() -> CGFloat {
+//        return sharedValues.centerXInEnv
+//    }
+    
+//    var centerX: CGFloat
+//    var centerY: CGFloat
+//    var screenWidth: CGFloat
     
     func choose(temple: Temple) {
         //print("temple chosen: \(temple)")
@@ -104,8 +118,14 @@ struct Spiral<TempleContent> {
      // view model also decide which temples are on screen and their locations
 //     init(numberOfTemples: Int, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>, templeContentFactory: (Int) -> TempleContent) {
 //         onScreenTemples = Array<Temple>()
-        init(onScreenTemplesString: Array<Array<String>>, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>) {
-            
+//    init(onScreenTemplesString: Array<Array<String>>, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>, centerX: CGFloat, centerY: CGFloat, screenWidth: CGFloat) {
+  
+    init(onScreenTemplesString: Array<Array<String>>, coordinatesAndSizesP: Array<Array<CGFloat>>, onScreenTemplesPositionsP: Array<CGFloat>) {
+        
+//        self.centerX = centerX
+//        self.centerY = centerY
+//        self.screenWidth = screenWidth
+        
         onScreenTemples = Array<Temple>()
 
 //            print(onScreenTemplesString.count)
