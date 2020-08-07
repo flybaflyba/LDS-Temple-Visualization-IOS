@@ -254,15 +254,6 @@ struct SpiralView: View {
                     //.opacity(0.3)
                     //.shadow(radius: 10)
                     
-                    .gesture(DragGesture()
-                                .onChanged { value in
-                                    print("onChanged \(value.location) \(value.translation)")
-                                }
-                                .onEnded { value in
-                                    print("onEnded")
-                                }
-                    )
-                    
                     .onTapGesture {
                         print("tapped a temple")
                         //print("showName is \(temple.showName)")
@@ -356,6 +347,28 @@ struct SpiralView: View {
             .multilineTextAlignment(.center)
     }
     
+    func SpiralClockwise() {
+        if sharedValues.sliderProgress - 1 <= 180 {
+            sharedValues.sliderProgress = 180
+        } else {
+            sharedValues.sliderProgress -= 1
+        }
+        
+        imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+        imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+    }
+    
+    func SpiralAntiClockwise() {
+        if sharedValues.sliderProgress + 1 >= 6980 {
+            sharedValues.sliderProgress = 6980
+        } else {
+            sharedValues.sliderProgress += 1
+        }
+        
+        imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+        imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+    }
+    
     func drawTemples() -> some View {
         
         //print("app launchs here screen width and height \(UIScreen.main.bounds.size.width) \(UIScreen.main.bounds.size.height)")
@@ -382,9 +395,12 @@ struct SpiralView: View {
             print("changed a temple")
         }
         
+
+        
         var body: some View {
             ZStack {
                 
+                    
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
                     if temple.name == "No Temple" {
                         
@@ -404,6 +420,74 @@ struct SpiralView: View {
                     }
                     
                 }
+                
+                Rectangle()
+                    .foregroundColor(Color.green.opacity(0.0001)) // we have to keep the opacity none 0, if it's 0, gesture won;t work on it.
+                    .gesture(DragGesture()
+                                .onChanged { value in
+                                    
+                                    
+                                    
+                                    print("last location is \(sharedValues.touchScreenLastX) \(sharedValues.touchScreenLastY)" )
+                                    print("onChanged \(value.location) \(value.translation)")
+                                    
+                                    let xDirection = value.location.x - sharedValues.touchScreenLastX
+                                    let yDirection = value.location.y - sharedValues.touchScreenLastY
+                                    
+                                    if value.location.x <= centerX * 2 / 3 {
+                                        print("at left area")
+                                        if yDirection > 0 {
+                                            print("anticlockwise sliderProgress ++++++")
+                                            SpiralAntiClockwise()
+                                        } else if yDirection < 0 {
+                                            print("clockwise sliderProgress ----------")
+                                            SpiralClockwise()
+                                        }
+                                    } else if value.location.x >= centerX * 4 / 3 {
+                                        print("at right area")
+                                        if yDirection > 0 {
+                                            print("clockwise sliderProgress ----------")
+                                            SpiralClockwise()
+                                        } else if yDirection < 0 {
+                                            print("anticlockwise sliderProgress ++++++")
+                                            SpiralAntiClockwise()
+                                        }
+                                    } else if value.location.y <= centerY * 2 / 3 {
+                                        print("at top area")
+                                        if xDirection > 0 {
+                                            print("clockwise sliderProgress ----------")
+                                            SpiralClockwise()
+                                        } else if xDirection < 0 {
+                                            print("anticlockwise sliderProgress ++++++")
+                                            SpiralAntiClockwise()
+                                        }
+                                    } else if value.location.y >= centerY * 4 / 3 {
+                                        print("at bottom area")
+                                        if xDirection > 0 {
+                                            print("anticlockwise sliderProgress ++++++")
+                                            SpiralAntiClockwise()
+                                        } else if xDirection < 0 {
+                                            print("clockwise sliderProgress ----------")
+                                            SpiralClockwise()
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    sharedValues.touchScreenLastX = value.location.x
+                                    sharedValues.touchScreenLastY = value.location.y
+                                }
+                                .onEnded { value in
+                                    print("onEnded")
+                                    print("centerX is \(centerX)")
+                                    print("centerY is \(centerY)")
+                                    print("currentScreenWidth is \(sharedValues.currentScreenWidth)")
+                                    print("currentScreenHeigth is \(sharedValues.currentScreenHeight)")
+
+                                }
+                    )
+                
             }
             
             .modifier(AnimatableModifierHere(bindedValue: sharedValues.showLabel ? sharedValues.sliderProgress : 0) {

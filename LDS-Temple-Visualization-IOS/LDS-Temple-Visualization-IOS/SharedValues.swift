@@ -132,6 +132,9 @@ class SharedValues: ObservableObject {
     @Published var selectedYearIndex = 52
     @Published var yearPickerSet = false
     
+    @Published var touchScreenLastX: CGFloat = 0
+    @Published var touchScreenLastY: CGFloat = 0
+    
     @Published var orientation = UIDevice.current.orientation
     @Published var orientationChanged = false
     @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
