@@ -347,22 +347,22 @@ struct SpiralView: View {
             .multilineTextAlignment(.center)
     }
     
-    func SpiralClockwise() {
+    func SpiralClockwise(speed: CGFloat) {
         if sharedValues.sliderProgress - 1 <= 180 {
             sharedValues.sliderProgress = 180
         } else {
-            sharedValues.sliderProgress -= 1
+            sharedValues.sliderProgress -= abs(speed)
         }
         
         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
         imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
     }
     
-    func SpiralAntiClockwise() {
+    func SpiralAntiClockwise(speed: CGFloat) {
         if sharedValues.sliderProgress + 1 >= 6980 {
             sharedValues.sliderProgress = 6980
         } else {
-            sharedValues.sliderProgress += 1
+            sharedValues.sliderProgress += abs(speed)
         }
         
         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
@@ -438,42 +438,39 @@ struct SpiralView: View {
                                         print("at left area")
                                         if yDirection > 0 {
                                             print("anticlockwise sliderProgress ++++++")
-                                            SpiralAntiClockwise()
+                                            SpiralAntiClockwise(speed: yDirection)
                                         } else if yDirection < 0 {
                                             print("clockwise sliderProgress ----------")
-                                            SpiralClockwise()
+                                            SpiralClockwise(speed: yDirection)
                                         }
                                     } else if value.location.x >= centerX * 4 / 3 {
                                         print("at right area")
                                         if yDirection > 0 {
                                             print("clockwise sliderProgress ----------")
-                                            SpiralClockwise()
+                                            SpiralClockwise(speed: yDirection)
                                         } else if yDirection < 0 {
                                             print("anticlockwise sliderProgress ++++++")
-                                            SpiralAntiClockwise()
+                                            SpiralAntiClockwise(speed: yDirection)
                                         }
                                     } else if value.location.y <= centerY * 2 / 3 {
                                         print("at top area")
                                         if xDirection > 0 {
                                             print("clockwise sliderProgress ----------")
-                                            SpiralClockwise()
+                                            SpiralClockwise(speed: xDirection)
                                         } else if xDirection < 0 {
                                             print("anticlockwise sliderProgress ++++++")
-                                            SpiralAntiClockwise()
+                                            SpiralAntiClockwise(speed: xDirection)
                                         }
                                     } else if value.location.y >= centerY * 4 / 3 {
                                         print("at bottom area")
                                         if xDirection > 0 {
                                             print("anticlockwise sliderProgress ++++++")
-                                            SpiralAntiClockwise()
+                                            SpiralAntiClockwise(speed: xDirection)
                                         } else if xDirection < 0 {
                                             print("clockwise sliderProgress ----------")
-                                            SpiralClockwise()
+                                            SpiralClockwise(speed: xDirection)
                                         }
                                     }
-                                    
-                                    
-                                    
                                     
                                     sharedValues.touchScreenLastX = value.location.x
                                     sharedValues.touchScreenLastY = value.location.y
@@ -484,6 +481,7 @@ struct SpiralView: View {
                                     print("centerY is \(centerY)")
                                     print("currentScreenWidth is \(sharedValues.currentScreenWidth)")
                                     print("currentScreenHeigth is \(sharedValues.currentScreenHeight)")
+                                    print("sliderProgress is \(sharedValues.sliderProgress)")
 
                                 }
                     )
