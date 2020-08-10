@@ -405,7 +405,7 @@ struct SpiralView: View {
     // we used functions to return a value then use it later to avoid the expressing to be too long. expressing is too long will cause can't type check in reasonable amount of time error
     
     func showNameLabelCondition(temple: Spiral<Image>.Temple) -> Bool {
-        temple.showName && !sharedValues.animationInProgress && sharedValues.showLabel && !sharedValues.tappedATemple //&& !sharedValues.fingerTouchingScreen
+        temple.showName && !sharedValues.animationInProgress && sharedValues.showLabel && !sharedValues.tappedATemple && !sharedValues.fingerTouchingScreen
     }
     
     func showNameLabelContent(temple: Spiral<Image>.Temple) -> String {
