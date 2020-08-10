@@ -362,13 +362,16 @@ struct SpiralView: View {
                                 sharedValues.tappedATemple = false
                                 sharedValues.singleTempleShow = false
                                 print("tap a large temple")
+                                sharedValues.spiralViewHeight = 0.75
+                                sharedValues.mileStoneDatesViewHeight = 0.25
                             }
                         } else {
                             SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                
                                 sharedValues.tappedATemple = true
                                 sharedValues.singleTempleShow = true
                                 print("tap a small temple")
+                                sharedValues.spiralViewHeight = 0.6
+                                sharedValues.mileStoneDatesViewHeight = 0.4
                             }
                             sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                             sharedValues.currentTappedTempleName = temple.name
@@ -575,7 +578,7 @@ struct SpiralView: View {
         var body: some View {
             VStack {
                 drawTemples()
-                .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
+                .frame(width: currentScreenWidth, height: currentScreenHeight * sharedValues.spiralViewHeight, alignment: Alignment.center)
                 
                 Spacer(minLength: 0)
                 
@@ -589,7 +592,7 @@ struct SpiralView: View {
       
                 } else {
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
-                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
+                        .frame(width: currentScreenWidth, height: currentScreenHeight * sharedValues.mileStoneDatesViewHeight, alignment: Alignment.center)
                         
                 }
                 // if we put back ground color for spiral, we might need this to fill up the bottom,
@@ -636,7 +639,7 @@ struct SpiralView: View {
             VStack {
                 
                 drawTemples()
-                .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
+                    .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
 
                 Spacer(minLength: 0)
                 
