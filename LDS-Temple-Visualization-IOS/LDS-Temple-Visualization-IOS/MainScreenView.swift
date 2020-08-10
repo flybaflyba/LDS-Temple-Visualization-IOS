@@ -80,9 +80,12 @@ struct MainScreenView: View {
         var body: some View {
             Button(action: {
                 print("pressed return button from large temple")
-                imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
-                sharedValues.tappedATemple = false
-                sharedValues.singleTempleShow = false
+                SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                    imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+                    sharedValues.tappedATemple = false
+                    sharedValues.singleTempleShow = false
+                }
+                
                     }) {
                 ZStack {
                     Rectangle().foregroundColor(Color.green.opacity(0))
