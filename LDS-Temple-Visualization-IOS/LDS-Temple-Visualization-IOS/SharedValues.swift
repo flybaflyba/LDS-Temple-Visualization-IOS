@@ -135,7 +135,7 @@ class SharedValues: ObservableObject {
     @Published var touchScreenLastX: CGFloat = 0
     @Published var touchScreenLastY: CGFloat = 0
     @Published var rememberFirstTouchLocation = false
-    
+    @Published var fingerTouchingScreen = false 
     
     @Published var orientation = UIDevice.current.orientation
     @Published var orientationChanged = false

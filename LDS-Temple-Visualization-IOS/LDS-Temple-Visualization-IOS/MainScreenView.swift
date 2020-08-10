@@ -229,6 +229,12 @@ struct SpiralView: View {
     }
     
     
+    func printDown() {
+        print("down")
+    }
+    
+    @GestureState private var isPressed = false
+     
     
     // this function takes in one temple and draw it at a spicific location with a spicific size
     // animation, animation modifier(check if animation ends) and tap action are also implemented here
@@ -257,6 +263,8 @@ struct SpiralView: View {
                     .gesture(DragGesture()
                                 
                                 .onChanged { value in
+                                    
+                                    sharedValues.fingerTouchingScreen = true
                                     
                                     print("last location is \(sharedValues.touchScreenLastX) \(sharedValues.touchScreenLastY)" )
                                     print("onChanged \(value.location) \(value.translation)")
@@ -328,8 +336,12 @@ struct SpiralView: View {
 
                                     sharedValues.rememberFirstTouchLocation = false
                                     
+                                    sharedValues.fingerTouchingScreen = false
+                                    
                                 }
                     )
+                    
+                    
                     
                     .onTapGesture {
                         print("tapped a temple")
@@ -393,7 +405,7 @@ struct SpiralView: View {
     // we used functions to return a value then use it later to avoid the expressing to be too long. expressing is too long will cause can't type check in reasonable amount of time error
     
     func showNameLabelCondition(temple: Spiral<Image>.Temple) -> Bool {
-        temple.showName && sharedValues.animationInProgress == false && sharedValues.showLabel && sharedValues.tappedATemple == false
+        temple.showName && !sharedValues.animationInProgress && sharedValues.showLabel && !sharedValues.tappedATemple //&& !sharedValues.fingerTouchingScreen
     }
     
     func showNameLabelContent(temple: Spiral<Image>.Temple) -> String {
@@ -510,7 +522,7 @@ struct SpiralView: View {
             
             
             
-            .modifier(AnimatableModifierHere(bindedValue: sharedValues.showLabel ? sharedValues.sliderProgress : 0) {
+            .modifier(AnimatableModifierHere(bindedValue: (sharedValues.showLabel && !sharedValues.fingerTouchingScreen) ? sharedValues.sliderProgress : 0) {
                 //print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
                 //print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")
                 //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
