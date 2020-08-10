@@ -48,8 +48,8 @@ struct MainScreenView: View {
                         //}
                         sharedValues.yearPickerSet = true
                         
-                        print("sheet gone by swiping down")
-                        print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                        //print("sheet gone by swiping down")
+                        //print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
 //                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
 //                                print(ImageSpiral.templeYears)
 //                                print("theta now is \(sharedValues.sliderProgress)")
@@ -58,7 +58,7 @@ struct MainScreenView: View {
                         imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
                         imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
                         
-                        print("new theta now is \(newThetaFromYearPicker)")
+                        //print("new theta now is \(newThetaFromYearPicker)")
                         
                         if imageSpiralViewModel.mode != sharedValues.mode {
                             imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
@@ -79,7 +79,7 @@ struct MainScreenView: View {
     func returnButtonFromLargeTemple() -> some View {
         var body: some View {
             Button(action: {
-                print("pressed return button from large temple")
+                //print("pressed return button from large temple")
                 SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                     imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
                     sharedValues.tappedATemple = false
@@ -262,8 +262,8 @@ struct SpiralView: View {
                                     
                                     sharedValues.fingerTouchingScreen = true
                                     
-                                    print("last location is \(sharedValues.touchScreenLastX) \(sharedValues.touchScreenLastY)" )
-                                    print("onChanged \(value.location) \(value.translation)")
+                                    //print("last location is \(sharedValues.touchScreenLastX) \(sharedValues.touchScreenLastY)" )
+                                    //print("onChanged \(value.location) \(value.translation)")
                                     
                                     if sharedValues.rememberFirstTouchLocation == false {
                                         sharedValues.touchScreenLastX = value.location.x
@@ -279,39 +279,39 @@ struct SpiralView: View {
                                     let disableDragAreaInCenterSize: CGFloat = 4
                                     
                                     if value.location.x <= centerX - (centerX * 1 / disableDragAreaInCenterSize) {
-                                        print("at left area")
+                                        //print("at left area")
                                         if yDirection > 0 {
-                                            print("anticlockwise sliderProgress ++++++")
+                                            //print("anticlockwise sliderProgress ++++++")
                                             SpiralAntiClockwise(speed: yDirection)
                                         } else if yDirection < 0 {
-                                            print("clockwise sliderProgress ----------")
+                                            //print("clockwise sliderProgress ----------")
                                             SpiralClockwise(speed: yDirection)
                                         }
                                     } else if value.location.x >= centerX + (centerX * 1 / disableDragAreaInCenterSize) {
-                                        print("at right area")
+                                        //print("at right area")
                                         if yDirection > 0 {
-                                            print("clockwise sliderProgress ----------")
+                                            //print("clockwise sliderProgress ----------")
                                             SpiralClockwise(speed: yDirection)
                                         } else if yDirection < 0 {
-                                            print("anticlockwise sliderProgress ++++++")
+                                            //print("anticlockwise sliderProgress ++++++")
                                             SpiralAntiClockwise(speed: yDirection)
                                         }
                                     } else if value.location.y <= centerY - (centerY * 1 / disableDragAreaInCenterSize) {
-                                        print("at top area")
+                                        //print("at top area")
                                         if xDirection > 0 {
-                                            print("clockwise sliderProgress ----------")
+                                            //print("clockwise sliderProgress ----------")
                                             SpiralClockwise(speed: xDirection)
                                         } else if xDirection < 0 {
-                                            print("anticlockwise sliderProgress ++++++")
+                                            //print("anticlockwise sliderProgress ++++++")
                                             SpiralAntiClockwise(speed: xDirection)
                                         }
                                     } else if value.location.y >= centerY + (centerY * 1 / disableDragAreaInCenterSize) {
-                                        print("at bottom area")
+                                        //print("at bottom area")
                                         if xDirection > 0 {
-                                            print("anticlockwise sliderProgress ++++++")
+                                            //print("anticlockwise sliderProgress ++++++")
                                             SpiralAntiClockwise(speed: xDirection)
                                         } else if xDirection < 0 {
-                                            print("clockwise sliderProgress ----------")
+                                            //print("clockwise sliderProgress ----------")
                                             SpiralClockwise(speed: xDirection)
                                         }
                                     }
@@ -323,12 +323,12 @@ struct SpiralView: View {
                                     
                                 }
                                 .onEnded { value in
-                                    print("onEnded")
-                                    print("centerX is \(centerX)")
-                                    print("centerY is \(centerY)")
-                                    print("currentScreenWidth is \(sharedValues.currentScreenWidth)")
-                                    print("currentScreenHeigth is \(sharedValues.currentScreenHeight)")
-                                    print("sliderProgress is \(sharedValues.sliderProgress)")
+//                                    print("onEnded")
+//                                    print("centerX is \(centerX)")
+//                                    print("centerY is \(centerY)")
+//                                    print("currentScreenWidth is \(sharedValues.currentScreenWidth)")
+//                                    print("currentScreenHeigth is \(sharedValues.currentScreenHeight)")
+//                                    print("sliderProgress is \(sharedValues.sliderProgress)")
 
                                     sharedValues.rememberFirstTouchLocation = false
                                     
@@ -340,7 +340,7 @@ struct SpiralView: View {
                     
                     
                     .onTapGesture {
-                        print("tapped a temple")
+                        //print("tapped a temple")
                         //print("showName is \(temple.showName)")
                         
                         //sharedValues.selectedYearIndex = -1
@@ -354,7 +354,7 @@ struct SpiralView: View {
                             SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                                 sharedValues.tappedATemple = false
                                 sharedValues.singleTempleShow = false
-                                print("tap a large temple")
+                                //print("tap a large temple")
                                 sharedValues.spiralViewHeight = 0.75
                                 sharedValues.mileStoneDatesViewHeight = 0.25
                             }
@@ -362,7 +362,7 @@ struct SpiralView: View {
                             SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                                 sharedValues.tappedATemple = true
                                 sharedValues.singleTempleShow = true
-                                print("tap a small temple")
+                                //print("tap a small temple")
                                 sharedValues.spiralViewHeight = 0.6
                                 sharedValues.mileStoneDatesViewHeight = 0.4
                             }
@@ -378,8 +378,8 @@ struct SpiralView: View {
 //                            }
                             
                         }
-                        print("tapped temple's size is \(temple.size)")
-                        print(temple)
+                        //print("tapped temple's size is \(temple.size)")
+                        //print(temple)
                     }
                 
             }
@@ -439,7 +439,7 @@ struct SpiralView: View {
         if sharedValues.sliderProgress - 1 <= 180 {
             sharedValues.sliderProgress = 180
         } else {
-            sharedValues.sliderProgress -= abs(speed)
+            sharedValues.sliderProgress -= abs(speed) / 5
         }
         
         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
@@ -450,7 +450,7 @@ struct SpiralView: View {
         if sharedValues.sliderProgress + 1 >= 6980 {
             sharedValues.sliderProgress = 6980
         } else {
-            sharedValues.sliderProgress += abs(speed)
+            sharedValues.sliderProgress += abs(speed) / 5
         }
         
         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
@@ -473,14 +473,14 @@ struct SpiralView: View {
             // when orientation changed, we need to relocate spiral with current center x and y and sizes
             imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
             sharedValues.orientationChanged = false
-            print("relocate spiral")
+            //print("relocate spiral")
             
             // we do this above code again, after we relocate spiral, we bring up single temple view again by changeing the same temples attributes, such as x y and size
             if sharedValues.singleTempleShow {
                 imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
             }
             
-            print("changed a temple")
+            //print("changed a temple")
         }
         
 
@@ -495,7 +495,7 @@ struct SpiralView: View {
 //                        drawOneTemple(temple: temple)
 //                    }
                     
-                    // how is this diffrent? when usings this, app is sososososososo slow!!! But now it's working, a few minutes ago, this was slow, the one above was faster!!!! Weird sososo 
+                    // how is this diffrent? when usings this, app is sososososososo slow!!! But now it's working, a few minutes ago, this was slow, the one above was faster!!!! Weird sososo
                     if temple.name == "No Temple" {
                         
                     } else {

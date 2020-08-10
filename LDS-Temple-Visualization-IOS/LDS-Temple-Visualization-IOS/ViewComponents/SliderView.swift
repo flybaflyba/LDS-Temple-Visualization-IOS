@@ -195,7 +195,7 @@ struct MySlider: View {
                     //print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
 //                    print("newValue is \(newValue)")
 
-                    print(imageSpiralViewModel.onScreenTemples.count)
+                    //print(imageSpiralViewModel.onScreenTemples.count)
                     
                 }),
                in: 180...6980, step: 1)

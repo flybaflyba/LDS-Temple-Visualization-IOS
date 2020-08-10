@@ -22,7 +22,7 @@ struct MileStoneDatesView: View {
             for i in sharedValues.oneTempleInfo {
                 s += i.content + "\n"
             }
-            print(s)
+            //print(s)
             return s
         }
     }
