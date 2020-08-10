@@ -12,9 +12,6 @@
 		1E7A172D24AAAFC300519D64 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7A172C24AAAFC300519D64 /* MainScreenView.swift */; };
 		1E7A172F24AAAFC500519D64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E7A172E24AAAFC500519D64 /* Assets.xcassets */; };
 		1E7A173224AAAFC500519D64 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E7A173124AAAFC500519D64 /* Preview Assets.xcassets */; };
-		1E7A173524AAAFC500519D64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E7A173324AAAFC500519D64 /* LaunchScreen.storyboard */; };
-		1E7A174024AAAFC500519D64 /* LDS_Temple_Visualization_IOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7A173F24AAAFC500519D64 /* LDS_Temple_Visualization_IOSTests.swift */; };
-		1E7A174B24AAAFC500519D64 /* LDS_Temple_Visualization_IOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7A174A24AAAFC500519D64 /* LDS_Temple_Visualization_IOSUITests.swift */; };
 		1EBF98DC24AAC678005CC70D /* Sprial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF98DB24AAC678005CC70D /* Sprial.swift */; };
 		1EBF98DE24AAC883005CC70D /* ImageSpiral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */; };
 		1EFE4A6124AD747700FAD239 /* templeFilesNames in Resources */ = {isa = PBXBuildFile; fileRef = 1EFE4A6024AD747700FAD239 /* templeFilesNames */; };
@@ -284,11 +281,7 @@
 		1E7A173124AAAFC500519D64 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1E7A173624AAAFC500519D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E7A173B24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LDS-Temple-Visualization-IOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E7A173F24AAAFC500519D64 /* LDS_Temple_Visualization_IOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDS_Temple_Visualization_IOSTests.swift; sourceTree = "<group>"; };
-		1E7A174124AAAFC500519D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E7A174624AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LDS-Temple-Visualization-IOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E7A174A24AAAFC500519D64 /* LDS_Temple_Visualization_IOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDS_Temple_Visualization_IOSUITests.swift; sourceTree = "<group>"; };
-		1E7A174C24AAAFC500519D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EBF98DB24AAC678005CC70D /* Sprial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprial.swift; sourceTree = "<group>"; };
 		1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSpiral.swift; sourceTree = "<group>"; };
 		1EFE4A6024AD747700FAD239 /* templeFilesNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeFilesNames; sourceTree = "<group>"; };
@@ -982,7 +975,6 @@
 		DD7CAFC524DA332100D68C77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/melbourne_australia_temple; sourceTree = "<group>"; };
 		DDAD571124CB6789002BBF98 /* YearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPicker.swift; sourceTree = "<group>"; };
 		DDB13D7E24B8FFDA00944506 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		DDB5712C24D88CBB007F1DEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDB5716A24D890B3007F1DEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DDB5716C24D890C1007F1DEA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DDCCF89524BA61E50010E974 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -1018,8 +1010,6 @@
 			isa = PBXGroup;
 			children = (
 				1E7A172724AAAFC300519D64 /* LDS-Temple-Visualization-IOS */,
-				1E7A173E24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests */,
-				1E7A174924AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests */,
 				1E7A172624AAAFC300519D64 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1049,7 +1039,6 @@
 				DD5CC41124C0E44400A53AD1 /* templeLinks */,
 				DD43F30524DA18950086CD2E /* templeNamesYears */,
 				1E7A172E24AAAFC500519D64 /* Assets.xcassets */,
-				1E7A173324AAAFC500519D64 /* LaunchScreen.storyboard */,
 				1E7A173624AAAFC500519D64 /* Info.plist */,
 				DD7CA98E24DA2C3700D68C77 /* AllTemplesInfo */,
 				1E7A173024AAAFC500519D64 /* Preview Content */,
@@ -1064,24 +1053,6 @@
 				1E7A173124AAAFC500519D64 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		1E7A173E24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				1E7A173F24AAAFC500519D64 /* LDS_Temple_Visualization_IOSTests.swift */,
-				1E7A174124AAAFC500519D64 /* Info.plist */,
-			);
-			path = "LDS-Temple-Visualization-IOSTests";
-			sourceTree = "<group>";
-		};
-		1E7A174924AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1E7A174A24AAAFC500519D64 /* LDS_Temple_Visualization_IOSUITests.swift */,
-				1E7A174C24AAAFC500519D64 /* Info.plist */,
-			);
-			path = "LDS-Temple-Visualization-IOSUITests";
 			sourceTree = "<group>";
 		};
 		DD44BEDE24BCE32F00C6669E /* ViewComponents */ = {
@@ -1456,7 +1427,6 @@
 				DD7CAC1C24DA2D3A00D68C77 /* urdaneta_philippines_temple in Resources */,
 				DD7CABDA24DA2CF000D68C77 /* edmonton_alberta_temple in Resources */,
 				DD7CADBD24DA2F1200D68C77 /* neiafu_tonga_temple in Resources */,
-				1E7A173524AAAFC500519D64 /* LaunchScreen.storyboard in Resources */,
 				DD7CAD9924DA2EF400D68C77 /* bountiful_temple in Resources */,
 				DD7CACA024DA2DDB00D68C77 /* raleigh_north_carolina_temple in Resources */,
 				DD7CAC1F24DA2D3C00D68C77 /* russia_temple in Resources */,
@@ -1714,7 +1684,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E7A174024AAAFC500519D64 /* LDS_Temple_Visualization_IOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1722,7 +1691,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E7A174B24AAAFC500519D64 /* LDS_Temple_Visualization_IOSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1742,14 +1710,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1E7A173324AAAFC500519D64 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DDB5712C24D88CBB007F1DEA /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		DD43F30524DA18950086CD2E /* templeNamesYears */ = {
 			isa = PBXVariantGroup;
 			children = (
