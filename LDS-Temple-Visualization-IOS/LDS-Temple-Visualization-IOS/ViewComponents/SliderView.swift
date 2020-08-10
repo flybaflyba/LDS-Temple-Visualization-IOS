@@ -181,7 +181,7 @@ struct MySlider: View {
                             imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
                         }
                         
-                        sharedValues.oneTempleInfo.removeAll()
+                        //sharedValues.oneTempleInfo.removeAll()
                         
                         sharedValues.singleTempleShow = false
                         
@@ -195,6 +195,7 @@ struct MySlider: View {
                     //print("sharedValues.sliderProgress is \(sharedValues.sliderProgress)")
 //                    print("newValue is \(newValue)")
 
+                    print(imageSpiralViewModel.onScreenTemples.count)
                     
                 }),
                in: 180...6980, step: 1)

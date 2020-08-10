@@ -232,13 +232,6 @@ struct SpiralView: View {
     }
     
     
-    func printDown() {
-        print("down")
-    }
-    
-    @GestureState private var isPressed = false
-     
-    
     // this function takes in one temple and draw it at a spicific location with a spicific size
     // animation, animation modifier(check if animation ends) and tap action are also implemented here
     func drawOneTemple(temple: Spiral<Image>.Temple) -> some View {
@@ -423,7 +416,6 @@ struct SpiralView: View {
         //temple.link == "no link" ? "" :
             temple.location
         
-        
         //"hihihi"
     }
     
@@ -498,6 +490,12 @@ struct SpiralView: View {
                 
                     
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
+                    
+//                    if temple.name != "No Temple" {
+//                        drawOneTemple(temple: temple)
+//                    }
+                    
+                    // how is this diffrent? when usings this, app is sososososososo slow!!! But now it's working, a few minutes ago, this was slow, the one above was faster!!!! Weird sososo 
                     if temple.name == "No Temple" {
                         
                     } else {
