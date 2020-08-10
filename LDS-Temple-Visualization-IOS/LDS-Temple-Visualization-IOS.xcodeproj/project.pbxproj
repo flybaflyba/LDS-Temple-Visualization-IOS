@@ -273,15 +273,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1E7A172524AAAFC300519D64 /* LDS-Temple-Visualization-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LDS-Temple-Visualization-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E7A172824AAAFC300519D64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E7A172A24AAAFC300519D64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1E7A172C24AAAFC300519D64 /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		1E7A172E24AAAFC500519D64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E7A173124AAAFC500519D64 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1E7A173624AAAFC500519D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E7A173B24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LDS-Temple-Visualization-IOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E7A174624AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LDS-Temple-Visualization-IOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E7A173B24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "LDS-Temple-Visualization-IOSTests.xctest"; path = "/Users/tiantian/Desktop/LDS-Temple-Visualization-IOS/LDS-Temple-Visualization-IOS/build/Debug-iphoneos/LDS-Temple-Visualization-IOSTests.xctest"; sourceTree = "<absolute>"; };
+		1E7A174624AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "LDS-Temple-Visualization-IOSUITests.xctest"; path = "/Users/tiantian/Desktop/LDS-Temple-Visualization-IOS/LDS-Temple-Visualization-IOS/build/Debug-iphoneos/LDS-Temple-Visualization-IOSUITests.xctest"; sourceTree = "<absolute>"; };
 		1EBF98DB24AAC678005CC70D /* Sprial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprial.swift; sourceTree = "<group>"; };
 		1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSpiral.swift; sourceTree = "<group>"; };
 		1EFE4A6024AD747700FAD239 /* templeFilesNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeFilesNames; sourceTree = "<group>"; };
@@ -292,6 +291,7 @@
 		DD44BEDA24BCD96F00C6669E /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		DD44BEDC24BCDF9600C6669E /* YearDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearDisplayView.swift; sourceTree = "<group>"; };
 		DD5CC41124C0E44400A53AD1 /* templeLinks */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeLinks; sourceTree = "<group>"; };
+		DD6BBC3324E201FB000AE8FA /* LDS-Temple-Visualization-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LDS-Temple-Visualization-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7CAB5624DA2C5300D68C77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/melbourne_australia_temple; sourceTree = "<group>"; };
 		DD7CAB5824DA2C5800D68C77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/melbourne_australia_temple"; sourceTree = "<group>"; };
 		DD7CAB5A24DA2C5C00D68C77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/santo_domingo_dominican_republic_temple; sourceTree = "<group>"; };
@@ -1010,18 +1010,8 @@
 			isa = PBXGroup;
 			children = (
 				1E7A172724AAAFC300519D64 /* LDS-Temple-Visualization-IOS */,
-				1E7A172624AAAFC300519D64 /* Products */,
+				DD6BBC3324E201FB000AE8FA /* LDS-Temple-Visualization-IOS.app */,
 			);
-			sourceTree = "<group>";
-		};
-		1E7A172624AAAFC300519D64 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1E7A172524AAAFC300519D64 /* LDS-Temple-Visualization-IOS.app */,
-				1E7A173B24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests.xctest */,
-				1E7A174624AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		1E7A172724AAAFC300519D64 /* LDS-Temple-Visualization-IOS */ = {
@@ -1319,7 +1309,7 @@
 			);
 			name = "LDS-Temple-Visualization-IOS";
 			productName = "LDS-Temple-Visualization-IOS";
-			productReference = 1E7A172524AAAFC300519D64 /* LDS-Temple-Visualization-IOS.app */;
+			productReference = DD6BBC3324E201FB000AE8FA /* LDS-Temple-Visualization-IOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1E7A173A24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests */ = {
@@ -1365,7 +1355,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Litian Zhang";
 				TargetAttributes = {
 					1E7A172424AAAFC300519D64 = {
@@ -1391,7 +1381,7 @@
 				"zh-Hans",
 			);
 			mainGroup = 1E7A171C24AAAFC300519D64;
-			productRefGroup = 1E7A172624AAAFC300519D64 /* Products */;
+			productRefGroup = 1E7A171C24AAAFC300519D64;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -4028,6 +4018,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -4089,6 +4080,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

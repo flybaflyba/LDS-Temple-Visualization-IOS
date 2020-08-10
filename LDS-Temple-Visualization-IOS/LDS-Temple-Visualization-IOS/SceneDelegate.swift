@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //let spiral = ImageSpiral()
         //let contentView = ContentView(imageSpiralviewModel: spiral)
         
-        var sharedValues = SharedValues()
+        let sharedValues = SharedValues()
         
         let contentView = MainScreenView()
         //let contentView = SettingView()
