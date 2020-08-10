@@ -10,8 +10,10 @@ import SwiftUI
 
 struct SettingView: View {
     
+    @ObservedObject var imageSpiralViewModel: ImageSpiral
+    
     var body: some View {
-        SettingViewMain()
+        SettingViewMain(imageSpiralViewModel: imageSpiralViewModel)
             .navigationBarTitle("settings")
     }
 }
@@ -19,12 +21,13 @@ struct SettingView: View {
 struct SettingViewMain: View {
     
     @EnvironmentObject var sharedValues: SharedValues
+    @ObservedObject var imageSpiralViewModel: ImageSpiral
   
     var body: some View {
         return HStack {
                 VStack {
                     HStack {
-                        SpiralEffectSettingButton()
+                        SpiralEffectSettingButton(imageSpiralViewModel: imageSpiralViewModel)
                         AnimationSettingButton()
                     }
                     HStack {
@@ -43,6 +46,7 @@ struct SpiralEffectSettingButton: View {
     
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var sharedValues: SharedValues
+    @ObservedObject var imageSpiralViewModel: ImageSpiral
     
     var body: some View {
         ZStack {
@@ -57,7 +61,8 @@ struct SpiralEffectSettingButton: View {
                     }
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
-                            sharedValues.mode = "default"
+                            //sharedValues.mode = "default"
+                            imageSpiralViewModel.changeMode(newMode: "default")
                             sharedValues.defaultColor = sharedValues.selectedColor
                             sharedValues.spinColor = sharedValues.unSelectedColor
                             sharedValues.threeDColor = sharedValues.unSelectedColor
@@ -72,7 +77,8 @@ struct SpiralEffectSettingButton: View {
                     }
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
-                            sharedValues.mode = "spin"
+                            //sharedValues.mode = "spin"
+                            imageSpiralViewModel.changeMode(newMode: "spin")
                             sharedValues.defaultColor = sharedValues.unSelectedColor
                             sharedValues.spinColor = sharedValues.selectedColor
                             sharedValues.threeDColor = sharedValues.unSelectedColor
@@ -86,7 +92,8 @@ struct SpiralEffectSettingButton: View {
                     }
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
-                            sharedValues.mode = "3D"
+                            //sharedValues.mode = "3D"
+                            imageSpiralViewModel.changeMode(newMode: "3D")
                             sharedValues.defaultColor = sharedValues.unSelectedColor
                             sharedValues.spinColor = sharedValues.unSelectedColor
                             sharedValues.threeDColor = sharedValues.selectedColor

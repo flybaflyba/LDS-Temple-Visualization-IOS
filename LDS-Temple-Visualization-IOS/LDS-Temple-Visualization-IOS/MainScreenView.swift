@@ -60,9 +60,9 @@ struct MainScreenView: View {
                         
                         //print("new theta now is \(newThetaFromYearPicker)")
                         
-                        if imageSpiralViewModel.mode != sharedValues.mode {
-                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
-                        }
+//                        if imageSpiralViewModel.mode != sharedValues.mode {
+//                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+//                        }
                         
                         
                 
@@ -121,7 +121,7 @@ struct MainScreenView: View {
                         
                         ,
                         trailing:
-                            NavigationLink(destination: SettingView()) {
+                            NavigationLink(destination: SettingView(imageSpiralViewModel: imageSpiralViewModel)) {
                                 ZStack {
                                     Rectangle().foregroundColor(Color.green.opacity(0))
                                         .frame(width: 40, height: 40, alignment:.center)

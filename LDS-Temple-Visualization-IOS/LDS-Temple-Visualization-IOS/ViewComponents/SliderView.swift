@@ -20,10 +20,10 @@ struct SliderView: View {
     func updateSpiral() {
         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
         imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
-        
-        if imageSpiralViewModel.mode != sharedValues.mode {
-            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
-        }
+//
+//        if imageSpiralViewModel.mode != sharedValues.mode {
+//            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+//        }
         
         sharedValues.oneTempleInfo.removeAll()
     }
@@ -177,9 +177,9 @@ struct MySlider: View {
                         
                         
                         
-                        if imageSpiralViewModel.mode != sharedValues.mode {
-                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
-                        }
+//                        if imageSpiralViewModel.mode != sharedValues.mode {
+//                            imageSpiralViewModel.changeMode(newMode: sharedValues.mode)
+//                        }
                         
                         //sharedValues.oneTempleInfo.removeAll()
                         
