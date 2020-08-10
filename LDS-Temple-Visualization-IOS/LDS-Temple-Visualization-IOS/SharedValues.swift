@@ -116,7 +116,7 @@ class SharedValues: ObservableObject {
     
     @Published var modeTest: String = "default"
     
-    @Published var currentScreenWidth = UIScreen.main.bounds.size.width
+    @Published var currentScreenWidth = UIScreen.main.bounds.size.width 
     @Published var currentScreenHeight = UIScreen.main.bounds.size.height
     
     @Published var singleTempleShow = false

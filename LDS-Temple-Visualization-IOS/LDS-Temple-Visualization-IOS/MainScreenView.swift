@@ -365,11 +365,12 @@ struct SpiralView: View {
                             }
                         } else {
                             SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                                
                                 sharedValues.tappedATemple = true
                                 sharedValues.singleTempleShow = true
                                 print("tap a small temple")
                             }
+                            sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
                             sharedValues.currentTappedTempleName = temple.name
                             sharedValues.currentTappedTempleId = temple.id
                             sharedValues.currentTappedTempleLink = temple.link
@@ -589,6 +590,7 @@ struct SpiralView: View {
                 } else {
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
+                        
                 }
                 // if we put back ground color for spiral, we might need this to fill up the bottom,
                 // no need this if we don't set any custome color, just use the default light and dart mode of ios

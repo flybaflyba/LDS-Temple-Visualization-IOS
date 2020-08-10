@@ -18,15 +18,17 @@ struct MileStoneDatesView: View {
     var oneTempleInfo: String {
         get {
             
-            var s: String = " "
+            var s: String = ""
             for i in sharedValues.oneTempleInfo {
                 s += i.content + "\n"
             }
+            print(s)
             return s
         }
     }
     
     var body: some View {
+        
         VStack {
             NavigationLink(destination: InAppWebView(url: sharedValues.currentTappedTempleLink)) {
                 HStack {
@@ -35,14 +37,13 @@ struct MileStoneDatesView: View {
                 }
             }
             
-            ScrollView {
+            //ScrollView {
                 VStack {
                     //ForEach() { in }
-                    
                     Text(oneTempleInfo)
                         .multilineTextAlignment(.center)
                 }
-            }
+            //}
         }
         .onTapGesture {
             SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
