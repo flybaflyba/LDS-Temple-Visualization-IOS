@@ -334,7 +334,7 @@ struct SpiralView: View {
                                     if !sharedValues.tappedATemple {
                                         dragOnChangeActionInSpiralView(value: value, temple: temple)
                                     } else {
-                                        print(value.translation) // complet feature!: view next or last temple by draging large temple circle on single temple view! 
+                                        print(value.translation) // complet feature!: view next or last temple by draging large temple circle on single temple view!
                                         imageSpiralViewModel.dragSingleTemple(id: temple.id, xChange: value.translation.width, yChange: value.translation.height, lastX: sharedValues.lastX, lastY: sharedValues.lastY)
                                     }
                                     SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
