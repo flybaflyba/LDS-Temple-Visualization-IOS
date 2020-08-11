@@ -142,6 +142,7 @@ class SharedValues: ObservableObject {
     
     @Published var lastX: CGFloat = centerX
     @Published var lastY: CGFloat = centerY
+    @Published var mileStoneDatesViewOpacity: Double = 1
     
     
     @Published var orientation = UIDevice.current.orientation

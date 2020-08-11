@@ -53,10 +53,10 @@ struct Spiral<TempleContent> {
     }
     
     mutating func dragSingleTemple(id: Int, xChange: CGFloat, yChange: CGFloat, lastX: CGFloat, lastY: CGFloat) {
-        if yChange <= oldSize {
+        //if yChange <= oldSize {
             onScreenTemples[id].x = lastX + xChange
             onScreenTemples[id].y = lastY + yChange
-        }
+        //}
         
     }
     

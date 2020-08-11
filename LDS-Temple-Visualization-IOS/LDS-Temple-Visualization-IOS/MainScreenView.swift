@@ -335,10 +335,14 @@ struct SpiralView: View {
                                         print(value.translation)
                                         imageSpiralViewModel.dragSingleTemple(id: temple.id, xChange: value.translation.width, yChange: value.translation.height, lastX: sharedValues.lastX, lastY: sharedValues.lastY)
                                     }
-                                    
-                                    
+                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                        sharedValues.mileStoneDatesViewOpacity = 0
+                                    }
                                 }
                                 .onEnded { value in
+                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                        sharedValues.mileStoneDatesViewOpacity = 1
+                                    }
 //                                    print("onEnded")
 //                                    print("centerX is \(centerX)")
 //                                    print("centerY is \(centerY)")
@@ -351,7 +355,7 @@ struct SpiralView: View {
                                         sharedValues.fingerTouchingScreen = false
                                     } else {
                                         
-                                        if temple.x >= 0 && temple.x <= centerX * 2 && temple.y >= 0 {
+                                        if temple.x >= 0 && temple.x <= centerX * 2 && temple.y >= 0 && temple.y <= centerY * 2 {
                                             imageSpiralViewModel.setTempleTo(id: temple.id, newX: centerX, newY: centerY)
                                             
                                         } else {
