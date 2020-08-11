@@ -84,6 +84,8 @@ struct MainScreenView: View {
                     imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
                     sharedValues.tappedATemple = false
                     sharedValues.singleTempleShow = false
+                    sharedValues.spiralViewHeight = 0.75
+                    sharedValues.mileStoneDatesViewHeight = 0.25
                 }
                 
                     }) {
