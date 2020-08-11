@@ -234,6 +234,68 @@ struct SpiralView: View {
         }
     }
     
+    func dragOnChangeActionInSpiralView(value: DragGesture.Value, temple: Spiral<Image>.Temple) {
+        sharedValues.fingerTouchingScreen = true
+        
+        //print("last location is \(sharedValues.touchScreenLastX) \(sharedValues.touchScreenLastY)" )
+        //print("onChanged \(value.location) \(value.translation)")
+        
+        if sharedValues.rememberFirstTouchLocation == false {
+            sharedValues.touchScreenLastX = value.location.x
+            sharedValues.touchScreenLastY = value.location.y
+            sharedValues.rememberFirstTouchLocation = true
+        }
+        
+        let xDirection = value.location.x - sharedValues.touchScreenLastX
+        let yDirection = value.location.y - sharedValues.touchScreenLastY
+        
+        // let distanceFromTouchPointToCenter = sqrt(pow((value.location.x - centerX), 2) + pow((value.location.y - centerY), 2))
+        
+        let disableDragAreaInCenterSize: CGFloat = 4
+        
+        if value.location.x <= centerX - (centerX * 1 / disableDragAreaInCenterSize) {
+            //print("at left area")
+            if yDirection > 0 {
+                //print("anticlockwise sliderProgress ++++++")
+                SpiralAntiClockwise(speed: yDirection)
+            } else if yDirection < 0 {
+                //print("clockwise sliderProgress ----------")
+                SpiralClockwise(speed: yDirection)
+            }
+        } else if value.location.x >= centerX + (centerX * 1 / disableDragAreaInCenterSize) {
+            //print("at right area")
+            if yDirection > 0 {
+                //print("clockwise sliderProgress ----------")
+                SpiralClockwise(speed: yDirection)
+            } else if yDirection < 0 {
+                //print("anticlockwise sliderProgress ++++++")
+                SpiralAntiClockwise(speed: yDirection)
+            }
+        } else if value.location.y <= centerY - (centerY * 1 / disableDragAreaInCenterSize) {
+            //print("at top area")
+            if xDirection > 0 {
+                //print("clockwise sliderProgress ----------")
+                SpiralClockwise(speed: xDirection)
+            } else if xDirection < 0 {
+                //print("anticlockwise sliderProgress ++++++")
+                SpiralAntiClockwise(speed: xDirection)
+            }
+        } else if value.location.y >= centerY + (centerY * 1 / disableDragAreaInCenterSize) {
+            //print("at bottom area")
+            if xDirection > 0 {
+                //print("anticlockwise sliderProgress ++++++")
+                SpiralAntiClockwise(speed: xDirection)
+            } else if xDirection < 0 {
+                //print("clockwise sliderProgress ----------")
+                SpiralClockwise(speed: xDirection)
+            }
+        }
+        
+        sharedValues.touchScreenLastX = value.location.x
+        sharedValues.touchScreenLastY = value.location.y
+        
+        imageSpiralViewModel.thisTempleIsUsedForDraging(id: temple.id, name: temple.name)
+    }
     
     // this function takes in one temple and draw it at a spicific location with a spicific size
     // animation, animation modifier(check if animation ends) and tap action are also implemented here
@@ -262,67 +324,10 @@ struct SpiralView: View {
                     .gesture(DragGesture()
                                 
                                 .onChanged { value in
-                                    
-                                    sharedValues.fingerTouchingScreen = true
-                                    
-                                    //print("last location is \(sharedValues.touchScreenLastX) \(sharedValues.touchScreenLastY)" )
-                                    //print("onChanged \(value.location) \(value.translation)")
-                                    
-                                    if sharedValues.rememberFirstTouchLocation == false {
-                                        sharedValues.touchScreenLastX = value.location.x
-                                        sharedValues.touchScreenLastY = value.location.y
-                                        sharedValues.rememberFirstTouchLocation = true
+                                    if !sharedValues.tappedATemple {
+                                        dragOnChangeActionInSpiralView(value: value, temple: temple)
                                     }
                                     
-                                    let xDirection = value.location.x - sharedValues.touchScreenLastX
-                                    let yDirection = value.location.y - sharedValues.touchScreenLastY
-                                    
-                                    // let distanceFromTouchPointToCenter = sqrt(pow((value.location.x - centerX), 2) + pow((value.location.y - centerY), 2))
-                                    
-                                    let disableDragAreaInCenterSize: CGFloat = 4
-                                    
-                                    if value.location.x <= centerX - (centerX * 1 / disableDragAreaInCenterSize) {
-                                        //print("at left area")
-                                        if yDirection > 0 {
-                                            //print("anticlockwise sliderProgress ++++++")
-                                            SpiralAntiClockwise(speed: yDirection)
-                                        } else if yDirection < 0 {
-                                            //print("clockwise sliderProgress ----------")
-                                            SpiralClockwise(speed: yDirection)
-                                        }
-                                    } else if value.location.x >= centerX + (centerX * 1 / disableDragAreaInCenterSize) {
-                                        //print("at right area")
-                                        if yDirection > 0 {
-                                            //print("clockwise sliderProgress ----------")
-                                            SpiralClockwise(speed: yDirection)
-                                        } else if yDirection < 0 {
-                                            //print("anticlockwise sliderProgress ++++++")
-                                            SpiralAntiClockwise(speed: yDirection)
-                                        }
-                                    } else if value.location.y <= centerY - (centerY * 1 / disableDragAreaInCenterSize) {
-                                        //print("at top area")
-                                        if xDirection > 0 {
-                                            //print("clockwise sliderProgress ----------")
-                                            SpiralClockwise(speed: xDirection)
-                                        } else if xDirection < 0 {
-                                            //print("anticlockwise sliderProgress ++++++")
-                                            SpiralAntiClockwise(speed: xDirection)
-                                        }
-                                    } else if value.location.y >= centerY + (centerY * 1 / disableDragAreaInCenterSize) {
-                                        //print("at bottom area")
-                                        if xDirection > 0 {
-                                            //print("anticlockwise sliderProgress ++++++")
-                                            SpiralAntiClockwise(speed: xDirection)
-                                        } else if xDirection < 0 {
-                                            //print("clockwise sliderProgress ----------")
-                                            SpiralClockwise(speed: xDirection)
-                                        }
-                                    }
-                                    
-                                    sharedValues.touchScreenLastX = value.location.x
-                                    sharedValues.touchScreenLastY = value.location.y
-                                    
-                                    imageSpiralViewModel.thisTempleIsUsedForDraging(id: temple.id, name: temple.name)
                                     
                                 }
                                 .onEnded { value in
@@ -333,9 +338,11 @@ struct SpiralView: View {
 //                                    print("currentScreenHeigth is \(sharedValues.currentScreenHeight)")
 //                                    print("sliderProgress is \(sharedValues.sliderProgress)")
 
-                                    sharedValues.rememberFirstTouchLocation = false
+                                    if !sharedValues.tappedATemple {
+                                        sharedValues.rememberFirstTouchLocation = false
+                                        sharedValues.fingerTouchingScreen = false
+                                    }
                                     
-                                    sharedValues.fingerTouchingScreen = false
                                     
                                 }
                     )
