@@ -329,6 +329,8 @@ struct SpiralView: View {
                     .gesture(DragGesture()
                                 
                                 .onChanged { value in
+                                    sharedValues.yearPickerSet = false
+                                    
                                     if !sharedValues.tappedATemple {
                                         dragOnChangeActionInSpiralView(value: value, temple: temple)
                                     } else {
