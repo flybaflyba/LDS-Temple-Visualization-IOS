@@ -45,12 +45,19 @@ struct MileStoneDatesView: View {
                 }
             //}
         }
-        .onTapGesture {
-            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                // when we tap mile stone dates in single temple view, we will bring slider back and makk mile stone dates disappear
-                sharedValues.tappedATemple = false
-            }
-        }
+        //.background(Color.red)
+        
+ 
+            
+//        .onTapGesture {
+//            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+//                // when we tap mile stone dates in single temple view, we will bring slider back and makk mile stone dates disappear
+//                sharedValues.tappedATemple = false
+//
+//            }
+//        }
+        
+        
     }
 }
 

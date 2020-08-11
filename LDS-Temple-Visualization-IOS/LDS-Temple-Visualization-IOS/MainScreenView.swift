@@ -132,8 +132,11 @@ struct MainScreenView: View {
             }
             .navigationViewStyle(StackNavigationViewStyle())
             
+            
         }
         //.environment(\.locale, .init(identifier: "zh"))
+        //.foregroundColor(Color.red)
+        
     }
     
 }
@@ -488,6 +491,20 @@ struct SpiralView: View {
         var body: some View {
             ZStack {
                 
+//                Rectangle()
+//                    .foregroundColor(Color.green.opacity(1)) // we have to keep the opacity none 0, if it's 0, gesture won;t work on it.
+//                    .onTapGesture {
+//                        if (sharedValues.tappedATemple == true) {
+//                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+//                                sharedValues.tappedATemple = false
+//                                sharedValues.singleTempleShow = false
+//                                //print("tap a large temple")
+//                                sharedValues.spiralViewHeight = 0.75
+//                                sharedValues.mileStoneDatesViewHeight = 0.25
+//                                imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+//                            }
+//                        }
+//                    }
                     
                 ForEach(imageSpiralViewModel.onScreenTemples) { temple in
                     
@@ -515,15 +532,8 @@ struct SpiralView: View {
                     
                 }
                 
-//                Rectangle()
-//                    .foregroundColor(Color.green.opacity(0.00001)) // we have to keep the opacity none 0, if it's 0, gesture won;t work on it.
-//                    .onTapGesture {
-//                        print("tapped big rectangle")
-//
-//                    }
-                    
-                
             }
+            .background(Color.blue.opacity(0.0001)) // we need this, so that touch event on single temple view on non circle or text area can be recognized
             
             
             
@@ -591,6 +601,7 @@ struct SpiralView: View {
                 } else {
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(width: currentScreenWidth, height: currentScreenHeight * sharedValues.mileStoneDatesViewHeight, alignment: Alignment.center)
+                        .background(Color.red.opacity(0.0001))  // we need this, so that touch event on single temple view on non circle or text area can be recognized
                         
                 }
                 // if we put back ground color for spiral, we might need this to fill up the bottom,
@@ -598,6 +609,7 @@ struct SpiralView: View {
 //                Rectangle()
 //                    .foregroundColor(Color.gray)
             }
+
         }
         return body
 }
@@ -623,6 +635,7 @@ struct SpiralView: View {
                 } else {
                     MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(maxHeight: currentScreenHeight * 0.5)
+                        .background(Color.red.opacity(0.0001))  // we need this, so that touch event on single temple view on non circle or text area can be recognized
                         //.background(Color.purple)
                 }
             }
@@ -630,33 +643,33 @@ struct SpiralView: View {
         return body
 }
     
-    // this is very much like PortraitView
-    func LandscapeViewForPad() -> some View {
-        
-        var body: some View {
-            VStack {
-                
-                drawTemples()
-                    .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
-
-                Spacer(minLength: 0)
-                
-                if sharedValues.tappedATemple == false {
-                    
-                    SliderView(imageSpiralViewModel: imageSpiralViewModel)
-                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
-                        //.background(Color.green)
-                        // leave this this background color comment here for testing purposes
-                } else {
-                    
-                    MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
-                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
-                }
-            }
-        }
-        
-        return body
-}
+//    // this is very much like PortraitView
+//    func LandscapeViewForPad() -> some View {
+//
+//        var body: some View {
+//            VStack {
+//
+//                drawTemples()
+//                    .frame(width: currentScreenWidth, height: currentScreenHeight * 0.75, alignment: Alignment.center)
+//
+//                Spacer(minLength: 0)
+//
+//                if sharedValues.tappedATemple == false {
+//
+//                    SliderView(imageSpiralViewModel: imageSpiralViewModel)
+//                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
+//                        //.background(Color.green)
+//                        // leave this this background color comment here for testing purposes
+//                } else {
+//
+//                    MileStoneDatesView(imageSpiralViewModel: imageSpiralViewModel)
+//                        .frame(width: currentScreenWidth, height: currentScreenHeight * 0.25, alignment: Alignment.center)
+//                }
+//            }
+//        }
+//
+//        return body
+//}
     
     var body: some View {
         return ZStack {
@@ -670,8 +683,20 @@ struct SpiralView: View {
                 if sharedValues.currentDevice == .phone {
                     LandscapeViewForPhone()
                 } else {
-                    LandscapeViewForPad()
+                    PortraitView() // landscape mode pad is the same as portrait
                     //PortraitView()
+                }
+            }
+        }
+        .onTapGesture {
+            if (sharedValues.tappedATemple == true) {
+                SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                    sharedValues.tappedATemple = false
+                    sharedValues.singleTempleShow = false
+                    //print("tap a large temple")
+                    sharedValues.spiralViewHeight = 0.75
+                    sharedValues.mileStoneDatesViewHeight = 0.25
+                    imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
                 }
             }
         }
