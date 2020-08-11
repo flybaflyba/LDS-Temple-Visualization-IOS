@@ -52,6 +52,10 @@ struct Spiral<TempleContent> {
         onScreenTemples[id].name = name
     }
     
+    mutating func nextOrLastTemple(id: Int, xChange: CGFloat, lastX: CGFloat, lastY: CGFloat) {
+        onScreenTemples[id].x = lastX + xChange
+    }
+    
     mutating func changeATemple(id: Int) {
         
         //print("change a temple starts here")

@@ -299,6 +299,7 @@ struct SpiralView: View {
         imageSpiralViewModel.thisTempleIsUsedForDraging(id: temple.id, name: temple.name)
     }
     
+    
     // this function takes in one temple and draw it at a spicific location with a spicific size
     // animation, animation modifier(check if animation ends) and tap action are also implemented here
     func drawOneTemple(temple: Spiral<Image>.Temple) -> some View {
@@ -328,6 +329,9 @@ struct SpiralView: View {
                                 .onChanged { value in
                                     if !sharedValues.tappedATemple {
                                         dragOnChangeActionInSpiralView(value: value, temple: temple)
+                                    } else {
+                                        print(value.translation)
+                                        imageSpiralViewModel.nextOrLastTemple(id: temple.id, xChange: value.translation.width, lastX: sharedValues.lastX, lastY: sharedValues.lastY)
                                     }
                                     
                                     
@@ -343,6 +347,10 @@ struct SpiralView: View {
                                     if !sharedValues.tappedATemple {
                                         sharedValues.rememberFirstTouchLocation = false
                                         sharedValues.fingerTouchingScreen = false
+                                    } else {
+                                        sharedValues.lastX = temple.x
+                                        sharedValues.lastY = temple.y
+                                        
                                     }
                                     
                                     

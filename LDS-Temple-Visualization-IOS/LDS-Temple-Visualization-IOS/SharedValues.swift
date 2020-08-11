@@ -140,6 +140,10 @@ class SharedValues: ObservableObject {
     @Published var spiralViewHeight: CGFloat = 0.75
     @Published var mileStoneDatesViewHeight: CGFloat = 0.25
     
+    @Published var lastX: CGFloat = centerX
+    @Published var lastY: CGFloat = centerY
+    
+    
     @Published var orientation = UIDevice.current.orientation
     @Published var orientationChanged = false
     @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
@@ -227,6 +231,7 @@ class SharedValues: ObservableObject {
             
             centerX = currentScreenWidth / 2
             centerY = currentScreenHeight * 0.4
+            
 
             
         } else if (self.orientationInText == "landscape") {
@@ -244,6 +249,7 @@ class SharedValues: ObservableObject {
                 centerX = currentScreenWidth / 2
                 centerY = screenWidth * 0.8
             }
+            
         }
         
         //print(currentScreenWidth)
