@@ -46,6 +46,7 @@ struct MileStoneDatesView: View {
             //}
         }
         //.background(Color.red)
+        //.opacity(0.2)
         
  
             

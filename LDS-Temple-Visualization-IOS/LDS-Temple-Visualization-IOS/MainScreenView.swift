@@ -331,7 +331,7 @@ struct SpiralView: View {
                                         dragOnChangeActionInSpiralView(value: value, temple: temple)
                                     } else {
                                         print(value.translation)
-                                        imageSpiralViewModel.nextOrLastTemple(id: temple.id, xChange: value.translation.width, lastX: sharedValues.lastX, lastY: sharedValues.lastY)
+                                        imageSpiralViewModel.nextOrLastTemple(id: temple.id, xChange: value.translation.width, yChange: value.translation.height, lastX: sharedValues.lastX, lastY: sharedValues.lastY)
                                     }
                                     
                                     
@@ -348,8 +348,16 @@ struct SpiralView: View {
                                         sharedValues.rememberFirstTouchLocation = false
                                         sharedValues.fingerTouchingScreen = false
                                     } else {
-                                        sharedValues.lastX = temple.x
-                                        sharedValues.lastY = temple.y
+                                        
+                                        if temple.x >= 0 && temple.x <= centerX * 2 && temple.y >= 0 {
+                                            imageSpiralViewModel.setTempleTo(id: temple.id, newX: centerX, newY: centerY)
+                                            sharedValues.lastX = centerX
+                                            sharedValues.lastY = centerY
+                                        } else {
+                                            sharedValues.lastX = temple.x
+                                            sharedValues.lastY = temple.y
+                                        }
+                                        
                                         
                                     }
                                     

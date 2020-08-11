@@ -52,8 +52,14 @@ struct Spiral<TempleContent> {
         onScreenTemples[id].name = name
     }
     
-    mutating func nextOrLastTemple(id: Int, xChange: CGFloat, lastX: CGFloat, lastY: CGFloat) {
+    mutating func nextOrLastTemple(id: Int, xChange: CGFloat, yChange: CGFloat, lastX: CGFloat, lastY: CGFloat) {
         onScreenTemples[id].x = lastX + xChange
+        onScreenTemples[id].y = lastY + yChange
+    }
+    
+    mutating func setTempleTo(id: Int, newX: CGFloat, newY: CGFloat) {
+        onScreenTemples[id].x = newX
+        onScreenTemples[id].y = newY
     }
     
     mutating func changeATemple(id: Int) {
