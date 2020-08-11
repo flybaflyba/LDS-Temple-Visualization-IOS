@@ -80,6 +80,8 @@ struct Spiral<TempleContent> {
             singleTempleLargeCircleMoveUpThisMuch = 0
         }
         
+        print(onScreenTemples.count)
+        
         if onScreenTemples[id].tapped == false {
             
             

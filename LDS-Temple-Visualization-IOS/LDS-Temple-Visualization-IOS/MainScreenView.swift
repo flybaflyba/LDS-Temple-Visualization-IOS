@@ -357,11 +357,13 @@ struct SpiralView: View {
                                         } else {
                                             imageSpiralViewModel.changeATemple(id: temple.id)
                                             if temple.x > centerX * 2 {
-                                                imageSpiralViewModel.changeATemple(id: temple.id + 1)
+                                                if temple.id < 225 {
+                                                    imageSpiralViewModel.changeATemple(id: temple.id + 1)
+                                                }
                                             } else if temple.x < 0 {
-                                                
+                                                if temple.id > 0  {
                                                     imageSpiralViewModel.changeATemple(id: temple.id - 1)
-                                                
+                                                }
                                                 
                                             }
                                             
