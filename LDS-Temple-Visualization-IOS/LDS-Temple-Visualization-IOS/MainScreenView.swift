@@ -359,12 +359,30 @@ struct SpiralView: View {
                                             if temple.x > centerX * 2 {
                                                 if temple.id < 225 {
                                                     imageSpiralViewModel.changeATemple(id: temple.id + 1)
+                                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id + 1].fileName)
+                                                    sharedValues.currentTappedTempleName =  imageSpiralViewModel.onScreenTemples[temple.id + 1].name
+                                                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id + 1].id
+                                                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id + 1].link
                                                 }
                                             } else if temple.x < 0 {
                                                 if temple.id > 0  {
                                                     imageSpiralViewModel.changeATemple(id: temple.id - 1)
+                                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id - 1].fileName)
+                                                    sharedValues.currentTappedTempleName = imageSpiralViewModel.onScreenTemples[temple.id - 1].name
+                                                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id - 1].id
+                                                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id - 1].link
+                                                    
                                                 }
-                                                
+                                            } else {
+                                                SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                                    sharedValues.tappedATemple = false
+                                                    sharedValues.singleTempleShow = false
+                                                    //print("tap a large temple")
+                                                    sharedValues.spiralViewHeight = 0.75
+                                                    sharedValues.mileStoneDatesViewHeight = 0.25
+                                                    sharedValues.lastX = centerX
+                                                    sharedValues.lastY = centerY
+                                                }
                                             }
                                             
                                             
