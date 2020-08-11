@@ -355,8 +355,16 @@ struct SpiralView: View {
                                             imageSpiralViewModel.setTempleTo(id: temple.id, newX: centerX, newY: centerY)
                                             
                                         } else {
-                                            
                                             imageSpiralViewModel.changeATemple(id: temple.id)
+                                            if temple.x > centerX * 2 {
+                                                imageSpiralViewModel.changeATemple(id: temple.id + 1)
+                                            } else if temple.x < 0 {
+                                                
+                                                    imageSpiralViewModel.changeATemple(id: temple.id - 1)
+                                                
+                                                
+                                            }
+                                            
                                             
                                         }
                                         
