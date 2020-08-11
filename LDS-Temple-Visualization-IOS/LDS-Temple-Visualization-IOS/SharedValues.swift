@@ -232,6 +232,8 @@ class SharedValues: ObservableObject {
             centerX = currentScreenWidth / 2
             centerY = currentScreenHeight * 0.4
             
+            lastX = centerX
+            lastY = centerY
 
             
         } else if (self.orientationInText == "landscape") {
@@ -250,6 +252,8 @@ class SharedValues: ObservableObject {
                 centerY = screenWidth * 0.8
             }
             
+            lastX = centerX
+            lastY = centerY
         }
         
         //print(currentScreenWidth)
