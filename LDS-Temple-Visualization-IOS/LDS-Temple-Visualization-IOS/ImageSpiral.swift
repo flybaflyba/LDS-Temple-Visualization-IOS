@@ -96,9 +96,7 @@ class ImageSpiral: ObservableObject {
     }
     
     func dragSingleTemple(id: Int, xChange: CGFloat, yChange: CGFloat, lastX: CGFloat, lastY: CGFloat) {
-        if yChange <= 0 {
             spiralModel.dragSingleTemple(id: id, xChange: xChange, yChange: yChange, lastX: lastX, lastY: lastY)
-        }
     }
     
     func setTempleTo(id: Int, newX: CGFloat, newY: CGFloat) {
