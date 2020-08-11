@@ -86,6 +86,8 @@ struct MainScreenView: View {
                     sharedValues.singleTempleShow = false
                     sharedValues.spiralViewHeight = 0.75
                     sharedValues.mileStoneDatesViewHeight = 0.25
+                    sharedValues.lastX = centerX
+                    sharedValues.lastY = centerY
                 }
                 
                     }) {
@@ -385,6 +387,8 @@ struct SpiralView: View {
                                 //print("tap a large temple")
                                 sharedValues.spiralViewHeight = 0.75
                                 sharedValues.mileStoneDatesViewHeight = 0.25
+                                sharedValues.lastX = centerX
+                                sharedValues.lastY = centerY
                             }
                         } else {
                             SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
@@ -722,6 +726,8 @@ struct SpiralView: View {
                     sharedValues.spiralViewHeight = 0.75
                     sharedValues.mileStoneDatesViewHeight = 0.25
                     imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
+                    sharedValues.lastX = centerX
+                    sharedValues.lastY = centerY
                 }
             }
         }
