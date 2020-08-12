@@ -384,18 +384,18 @@ struct SpiralView: View {
                                                     imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
                                                     imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                                                     
-                                                    imageSpiralViewModel.changeATemple(id: temple.id + 1)
+                                                    imageSpiralViewModel.changeATemple(id: temple.id - 1)
                                                     
                                                     imageSpiralViewModel.setTemple(id: temple.id, newX: centerX * 5, newY: centerY, newSize: temple.size)
-                                                    imageSpiralViewModel.setTemple(id: temple.id + 1, newX: -centerX * 2, newY: centerY, newSize: screenWidth * 0.9)
+                                                    imageSpiralViewModel.setTemple(id: temple.id - 1, newX: -centerX * 2, newY: centerY, newSize: screenWidth * 0.9)
                                                     SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                        imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
+                                                        imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX, newY: centerY, newSize: temple.size - 1)
                                                     }
                                                     
-                                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id + 1].fileName)
-                                                    sharedValues.currentTappedTempleName =  imageSpiralViewModel.onScreenTemples[temple.id + 1].name
-                                                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id + 1].id
-                                                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id + 1].link
+                                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id - 1].fileName)
+                                                    sharedValues.currentTappedTempleName =  imageSpiralViewModel.onScreenTemples[temple.id - 1].name
+                                                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id - 1].id
+                                                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id - 1].link
                                                 } else {
                                                     imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
                                                     imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
@@ -415,18 +415,18 @@ struct SpiralView: View {
                                                     imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
                                                     imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                                                     
-                                                    imageSpiralViewModel.changeATemple(id: temple.id - 1)
+                                                    imageSpiralViewModel.changeATemple(id: temple.id + 1)
                                                     
                                                     imageSpiralViewModel.setTemple(id: temple.id, newX: -centerX * 2, newY: centerY, newSize: temple.size)
-                                                    imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX * 5, newY: centerY, newSize: screenWidth * 0.9)
+                                                    imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX * 5, newY: centerY, newSize: screenWidth * 0.9)
                                                     SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                        imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
+                                                        imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
                                                     }
                                                     
-                                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id - 1].fileName)
-                                                    sharedValues.currentTappedTempleName = imageSpiralViewModel.onScreenTemples[temple.id - 1].name
-                                                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id - 1].id
-                                                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id - 1].link
+                                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id + 1].fileName)
+                                                    sharedValues.currentTappedTempleName = imageSpiralViewModel.onScreenTemples[temple.id + 1].name
+                                                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id + 1].id
+                                                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id + 1].link
                                                     
                                                 } else {
                                                     imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
