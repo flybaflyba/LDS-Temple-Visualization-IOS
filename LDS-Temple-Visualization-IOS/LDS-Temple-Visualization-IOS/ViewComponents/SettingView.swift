@@ -33,7 +33,7 @@ struct SettingViewMain: View {
                     HStack {
                         LabelSettingButton()
                         VStack {
-                            TempleListButton()
+                            //TempleListButton()
                             AboutButton()
                         }
                     }
