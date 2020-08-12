@@ -13,7 +13,7 @@ struct AboutView: View {
 
     var body: some View {
         AboutViewMain()
-            .navigationBarTitle("About")
+            .navigationBarTitle("about")
     }
 }
 
