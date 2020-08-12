@@ -386,7 +386,7 @@ struct SpiralView: View {
                                                     
                                                     imageSpiralViewModel.changeATemple(id: temple.id + 1)
                                                     
-                                                    imageSpiralViewModel.setTemple(id: temple.id, newX: centerX * 4, newY: centerY, newSize: temple.size)
+                                                    imageSpiralViewModel.setTemple(id: temple.id, newX: centerX * 5, newY: centerY, newSize: temple.size)
                                                     imageSpiralViewModel.setTemple(id: temple.id + 1, newX: -centerX * 2, newY: centerY, newSize: screenWidth * 0.9)
                                                     SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                                                         imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
@@ -406,7 +406,7 @@ struct SpiralView: View {
                                                     imageSpiralViewModel.changeATemple(id: temple.id - 1)
                                                     
                                                     imageSpiralViewModel.setTemple(id: temple.id, newX: -centerX * 2, newY: centerY, newSize: temple.size)
-                                                    imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX * 4, newY: centerY, newSize: screenWidth * 0.9)
+                                                    imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX * 5, newY: centerY, newSize: screenWidth * 0.9)
                                                     SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                                                         imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
                                                     }
