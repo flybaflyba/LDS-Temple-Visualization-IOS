@@ -345,6 +345,9 @@ struct SpiralView: View {
                                             }
                                         }
                                         
+//                                        imageSpiralViewModel.setTemple(id: temple.id + 1, newX: 0, newY: 0, newSize: screenWidth * 0.9)
+//                                        imageSpiralViewModel.setTemple(id: temple.id - 1, newX: 0, newY: 0, newSize: screenWidth * 0.9)
+                                        
                                     }
                                     
                                 }
@@ -385,9 +388,8 @@ struct SpiralView: View {
                                                     
                                                     imageSpiralViewModel.setTemple(id: temple.id, newX: centerX * 4, newY: centerY, newSize: temple.size)
                                                     imageSpiralViewModel.setTemple(id: temple.id + 1, newX: -centerX * 2, newY: centerY, newSize: screenWidth * 0.9)
-                                                    // we force this step to be animated, so that the other steps are not animated
                                                     SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                        imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX, newY: centerY, newSize: temple.size)
+                                                        imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
                                                     }
                                                     
                                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id + 1].fileName)
@@ -405,9 +407,8 @@ struct SpiralView: View {
                                                     
                                                     imageSpiralViewModel.setTemple(id: temple.id, newX: -centerX * 2, newY: centerY, newSize: temple.size)
                                                     imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX * 4, newY: centerY, newSize: screenWidth * 0.9)
-                                                    // this same as above
                                                     SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                        imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX, newY: centerY, newSize: temple.size)
+                                                        imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
                                                     }
                                                     
                                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id - 1].fileName)
@@ -804,7 +805,6 @@ struct SpiralView: View {
                     imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
                     sharedValues.lastX = centerX
                     sharedValues.lastY = centerY
-                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress) // use this to restore everything
                 }
             }
         }

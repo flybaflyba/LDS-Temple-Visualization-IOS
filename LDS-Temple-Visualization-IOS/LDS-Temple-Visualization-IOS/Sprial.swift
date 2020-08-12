@@ -61,8 +61,12 @@ struct Spiral<TempleContent> {
     }
     
     mutating func setTemple(id: Int, newX: CGFloat, newY: CGFloat, newSize: CGFloat) {
-        onScreenTemples[id].x = newX
-        onScreenTemples[id].y = newY
+        
+        if newX == 0 && newY == 0 {
+        } else {
+            onScreenTemples[id].x = newX
+            onScreenTemples[id].y = newY
+        }
         onScreenTemples[id].size = newSize
     }
     
