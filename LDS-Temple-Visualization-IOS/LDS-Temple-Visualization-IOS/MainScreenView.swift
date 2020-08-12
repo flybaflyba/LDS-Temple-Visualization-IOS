@@ -347,9 +347,13 @@ struct SpiralView: View {
                                     
                                 }
                                 .onEnded { value in
-                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                        sharedValues.mileStoneDatesViewOpacity = 1
+                                    if sharedValues.mileStoneDatesViewOpacity == 1 {
+                                    } else {
+                                        SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                            sharedValues.mileStoneDatesViewOpacity = 1
+                                        }
                                     }
+                                    
 //                                    print("onEnded")
 //                                    print("centerX is \(centerX)")
 //                                    print("centerY is \(centerY)")
