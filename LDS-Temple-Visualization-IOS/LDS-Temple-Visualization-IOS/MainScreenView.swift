@@ -88,6 +88,7 @@ struct MainScreenView: View {
                     sharedValues.mileStoneDatesViewHeight = 0.25
                     sharedValues.lastX = centerX
                     sharedValues.lastY = centerY
+                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress) // use this to restore everything
                 }
                 
                     }) {
@@ -301,6 +302,97 @@ struct SpiralView: View {
         imageSpiralViewModel.thisTempleIsUsedForDraging(id: temple.id, name: temple.name)
     }
     
+    func dragOnEndActionInSingleTempleView(temple: Spiral<Image>.Temple) {
+        if temple.x >= 0 && temple.x <= centerX * 2 && temple.y >= 0 && temple.y <= centerY * 2 {
+            imageSpiralViewModel.setTemple(id: temple.id, newX: centerX, newY: centerY, newSize: temple.size)
+            
+        } else {
+            //imageSpiralViewModel.changeATemple(id: temple.id)
+            
+            
+            if temple.x > centerX * 2 {
+                if temple.id > 0 {
+                    sharedValues.sliderProgress -= 30
+                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                    
+                    imageSpiralViewModel.changeATemple(id: temple.id - 1)
+                    
+                    imageSpiralViewModel.setTemple(id: temple.id, newX: centerX * 5, newY: centerY, newSize: temple.size)
+                    imageSpiralViewModel.setTemple(id: temple.id - 1, newX: -centerX * 2, newY: centerY, newSize: screenWidth * 0.9)
+                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                        imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
+                    }
+                    
+                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id - 1].fileName)
+                    sharedValues.currentTappedTempleName =  imageSpiralViewModel.onScreenTemples[temple.id - 1].name
+                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id - 1].id
+                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id - 1].link
+                } else {
+                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                        sharedValues.tappedATemple = false
+                        sharedValues.singleTempleShow = false
+                        //print("tap a large temple")
+                        sharedValues.spiralViewHeight = 0.75
+                        sharedValues.mileStoneDatesViewHeight = 0.25
+                        sharedValues.lastX = centerX
+                        sharedValues.lastY = centerY
+                    }
+                }
+            } else if temple.x < 0 {
+                if temple.id < 255  {
+                    sharedValues.sliderProgress += 30
+                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                    
+                    imageSpiralViewModel.changeATemple(id: temple.id + 1)
+                    
+                    imageSpiralViewModel.setTemple(id: temple.id, newX: -centerX * 2, newY: centerY, newSize: temple.size)
+                    imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX * 5, newY: centerY, newSize: screenWidth * 0.9)
+                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                        imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
+                    }
+                    
+                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id + 1].fileName)
+                    sharedValues.currentTappedTempleName = imageSpiralViewModel.onScreenTemples[temple.id + 1].name
+                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id + 1].id
+                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id + 1].link
+                    
+                } else {
+                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                        sharedValues.tappedATemple = false
+                        sharedValues.singleTempleShow = false
+                        //print("tap a large temple")
+                        sharedValues.spiralViewHeight = 0.75
+                        sharedValues.mileStoneDatesViewHeight = 0.25
+                        sharedValues.lastX = centerX
+                        sharedValues.lastY = centerY
+                    }
+                }
+            } else {
+                imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                    sharedValues.tappedATemple = false
+                    sharedValues.singleTempleShow = false
+                    //print("tap a large temple")
+                    sharedValues.spiralViewHeight = 0.75
+                    sharedValues.mileStoneDatesViewHeight = 0.25
+                    sharedValues.lastX = centerX
+                    sharedValues.lastY = centerY
+                }
+            }
+            
+            
+        }
+        
+        sharedValues.lastX = centerX
+        sharedValues.lastY = centerY
+    }
     
     // this function takes in one temple and draw it at a spicific location with a spicific size
     // animation, animation modifier(check if animation ends) and tap action are also implemented here
@@ -329,7 +421,6 @@ struct SpiralView: View {
                     .opacity(temple.templeOpacity)
                     
                     .gesture(DragGesture()
-                                
                                 .onChanged { value in
                                     sharedValues.yearPickerSet = false
                                     
@@ -370,105 +461,11 @@ struct SpiralView: View {
                                         sharedValues.rememberFirstTouchLocation = false
                                         sharedValues.fingerTouchingScreen = false
                                     } else {
-                                        
-                                        if temple.x >= 0 && temple.x <= centerX * 2 && temple.y >= 0 && temple.y <= centerY * 2 {
-                                            imageSpiralViewModel.setTemple(id: temple.id, newX: centerX, newY: centerY, newSize: temple.size)
-                                            
-                                        } else {
-                                            //imageSpiralViewModel.changeATemple(id: temple.id)
-                                            
-                                            
-                                            if temple.x > centerX * 2 {
-                                                if temple.id > 0 {
-                                                    sharedValues.sliderProgress -= 30
-                                                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                                                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
-                                                    
-                                                    imageSpiralViewModel.changeATemple(id: temple.id - 1)
-                                                    
-                                                    imageSpiralViewModel.setTemple(id: temple.id, newX: centerX * 5, newY: centerY, newSize: temple.size)
-                                                    imageSpiralViewModel.setTemple(id: temple.id - 1, newX: -centerX * 2, newY: centerY, newSize: screenWidth * 0.9)
-                                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                        imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
-                                                    }
-                                                    
-                                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id - 1].fileName)
-                                                    sharedValues.currentTappedTempleName =  imageSpiralViewModel.onScreenTemples[temple.id - 1].name
-                                                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id - 1].id
-                                                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id - 1].link
-                                                } else {
-                                                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                                                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
-                                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                        sharedValues.tappedATemple = false
-                                                        sharedValues.singleTempleShow = false
-                                                        //print("tap a large temple")
-                                                        sharedValues.spiralViewHeight = 0.75
-                                                        sharedValues.mileStoneDatesViewHeight = 0.25
-                                                        sharedValues.lastX = centerX
-                                                        sharedValues.lastY = centerY
-                                                    }
-                                                }
-                                            } else if temple.x < 0 {
-                                                if temple.id < 255  {
-                                                    sharedValues.sliderProgress += 30
-                                                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                                                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
-                                                    
-                                                    imageSpiralViewModel.changeATemple(id: temple.id + 1)
-                                                    
-                                                    imageSpiralViewModel.setTemple(id: temple.id, newX: -centerX * 2, newY: centerY, newSize: temple.size)
-                                                    imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX * 5, newY: centerY, newSize: screenWidth * 0.9)
-                                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                        imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX, newY: centerY, newSize: temple.size + 1)
-                                                    }
-                                                    
-                                                    sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id + 1].fileName)
-                                                    sharedValues.currentTappedTempleName = imageSpiralViewModel.onScreenTemples[temple.id + 1].name
-                                                    sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id + 1].id
-                                                    sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id + 1].link
-                                                    
-                                                } else {
-                                                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                                                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
-                                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                        sharedValues.tappedATemple = false
-                                                        sharedValues.singleTempleShow = false
-                                                        //print("tap a large temple")
-                                                        sharedValues.spiralViewHeight = 0.75
-                                                        sharedValues.mileStoneDatesViewHeight = 0.25
-                                                        sharedValues.lastX = centerX
-                                                        sharedValues.lastY = centerY
-                                                    }
-                                                }
-                                            } else {
-                                                imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                                                imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
-                                                SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                    sharedValues.tappedATemple = false
-                                                    sharedValues.singleTempleShow = false
-                                                    //print("tap a large temple")
-                                                    sharedValues.spiralViewHeight = 0.75
-                                                    sharedValues.mileStoneDatesViewHeight = 0.25
-                                                    sharedValues.lastX = centerX
-                                                    sharedValues.lastY = centerY
-                                                }
-                                            }
-                                            
-                                            
-                                        }
-                                        
-                                        sharedValues.lastX = centerX
-                                        sharedValues.lastY = centerY
-                                        
+                                        dragOnEndActionInSingleTempleView(temple: temple)
                                     }
-                                    
                                     
                                 }
                     )
-                    
-                    
-                    
                     .onTapGesture {
                         //print("tapped a temple")
                         //print("showName is \(temple.showName)")
