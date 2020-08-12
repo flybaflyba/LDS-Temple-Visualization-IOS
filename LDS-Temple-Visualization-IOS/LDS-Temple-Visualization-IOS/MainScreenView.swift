@@ -396,6 +396,18 @@ struct SpiralView: View {
                                                     sharedValues.currentTappedTempleName =  imageSpiralViewModel.onScreenTemples[temple.id + 1].name
                                                     sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id + 1].id
                                                     sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id + 1].link
+                                                } else {
+                                                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                                                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                                        sharedValues.tappedATemple = false
+                                                        sharedValues.singleTempleShow = false
+                                                        //print("tap a large temple")
+                                                        sharedValues.spiralViewHeight = 0.75
+                                                        sharedValues.mileStoneDatesViewHeight = 0.25
+                                                        sharedValues.lastX = centerX
+                                                        sharedValues.lastY = centerY
+                                                    }
                                                 }
                                             } else if temple.x < 0 {
                                                 if temple.id > 0  {
@@ -416,6 +428,18 @@ struct SpiralView: View {
                                                     sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id - 1].id
                                                     sharedValues.currentTappedTempleLink = imageSpiralViewModel.onScreenTemples[temple.id - 1].link
                                                     
+                                                } else {
+                                                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                                                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                                        sharedValues.tappedATemple = false
+                                                        sharedValues.singleTempleShow = false
+                                                        //print("tap a large temple")
+                                                        sharedValues.spiralViewHeight = 0.75
+                                                        sharedValues.mileStoneDatesViewHeight = 0.25
+                                                        sharedValues.lastX = centerX
+                                                        sharedValues.lastY = centerY
+                                                    }
                                                 }
                                             } else {
                                                 imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
@@ -548,7 +572,7 @@ struct SpiralView: View {
         if sharedValues.sliderProgress - 1 <= 180 {
             sharedValues.sliderProgress = 180
         } else {
-            sharedValues.sliderProgress -= abs(speed) / 5
+            sharedValues.sliderProgress -= abs(speed) / 3
         }
         
         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
@@ -559,7 +583,7 @@ struct SpiralView: View {
         if sharedValues.sliderProgress + 1 >= 6980 {
             sharedValues.sliderProgress = 6980
         } else {
-            sharedValues.sliderProgress += abs(speed) / 5
+            sharedValues.sliderProgress += abs(speed) / 3
         }
         
         imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
