@@ -371,8 +371,13 @@ struct SpiralView: View {
                                             
                                         } else {
                                             imageSpiralViewModel.changeATemple(id: temple.id)
+                                            
                                             if temple.x > centerX * 2 {
                                                 if temple.id < 225 {
+                                                    sharedValues.sliderProgress += 30
+                                                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                                                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                                                    
                                                     imageSpiralViewModel.changeATemple(id: temple.id + 1)
                                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id + 1].fileName)
                                                     sharedValues.currentTappedTempleName =  imageSpiralViewModel.onScreenTemples[temple.id + 1].name
@@ -381,6 +386,10 @@ struct SpiralView: View {
                                                 }
                                             } else if temple.x < 0 {
                                                 if temple.id > 0  {
+                                                    sharedValues.sliderProgress -= 30
+                                                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                                                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                                                    
                                                     imageSpiralViewModel.changeATemple(id: temple.id - 1)
                                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id - 1].fileName)
                                                     sharedValues.currentTappedTempleName = imageSpiralViewModel.onScreenTemples[temple.id - 1].name
