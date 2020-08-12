@@ -326,6 +326,8 @@ struct SpiralView: View {
                     //.opacity(0.3)
                     //.shadow(radius: 10)
                     
+                    .opacity(temple.templeOpacity)
+                    
                     .gesture(DragGesture()
                                 
                                 .onChanged { value in
@@ -367,10 +369,11 @@ struct SpiralView: View {
                                     } else {
                                         
                                         if temple.x >= 0 && temple.x <= centerX * 2 && temple.y >= 0 && temple.y <= centerY * 2 {
-                                            imageSpiralViewModel.setTempleTo(id: temple.id, newX: centerX, newY: centerY)
+                                            imageSpiralViewModel.setTemple(id: temple.id, newX: centerX, newY: centerY, newSize: temple.size)
                                             
                                         } else {
-                                            imageSpiralViewModel.changeATemple(id: temple.id)
+                                            //imageSpiralViewModel.changeATemple(id: temple.id)
+                                            
                                             
                                             if temple.x > centerX * 2 {
                                                 if temple.id < 225 {
@@ -379,6 +382,14 @@ struct SpiralView: View {
                                                     imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                                                     
                                                     imageSpiralViewModel.changeATemple(id: temple.id + 1)
+                                                    
+                                                    imageSpiralViewModel.setTemple(id: temple.id, newX: centerX * 4, newY: centerY, newSize: temple.size)
+                                                    imageSpiralViewModel.setTemple(id: temple.id + 1, newX: -centerX * 2, newY: centerY, newSize: screenWidth * 0.9)
+                                                    // we force this step to be animated, so that the other steps are not animated
+                                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                                        imageSpiralViewModel.setTemple(id: temple.id + 1, newX: centerX, newY: centerY, newSize: temple.size)
+                                                    }
+                                                    
                                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id + 1].fileName)
                                                     sharedValues.currentTappedTempleName =  imageSpiralViewModel.onScreenTemples[temple.id + 1].name
                                                     sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id + 1].id
@@ -391,6 +402,14 @@ struct SpiralView: View {
                                                     imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                                                     
                                                     imageSpiralViewModel.changeATemple(id: temple.id - 1)
+                                                    
+                                                    imageSpiralViewModel.setTemple(id: temple.id, newX: -centerX * 2, newY: centerY, newSize: temple.size)
+                                                    imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX * 4, newY: centerY, newSize: screenWidth * 0.9)
+                                                    // this same as above
+                                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                                        imageSpiralViewModel.setTemple(id: temple.id - 1, newX: centerX, newY: centerY, newSize: temple.size)
+                                                    }
+                                                    
                                                     sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: imageSpiralViewModel.onScreenTemples[temple.id - 1].fileName)
                                                     sharedValues.currentTappedTempleName = imageSpiralViewModel.onScreenTemples[temple.id - 1].name
                                                     sharedValues.currentTappedTempleId = imageSpiralViewModel.onScreenTemples[temple.id - 1].id
@@ -398,6 +417,8 @@ struct SpiralView: View {
                                                     
                                                 }
                                             } else {
+                                                imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                                                imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
                                                 SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
                                                     sharedValues.tappedATemple = false
                                                     sharedValues.singleTempleShow = false
@@ -443,6 +464,7 @@ struct SpiralView: View {
                                 sharedValues.mileStoneDatesViewHeight = 0.25
                                 sharedValues.lastX = centerX
                                 sharedValues.lastY = centerY
+                                imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress) // use this to restore everything
                             }
                         } else {
                             SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
@@ -782,6 +804,7 @@ struct SpiralView: View {
                     imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
                     sharedValues.lastX = centerX
                     sharedValues.lastY = centerY
+                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress) // use this to restore everything
                 }
             }
         }

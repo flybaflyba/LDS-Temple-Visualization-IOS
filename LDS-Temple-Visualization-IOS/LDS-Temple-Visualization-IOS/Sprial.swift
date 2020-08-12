@@ -60,9 +60,10 @@ struct Spiral<TempleContent> {
         
     }
     
-    mutating func setTempleTo(id: Int, newX: CGFloat, newY: CGFloat) {
+    mutating func setTemple(id: Int, newX: CGFloat, newY: CGFloat, newSize: CGFloat) {
         onScreenTemples[id].x = newX
         onScreenTemples[id].y = newY
+        onScreenTemples[id].size = newSize
     }
     
     mutating func changeATemple(id: Int) {
@@ -216,6 +217,8 @@ struct Spiral<TempleContent> {
             
             onScreenTemples[index].showName = onScreenTemplesPositionsP[index] < 400 ? true : false
             
+            onScreenTemples[index].tapped = false
+            
             
             //print("onScreenTemplesPositionsP[index] \(onScreenTemplesPositionsP[index])")
             
@@ -265,5 +268,6 @@ struct Spiral<TempleContent> {
             }
         }
         var showName: Bool
+        var templeOpacity: Double = 1
     }
 }
