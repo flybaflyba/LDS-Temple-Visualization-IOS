@@ -336,10 +336,15 @@ struct SpiralView: View {
                                     } else {
                                         print(value.translation) // complet feature!: view next or last temple by draging large temple circle on single temple view!
                                         imageSpiralViewModel.dragSingleTemple(id: temple.id, xChange: value.translation.width, yChange: value.translation.height, lastX: sharedValues.lastX, lastY: sharedValues.lastY)
+                                        if sharedValues.mileStoneDatesViewOpacity == 0 {
+                                        } else {
+                                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
+                                                sharedValues.mileStoneDatesViewOpacity = 0
+                                            }
+                                        }
+                                        
                                     }
-                                    SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                        sharedValues.mileStoneDatesViewOpacity = 0
-                                    }
+                                    
                                 }
                                 .onEnded { value in
                                     SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
