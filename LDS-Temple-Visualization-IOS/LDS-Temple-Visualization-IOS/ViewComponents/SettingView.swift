@@ -51,7 +51,7 @@ struct SpiralEffectSettingButton: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.gray)
+                .foregroundColor(sharedValues.nonMainViewColorSchema)
             VStack {
                 VStack {
                     ZStack {
@@ -118,7 +118,7 @@ struct AnimationSettingButton: View {
         
         ZStack {
             RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.gray)
+                .foregroundColor(sharedValues.nonMainViewColorSchema)
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
@@ -188,7 +188,7 @@ struct LabelSettingButton: View {
         
         ZStack {
             RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.gray)
+                .foregroundColor(sharedValues.nonMainViewColorSchema)
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
@@ -245,13 +245,14 @@ struct LabelSettingButton: View {
 struct AboutButton: View {
     
     @Environment(\.colorScheme) var colorScheme
-
+    @EnvironmentObject var sharedValues: SharedValues
+    
     var body: some View {
         
         NavigationLink(destination: AboutView()) {
             ZStack {
                 RoundedRectangle(cornerRadius: 5)
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(sharedValues.nonMainViewColorSchema)
                 
                 Text("about")
                     .padding()
@@ -271,7 +272,7 @@ struct TempleListButton: View {
         NavigationLink(destination: InAppWebView(url: sharedValues.templesList)) {
             ZStack {
                 RoundedRectangle(cornerRadius: 5)
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(sharedValues.nonMainViewColorSchema)
                 HStack {
                     Text("temple.list")
                     Image(systemName: "link")

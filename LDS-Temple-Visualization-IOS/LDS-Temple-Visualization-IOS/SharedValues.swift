@@ -61,6 +61,7 @@ public var centerY = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.s
 //    }
 //}
 
+var nonMainViewColorSchemaPublic = Color.gray
 
 class SharedValues: ObservableObject {
     
@@ -74,22 +75,23 @@ class SharedValues: ObservableObject {
     @Published var mode = "default"
     //@Published var showAbout = false
     
+    @Published var nonMainViewColorSchema = nonMainViewColorSchemaPublic
     @Published var defaultColor = Color.blue
-    @Published var spinColor = Color.gray
-    @Published var threeDColor = Color.gray
+    @Published var spinColor = nonMainViewColorSchemaPublic
+    @Published var threeDColor = nonMainViewColorSchemaPublic
     
-    @Published var slowAnimationColor = Color.gray
-    @Published var fastAnimationColor = Color.gray
+    @Published var slowAnimationColor = nonMainViewColorSchemaPublic
+    @Published var fastAnimationColor = nonMainViewColorSchemaPublic
     @Published var offAnimationColor = Color.blue
     
-    @Published var showLabelOn = Color.gray
+    @Published var showLabelOn = nonMainViewColorSchemaPublic
     @Published var showLabelOff = Color.blue
     
-    @Published var showLabelBackgroundYes = Color.gray
+    @Published var showLabelBackgroundYes = nonMainViewColorSchemaPublic
     @Published var showLabelBackgroundNo = Color.blue
     
     @Published var selectedColor = Color.blue
-    @Published var unSelectedColor = Color.gray
+    @Published var unSelectedColor = nonMainViewColorSchemaPublic
     
     @Published var tappedATemple = false
     @Published var currentTappedTempleName = " "

@@ -20,13 +20,14 @@ struct AboutView: View {
 struct AboutViewMain: View {
     
     @EnvironmentObject var sharedValues: SharedValues
+    @Environment(\.colorScheme) var colorScheme
     
     let url = NSLocalizedString("app.website.url", comment: "app website url")
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.gray)
+                .foregroundColor(sharedValues.nonMainViewColorSchema)
             
             VStack {
                 ScrollView {
@@ -40,6 +41,7 @@ struct AboutViewMain: View {
                             Text("app.website")
                             Image(systemName: "link")
                         }
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                     }
                 }
                 .padding()
