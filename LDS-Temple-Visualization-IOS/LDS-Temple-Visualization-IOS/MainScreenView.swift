@@ -342,7 +342,8 @@ struct SpiralView: View {
                     }
                 }
             } else if temple.x < 0 {
-                if temple.id < 255  {
+                print(temple.id)
+                if temple.id < 225  {
                     sharedValues.sliderProgress += 30
                     imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
                     imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
