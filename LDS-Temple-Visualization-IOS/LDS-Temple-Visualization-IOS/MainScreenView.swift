@@ -827,6 +827,9 @@ struct SpiralView: View {
                     imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
                     sharedValues.lastX = centerX
                     sharedValues.lastY = centerY
+                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
+                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                    
                 }
             }
         }

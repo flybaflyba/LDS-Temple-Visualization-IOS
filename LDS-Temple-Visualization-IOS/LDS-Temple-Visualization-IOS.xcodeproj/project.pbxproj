@@ -279,8 +279,6 @@
 		1E7A172E24AAAFC500519D64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E7A173124AAAFC500519D64 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1E7A173624AAAFC500519D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E7A173B24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "LDS-Temple-Visualization-IOSTests.xctest"; path = "/Users/tiantian/Desktop/LDS-Temple-Visualization-IOS/LDS-Temple-Visualization-IOS/build/Debug-iphoneos/LDS-Temple-Visualization-IOSTests.xctest"; sourceTree = "<absolute>"; };
-		1E7A174624AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "LDS-Temple-Visualization-IOSUITests.xctest"; path = "/Users/tiantian/Desktop/LDS-Temple-Visualization-IOS/LDS-Temple-Visualization-IOS/build/Debug-iphoneos/LDS-Temple-Visualization-IOSUITests.xctest"; sourceTree = "<absolute>"; };
 		1EBF98DB24AAC678005CC70D /* Sprial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprial.swift; sourceTree = "<group>"; };
 		1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSpiral.swift; sourceTree = "<group>"; };
 		1EFE4A6024AD747700FAD239 /* templeFilesNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeFilesNames; sourceTree = "<group>"; };
@@ -290,6 +288,8 @@
 		DD44BED824BCD71000C6669E /* MileStoneDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileStoneDatesView.swift; sourceTree = "<group>"; };
 		DD44BEDA24BCD96F00C6669E /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		DD44BEDC24BCDF9600C6669E /* YearDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearDisplayView.swift; sourceTree = "<group>"; };
+		DD4D0DCE24E7737100CC4DED /* LDS-Temple-Visualization-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "LDS-Temple-Visualization-IOSTests.xctest"; path = "/Users/tiantian/Desktop/LDS-Temple-Visualization-IOS/LDS-Temple-Visualization-IOS/build/Debug-iphoneos/LDS-Temple-Visualization-IOSTests.xctest"; sourceTree = "<absolute>"; };
+		DD4D0DCF24E7737100CC4DED /* LDS-Temple-Visualization-IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "LDS-Temple-Visualization-IOSUITests.xctest"; path = "/Users/tiantian/Desktop/LDS-Temple-Visualization-IOS/LDS-Temple-Visualization-IOS/build/Debug-iphoneos/LDS-Temple-Visualization-IOSUITests.xctest"; sourceTree = "<absolute>"; };
 		DD5CC41124C0E44400A53AD1 /* templeLinks */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeLinks; sourceTree = "<group>"; };
 		DD6BBC3324E201FB000AE8FA /* LDS-Temple-Visualization-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LDS-Temple-Visualization-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7CAB5624DA2C5300D68C77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/melbourne_australia_temple; sourceTree = "<group>"; };
@@ -1327,7 +1327,7 @@
 			);
 			name = "LDS-Temple-Visualization-IOSTests";
 			productName = "LDS-Temple-Visualization-IOSTests";
-			productReference = 1E7A173B24AAAFC500519D64 /* LDS-Temple-Visualization-IOSTests.xctest */;
+			productReference = DD4D0DCE24E7737100CC4DED /* LDS-Temple-Visualization-IOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		1E7A174524AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests */ = {
@@ -1345,7 +1345,7 @@
 			);
 			name = "LDS-Temple-Visualization-IOSUITests";
 			productName = "LDS-Temple-Visualization-IOSUITests";
-			productReference = 1E7A174624AAAFC500519D64 /* LDS-Temple-Visualization-IOSUITests.xctest */;
+			productReference = DD4D0DCF24E7737100CC4DED /* LDS-Temple-Visualization-IOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
