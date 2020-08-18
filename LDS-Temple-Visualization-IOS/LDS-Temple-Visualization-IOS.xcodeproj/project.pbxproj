@@ -21,6 +21,7 @@
 		DD44BEDB24BCD96F00C6669E /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44BEDA24BCD96F00C6669E /* SliderView.swift */; };
 		DD44BEDD24BCDF9600C6669E /* YearDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44BEDC24BCDF9600C6669E /* YearDisplayView.swift */; };
 		DD5CC41224C0E44400A53AD1 /* templeLinks in Resources */ = {isa = PBXBuildFile; fileRef = DD5CC41124C0E44400A53AD1 /* templeLinks */; };
+		DD61217524EB6A6600743FC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD61217724EB6A6600743FC9 /* InfoPlist.strings */; };
 		DD7CAB5524DA2C5300D68C77 /* melbourne_australia_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD7CAB5724DA2C5300D68C77 /* melbourne_australia_temple */; };
 		DD7CAB5924DA2C5C00D68C77 /* santo_domingo_dominican_republic_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD7CAB5B24DA2C5C00D68C77 /* santo_domingo_dominican_republic_temple */; };
 		DD7CAB5C24DA2C6E00D68C77 /* asuncion_paraguay_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD7CAB5E24DA2C6E00D68C77 /* asuncion_paraguay_temple */; };
@@ -291,6 +292,10 @@
 		DD5CC41124C0E44400A53AD1 /* templeLinks */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeLinks; sourceTree = "<group>"; };
 		DD61217124EB64E700743FC9 /* LDS-Temple-Visualization-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "LDS-Temple-Visualization-IOSTests.xctest"; path = "/Users/tiantian/Desktop/LDS-Temple-Visualization-IOS/LDS-Temple-Visualization-IOS/build/Debug-iphoneos/LDS-Temple-Visualization-IOSTests.xctest"; sourceTree = "<absolute>"; };
 		DD61217224EB64E700743FC9 /* LDS-Temple-Visualization-IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "LDS-Temple-Visualization-IOSUITests.xctest"; path = "/Users/tiantian/Desktop/LDS-Temple-Visualization-IOS/LDS-Temple-Visualization-IOS/build/Debug-iphoneos/LDS-Temple-Visualization-IOSUITests.xctest"; sourceTree = "<absolute>"; };
+		DD61217624EB6A6600743FC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DD61217824EB6A6900743FC9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		DD61217924EB6A7F00743FC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/templeNamesYears; sourceTree = "<group>"; };
+		DD61217A24EB6A9400743FC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DD6BBC3324E201FB000AE8FA /* LDS-Temple-Visualization-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LDS-Temple-Visualization-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7CAB5624DA2C5300D68C77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/melbourne_australia_temple; sourceTree = "<group>"; };
 		DD7CAB5824DA2C5800D68C77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/melbourne_australia_temple"; sourceTree = "<group>"; };
@@ -975,7 +980,6 @@
 		DD7CAFC524DA332100D68C77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/melbourne_australia_temple; sourceTree = "<group>"; };
 		DDAD571124CB6789002BBF98 /* YearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPicker.swift; sourceTree = "<group>"; };
 		DDB13D7E24B8FFDA00944506 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		DDB5716A24D890B3007F1DEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DDB5716C24D890C1007F1DEA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DDCCF89524BA61E50010E974 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		DDCCF89924BA94180010E974 /* InAppWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppWebView.swift; sourceTree = "<group>"; };
@@ -1033,6 +1037,7 @@
 				DD7CA98E24DA2C3700D68C77 /* AllTemplesInfo */,
 				1E7A173024AAAFC500519D64 /* Preview Content */,
 				DDB5716B24D890B3007F1DEA /* Localizable.strings */,
+				DD61217724EB6A6600743FC9 /* InfoPlist.strings */,
 			);
 			path = "LDS-Temple-Visualization-IOS";
 			sourceTree = "<group>";
@@ -1530,6 +1535,7 @@
 				DD7CACEB24DA2E3600D68C77 /* lima_peru_temple in Resources */,
 				DD7CAB5C24DA2C6E00D68C77 /* asuncion_paraguay_temple in Resources */,
 				DD7CAD3F24DA2E8900D68C77 /* lagos_nigeria_temple in Resources */,
+				DD61217524EB6A6600743FC9 /* InfoPlist.strings in Resources */,
 				DD7CACCD24DA2E1D00D68C77 /* sydney_australia_temple in Resources */,
 				DD7CAD4524DA2E8D00D68C77 /* montreal_quebec_temple in Resources */,
 				DD7CADB724DA2F0D00D68C77 /* merida_mexico_temple in Resources */,
@@ -1705,8 +1711,18 @@
 			children = (
 				DD43F30424DA18950086CD2E /* en */,
 				DD43F30624DA19880086CD2E /* zh-Hans */,
+				DD61217924EB6A7F00743FC9 /* Base */,
 			);
 			name = templeNamesYears;
+			sourceTree = "<group>";
+		};
+		DD61217724EB6A6600743FC9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD61217624EB6A6600743FC9 /* en */,
+				DD61217824EB6A6900743FC9 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		DD7CAB5724DA2C5300D68C77 /* melbourne_australia_temple */ = {
@@ -3982,8 +3998,8 @@
 		DDB5716B24D890B3007F1DEA /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DDB5716A24D890B3007F1DEA /* en */,
 				DDB5716C24D890C1007F1DEA /* zh-Hans */,
+				DD61217A24EB6A9400743FC9 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -6,6 +6,8 @@
   Copyright © 2020 Litian Zhang. All rights reserved.
 */
 
+CFBundleDisplayName = "EnglishName";
+
 // MainScreenView
 "app.title" = "Latter-day Temples";
 

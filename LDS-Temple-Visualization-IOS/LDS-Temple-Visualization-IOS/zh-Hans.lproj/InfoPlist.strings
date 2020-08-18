@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  LDS-Temple-Visualization-IOS
+
+  Created by tiantian on 2020/8/17.
+  Copyright © 2020 Litian Zhang. All rights reserved.
+*/
+
+CFBundleDisplayName = "后期圣殿";

@@ -6,6 +6,8 @@
   Copyright © 2020 Litian Zhang. All rights reserved.
 */
 
+CFBundleDisplayName = "中文名字";
+
 // MainScreenView
 "app.title" = "后期圣殿";
 
