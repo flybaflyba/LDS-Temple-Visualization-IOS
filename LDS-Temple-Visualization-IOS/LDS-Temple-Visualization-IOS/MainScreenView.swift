@@ -46,17 +46,21 @@ struct MainScreenView: View {
                         //if sharedValues.selectedYearIndex == -1 {
                             //sharedValues.selectedYearIndex = 52
                         //}
-                        sharedValues.yearPickerSet = true
+                        
                         
                         //print("sheet gone by swiping down")
                         //print("selectedYear is \(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
 //                                print("selectedYear length is \(ImageSpiral.templeYears.count)")
 //                                print(ImageSpiral.templeYears)
 //                                print("theta now is \(sharedValues.sliderProgress)")
-                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex] + 20
-                        sharedValues.sliderProgress = newThetaFromYearPicker
-                        imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
-                        imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                        
+                        // we are not doing anything here,
+                        // wheather year set, is determined by only the buttons in year picker view
+//                        sharedValues.yearPickerSet = true
+//                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex] + 20
+//                        sharedValues.sliderProgress = newThetaFromYearPicker
+//                        imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
+//                        imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
                         
                         //print("new theta now is \(newThetaFromYearPicker)")
                         
@@ -68,7 +72,7 @@ struct MainScreenView: View {
                 
                     }
             ) {
-                YearPicker()
+                YearPicker(imageSpiralViewModel: imageSpiralViewModel)
                     .environmentObject(self.sharedValues)
                     }
         }

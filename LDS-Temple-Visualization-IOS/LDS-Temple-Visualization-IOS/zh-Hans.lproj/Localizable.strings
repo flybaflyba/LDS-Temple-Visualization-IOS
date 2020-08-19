@@ -18,6 +18,7 @@ CFBundleDisplayName = "中文名字";
 "view" = "显示";
 "announced.temples.lower.case" = "已宣布的圣殿";
 "temples.under.construction.lower.case" = "建设中的圣殿";
+"dismiss" = "取消";
 
 // YeasDisplayView
 //"announced.temples" = "Announced Temples";

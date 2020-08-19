@@ -14,6 +14,7 @@ struct YearPicker: View {
     
     var templeYears: Array<String> = ImageSpiral.templeYears
     
+    @ObservedObject var imageSpiralViewModel: ImageSpiral
     //@State var selectedYearIndex = 0
     
     let deviceLanguage = Locale.current.languageCode
@@ -86,11 +87,29 @@ struct YearPicker: View {
                 //.background(Color.red)
                 //Spacer()
                 
-                Button(action: {
-                    sharedValues.showYearPicker.toggle()
-                }) {
-                    Text("view")
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        sharedValues.showYearPicker.toggle()
+                    }) {
+                        Text("dismiss")
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        sharedValues.showYearPicker.toggle()
+                        sharedValues.yearPickerSet = true
+                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex] + 20
+                        sharedValues.sliderProgress = newThetaFromYearPicker
+                        imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
+                        imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                    }) {
+                        Text("view")
+                    }
+                    Spacer()
                 }
+           
                 
             }
             //.background(Color.gray)
