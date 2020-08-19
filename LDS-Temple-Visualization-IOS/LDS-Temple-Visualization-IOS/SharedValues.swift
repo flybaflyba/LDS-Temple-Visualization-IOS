@@ -85,7 +85,7 @@ class SharedValues: ObservableObject {
     @Published var offAnimationColor = Color.blue
     
     @Published var showLabelOn = Color.blue
-    @Published var showLabelOff = nonMainViewColorSchemaPublic
+    @Published var showLabelOff = nonMainViewColorSchemaPublic  
     
 //    @Published var showLabelBackgroundYes = nonMainViewColorSchemaPublic
 //    @Published var showLabelBackgroundNo = Color.blue
@@ -105,7 +105,7 @@ class SharedValues: ObservableObject {
     @Published var myFastAnimation: Animation = Animation.linear(duration: 0.5)
     @Published var myVeryFastAnimation: Animation = Animation.linear(duration: 0.05)
     
-    @Published var showLabel = true
+    @Published var showLabel = true // hello
     
     @Published var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
     
