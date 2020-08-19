@@ -302,14 +302,13 @@ struct SpiralView: View {
     }
     
     func dragOnEndActionInSingleTempleView(temple: Spiral<Image>.Temple) {
-        if temple.x >= 0 && temple.x <= centerX * 2 && temple.y >= 0 && temple.y <= centerY * 2 {
+        if temple.x >= centerX - temple.size / 2 && temple.x <= centerX + temple.size / 2 && temple.y >= 0 && temple.y <= centerY * 2 {
             imageSpiralViewModel.setTemple(id: temple.id, newX: centerX, newY: centerY, newSize: temple.size)
             
         } else {
             //imageSpiralViewModel.changeATemple(id: temple.id)
             
-            
-            if temple.x > centerX * 2 {
+            if temple.x > centerX + temple.size / 2 {
                 if temple.id > 0 {
                     sharedValues.sliderProgress -= 30
                     imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
@@ -340,7 +339,7 @@ struct SpiralView: View {
                         sharedValues.lastY = centerY
                     }
                 }
-            } else if temple.x < 0 {
+            } else if temple.x < centerX - temple.size / 2 {
                 print(temple.id)
                 if temple.id < 225  {
                     sharedValues.sliderProgress += 30
