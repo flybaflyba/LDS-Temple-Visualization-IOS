@@ -9,11 +9,57 @@
 import Foundation
 import SwiftUI
 
-// use screen Height to set how much space each view should take on the screen
-public var screenWidth = (UIDevice.current.userInterfaceIdiom == .phone ? min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) : min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7)
+public var screenWidth: CGFloat =
+    (UIDevice.current.userInterfaceIdiom == .phone ?
+        (//UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4
+            UIApplication.shared.statusBarOrientation.isLandscape ?
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8 :
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)) :
+        (//UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4
+            UIApplication.shared.statusBarOrientation.isLandscape ?
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6 :
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7))
+
 public var screenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
-public var centerX = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2
-public var centerY = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8 / 2
+public var centerX: CGFloat = //500
+    (UIDevice.current.userInterfaceIdiom == .phone ?
+        (UIApplication.shared.statusBarOrientation.isLandscape ?
+            max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 4 :
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2) :
+        (UIApplication.shared.statusBarOrientation.isLandscape ?
+            max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2 :
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2
+        ))
+
+public var centerY: CGFloat = //300
+    (UIDevice.current.userInterfaceIdiom == .phone ?
+        (UIApplication.shared.statusBarOrientation.isLandscape ?
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.55 :
+            max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.4) :
+        (UIApplication.shared.statusBarOrientation.isLandscape ?
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.4 :
+            max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.4
+        ))
+
+
+//private var screenWidth: CGFloat =
+//    (UIDevice.current.userInterfaceIdiom == .phone ?
+//        (UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ?
+//            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8 :
+//            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)) :
+//        (UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ?
+//            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6 :
+//            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7))
+//
+//private var screenHeight = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+//private var centerX = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2
+//private var centerY = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8 / 2
+
+//public var screenWidth
+//
+//public var screenHeight
+//public var centerX
+//public var centerY
 
 //public var screenWidth:CGFloat {
 //    get {
@@ -149,9 +195,9 @@ class SharedValues: ObservableObject {
     
     @Published var orientation = UIDevice.current.orientation
     @Published var orientationChanged = false
-    @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? "unknown" :
+    @Published var orientationInText = (UIDevice.current.orientation.rawValue == 0 ? (UIApplication.shared.statusBarOrientation.isLandscape ? "landscape" : "portrait") :
         UIDevice.current.orientation.rawValue == 1 || UIDevice.current.orientation.rawValue == 2 ? "portrait" :
-        UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : "somethingElse")
+        UIDevice.current.orientation.rawValue == 3 || UIDevice.current.orientation.rawValue == 4 ? "landscape" : (UIApplication.shared.statusBarOrientation.isLandscape ? "landscape" : "portrait"))
     var orientationRawValueHistory: Array<Int> = [UIDevice.current.orientation.rawValue]
   
     init() {
@@ -171,7 +217,8 @@ class SharedValues: ObservableObject {
         // convert orientaion code into text, we dont care about 5 and 6 which are face up and down
         // for 1, 2 and 3, 4. we treat them the same
         if UIDevice.current.orientation.rawValue == 0 {
-            self.orientationInText = "unknown"
+            self.orientationInText = //"unknown"
+            (UIApplication.shared.statusBarOrientation.isLandscape ? "landscape" : "portrait")
             if self.orientationRawValueHistory.contains(1) || self.orientationRawValueHistory.contains(2) {
                 self.orientationInText = "portrait"
             } else if self.orientationRawValueHistory.contains(3) || self.orientationRawValueHistory.contains(4) {

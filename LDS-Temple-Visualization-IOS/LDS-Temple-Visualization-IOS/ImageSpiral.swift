@@ -18,6 +18,7 @@ class ImageSpiral: ObservableObject {
 //    static var centerY: CGFloat = 100
 //    static var screenWidth: CGFloat = 100
 //    static var screenHeight: CGFloat = 100
+ 
     
     // theta is modified acoording to slider progress
     // then it is used to modify spiral model attributes
@@ -54,7 +55,6 @@ class ImageSpiral: ObservableObject {
     
     // we can also close the door and use a function to access the model
     @Published private var spiralModel: Spiral<Image> = ImageSpiral.createSpiral()
-
     
     // we will initialize with a function, createSpiral()
     // static means we can call this function on class, fot instace, we use this to initialze the model
