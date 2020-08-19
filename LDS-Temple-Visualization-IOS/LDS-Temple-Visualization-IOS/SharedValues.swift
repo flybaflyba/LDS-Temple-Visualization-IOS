@@ -85,7 +85,7 @@ class SharedValues: ObservableObject {
     @Published var offAnimationColor = Color.blue
     
     @Published var showLabelOn = Color.blue
-    @Published var showLabelOff = nonMainViewColorSchemaPublic  
+    @Published var showLabelOff = nonMainViewColorSchemaPublic
     
 //    @Published var showLabelBackgroundYes = nonMainViewColorSchemaPublic
 //    @Published var showLabelBackgroundNo = Color.blue
@@ -248,11 +248,13 @@ class SharedValues: ObservableObject {
             if currentDevice == .phone {
                 screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.8
                 centerX = currentScreenWidth / 4
-                centerY = currentScreenHeight * 0.6
+                centerY = currentScreenHeight * 0.55
+                //centerY = currentScreenHeight * 0.5
             } else {
                 screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6
                 centerX = currentScreenWidth / 2
-                centerY = screenWidth * 0.8
+//                //centerY = currentScreenHeight * 0.5 //screenWidth * 0.8
+                centerY = currentScreenHeight * 0.4
             }
             
             lastX = centerX

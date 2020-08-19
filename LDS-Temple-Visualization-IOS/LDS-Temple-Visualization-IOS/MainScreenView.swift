@@ -55,12 +55,7 @@ struct MainScreenView: View {
 //                                print("theta now is \(sharedValues.sliderProgress)")
                         
                         // we are not doing anything here,
-                        // wheather year set, is determined by only the buttons in year picker view
-//                        sharedValues.yearPickerSet = true
-//                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex] + 20
-//                        sharedValues.sliderProgress = newThetaFromYearPicker
-//                        imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
-//                        imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                        // wheather year set, is determined by only the buttons in year picker view 
                         
                         //print("new theta now is \(newThetaFromYearPicker)")
                         
