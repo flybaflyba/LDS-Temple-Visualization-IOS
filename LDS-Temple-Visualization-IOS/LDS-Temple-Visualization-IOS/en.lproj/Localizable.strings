@@ -9,7 +9,7 @@
 CFBundleDisplayName = "EnglishName";
 
 // MainScreenView
-"app.title" = "Latter-day Temples";
+"app.title" = "Temples Timeline";
 
 // YearPicker
 "announced.temples" = "Announced Temples";
