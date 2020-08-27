@@ -20,6 +20,7 @@
 		DD44BED924BCD71000C6669E /* MileStoneDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44BED824BCD71000C6669E /* MileStoneDatesView.swift */; };
 		DD44BEDB24BCD96F00C6669E /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44BEDA24BCD96F00C6669E /* SliderView.swift */; };
 		DD44BEDD24BCDF9600C6669E /* YearDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44BEDC24BCDF9600C6669E /* YearDisplayView.swift */; };
+		DD45A70224F74797000AB5A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD45A70124F74797000AB5A1 /* LaunchScreen.storyboard */; };
 		DD5CC41224C0E44400A53AD1 /* templeLinks in Resources */ = {isa = PBXBuildFile; fileRef = DD5CC41124C0E44400A53AD1 /* templeLinks */; };
 		DD61217524EB6A6600743FC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD61217724EB6A6600743FC9 /* InfoPlist.strings */; };
 		DD7CAB5524DA2C5300D68C77 /* melbourne_australia_temple in Resources */ = {isa = PBXBuildFile; fileRef = DD7CAB5724DA2C5300D68C77 /* melbourne_australia_temple */; };
@@ -289,6 +290,7 @@
 		DD44BED824BCD71000C6669E /* MileStoneDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileStoneDatesView.swift; sourceTree = "<group>"; };
 		DD44BEDA24BCD96F00C6669E /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		DD44BEDC24BCDF9600C6669E /* YearDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearDisplayView.swift; sourceTree = "<group>"; };
+		DD45A70124F74797000AB5A1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD46219024ECA55E0039766B /* LDS-Temple-Visualization-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LDS-Temple-Visualization-IOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD46219124ECA55E0039766B /* LDS-Temple-Visualization-IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LDS-Temple-Visualization-IOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5CC41124C0E44400A53AD1 /* templeLinks */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeLinks; sourceTree = "<group>"; };
@@ -1040,6 +1042,7 @@
 				1E7A173024AAAFC500519D64 /* Preview Content */,
 				DDB5716B24D890B3007F1DEA /* Localizable.strings */,
 				DD61217724EB6A6600743FC9 /* InfoPlist.strings */,
+				DD45A70124F74797000AB5A1 /* LaunchScreen.storyboard */,
 			);
 			path = "LDS-Temple-Visualization-IOS";
 			sourceTree = "<group>";
@@ -1582,6 +1585,7 @@
 				DD7CAD6C24DA2EC100D68C77 /* washington_dc_temple in Resources */,
 				1E7A172F24AAAFC500519D64 /* Assets.xcassets in Resources */,
 				DD7CAD1B24DA2E6600D68C77 /* washington_county_utah_temple in Resources */,
+				DD45A70224F74797000AB5A1 /* LaunchScreen.storyboard in Resources */,
 				DD7CADA524DA2EFD00D68C77 /* phoenix_arizona_temple in Resources */,
 				DD7CAC3424DA2D5200D68C77 /* san_jose_costa_rica_temple in Resources */,
 				DD7CACF724DA2E4100D68C77 /* las_vegas_temple in Resources */,
