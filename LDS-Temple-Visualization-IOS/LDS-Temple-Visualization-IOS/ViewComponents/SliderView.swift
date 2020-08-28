@@ -35,39 +35,39 @@ struct SliderView: View {
                 HStack {
                     Image(systemName: "arrow.left.square.fill")
                         .onTapGesture {
-                            sharedValues.animationInProgress = true
+                            self.sharedValues.animationInProgress = true
                             // we need to put this in withAnimation, so that we can check if the animation ends so that we can decide to display name label
                             //SwiftUI.withAnimation(.default) {
                             
-                            if sharedValues.sliderProgress - 30 <= 180 {
-                                sharedValues.sliderProgress = 180
+                            if self.sharedValues.sliderProgress - 30 <= 180 {
+                                self.sharedValues.sliderProgress = 180
                             } else {
-                                sharedValues.sliderProgress -= 30
+                                self.sharedValues.sliderProgress -= 30
                             }
                             //}
-                            updateSpiral()
+                            self.updateSpiral()
                             
-                            sharedValues.yearPickerSet = false
-                            sharedValues.selectedYearIndex = 52
+                            self.sharedValues.yearPickerSet = false
+                            self.sharedValues.selectedYearIndex = 52
                         }
                     MySlider(imageSpiralViewModel: imageSpiralViewModel)
                         .frame(maxWidth: (min(sharedValues.currentScreenWidth, sharedValues.currentScreenHeight)) * 0.8)
                         //.background(Color.red)
                     Image(systemName: "arrow.right.square.fill")
                         .onTapGesture {
-                            sharedValues.animationInProgress = true
+                            self.sharedValues.animationInProgress = true
                             //SwiftUI.withAnimation(.default) {
                             
-                            if sharedValues.sliderProgress + 30 >= 6980 {
-                                sharedValues.sliderProgress = 6980
+                            if self.sharedValues.sliderProgress + 30 >= 6980 {
+                                self.sharedValues.sliderProgress = 6980
                             } else {
-                                sharedValues.sliderProgress += 30
+                                self.sharedValues.sliderProgress += 30
                             }
                             //}
-                            updateSpiral()
+                            self.updateSpiral()
                             
-                            sharedValues.yearPickerSet = false
-                            sharedValues.selectedYearIndex = 52
+                            self.sharedValues.yearPickerSet = false
+                            self.sharedValues.selectedYearIndex = 52
                         }
                 }
             }
@@ -136,23 +136,23 @@ struct MySlider: View {
         Slider(value: Binding(
                 get: {
                     //getStartAndEndYear()
-                    return Double(sharedValues.sliderProgress)
+                    return Double(self.sharedValues.sliderProgress)
                 },
                 set: {(newValue) in
                     
-                    getStartAndEndYear()
+                    self.getStartAndEndYear()
                     
-                    sharedValues.yearPickerSet = false
-                    sharedValues.selectedYearIndex = 52
+                    self.sharedValues.yearPickerSet = false
+                    self.sharedValues.selectedYearIndex = 52
                     
-                    sharedValues.lastSliderProgress = sharedValues.sliderProgress
+                    self.sharedValues.lastSliderProgress = self.sharedValues.sliderProgress
                     
                     // only run the following code when sliderporgess changed
                     // if not checking newvalue and sliderprogress,
                     // newvalue might be the same as sliderprogress, these lines may excute too
                     // this might cause problems with checking if animation stops
                     
-                    if CGFloat(newValue) != sharedValues.sliderProgress {
+                    if CGFloat(newValue) != self.sharedValues.sliderProgress {
                         
                         
                         
@@ -165,7 +165,7 @@ struct MySlider: View {
 //                            }
 //                        }
 //
-                        sharedValues.animationInProgress = true
+                        self.sharedValues.animationInProgress = true
                         
                         //sharedValues.animationInProgress = true
                         
@@ -173,7 +173,7 @@ struct MySlider: View {
 //                            sharedValues.sliderProgress = CGFloat(newValue)
 //                        }
                         
-                        sharedValues.sliderProgress = CGFloat(newValue)
+                        self.sharedValues.sliderProgress = CGFloat(newValue)
                         
                         
                         
@@ -183,12 +183,12 @@ struct MySlider: View {
                         
                         //sharedValues.oneTempleInfo.removeAll()
                         
-                        sharedValues.singleTempleShow = false
+                        self.sharedValues.singleTempleShow = false
                         
                         // we update spiral here,
                         // we call functions in imagespiral view mode to call functions in spiral mode, to change it
-                        imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                        imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                        self.imageSpiralViewModel.getNewTheta(newTheta: self.sharedValues.sliderProgress)
+                        self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sharedValues.sliderProgress)
                     }
                     
 //                    print("sharedValues.lastSliderProgress is \(sharedValues.lastSliderProgress)")

@@ -62,10 +62,10 @@ struct SpiralEffectSettingButton: View {
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
                             //sharedValues.mode = "default"
-                            imageSpiralViewModel.changeMode(newMode: "default")
-                            sharedValues.defaultColor = sharedValues.selectedColor
-                            sharedValues.spinColor = sharedValues.unSelectedColor
-                            sharedValues.threeDColor = sharedValues.unSelectedColor
+                            self.imageSpiralViewModel.changeMode(newMode: "default")
+                            self.sharedValues.defaultColor = self.sharedValues.selectedColor
+                            self.sharedValues.spinColor = self.sharedValues.unSelectedColor
+                            self.sharedValues.threeDColor = self.sharedValues.unSelectedColor
                         }
                     }
                     
@@ -78,10 +78,10 @@ struct SpiralEffectSettingButton: View {
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
                             //sharedValues.mode = "spin"
-                            imageSpiralViewModel.changeMode(newMode: "spin")
-                            sharedValues.defaultColor = sharedValues.unSelectedColor
-                            sharedValues.spinColor = sharedValues.selectedColor
-                            sharedValues.threeDColor = sharedValues.unSelectedColor
+                            self.imageSpiralViewModel.changeMode(newMode: "spin")
+                            self.sharedValues.defaultColor = self.sharedValues.unSelectedColor
+                            self.sharedValues.spinColor = self.sharedValues.selectedColor
+                            self.sharedValues.threeDColor = self.sharedValues.unSelectedColor
                         }
                     }
                     
@@ -93,10 +93,10 @@ struct SpiralEffectSettingButton: View {
                     .onTapGesture {
                         SwiftUI.withAnimation(.linear) {
                             //sharedValues.mode = "3D"
-                            imageSpiralViewModel.changeMode(newMode: "3D")
-                            sharedValues.defaultColor = sharedValues.unSelectedColor
-                            sharedValues.spinColor = sharedValues.unSelectedColor
-                            sharedValues.threeDColor = sharedValues.selectedColor
+                            self.imageSpiralViewModel.changeMode(newMode: "3D")
+                            self.sharedValues.defaultColor = self.sharedValues.unSelectedColor
+                            self.sharedValues.spinColor = self.sharedValues.unSelectedColor
+                            self.sharedValues.threeDColor = self.sharedValues.selectedColor
                         }
                     }
                     
@@ -127,10 +127,10 @@ struct AnimationSettingButton: View {
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        sharedValues.animationOption = "slow"
-                        sharedValues.slowAnimationColor = sharedValues.selectedColor
-                        sharedValues.fastAnimationColor = sharedValues.unSelectedColor
-                        sharedValues.offAnimationColor = sharedValues.unSelectedColor
+                        self.sharedValues.animationOption = "slow"
+                        self.sharedValues.slowAnimationColor = self.sharedValues.selectedColor
+                        self.sharedValues.fastAnimationColor = self.sharedValues.unSelectedColor
+                        self.sharedValues.offAnimationColor = self.sharedValues.unSelectedColor
                     }
                 }
                 
@@ -142,10 +142,10 @@ struct AnimationSettingButton: View {
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        sharedValues.animationOption = "fast"
-                        sharedValues.slowAnimationColor = sharedValues.unSelectedColor
-                        sharedValues.fastAnimationColor = sharedValues.selectedColor
-                        sharedValues.offAnimationColor = sharedValues.unSelectedColor
+                        self.sharedValues.animationOption = "fast"
+                        self.sharedValues.slowAnimationColor = self.sharedValues.unSelectedColor
+                        self.sharedValues.fastAnimationColor = self.sharedValues.selectedColor
+                        self.sharedValues.offAnimationColor = self.sharedValues.unSelectedColor
                     }
                 }
                 
@@ -156,10 +156,10 @@ struct AnimationSettingButton: View {
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        sharedValues.animationOption = "off"
-                        sharedValues.slowAnimationColor = sharedValues.unSelectedColor
-                        sharedValues.fastAnimationColor = sharedValues.unSelectedColor
-                        sharedValues.offAnimationColor = sharedValues.selectedColor
+                        self.sharedValues.animationOption = "off"
+                        self.sharedValues.slowAnimationColor = self.sharedValues.unSelectedColor
+                        self.sharedValues.fastAnimationColor = self.sharedValues.unSelectedColor
+                        self.sharedValues.offAnimationColor = self.sharedValues.selectedColor
                     }
                 }
                 
@@ -210,9 +210,9 @@ struct LabelSettingButton: View {
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        sharedValues.showLabel = true
-                        sharedValues.showLabelOn = sharedValues.selectedColor
-                        sharedValues.showLabelOff = sharedValues.unSelectedColor
+                        self.sharedValues.showLabel = true
+                        self.sharedValues.showLabelOn = self.sharedValues.selectedColor
+                        self.sharedValues.showLabelOff = self.sharedValues.unSelectedColor
                         //sharedValues.showLabelBackgroundOption.toggle()
                     }
                 }
@@ -225,9 +225,9 @@ struct LabelSettingButton: View {
                 }
                 .onTapGesture {
                     SwiftUI.withAnimation(.linear) {
-                        sharedValues.showLabel = false
-                        sharedValues.showLabelOn = sharedValues.unSelectedColor
-                        sharedValues.showLabelOff = sharedValues.selectedColor
+                        self.sharedValues.showLabel = false
+                        self.sharedValues.showLabelOn = self.sharedValues.unSelectedColor
+                        self.sharedValues.showLabelOff = self.sharedValues.selectedColor
                     }
                 }
                 

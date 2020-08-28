@@ -31,7 +31,7 @@ struct MainScreenView: View {
     func buttonToYearPicker() -> some View {
         var body: some View {
             Button(action: {
-                sharedValues.showYearPicker.toggle()
+                self.sharedValues.showYearPicker.toggle()
                     }) {
                 ZStack {
                     Rectangle().foregroundColor(Color.green.opacity(0))
@@ -67,7 +67,7 @@ struct MainScreenView: View {
                 
                     }
             ) {
-                YearPicker(imageSpiralViewModel: imageSpiralViewModel)
+                YearPicker(imageSpiralViewModel: self.imageSpiralViewModel)
                     .environmentObject(self.sharedValues)
                     }
         }
@@ -79,15 +79,15 @@ struct MainScreenView: View {
         var body: some View {
             Button(action: {
                 //print("pressed return button from large temple")
-                SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                    imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
-                    sharedValues.tappedATemple = false
-                    sharedValues.singleTempleShow = false
-                    sharedValues.spiralViewHeight = 0.75
-                    sharedValues.mileStoneDatesViewHeight = 0.25
-                    sharedValues.lastX = centerX
-                    sharedValues.lastY = centerY
-                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress) // use this to restore everything
+                SwiftUI.withAnimation(self.sharedValues.animationOption == "slow" ? self.sharedValues.mySlowAnimation : self.sharedValues.animationOption == "fast" ? self.sharedValues.myFastAnimation : .none) {
+                    self.imageSpiralViewModel.changeATemple(id: self.sharedValues.currentTappedTempleId)
+                    self.sharedValues.tappedATemple = false
+                    self.sharedValues.singleTempleShow = false
+                    self.sharedValues.spiralViewHeight = 0.75
+                    self.sharedValues.mileStoneDatesViewHeight = 0.25
+                    self.sharedValues.lastX = centerX
+                    self.sharedValues.lastY = centerY
+                    self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sharedValues.sliderProgress) // use this to restore everything
                 }
                 
                     }) {
@@ -421,17 +421,17 @@ struct SpiralView: View {
                     
                     .gesture(DragGesture()
                                 .onChanged { value in
-                                    sharedValues.yearPickerSet = false
+                                    self.sharedValues.yearPickerSet = false
                                     
-                                    if !sharedValues.tappedATemple {
-                                        dragOnChangeActionInSpiralView(value: value, temple: temple)
+                                    if !self.sharedValues.tappedATemple {
+                                        self.dragOnChangeActionInSpiralView(value: value, temple: temple)
                                     } else {
                                         print(value.translation) // complet feature!: view next or last temple by draging large temple circle on single temple view!
-                                        imageSpiralViewModel.dragSingleTemple(id: temple.id, xChange: value.translation.width, yChange: value.translation.height, lastX: sharedValues.lastX, lastY: sharedValues.lastY)
-                                        if sharedValues.mileStoneDatesViewOpacity == 0 {
+                                        self.imageSpiralViewModel.dragSingleTemple(id: temple.id, xChange: value.translation.width, yChange: value.translation.height, lastX: self.sharedValues.lastX, lastY: self.sharedValues.lastY)
+                                        if self.sharedValues.mileStoneDatesViewOpacity == 0 {
                                         } else {
-                                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                                sharedValues.mileStoneDatesViewOpacity = 0
+                                            SwiftUI.withAnimation(self.sharedValues.animationOption == "slow" ? self.sharedValues.mySlowAnimation : self.sharedValues.animationOption == "fast" ? self.sharedValues.myFastAnimation : .none) {
+                                                self.sharedValues.mileStoneDatesViewOpacity = 0
                                             }
                                         }
                                         
@@ -442,10 +442,10 @@ struct SpiralView: View {
                                     
                                 }
                                 .onEnded { value in
-                                    if sharedValues.mileStoneDatesViewOpacity == 1 {
+                                    if self.sharedValues.mileStoneDatesViewOpacity == 1 {
                                     } else {
-                                        SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                            sharedValues.mileStoneDatesViewOpacity = 1
+                                        SwiftUI.withAnimation(self.sharedValues.animationOption == "slow" ? self.sharedValues.mySlowAnimation : self.sharedValues.animationOption == "fast" ? self.sharedValues.myFastAnimation : .none) {
+                                            self.sharedValues.mileStoneDatesViewOpacity = 1
                                         }
                                     }
                                     
@@ -456,11 +456,11 @@ struct SpiralView: View {
 //                                    print("currentScreenHeigth is \(sharedValues.currentScreenHeight)")
 //                                    print("sliderProgress is \(sharedValues.sliderProgress)")
 
-                                    if !sharedValues.tappedATemple {
-                                        sharedValues.rememberFirstTouchLocation = false
-                                        sharedValues.fingerTouchingScreen = false
+                                    if !self.sharedValues.tappedATemple {
+                                        self.sharedValues.rememberFirstTouchLocation = false
+                                        self.sharedValues.fingerTouchingScreen = false
                                     } else {
-                                        dragOnEndActionInSingleTempleView(temple: temple)
+                                        self.dragOnEndActionInSingleTempleView(temple: temple)
                                     }
                                     
                                 }
@@ -474,31 +474,31 @@ struct SpiralView: View {
                         // when tapped, we need to change the tapped temple size and location,
                         // we tapped again, we need to change it back
                         // how to detect we are tapping it in spiral view or single view? logic is in the method
-                        imageSpiralViewModel.changeATemple(id: temple.id)
+                        self.imageSpiralViewModel.changeATemple(id: temple.id)
                         //print("tapped temple Link is \(temple.link)")
                         if (temple.tapped == true) {
-                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                sharedValues.tappedATemple = false
-                                sharedValues.singleTempleShow = false
+                            SwiftUI.withAnimation(self.sharedValues.animationOption == "slow" ? self.sharedValues.mySlowAnimation : self.sharedValues.animationOption == "fast" ? self.sharedValues.myFastAnimation : .none) {
+                                self.sharedValues.tappedATemple = false
+                                self.sharedValues.singleTempleShow = false
                                 //print("tap a large temple")
-                                sharedValues.spiralViewHeight = 0.75
-                                sharedValues.mileStoneDatesViewHeight = 0.25
-                                sharedValues.lastX = centerX
-                                sharedValues.lastY = centerY
-                                imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress) // use this to restore everything
+                                self.sharedValues.spiralViewHeight = 0.75
+                                self.sharedValues.mileStoneDatesViewHeight = 0.25
+                                self.sharedValues.lastX = centerX
+                                self.sharedValues.lastY = centerY
+                                self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sharedValues.sliderProgress) // use this to restore everything
                             }
                         } else {
-                            SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                                sharedValues.tappedATemple = true
-                                sharedValues.singleTempleShow = true
+                            SwiftUI.withAnimation(self.sharedValues.animationOption == "slow" ? self.sharedValues.mySlowAnimation : self.sharedValues.animationOption == "fast" ? self.sharedValues.myFastAnimation : .none) {
+                                self.sharedValues.tappedATemple = true
+                                self.sharedValues.singleTempleShow = true
                                 //print("tap a small temple")
-                                sharedValues.spiralViewHeight = 0.6
-                                sharedValues.mileStoneDatesViewHeight = 0.4
+                                self.sharedValues.spiralViewHeight = 0.6
+                                self.sharedValues.mileStoneDatesViewHeight = 0.4
                             }
-                            sharedValues.oneTempleInfo = imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
-                            sharedValues.currentTappedTempleName = temple.name
-                            sharedValues.currentTappedTempleId = temple.id
-                            sharedValues.currentTappedTempleLink = temple.link
+                            self.sharedValues.oneTempleInfo = self.imageSpiralViewModel.readOneTempleInfoFromFile(fileName: temple.fileName)
+                            self.sharedValues.currentTappedTempleName = temple.name
+                            self.sharedValues.currentTappedTempleId = temple.id
+                            self.sharedValues.currentTappedTempleLink = temple.link
                             
 //                            if temple.link == "no link" {
 //                                sharedValues.thisTempleHasNoLink = true
@@ -642,7 +642,7 @@ struct SpiralView: View {
                     if temple.name == "No Temple" {
                         
                     } else {
-                        drawOneTemple(temple: temple)
+                        self.drawOneTemple(temple: temple)
                     }
                     
                     
@@ -651,8 +651,8 @@ struct SpiralView: View {
                     // this line shows us how the spiral looks like on screen
                     //spiralDrawing().stroke()
                     //drawOneTempleName(temple: temple)
-                    if showNameLabelCondition(temple: temple) {
-                        showNameLabel(temple: temple)
+                    if self.showNameLabelCondition(temple: temple) {
+                        self.showNameLabel(temple: temple)
                         
                     }
                     
@@ -669,9 +669,9 @@ struct SpiralView: View {
                 //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress)")
                 //print("sharedValues.bindedValueForAnimatableModifier is \(sharedValues.bindedValueForAnimatableModifier)")
                 //print("animatable modifier is called")
-                if sharedValues.animationInProgress {
+                if self.sharedValues.animationInProgress {
                     print("animation finished")
-                    sharedValues.animationInProgress = false
+                    self.sharedValues.animationInProgress = false
                 }
                 //print("sharedValues.animationInProgress is \(sharedValues.animationInProgress) ")
             })
@@ -752,7 +752,7 @@ struct SpiralView: View {
                     GeometryReader { geometry in
                         VStack {
                             // be aware force slider size was causing me a HUGE bug. that's why we used geometry reader here
-                            SliderView(imageSpiralViewModel: imageSpiralViewModel)
+                            SliderView(imageSpiralViewModel: self.imageSpiralViewModel)
                                 .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.3, alignment: Alignment.center)
                                 //.background(Color.red)
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
@@ -815,18 +815,18 @@ struct SpiralView: View {
             }
         }
         .onTapGesture {
-            if (sharedValues.tappedATemple == true) {
-                SwiftUI.withAnimation(sharedValues.animationOption == "slow" ? sharedValues.mySlowAnimation : sharedValues.animationOption == "fast" ? sharedValues.myFastAnimation : .none) {
-                    sharedValues.tappedATemple = false
-                    sharedValues.singleTempleShow = false
+            if (self.sharedValues.tappedATemple == true) {
+                SwiftUI.withAnimation(self.sharedValues.animationOption == "slow" ? self.sharedValues.mySlowAnimation : self.sharedValues.animationOption == "fast" ? self.sharedValues.myFastAnimation : .none) {
+                    self.sharedValues.tappedATemple = false
+                    self.sharedValues.singleTempleShow = false
                     //print("tap a large temple")
-                    sharedValues.spiralViewHeight = 0.75
-                    sharedValues.mileStoneDatesViewHeight = 0.25
-                    imageSpiralViewModel.changeATemple(id: sharedValues.currentTappedTempleId)
-                    sharedValues.lastX = centerX
-                    sharedValues.lastY = centerY
-                    imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
-                    imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
+                    self.sharedValues.spiralViewHeight = 0.75
+                    self.sharedValues.mileStoneDatesViewHeight = 0.25
+                    self.imageSpiralViewModel.changeATemple(id: self.sharedValues.currentTappedTempleId)
+                    self.sharedValues.lastX = centerX
+                    self.sharedValues.lastY = centerY
+                    self.imageSpiralViewModel.getNewTheta(newTheta: self.sharedValues.sliderProgress)
+                    self.imageSpiralViewModel.updateOnScreenTemples(newTheta: self.sharedValues.sliderProgress)
                     
                 }
             }

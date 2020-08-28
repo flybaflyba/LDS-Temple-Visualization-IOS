@@ -42,18 +42,18 @@ struct YearPicker: View {
 //                    print("sheet gone clicking")
 //                }
                 
-                if sharedValues.selectedYearIndex == templeYears.count - 1 {
+                if self.sharedValues.selectedYearIndex == self.templeYears.count - 1 {
                     Text("announced.temples")
-                } else if sharedValues.selectedYearIndex == templeYears.count - 2 {
+                } else if self.sharedValues.selectedYearIndex == self.templeYears.count - 2 {
                     Text("temples.under.construction")
                 } else {
                     HStack {
-                        if deviceLanguage == "zh" {
-                            Text("\(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                        if self.deviceLanguage == "zh" {
+                            Text("\(ImageSpiral.templeYears[self.sharedValues.selectedYearIndex])")
                             + Text("temples.dedicated.in")
                         } else {
                             Text("temples.dedicated.in")
-                            Text("\(ImageSpiral.templeYears[sharedValues.selectedYearIndex])")
+                            Text("\(ImageSpiral.templeYears[self.sharedValues.selectedYearIndex])")
                         }
                         
                     }
@@ -69,8 +69,8 @@ struct YearPicker: View {
                 
                 //Spacer()
                 
-                Picker(selection: $sharedValues.selectedYearIndex, label: Text("")) {
-                            ForEach(0 ..< templeYears.count) {
+                Picker(selection: self.$sharedValues.selectedYearIndex, label: Text("")) {
+                    ForEach(0 ..< self.templeYears.count) {
                                 if self.templeYears[$0] == "0000" {
                                     Text("temples.under.construction.lower.case")
                                 } else if self.templeYears[$0] == "1111" {
@@ -90,7 +90,7 @@ struct YearPicker: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        sharedValues.showYearPicker.toggle()
+                        self.self.sharedValues.showYearPicker.toggle()
                     }) {
                         Text("dismiss")
                     }
@@ -98,12 +98,12 @@ struct YearPicker: View {
                     Spacer()
                     
                     Button(action: {
-                        sharedValues.showYearPicker.toggle()
-                        sharedValues.yearPickerSet = true
-                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[sharedValues.selectedYearIndex] + 20
-                        sharedValues.sliderProgress = newThetaFromYearPicker
-                        imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
-                        imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                        self.self.sharedValues.showYearPicker.toggle()
+                        self.self.sharedValues.yearPickerSet = true
+                        let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[self.self.sharedValues.selectedYearIndex] + 20
+                        self.self.sharedValues.sliderProgress = newThetaFromYearPicker
+                        self.self.imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
+                        self.self.imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
                     }) {
                         Text("view")
                     }
