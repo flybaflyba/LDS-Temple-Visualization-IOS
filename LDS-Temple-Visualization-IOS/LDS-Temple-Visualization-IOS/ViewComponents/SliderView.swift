@@ -47,7 +47,7 @@ struct SliderView: View {
                             //}
                             self.updateSpiral()
                             
-                            self.sharedValues.yearPickerSet = false
+                            self.sharedValues.selectorSet = false
                             self.sharedValues.selectedYearIndex = 52
                         }
                     MySlider(imageSpiralViewModel: imageSpiralViewModel)
@@ -66,7 +66,7 @@ struct SliderView: View {
                             //}
                             self.updateSpiral()
                             
-                            self.sharedValues.yearPickerSet = false
+                            self.sharedValues.selectorSet = false
                             self.sharedValues.selectedYearIndex = 52
                         }
                 }
@@ -142,7 +142,7 @@ struct MySlider: View {
                     
                     self.getStartAndEndYear()
                     
-                    self.sharedValues.yearPickerSet = false
+                    self.sharedValues.selectorSet = false
                     self.sharedValues.selectedYearIndex = 52
                     
                     self.sharedValues.lastSliderProgress = self.sharedValues.sliderProgress

@@ -28,10 +28,10 @@ struct MainScreenView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    func buttonToYearPicker() -> some View {
+    func buttonToSelector() -> some View {
         var body: some View {
             Button(action: {
-                self.sharedValues.showYearPicker.toggle()
+                self.sharedValues.showSelector.toggle()
                     }) {
                 ZStack {
                     Rectangle().foregroundColor(Color.green.opacity(0))
@@ -39,7 +39,7 @@ struct MainScreenView: View {
                     Image(systemName: "calendar.circle.fill")
                 }
                 
-            }.sheet(isPresented: $sharedValues.showYearPicker
+            }.sheet(isPresented: $sharedValues.showSelector
                     , onDismiss: {
                         // if user goes to year picker, but did not move the picker, the value here is not changed its still -1
                         // it shows 1836 on year picker, if this happends, we set it to 0,
@@ -67,8 +67,8 @@ struct MainScreenView: View {
                 
                     }
             ) {
-                YearPicker(imageSpiralViewModel: self.imageSpiralViewModel)
-                    .environmentObject(self.sharedValues)
+                //YearPicker(imageSpiralViewModel: self.imageSpiralViewModel).environmentObject(self.sharedValues)
+                SearchView(imageSpiralViewModel: self.imageSpiralViewModel).environmentObject(self.sharedValues)
                     }
         }
         return body
@@ -119,7 +119,7 @@ struct MainScreenView: View {
                                 if sharedValues.tappedATemple {
                                     returnButtonFromLargeTemple()
                                 } else {
-                                    buttonToYearPicker()
+                                    buttonToSelector()
                                 }
                             }
                         
@@ -400,8 +400,8 @@ struct SpiralView: View {
             ZStack {
 
                 //if sharedValues.selectedYearIndex != -1 {
-                if sharedValues.yearPickerSet == true {
-                    if temple.year == ImageSpiral.templeYears[sharedValues.selectedYearIndex] {
+                if sharedValues.selectorSet == true {
+                    if temple.year == ImageSpiral.templeYears[sharedValues.selectedYearIndex] || sharedValues.selectedTemple == temple.name {
                         Circle()
                             .fill(Color.green)
                             .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
@@ -421,7 +421,7 @@ struct SpiralView: View {
                     
                     .gesture(DragGesture()
                                 .onChanged { value in
-                                    self.sharedValues.yearPickerSet = false
+                                    self.sharedValues.selectorSet = false
                                     
                                     if !self.sharedValues.tappedATemple {
                                         self.dragOnChangeActionInSpiralView(value: value, temple: temple)

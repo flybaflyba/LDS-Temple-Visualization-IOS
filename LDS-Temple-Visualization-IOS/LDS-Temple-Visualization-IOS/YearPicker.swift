@@ -90,7 +90,7 @@ struct YearPicker: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        self.self.sharedValues.showYearPicker.toggle()
+                        self.self.sharedValues.showSelector.toggle()
                     }) {
                         Text("dismiss")
                     }
@@ -98,8 +98,8 @@ struct YearPicker: View {
                     Spacer()
                     
                     Button(action: {
-                        self.self.sharedValues.showYearPicker.toggle()
-                        self.self.sharedValues.yearPickerSet = true
+                        self.self.sharedValues.showSelector.toggle()
+                        self.self.sharedValues.selectorSet = true
                         let newThetaFromYearPicker: CGFloat = ImageSpiral.templeYearsThetaFriends[self.self.sharedValues.selectedYearIndex] + 20
                         self.self.sharedValues.sliderProgress = newThetaFromYearPicker
                         self.self.imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
