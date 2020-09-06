@@ -19,6 +19,14 @@ CFBundleDisplayName = "EnglishName";
 "announced.temples.lower.case" = "announced temples";
 "temples.under.construction.lower.case" = "temples under construction";
 "dismiss" = "Dismiss";
+"back" = "Back";
+
+// SearchView
+"type.in.here.to.search.a.temple" = "Type in here to search a Temple";
+
+// SelectorView
+"pick.a.year" = "Pick a Year";
+"search.by.name" = "Search by Name";
 
 // YeasDisplayView
 //"future.temples" = "Future Temples";

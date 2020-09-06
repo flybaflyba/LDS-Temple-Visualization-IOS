@@ -32,11 +32,13 @@ struct MainScreenView: View {
         var body: some View {
             Button(action: {
                 self.sharedValues.showSelector.toggle()
+                self.sharedValues.showYearPicker = false
+                self.sharedValues.showNameSearcher = false
                     }) {
                 ZStack {
                     Rectangle().foregroundColor(Color.green.opacity(0))
                         .frame(width: 40, height: 40, alignment:.center)
-                    Image(systemName: "calendar.circle.fill")
+                    Image(systemName: "magnifyingglass.circle.fill")
                 }
                 
             }.sheet(isPresented: $sharedValues.showSelector
@@ -68,7 +70,9 @@ struct MainScreenView: View {
                     }
             ) {
                 //YearPicker(imageSpiralViewModel: self.imageSpiralViewModel).environmentObject(self.sharedValues)
-                SearchView(imageSpiralViewModel: self.imageSpiralViewModel).environmentObject(self.sharedValues)
+                //SearchView(imageSpiralViewModel: self.imageSpiralViewModel).environmentObject(self.sharedValues)
+                SelectorsView(imageSpiralViewModel: self.imageSpiralViewModel).environmentObject(self.sharedValues)
+                
                     }
         }
         return body

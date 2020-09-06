@@ -8,27 +8,31 @@
 
 import SwiftUI
 
+
 struct SearchView: View {
     
     @EnvironmentObject var sharedValues: SharedValues
     
     var templeNames: Array<String> = ImageSpiral.templeNamesAndYears[0]
+    var templeImageNames: Array<String> = ImageSpiral.templeNames
     
     @ObservedObject var imageSpiralViewModel: ImageSpiral
     
     @State private var searchText : String = ""
     
+ 
+    
     var body: some View {
         
         VStack {
-            Spacer()
-            TextField("Type in here to search a Temple", text: $searchText)
+            Spacer(minLength: 20)
+            TextField("type.in.here.to.search.a.temple", text: $searchText)
             .padding(7)
             .padding(.horizontal, 25)
             .background(Color(.systemGray6))
             .cornerRadius(8)
             .padding(.horizontal, 10)
-            
+   
             List {
                 ForEach(self.templeNames.filter {
                     self.searchText.isEmpty ? true : $0.contains(self.searchText)
@@ -37,7 +41,10 @@ struct SearchView: View {
                     Button(action: {
                         self.searchText = name
                     }) {
-                        Text(name)
+                        HStack {
+                            Text(name)
+                        }
+                        
                     }
 
                 }
@@ -46,9 +53,13 @@ struct SearchView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    self.self.sharedValues.showSelector.toggle()
+                    //self.self.sharedValues.showSelector.toggle()
+                    //self.sharedValues.showYearPicker = false
+                    SwiftUI.withAnimation(.default) {
+                        self.sharedValues.showNameSearcher = false
+                    }
                 }) {
-                    Text("dismiss")
+                    Text("back")
                 }
                 
                 Spacer()
@@ -63,6 +74,8 @@ struct SearchView: View {
                     self.self.sharedValues.sliderProgress = newThetaFromYearPicker
                     self.self.imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
                     self.self.imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                    
+                    
                 }) {
                     Text("view")
                 }
@@ -74,6 +87,7 @@ struct SearchView: View {
         
         
         }
+    
         
         
     }

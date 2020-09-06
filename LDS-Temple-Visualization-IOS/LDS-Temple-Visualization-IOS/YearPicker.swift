@@ -90,9 +90,13 @@ struct YearPicker: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        self.self.sharedValues.showSelector.toggle()
+                        //self.self.sharedValues.showSelector.toggle()
+                        SwiftUI.withAnimation(.default) {
+                            self.sharedValues.showYearPicker = false
+                        }
+                        //self.sharedValues.showNameSearcher = false
                     }) {
-                        Text("dismiss")
+                        Text("back")
                     }
                     
                     Spacer()
@@ -104,6 +108,8 @@ struct YearPicker: View {
                         self.self.sharedValues.sliderProgress = newThetaFromYearPicker
                         self.self.imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
                         self.self.imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                        
+                        
                     }) {
                         Text("view")
                     }

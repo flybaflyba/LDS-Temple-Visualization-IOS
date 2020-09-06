@@ -19,6 +19,14 @@ CFBundleDisplayName = "中文名字";
 "announced.temples.lower.case" = "已宣布的圣殿";
 "temples.under.construction.lower.case" = "建设中的圣殿";
 "dismiss" = "取消";
+"back" = "返回";
+
+// SearchView
+"type.in.here.to.search.a.temple" = "在此输入以搜索圣殿";
+
+// SelectorView
+"pick.a.year" = "选择年份";
+"search.by.name" = "搜索名称";
 
 // YeasDisplayView
 //"announced.temples" = "Announced Temples";
