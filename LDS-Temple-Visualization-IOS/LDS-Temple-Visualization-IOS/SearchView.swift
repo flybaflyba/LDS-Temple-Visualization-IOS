@@ -26,32 +26,8 @@ struct SearchView: View {
         
         VStack {
             Spacer(minLength: 20)
-            TextField("type.in.here.to.search.a.temple", text: $searchText)
-            .padding(7)
-            .padding(.horizontal, 25)
-            .background(Color(.systemGray6))
-            .cornerRadius(8)
-            .padding(.horizontal, 10)
-   
-            List {
-                ForEach(self.templeNames.filter {
-                    self.searchText.isEmpty ? true : $0.contains(self.searchText)
-                }, id: \.self) { name in
-                    
-                    Button(action: {
-                        self.searchText = name
-                    }) {
-                        HStack {
-                            Text(name)
-                        }
-                        
-                    }
-
-                }
-            }
             
             HStack {
-                Spacer()
                 Button(action: {
                     //self.self.sharedValues.showSelector.toggle()
                     //self.sharedValues.showYearPicker = false
@@ -61,6 +37,7 @@ struct SearchView: View {
                 }) {
                     Text("back")
                 }
+                .padding()
                 
                 Spacer()
                 
@@ -79,10 +56,39 @@ struct SearchView: View {
                 }) {
                     Text("view")
                 }
+                .padding()
                 .disabled(templeNames.contains(searchText) ? false : true)
                 
-                Spacer()
+                
             }
+            
+            TextField("type.in.here.to.search.a.temple", text: $searchText)
+            .padding(7)
+            .padding(.horizontal, 25)
+            .background(Color(.systemGray6))
+            .cornerRadius(8)
+            .padding(.horizontal, 10)
+   
+            
+            
+            List {
+                ForEach(self.templeNames.filter {
+                    self.searchText.isEmpty ? true : $0.contains(self.searchText)
+                }, id: \.self) { name in
+                    
+                    Button(action: {
+                        self.searchText = name
+                    }) {
+                        HStack {
+                            Text(name)
+                        }
+                        
+                    }
+
+                }
+            }
+            
+            
             .padding()
             
             Spacer()
