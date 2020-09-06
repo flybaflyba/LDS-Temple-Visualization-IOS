@@ -79,6 +79,8 @@ struct SearchView: View {
                 }) {
                     Text("view")
                 }
+                .disabled(templeNames.contains(searchText) ? false : true)
+                
                 Spacer()
             }
             .padding()
