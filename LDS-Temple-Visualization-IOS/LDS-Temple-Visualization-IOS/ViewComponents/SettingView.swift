@@ -66,6 +66,7 @@ struct SpiralEffectSettingButton: View {
                             self.sharedValues.defaultColor = self.sharedValues.selectedColor
                             self.sharedValues.spinColor = self.sharedValues.unSelectedColor
                             self.sharedValues.threeDColor = self.sharedValues.unSelectedColor
+                            self.sharedValues.mode = "default"
                         }
                     }
                     
@@ -82,6 +83,7 @@ struct SpiralEffectSettingButton: View {
                             self.sharedValues.defaultColor = self.sharedValues.unSelectedColor
                             self.sharedValues.spinColor = self.sharedValues.selectedColor
                             self.sharedValues.threeDColor = self.sharedValues.unSelectedColor
+                            self.sharedValues.mode = "spin"
                         }
                     }
                     
@@ -97,6 +99,7 @@ struct SpiralEffectSettingButton: View {
                             self.sharedValues.defaultColor = self.sharedValues.unSelectedColor
                             self.sharedValues.spinColor = self.sharedValues.unSelectedColor
                             self.sharedValues.threeDColor = self.sharedValues.selectedColor
+                            self.sharedValues.mode = "3D"
                         }
                     }
                     

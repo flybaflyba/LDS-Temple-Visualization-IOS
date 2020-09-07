@@ -47,10 +47,12 @@ struct SearchView: View {
                     self.sharedValues.selectedTemple = self.searchText
                     //let newThetaFromYearPicker: CGFloat = self.templeNames.firstIndex(of: self.searchText)
                     let test: Int = self.templeNames.firstIndex(of: self.searchText) ?? 0
-                    let newThetaFromYearPicker: CGFloat = (CGFloat)(test * 30 + 300)
-                    self.self.sharedValues.sliderProgress = newThetaFromYearPicker
-                    self.self.imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
-                    self.self.imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                    var newThetaFromSelector: CGFloat = 0
+                    newThetaFromSelector = (self.sharedValues.mode == "default" ? (CGFloat)(test * 30 + 190) : (CGFloat)(test * 30 + 250))
+                    
+                    self.self.sharedValues.sliderProgress = newThetaFromSelector
+                    self.self.imageSpiralViewModel.getNewTheta(newTheta: newThetaFromSelector)
+                    self.self.imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromSelector)
                     
                     
                 }) {
