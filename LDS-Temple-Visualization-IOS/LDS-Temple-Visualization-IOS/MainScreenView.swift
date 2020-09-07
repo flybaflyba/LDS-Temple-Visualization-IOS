@@ -34,6 +34,8 @@ struct MainScreenView: View {
                 self.sharedValues.showSelector.toggle()
                 self.sharedValues.showYearPicker = false
                 self.sharedValues.showNameSearcher = false
+                self.sharedValues.yearSet = false
+                self.sharedValues.templeNameSet = false
                     }) {
                 ZStack {
                     Rectangle().foregroundColor(Color.green.opacity(0))
@@ -405,12 +407,24 @@ struct SpiralView: View {
 
                 //if sharedValues.selectedYearIndex != -1 {
                 if sharedValues.selectorSet == true {
-                    if temple.year == ImageSpiral.templeYears[sharedValues.selectedYearIndex] || sharedValues.selectedTemple == temple.name {
-                        Circle()
+                    
+                    if self.sharedValues.yearSet {
+                        if temple.year == ImageSpiral.templeYears[sharedValues.selectedYearIndex] {
+                            Circle()
                             .fill(Color.green)
                             .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
                             .position(x: temple.x, y: temple.y)
+                        }
                     }
+                    if self.sharedValues.templeNameSet {
+                        if sharedValues.selectedTemple == temple.name {
+                            Circle()
+                                .fill(Color.green)
+                                .frame(width: temple.size * 1.1, height: temple.size * 1.1, alignment: Alignment.center)
+                                .position(x: temple.x, y: temple.y)
+                        }
+                    }
+                    
                 }
                 //}
                 

@@ -53,6 +53,7 @@ struct SearchView: View {
                     self.self.sharedValues.sliderProgress = newThetaFromSelector
                     self.self.imageSpiralViewModel.getNewTheta(newTheta: newThetaFromSelector)
                     self.self.imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromSelector)
+                    self.sharedValues.templeNameSet = true
                     
                     
                 }) {

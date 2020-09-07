@@ -46,7 +46,7 @@ struct SelectorsViewPre: View {
         
             Spacer()
             ZStack {
-                Circle()
+                RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color.gray)
                     .padding()
                 VStack {
@@ -63,7 +63,7 @@ struct SelectorsViewPre: View {
                 
             }
             ZStack {
-                Circle()
+                RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color.gray)
                     .padding()
                 VStack {

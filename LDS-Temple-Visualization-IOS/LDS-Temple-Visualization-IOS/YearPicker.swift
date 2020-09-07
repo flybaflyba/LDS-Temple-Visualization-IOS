@@ -108,6 +108,7 @@ struct YearPicker: View {
                         self.self.sharedValues.sliderProgress = newThetaFromYearPicker
                         self.self.imageSpiralViewModel.getNewTheta(newTheta: newThetaFromYearPicker)
                         self.self.imageSpiralViewModel.updateOnScreenTemples(newTheta: newThetaFromYearPicker)
+                        self.sharedValues.yearSet = true
                         
                         
                     }) {

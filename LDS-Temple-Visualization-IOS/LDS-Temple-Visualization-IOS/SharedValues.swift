@@ -182,6 +182,8 @@ class SharedValues: ObservableObject {
     @Published var selectedTemple = ""
     @Published var showYearPicker = false
     @Published var showNameSearcher = false
+    @Published var yearSet = false
+    @Published var templeNameSet = false
     
     @Published var touchScreenLastX: CGFloat = 0
     @Published var touchScreenLastY: CGFloat = 0
