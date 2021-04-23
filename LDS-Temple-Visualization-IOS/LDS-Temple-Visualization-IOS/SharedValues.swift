@@ -25,10 +25,10 @@ public var centerX: CGFloat = //500
     (UIDevice.current.userInterfaceIdiom == .phone ?
         (UIApplication.shared.statusBarOrientation.isLandscape ?
             max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 4 :
-            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2) :
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.57) :
         (UIApplication.shared.statusBarOrientation.isLandscape ?
             max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2 :
-            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 2
+            min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.57
         ))
 
 public var centerY: CGFloat = //300
@@ -284,7 +284,7 @@ class SharedValues: ObservableObject {
                 screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.7
             }
             
-            centerX = currentScreenWidth / 2
+            centerX = currentScreenWidth * 0.57
             centerY = currentScreenHeight * 0.4
             
             lastX = centerX
@@ -304,7 +304,7 @@ class SharedValues: ObservableObject {
                 //centerY = currentScreenHeight * 0.5
             } else {
                 screenWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.6
-                centerX = currentScreenWidth / 2
+                centerX = currentScreenWidth * 0.57
 //                //centerY = currentScreenHeight * 0.5 //screenWidth * 0.8
                 centerY = currentScreenHeight * 0.4
             }

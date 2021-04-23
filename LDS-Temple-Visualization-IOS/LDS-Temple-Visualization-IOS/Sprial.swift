@@ -99,7 +99,7 @@ struct Spiral<TempleContent> {
                 onScreenTemples[index].size = -onScreenTemples[index].size
             }
             
-            onScreenTemples[id].x = centerX
+            onScreenTemples[id].x = centerX * (0.5 / 0.57)
             onScreenTemples[id].y = centerY - singleTempleLargeCircleMoveUpThisMuch
             onScreenTemples[id].size = screenWidth * 0.9
             onScreenTemples[id].content = Image(onScreenTemples[id].fileName + "_large") as! TempleContent
