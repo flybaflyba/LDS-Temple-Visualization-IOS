@@ -347,7 +347,7 @@ struct SpiralView: View {
                 }
             } else if temple.x < centerX - temple.size / 2 {
                 print(temple.id)
-                if temple.id < 225  {
+                if temple.id < sharedValues.numberOfTemples + 1  {
                     sharedValues.sliderProgress += 30
                     imageSpiralViewModel.getNewTheta(newTheta: sharedValues.sliderProgress)
                     imageSpiralViewModel.updateOnScreenTemples(newTheta: sharedValues.sliderProgress)
@@ -594,8 +594,8 @@ struct SpiralView: View {
     }
     
     func SpiralAntiClockwise(speed: CGFloat) {
-        if sharedValues.sliderProgress + 1 >= 6980 {
-            sharedValues.sliderProgress = 6980
+        if sharedValues.sliderProgress + 1 >= 6980 + CGFloat((sharedValues.numberOfTemples - 224) * 30)  {
+            sharedValues.sliderProgress = 6980 + CGFloat((sharedValues.numberOfTemples - 224) * 30)
         } else {
             sharedValues.sliderProgress += abs(speed) / 3
         }
