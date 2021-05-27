@@ -484,6 +484,7 @@ struct SpiralView: View {
                                 }
                     )
                     .onTapGesture {
+                        
                         //print("tapped a temple")
                         //print("showName is \(temple.showName)")
                         
@@ -527,6 +528,9 @@ struct SpiralView: View {
                         }
                         //print("tapped temple's size is \(temple.size)")
                         //print(temple)
+                        
+//                        print("--------------------")
+//                        print(sharedValues.currentTappedTempleName.replacingOccurrences(of: " ", with: "-"))
                     }
                 
             }

@@ -30,7 +30,9 @@ struct MileStoneDatesView: View {
     var body: some View {
         
         VStack {
-            NavigationLink(destination: InAppWebView(url: sharedValues.currentTappedTempleLink)) {
+//            NavigationLink(destination: InAppWebView(url: sharedValues.currentTappedTempleLink))
+            NavigationLink(destination: InAppWebView(url: "https://www.churchofjesuschrist.org/search?lang=eng&query=" + sharedValues.currentTappedTempleName.replacingOccurrences(of: " ", with: "-")))
+            {
                 HStack {
                     Text(sharedValues.currentTappedTempleName)
                     Image(systemName: "link")
@@ -47,7 +49,7 @@ struct MileStoneDatesView: View {
         }
         //.background(Color.red)
         .opacity(sharedValues.mileStoneDatesViewOpacity)
-        
+    
  
             
 //        .onTapGesture {
