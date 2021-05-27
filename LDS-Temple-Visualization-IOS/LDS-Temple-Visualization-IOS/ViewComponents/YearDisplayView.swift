@@ -33,6 +33,7 @@ struct YearDisplayView: View {
 //                Text("\(startYear) --- 2020")
 //            }
             
+            
 //            if startYear == "0000" || startYear == "1111" {
             if sharedValues.sliderProgress >= 6600 {
                 Text("announced.temples")

@@ -23,7 +23,7 @@ struct YearPicker: View {
         
         return GeometryReader { geometry in
             VStack {
-                //Spacer()
+                Spacer()
                 
 //                Image(systemName: "arrow.down")
 //                    .font(.system(size: geometry.size.width * 0.1))
@@ -116,6 +116,7 @@ struct YearPicker: View {
                     }
                     Spacer()
                 }
+                Spacer()
            
                 
             }
