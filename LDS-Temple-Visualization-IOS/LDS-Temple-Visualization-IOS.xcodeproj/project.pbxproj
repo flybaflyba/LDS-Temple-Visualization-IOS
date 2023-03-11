@@ -15,17 +15,17 @@
 		1EBF98DC24AAC678005CC70D /* Sprial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF98DB24AAC678005CC70D /* Sprial.swift */; };
 		1EBF98DE24AAC883005CC70D /* ImageSpiral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */; };
 		1EFE4A6124AD747700FAD239 /* templeFilesNames in Resources */ = {isa = PBXBuildFile; fileRef = 1EFE4A6024AD747700FAD239 /* templeFilesNames */; };
-		3FB4797C29BBF8DD00E06EB0 /* vitoria_brazil_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4795429BBF79A00E06EB0 /* vitoria_brazil_temple.txt */; };
-		3FB4797D29BBF8E000E06EB0 /* tacloban_city_philippines_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4796029BBF79C00E06EB0 /* tacloban_city_philippines_temple.txt */; };
-		3FB4797E29BBF8E300E06EB0 /* santiago_west_chile_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4794A29BBF79900E06EB0 /* santiago_west_chile_temple.txt */; };
-		3FB4797F29BBF8E500E06EB0 /* rexburg_north_idaho_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4795E29BBF79C00E06EB0 /* rexburg_north_idaho_temple.txt */; };
-		3FB4798029BBF8E800E06EB0 /* monrovia_liberia_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4795C29BBF79C00E06EB0 /* monrovia_liberia_temple.txt */; };
-		3FB4798129BBF8EA00E06EB0 /* la_paz_bolivia_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4794C29BBF79900E06EB0 /* la_paz_bolivia_temple.txt */; };
-		3FB4798329BBF8F000E06EB0 /* kananga_democratic_republic_of_the_congo_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4794829BBF79800E06EB0 /* kananga_democratic_republic_of_the_congo_temple.txt */; };
-		3FB4798429BBF8F200E06EB0 /* heber_valley_utah_temple .txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4794E29BBF79900E06EB0 /* heber_valley_utah_temple .txt */; };
+		3F6A6E2B29BD2FA20088FCB4 /* kananga_democratic_republic_of_the_congo_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E1729BD2FA10088FCB4 /* kananga_democratic_republic_of_the_congo_temple */; };
+		3F6A6E2C29BD2FA20088FCB4 /* vitoria_brazil_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E1929BD2FA10088FCB4 /* vitoria_brazil_temple */; };
+		3F6A6E2D29BD2FA20088FCB4 /* culiacan_mexico_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E1B29BD2FA10088FCB4 /* culiacan_mexico_temple */; };
+		3F6A6E2E29BD2FA20088FCB4 /* rexburg_north_idaho_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E1D29BD2FA10088FCB4 /* rexburg_north_idaho_temple */; };
+		3F6A6E2F29BD2FA20088FCB4 /* heber_valley_utah_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E1F29BD2FA10088FCB4 /* heber_valley_utah_temple */; };
+		3F6A6E3029BD2FA20088FCB4 /* la_paz_bolivia_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E2129BD2FA10088FCB4 /* la_paz_bolivia_temple */; };
+		3F6A6E3129BD2FA20088FCB4 /* santiago_west_chile_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E2329BD2FA10088FCB4 /* santiago_west_chile_temple */; };
+		3F6A6E3229BD2FA20088FCB4 /* tacloban_city_philippines_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E2529BD2FA10088FCB4 /* tacloban_city_philippines_temple */; };
+		3F6A6E3329BD2FA20088FCB4 /* monrovia_liberia_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E2729BD2FA10088FCB4 /* monrovia_liberia_temple */; };
+		3F6A6E3429BD2FA20088FCB4 /* antananarivo_madagascar_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A6E2929BD2FA10088FCB4 /* antananarivo_madagascar_temple */; };
 		3FB4798529BBF8F500E06EB0 /* fort_worth_texas_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4795029BBF79A00E06EB0 /* fort_worth_texas_temple */; };
-		3FB4798629BBF8F800E06EB0 /* culiacan_mexico_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4795229BBF79A00E06EB0 /* culiacan_mexico_temple.txt */; };
-		3FB4798829BBF8FF00E06EB0 /* antananarivo_madagascar_temple.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4795A29BBF79B00E06EB0 /* antananarivo_madagascar_temple.txt */; };
 		3FB4798E29BBFB3800E06EB0 /* kaohsiung_taiwan_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4798C29BBFB3800E06EB0 /* kaohsiung_taiwan_temple */; };
 		3FB4799329BBFDAC00E06EB0 /* cody_wyoming_temple in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4799129BBFDAC00E06EB0 /* cody_wyoming_temple */; };
 		9FF36526265B93950043DB6F /* beira_mozambique_temple in Resources */ = {isa = PBXBuildFile; fileRef = 9FF36528265B93950043DB6F /* beira_mozambique_temple */; };
@@ -310,39 +310,38 @@
 		1EBF98DB24AAC678005CC70D /* Sprial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprial.swift; sourceTree = "<group>"; };
 		1EBF98DD24AAC883005CC70D /* ImageSpiral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSpiral.swift; sourceTree = "<group>"; };
 		1EFE4A6024AD747700FAD239 /* templeFilesNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = templeFilesNames; sourceTree = "<group>"; };
-		3FB4794929BBF79800E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/kananga_democratic_republic_of_the_congo_temple.txt; sourceTree = "<group>"; };
-		3FB4794B29BBF79900E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/santiago_west_chile_temple.txt; sourceTree = "<group>"; };
-		3FB4794D29BBF79900E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/la_paz_bolivia_temple.txt; sourceTree = "<group>"; };
-		3FB4794F29BBF79900E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/heber_valley_utah_temple .txt"; sourceTree = "<group>"; };
+		3F6A6E1829BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/kananga_democratic_republic_of_the_congo_temple; sourceTree = "<group>"; };
+		3F6A6E1A29BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/vitoria_brazil_temple; sourceTree = "<group>"; };
+		3F6A6E1C29BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/culiacan_mexico_temple; sourceTree = "<group>"; };
+		3F6A6E1E29BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/rexburg_north_idaho_temple; sourceTree = "<group>"; };
+		3F6A6E2029BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/heber_valley_utah_temple; sourceTree = "<group>"; };
+		3F6A6E2229BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/la_paz_bolivia_temple; sourceTree = "<group>"; };
+		3F6A6E2429BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/santiago_west_chile_temple; sourceTree = "<group>"; };
+		3F6A6E2629BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/tacloban_city_philippines_temple; sourceTree = "<group>"; };
+		3F6A6E2829BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/monrovia_liberia_temple; sourceTree = "<group>"; };
+		3F6A6E2A29BD2FA10088FCB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/antananarivo_madagascar_temple; sourceTree = "<group>"; };
+		3F6A6E3529BD2FEA0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/tacloban_city_philippines_temple"; sourceTree = "<group>"; };
+		3F6A6E3629BD2FEA0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/culiacan_mexico_temple"; sourceTree = "<group>"; };
+		3F6A6E3729BD2FEA0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/kananga_democratic_republic_of_the_congo_temple"; sourceTree = "<group>"; };
+		3F6A6E3829BD2FEA0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/monrovia_liberia_temple"; sourceTree = "<group>"; };
+		3F6A6E3929BD2FEA0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/la_paz_bolivia_temple"; sourceTree = "<group>"; };
+		3F6A6E3A29BD2FEA0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/rexburg_north_idaho_temple"; sourceTree = "<group>"; };
+		3F6A6E3B29BD2FEA0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/santiago_west_chile_temple"; sourceTree = "<group>"; };
+		3F6A6E3C29BD2FEB0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/vitoria_brazil_temple"; sourceTree = "<group>"; };
+		3F6A6E3D29BD2FEB0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/antananarivo_madagascar_temple"; sourceTree = "<group>"; };
+		3F6A6E3E29BD2FEB0088FCB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/heber_valley_utah_temple"; sourceTree = "<group>"; };
+		3F6A6E4129BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/antananarivo_madagascar_temple; sourceTree = "<group>"; };
+		3F6A6E4229BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/vitoria_brazil_temple; sourceTree = "<group>"; };
+		3F6A6E4329BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/heber_valley_utah_temple; sourceTree = "<group>"; };
+		3F6A6E4429BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/tacloban_city_philippines_temple; sourceTree = "<group>"; };
+		3F6A6E4529BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/culiacan_mexico_temple; sourceTree = "<group>"; };
+		3F6A6E4629BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/kananga_democratic_republic_of_the_congo_temple; sourceTree = "<group>"; };
+		3F6A6E4729BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/la_paz_bolivia_temple; sourceTree = "<group>"; };
+		3F6A6E4829BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/rexburg_north_idaho_temple; sourceTree = "<group>"; };
+		3F6A6E4929BD30230088FCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/monrovia_liberia_temple; sourceTree = "<group>"; };
 		3FB4795129BBF79A00E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/fort_worth_texas_temple; sourceTree = "<group>"; };
-		3FB4795329BBF79A00E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/culiacan_mexico_temple.txt; sourceTree = "<group>"; };
-		3FB4795529BBF79A00E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/vitoria_brazil_temple.txt; sourceTree = "<group>"; };
-		3FB4795B29BBF79B00E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/antananarivo_madagascar_temple.txt; sourceTree = "<group>"; };
-		3FB4795D29BBF79C00E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/monrovia_liberia_temple.txt; sourceTree = "<group>"; };
-		3FB4795F29BBF79C00E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/rexburg_north_idaho_temple.txt; sourceTree = "<group>"; };
-		3FB4796129BBF79C00E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/tacloban_city_philippines_temple.txt; sourceTree = "<group>"; };
-		3FB4796229BBF7D400E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/tacloban_city_philippines_temple.txt; sourceTree = "<group>"; };
-		3FB4796329BBF7D400E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/rexburg_north_idaho_temple.txt; sourceTree = "<group>"; };
 		3FB4796429BBF7D400E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/fort_worth_texas_temple; sourceTree = "<group>"; };
-		3FB4796529BBF7D400E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/la_paz_bolivia_temple.txt; sourceTree = "<group>"; };
-		3FB4796629BBF7D400E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/antananarivo_madagascar_temple.txt; sourceTree = "<group>"; };
-		3FB4796729BBF7D400E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/culiacan_mexico_temple.txt; sourceTree = "<group>"; };
-		3FB4796829BBF7D400E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/monrovia_liberia_temple.txt; sourceTree = "<group>"; };
-		3FB4796A29BBF7D500E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/kananga_democratic_republic_of_the_congo_temple.txt; sourceTree = "<group>"; };
-		3FB4796B29BBF7D500E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/santiago_west_chile_temple.txt; sourceTree = "<group>"; };
-		3FB4796C29BBF7D500E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/vitoria_brazil_temple.txt; sourceTree = "<group>"; };
-		3FB4796D29BBF7D500E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = "en.lproj/heber_valley_utah_temple .txt"; sourceTree = "<group>"; };
-		3FB4796F29BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/vitoria_brazil_temple.txt"; sourceTree = "<group>"; };
 		3FB4797029BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/fort_worth_texas_temple"; sourceTree = "<group>"; };
-		3FB4797129BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/monrovia_liberia_temple.txt"; sourceTree = "<group>"; };
-		3FB4797229BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/culiacan_mexico_temple.txt"; sourceTree = "<group>"; };
-		3FB4797329BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/santiago_west_chile_temple.txt"; sourceTree = "<group>"; };
-		3FB4797429BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/rexburg_north_idaho_temple.txt"; sourceTree = "<group>"; };
-		3FB4797729BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/kananga_democratic_republic_of_the_congo_temple.txt"; sourceTree = "<group>"; };
-		3FB4797829BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/tacloban_city_philippines_temple.txt"; sourceTree = "<group>"; };
-		3FB4797929BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/la_paz_bolivia_temple.txt"; sourceTree = "<group>"; };
-		3FB4797A29BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/antananarivo_madagascar_temple.txt"; sourceTree = "<group>"; };
-		3FB4797B29BBF83C00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/heber_valley_utah_temple .txt"; sourceTree = "<group>"; };
 		3FB4798D29BBFB3800E06EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/kaohsiung_taiwan_temple; sourceTree = "<group>"; };
 		3FB4798F29BBFB5D00E06EB0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/kaohsiung_taiwan_temple"; sourceTree = "<group>"; };
 		3FB4799029BBFB8E00E06EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/kaohsiung_taiwan_temple; sourceTree = "<group>"; };
@@ -1208,19 +1207,19 @@
 		DD7CA98E24DA2C3700D68C77 /* AllTemplesInfo */ = {
 			isa = PBXGroup;
 			children = (
+				3F6A6E2929BD2FA10088FCB4 /* antananarivo_madagascar_temple */,
+				3F6A6E1B29BD2FA10088FCB4 /* culiacan_mexico_temple */,
+				3F6A6E1F29BD2FA10088FCB4 /* heber_valley_utah_temple */,
+				3F6A6E1729BD2FA10088FCB4 /* kananga_democratic_republic_of_the_congo_temple */,
+				3F6A6E2129BD2FA10088FCB4 /* la_paz_bolivia_temple */,
+				3F6A6E2729BD2FA10088FCB4 /* monrovia_liberia_temple */,
+				3F6A6E1D29BD2FA10088FCB4 /* rexburg_north_idaho_temple */,
+				3F6A6E2329BD2FA10088FCB4 /* santiago_west_chile_temple */,
+				3F6A6E2529BD2FA10088FCB4 /* tacloban_city_philippines_temple */,
+				3F6A6E1929BD2FA10088FCB4 /* vitoria_brazil_temple */,
 				3FB4799129BBFDAC00E06EB0 /* cody_wyoming_temple */,
 				3FB4798C29BBFB3800E06EB0 /* kaohsiung_taiwan_temple */,
-				3FB4795A29BBF79B00E06EB0 /* antananarivo_madagascar_temple.txt */,
-				3FB4795229BBF79A00E06EB0 /* culiacan_mexico_temple.txt */,
 				3FB4795029BBF79A00E06EB0 /* fort_worth_texas_temple */,
-				3FB4794E29BBF79900E06EB0 /* heber_valley_utah_temple .txt */,
-				3FB4794829BBF79800E06EB0 /* kananga_democratic_republic_of_the_congo_temple.txt */,
-				3FB4794C29BBF79900E06EB0 /* la_paz_bolivia_temple.txt */,
-				3FB4795C29BBF79C00E06EB0 /* monrovia_liberia_temple.txt */,
-				3FB4795E29BBF79C00E06EB0 /* rexburg_north_idaho_temple.txt */,
-				3FB4794A29BBF79900E06EB0 /* santiago_west_chile_temple.txt */,
-				3FB4796029BBF79C00E06EB0 /* tacloban_city_philippines_temple.txt */,
-				3FB4795429BBF79A00E06EB0 /* vitoria_brazil_temple.txt */,
 				9FF3658B265B943F0043DB6F /* belo_horizonte_brazil_temple */,
 				9FF365BB265F93230043DB6F /* shanghai_peoples_republic_of_china_temple */,
 				9FF36588265B943C0043DB6F /* brussels_belgium_temple */,
@@ -1547,6 +1546,7 @@
 				DD7CAC5224DA2D7700D68C77 /* tijuana_mexico_temple in Resources */,
 				DD7CAC7924DA2D9E00D68C77 /* frankfurt_germany_temple in Resources */,
 				DD7CABC224DA2CDA00D68C77 /* the_hague_netherlands_temple in Resources */,
+				3F6A6E2F29BD2FA20088FCB4 /* heber_valley_utah_temple in Resources */,
 				DD7CAC8E24DA2DB300D68C77 /* dallas_texas_temple in Resources */,
 				DD7CAC1924DA2D3700D68C77 /* toronto_temple in Resources */,
 				DD7CADA824DA2EFF00D68C77 /* villahermosa_mexico_temple in Resources */,
@@ -1576,10 +1576,10 @@
 				DD7CAC2524DA2D4600D68C77 /* mexico_city_temple in Resources */,
 				DD7CAC4024DA2D5D00D68C77 /* kyiv_ukraine_temple in Resources */,
 				DD7CAD6F24DA2EC400D68C77 /* antofagasta_chile_temple in Resources */,
-				3FB4797F29BBF8E500E06EB0 /* rexburg_north_idaho_temple.txt in Resources */,
 				DD7CADED24DA2F3E00D68C77 /* bogota_colombia_temple in Resources */,
 				DD7CAD0C24DA2E5200D68C77 /* baton_rouge_louisiana_temple in Resources */,
 				DD7CAD8D24DA2EE900D68C77 /* bacolod_philippines_temple in Resources */,
+				3F6A6E3329BD2FA20088FCB4 /* monrovia_liberia_temple in Resources */,
 				DD7CAC2B24DA2D4B00D68C77 /* orlando_temple in Resources */,
 				DD7CAC8B24DA2DB000D68C77 /* provo_city_center_temple in Resources */,
 				9FF365DA265F94F80043DB6F /* sao_paulo_brazil_east_temple in Resources */,
@@ -1592,7 +1592,6 @@
 				DD7CAD4224DA2E8B00D68C77 /* lisbon_portugal_temple in Resources */,
 				DD7CABAA24DA2CC400D68C77 /* jordan_river_temple in Resources */,
 				DD7CACBB24DA2DF500D68C77 /* salta_argentina_temple in Resources */,
-				3FB4798629BBF8F800E06EB0 /* culiacan_mexico_temple.txt in Resources */,
 				DD7CAD0324DA2E4A00D68C77 /* tuxtla_guitierrez_mexico_temple in Resources */,
 				DD7CACB824DA2DF200D68C77 /* brisbane_australia_temple in Resources */,
 				DD7CAC3D24DA2D5A00D68C77 /* bahia_blanca_argentina_temple in Resources */,
@@ -1605,8 +1604,8 @@
 				DD7CAD8124DA2ED600D68C77 /* stockholm_sweden_lds_temple in Resources */,
 				DD7CAC4924DA2D6700D68C77 /* monterrey_mexico_temple in Resources */,
 				DD7CADB424DA2F0B00D68C77 /* gila_valley_temple in Resources */,
+				3F6A6E2B29BD2FA20088FCB4 /* kananga_democratic_republic_of_the_congo_temple in Resources */,
 				DD7CAC7324DA2D9800D68C77 /* cochabamba_bolivia_temple in Resources */,
-				3FB4797E29BBF8E300E06EB0 /* santiago_west_chile_temple.txt in Resources */,
 				DD7CAC6424DA2D8A00D68C77 /* manaus_brazil_temple in Resources */,
 				DD7CAD2124DA2E6B00D68C77 /* johannesburg_south_africa_temple in Resources */,
 				DD7CAB7D24DA2C9D00D68C77 /* oklahoma_city_temple in Resources */,
@@ -1615,7 +1614,6 @@
 				DD7CAD8424DA2ED800D68C77 /* feather_river_california_temple in Resources */,
 				DD7CAC2E24DA2D4D00D68C77 /* cedar_city_utah_temple in Resources */,
 				DD7CACC724DA2E1400D68C77 /* pittsburgh_pennsylvania_temple in Resources */,
-				3FB4798829BBF8FF00E06EB0 /* antananarivo_madagascar_temple.txt in Resources */,
 				DD7CACFD24DA2E4600D68C77 /* los_angeles_temple in Resources */,
 				DD7CADF624DA2F4600D68C77 /* pago_pago_american_samoa_temple in Resources */,
 				DD7CACDC24DA2E2900D68C77 /* budapest_hungary_temple in Resources */,
@@ -1639,6 +1637,7 @@
 				9FF3655F265B940C0043DB6F /* singapore_republic_of_singapore_temple in Resources */,
 				DD7CAC7624DA2D9B00D68C77 /* ogden_utah_temple in Resources */,
 				DD7CABD424DA2CEA00D68C77 /* brigham_city_utah_temple in Resources */,
+				3F6A6E2E29BD2FA20088FCB4 /* rexburg_north_idaho_temple in Resources */,
 				DD7CACAF24DA2DE900D68C77 /* winnipeg_manitoba_temple in Resources */,
 				DD7CABDD24DA2CF800D68C77 /* louisville_temple in Resources */,
 				DD7CAC8824DA2DAD00D68C77 /* trujillo_peru_temple in Resources */,
@@ -1646,7 +1645,6 @@
 				DD7CAC5824DA2D7D00D68C77 /* quetzaltenango_guatemala_temple in Resources */,
 				DD7CAC1624DA2D3200D68C77 /* hartford_connecticut_temple in Resources */,
 				1E7A173224AAAFC500519D64 /* Preview Assets.xcassets in Resources */,
-				3FB4797C29BBF8DD00E06EB0 /* vitoria_brazil_temple.txt in Resources */,
 				DD7CAB6224DA2C7F00D68C77 /* fort_collins_colorado_temple in Resources */,
 				1EFE4A6124AD747700FAD239 /* templeFilesNames in Resources */,
 				DD7CACE824DA2E3400D68C77 /* san_salvador_el_salvador_temple in Resources */,
@@ -1654,11 +1652,9 @@
 				DD7CAB8324DA2CA200D68C77 /* phnom_penh_cambodia_temple in Resources */,
 				DD7CABB324DA2CCE00D68C77 /* sapporo_japan_temple in Resources */,
 				DD7CADC024DA2F1500D68C77 /* vancouver_temple in Resources */,
-				3FB4797D29BBF8E000E06EB0 /* tacloban_city_philippines_temple.txt in Resources */,
 				9FF36577265B942B0043DB6F /* elko_nevada_temple in Resources */,
 				9FF36586265B943C0043DB6F /* brussels_belgium_temple in Resources */,
 				DD7CADD524DA2F2700D68C77 /* chicago_temple in Resources */,
-				3FB4798429BBF8F200E06EB0 /* heber_valley_utah_temple .txt in Resources */,
 				DD7CADDB24DA2F2D00D68C77 /* okinawa_city_okinawa_temple in Resources */,
 				DD7CAC2824DA2D4800D68C77 /* managua_nicaragua_temple in Resources */,
 				9FF3657A265B942F0043DB6F /* casper_wyoming_temple in Resources */,
@@ -1672,6 +1668,7 @@
 				DD7CAC9D24DA2DD900D68C77 /* winter_quarters_temple in Resources */,
 				DD7CAD2724DA2E7000D68C77 /* columbus_ohio_temple in Resources */,
 				DD7CACC424DA2E1200D68C77 /* london_england_temple in Resources */,
+				3F6A6E3229BD2FA20088FCB4 /* tacloban_city_philippines_temple in Resources */,
 				DD7CACC124DA2E0F00D68C77 /* apia_samoa_temple in Resources */,
 				9FF36583265B94390043DB6F /* cali_colombia_temple in Resources */,
 				DD7CAC0124DA2D1D00D68C77 /* papeete_tahiti_temple in Resources */,
@@ -1705,7 +1702,6 @@
 				DD7CABE324DA2CFD00D68C77 /* port_moresby_papua_new_guinea_temple in Resources */,
 				DD7CABD724DA2CED00D68C77 /* lubbock_temple in Resources */,
 				DD7CACDF24DA2E2C00D68C77 /* accra_ghana_temple in Resources */,
-				3FB4798129BBF8EA00E06EB0 /* la_paz_bolivia_temple.txt in Resources */,
 				DD7CAD4824DA2E9100D68C77 /* seattle_temple in Resources */,
 				DD7CADE424DA2F3500D68C77 /* moses_lake_washington_temple in Resources */,
 				DD7CADC624DA2F1B00D68C77 /* nauvoo_temple in Resources */,
@@ -1724,6 +1720,7 @@
 				DD7CACD924DA2E2700D68C77 /* laie_hawaii_temple in Resources */,
 				DD7CADA224DA2EFA00D68C77 /* preston_england_temple in Resources */,
 				DD7CAC9724DA2DD400D68C77 /* lima_peru_los_olivos_temple in Resources */,
+				3F6A6E2D29BD2FA20088FCB4 /* culiacan_mexico_temple in Resources */,
 				DD7CAD2424DA2E6D00D68C77 /* mount_timpanogos_utah_temple in Resources */,
 				DD7CABF224DA2D0A00D68C77 /* tooele_valley_utah_temple in Resources */,
 				DD7CAB5F24DA2C7100D68C77 /* manti_temple in Resources */,
@@ -1742,6 +1739,7 @@
 				DD7CAC6D24DA2D9300D68C77 /* belem_brazil_temple in Resources */,
 				DD7CAC9424DA2DD200D68C77 /* nukualofa_tonga_temple in Resources */,
 				DD7CAD5A24DA2EAC00D68C77 /* madrid_spain_temple in Resources */,
+				3F6A6E3129BD2FA20088FCB4 /* santiago_west_chile_temple in Resources */,
 				DD7CAD0924DA2E5000D68C77 /* dubai_united_arab_emirates_temple in Resources */,
 				DD7CAD6C24DA2EC100D68C77 /* washington_dc_temple in Resources */,
 				1E7A172F24AAAFC500519D64 /* Assets.xcassets in Resources */,
@@ -1769,15 +1767,14 @@
 				DD7CACAC24DA2DE600D68C77 /* concepcion_chile_temple in Resources */,
 				DD7CABB024DA2CCC00D68C77 /* manhattan_temple in Resources */,
 				DD7CACF424DA2E3E00D68C77 /* perth_australia_temple in Resources */,
-				3FB4798029BBF8E800E06EB0 /* monrovia_liberia_temple.txt in Resources */,
 				DD7CABEC24DA2D0500D68C77 /* santiago_chile_temple in Resources */,
 				DD7CADCF24DA2F2300D68C77 /* abidjan_ivory_coast_temple in Resources */,
 				3FB4799329BBFDAC00E06EB0 /* cody_wyoming_temple in Resources */,
 				DD7CAB6B24DA2C8800D68C77 /* salt_lake_temple in Resources */,
 				DD7CAC1024DA2D2C00D68C77 /* guadalajara_temple in Resources */,
+				3F6A6E3429BD2FA20088FCB4 /* antananarivo_madagascar_temple in Resources */,
 				9FF36562265B94120043DB6F /* oslo_norway_temple in Resources */,
 				DD7CAB5924DA2C5C00D68C77 /* santo_domingo_dominican_republic_temple in Resources */,
-				3FB4798329BBF8F000E06EB0 /* kananga_democratic_republic_of_the_congo_temple.txt in Resources */,
 				DD7CAD1E24DA2E6800D68C77 /* kirtland_temple in Resources */,
 				DD7CABF524DA2D1300D68C77 /* birmingham_alabama_temple in Resources */,
 				3FB4798529BBF8F500E06EB0 /* fort_worth_texas_temple in Resources */,
@@ -1786,6 +1783,7 @@
 				DD7CAD0624DA2E4D00D68C77 /* adelaide_australia_temple in Resources */,
 				DD7CAD5D24DA2EAF00D68C77 /* hamilton_new_zealand_temple in Resources */,
 				DD7CADEA24DA2F3A00D68C77 /* idaho_falls_temple in Resources */,
+				3F6A6E2C29BD2FA20088FCB4 /* vitoria_brazil_temple in Resources */,
 				DD7CADF324DA2F4300D68C77 /* manila_philippines_temple in Resources */,
 				DD7CAD6024DA2EB100D68C77 /* cardston_alberta_temple in Resources */,
 				DD7CAC3724DA2D5400D68C77 /* benin_city_nigeria_temple in Resources */,
@@ -1801,6 +1799,7 @@
 				DD7CADD824DA2F2A00D68C77 /* orem_utah_temple in Resources */,
 				DD7CAC6724DA2D8D00D68C77 /* curitiba_brazil_temple in Resources */,
 				DD7CADE724DA2F3700D68C77 /* detroit_temple in Resources */,
+				3F6A6E3029BD2FA20088FCB4 /* la_paz_bolivia_temple in Resources */,
 				DD7CAD6924DA2EBE00D68C77 /* redlands_temple in Resources */,
 				DD7CAD5124DA2E9A00D68C77 /* salvador_brazil_temple in Resources */,
 				DD7CADBA24DA2F1000D68C77 /* hong_kong_china_temple in Resources */,
@@ -1846,44 +1845,103 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3FB4794829BBF79800E06EB0 /* kananga_democratic_republic_of_the_congo_temple.txt */ = {
+		3F6A6E1729BD2FA10088FCB4 /* kananga_democratic_republic_of_the_congo_temple */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3FB4794929BBF79800E06EB0 /* Base */,
-				3FB4796A29BBF7D500E06EB0 /* en */,
-				3FB4797729BBF83C00E06EB0 /* zh-Hans */,
+				3F6A6E1829BD2FA10088FCB4 /* en */,
+				3F6A6E3729BD2FEA0088FCB4 /* zh-Hans */,
+				3F6A6E4629BD30230088FCB4 /* Base */,
 			);
-			name = kananga_democratic_republic_of_the_congo_temple.txt;
+			name = kananga_democratic_republic_of_the_congo_temple;
 			sourceTree = "<group>";
 		};
-		3FB4794A29BBF79900E06EB0 /* santiago_west_chile_temple.txt */ = {
+		3F6A6E1929BD2FA10088FCB4 /* vitoria_brazil_temple */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3FB4794B29BBF79900E06EB0 /* Base */,
-				3FB4796B29BBF7D500E06EB0 /* en */,
-				3FB4797329BBF83C00E06EB0 /* zh-Hans */,
+				3F6A6E1A29BD2FA10088FCB4 /* en */,
+				3F6A6E3C29BD2FEB0088FCB4 /* zh-Hans */,
+				3F6A6E4229BD30230088FCB4 /* Base */,
 			);
-			name = santiago_west_chile_temple.txt;
+			name = vitoria_brazil_temple;
 			sourceTree = "<group>";
 		};
-		3FB4794C29BBF79900E06EB0 /* la_paz_bolivia_temple.txt */ = {
+		3F6A6E1B29BD2FA10088FCB4 /* culiacan_mexico_temple */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3FB4794D29BBF79900E06EB0 /* Base */,
-				3FB4796529BBF7D400E06EB0 /* en */,
-				3FB4797929BBF83C00E06EB0 /* zh-Hans */,
+				3F6A6E1C29BD2FA10088FCB4 /* en */,
+				3F6A6E3629BD2FEA0088FCB4 /* zh-Hans */,
+				3F6A6E4529BD30230088FCB4 /* Base */,
 			);
-			name = la_paz_bolivia_temple.txt;
+			name = culiacan_mexico_temple;
 			sourceTree = "<group>";
 		};
-		3FB4794E29BBF79900E06EB0 /* heber_valley_utah_temple .txt */ = {
+		3F6A6E1D29BD2FA10088FCB4 /* rexburg_north_idaho_temple */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3FB4794F29BBF79900E06EB0 /* Base */,
-				3FB4796D29BBF7D500E06EB0 /* en */,
-				3FB4797B29BBF83C00E06EB0 /* zh-Hans */,
+				3F6A6E1E29BD2FA10088FCB4 /* en */,
+				3F6A6E3A29BD2FEA0088FCB4 /* zh-Hans */,
+				3F6A6E4829BD30230088FCB4 /* Base */,
 			);
-			name = "heber_valley_utah_temple .txt";
+			name = rexburg_north_idaho_temple;
+			sourceTree = "<group>";
+		};
+		3F6A6E1F29BD2FA10088FCB4 /* heber_valley_utah_temple */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F6A6E2029BD2FA10088FCB4 /* en */,
+				3F6A6E3E29BD2FEB0088FCB4 /* zh-Hans */,
+				3F6A6E4329BD30230088FCB4 /* Base */,
+			);
+			name = heber_valley_utah_temple;
+			sourceTree = "<group>";
+		};
+		3F6A6E2129BD2FA10088FCB4 /* la_paz_bolivia_temple */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F6A6E2229BD2FA10088FCB4 /* en */,
+				3F6A6E3929BD2FEA0088FCB4 /* zh-Hans */,
+				3F6A6E4729BD30230088FCB4 /* Base */,
+			);
+			name = la_paz_bolivia_temple;
+			sourceTree = "<group>";
+		};
+		3F6A6E2329BD2FA10088FCB4 /* santiago_west_chile_temple */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F6A6E2429BD2FA10088FCB4 /* en */,
+				3F6A6E3B29BD2FEA0088FCB4 /* zh-Hans */,
+			);
+			name = santiago_west_chile_temple;
+			sourceTree = "<group>";
+		};
+		3F6A6E2529BD2FA10088FCB4 /* tacloban_city_philippines_temple */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F6A6E2629BD2FA10088FCB4 /* en */,
+				3F6A6E3529BD2FEA0088FCB4 /* zh-Hans */,
+				3F6A6E4429BD30230088FCB4 /* Base */,
+			);
+			name = tacloban_city_philippines_temple;
+			sourceTree = "<group>";
+		};
+		3F6A6E2729BD2FA10088FCB4 /* monrovia_liberia_temple */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F6A6E2829BD2FA10088FCB4 /* en */,
+				3F6A6E3829BD2FEA0088FCB4 /* zh-Hans */,
+				3F6A6E4929BD30230088FCB4 /* Base */,
+			);
+			name = monrovia_liberia_temple;
+			sourceTree = "<group>";
+		};
+		3F6A6E2929BD2FA10088FCB4 /* antananarivo_madagascar_temple */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F6A6E2A29BD2FA10088FCB4 /* en */,
+				3F6A6E3D29BD2FEB0088FCB4 /* zh-Hans */,
+				3F6A6E4129BD30230088FCB4 /* Base */,
+			);
+			name = antananarivo_madagascar_temple;
 			sourceTree = "<group>";
 		};
 		3FB4795029BBF79A00E06EB0 /* fort_worth_texas_temple */ = {
@@ -1894,66 +1952,6 @@
 				3FB4797029BBF83C00E06EB0 /* zh-Hans */,
 			);
 			name = fort_worth_texas_temple;
-			sourceTree = "<group>";
-		};
-		3FB4795229BBF79A00E06EB0 /* culiacan_mexico_temple.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FB4795329BBF79A00E06EB0 /* Base */,
-				3FB4796729BBF7D400E06EB0 /* en */,
-				3FB4797229BBF83C00E06EB0 /* zh-Hans */,
-			);
-			name = culiacan_mexico_temple.txt;
-			sourceTree = "<group>";
-		};
-		3FB4795429BBF79A00E06EB0 /* vitoria_brazil_temple.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FB4795529BBF79A00E06EB0 /* Base */,
-				3FB4796C29BBF7D500E06EB0 /* en */,
-				3FB4796F29BBF83C00E06EB0 /* zh-Hans */,
-			);
-			name = vitoria_brazil_temple.txt;
-			sourceTree = "<group>";
-		};
-		3FB4795A29BBF79B00E06EB0 /* antananarivo_madagascar_temple.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FB4795B29BBF79B00E06EB0 /* Base */,
-				3FB4796629BBF7D400E06EB0 /* en */,
-				3FB4797A29BBF83C00E06EB0 /* zh-Hans */,
-			);
-			name = antananarivo_madagascar_temple.txt;
-			sourceTree = "<group>";
-		};
-		3FB4795C29BBF79C00E06EB0 /* monrovia_liberia_temple.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FB4795D29BBF79C00E06EB0 /* Base */,
-				3FB4796829BBF7D400E06EB0 /* en */,
-				3FB4797129BBF83C00E06EB0 /* zh-Hans */,
-			);
-			name = monrovia_liberia_temple.txt;
-			sourceTree = "<group>";
-		};
-		3FB4795E29BBF79C00E06EB0 /* rexburg_north_idaho_temple.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FB4795F29BBF79C00E06EB0 /* Base */,
-				3FB4796329BBF7D400E06EB0 /* en */,
-				3FB4797429BBF83C00E06EB0 /* zh-Hans */,
-			);
-			name = rexburg_north_idaho_temple.txt;
-			sourceTree = "<group>";
-		};
-		3FB4796029BBF79C00E06EB0 /* tacloban_city_philippines_temple.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FB4796129BBF79C00E06EB0 /* Base */,
-				3FB4796229BBF7D400E06EB0 /* en */,
-				3FB4797829BBF83C00E06EB0 /* zh-Hans */,
-			);
-			name = tacloban_city_philippines_temple.txt;
 			sourceTree = "<group>";
 		};
 		3FB4798C29BBFB3800E06EB0 /* kaohsiung_taiwan_temple */ = {
