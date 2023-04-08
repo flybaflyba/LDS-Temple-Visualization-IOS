@@ -155,7 +155,7 @@ class SharedValues: ObservableObject {
     
     @Published var oneTempleInfo: Array<ImageSpiral.Info> = Array<ImageSpiral.Info>()
    
-    @Published var numberOfTemples: Int = 254
+    @Published var numberOfTemples: Int = ImageSpiral.templeNames.count 
     @Published var sliderProgress: CGFloat = 5300
     @Published var lastSliderProgress: CGFloat = 5300
     //@Published var bindedValueForAnimatableModifier: CGFloat = 3000
