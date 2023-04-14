@@ -18,3 +18,5 @@ IOS version of the LDS Temples Visualization App
 
 ### In AllTemplesInfo folder:
 1. If you use Finder, you will see that three folders live inside of AllTemplesInfo (Base.lproj, en.lproj, zh-Hans.lproj). In each of these folders, you will need to create a new file for each new temple following naming conventions in those folders. A command line tool may make this job faster than doing it by hand.
+
+Updated until 2021 October General Conference
