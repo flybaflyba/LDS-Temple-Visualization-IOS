@@ -20,3 +20,7 @@ IOS version of the LDS Temples Visualization App
 1. If you use Finder, you will see that three folders live inside of AllTemplesInfo (Base.lproj, en.lproj, zh-Hans.lproj). In each of these folders, you will need to create a new file for each new temple following naming conventions in those folders. A command line tool may make this job faster than doing it by hand.
 
 Updated until 2021 October General Conference
+
+
+# Message below added in 2024 Mar because I'm seeing recenty some pull requests to this repo: 
+Aloha! Thanks for checking out Temples Timeline IOS version. Maybe you are a student interested in this app or anyone came across, anyway if you are introduced here by Brother Draper (or any other processors at BYU-H) and/or want to work on this app, please contact me at litian_zhang17@163.com and let me know your email, I can add you to the project! 
